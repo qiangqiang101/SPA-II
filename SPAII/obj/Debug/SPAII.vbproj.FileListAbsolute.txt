@@ -1,0 +1,15 @@
+D:\Projects\Mods\SPAII\SPAII\bin\Debug\SPAII.dll
+D:\Projects\Mods\SPAII\SPAII\bin\Debug\SPAII.pdb
+D:\Projects\Mods\SPAII\SPAII\bin\Debug\SPAII.xml
+D:\Projects\Mods\SPAII\SPAII\bin\Debug\iFruitAddon2.dll
+D:\Projects\Mods\SPAII\SPAII\bin\Debug\INMNativeUI.dll
+D:\Projects\Mods\SPAII\SPAII\bin\Debug\Metadata.dll
+D:\Projects\Mods\SPAII\SPAII\bin\Debug\ScriptHookVDotNet2.dll
+D:\Projects\Mods\SPAII\SPAII\bin\Debug\Metadata.pdb
+D:\Projects\Mods\SPAII\SPAII\bin\Debug\ScriptHookVDotNet2.xml
+D:\Projects\Mods\SPAII\SPAII\obj\Debug\SPAII.vbprojResolveAssemblyReference.cache
+D:\Projects\Mods\SPAII\SPAII\obj\Debug\SPAII.Resources.resources
+D:\Projects\Mods\SPAII\SPAII\obj\Debug\SPAII.vbproj.GenerateResource.Cache
+D:\Projects\Mods\SPAII\SPAII\obj\Debug\SPAII.dll
+D:\Projects\Mods\SPAII\SPAII\obj\Debug\SPAII.xml
+D:\Projects\Mods\SPAII\SPAII\obj\Debug\SPAII.pdb
