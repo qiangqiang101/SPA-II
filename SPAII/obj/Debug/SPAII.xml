@@ -22,5 +22,11 @@ SPAII
   resource lookups using this strongly typed resource class.
 </summary>
 </member>
+<member name="M:SPAII.Helper.FadeScreen(System.Int32,System.Int32)">
+ <summary>
+ In = 0, Out = 1
+ Duration is milliseconds
+ </summary>
+</member>
 </members>
 </doc>

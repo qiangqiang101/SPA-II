@@ -25,6 +25,7 @@ Public Structure BuildingData
     Public BuildingType As eBuildingType
     Public Apartments As List(Of ApartmentData)
 
+
     Public Sub New(_filename As String)
         FileName = _filename
     End Sub
@@ -63,7 +64,6 @@ Public Structure ApartmentData
     Public Name As String
     Public Description As String
     Public Price As Integer
-    Public Owner As Integer
     Public SavePos As Vector3
     Public EnterPos As Vector3
     Public ExitPos As Vector3
@@ -82,12 +82,11 @@ Public Structure ApartmentData
     <XmlIgnore>
     Public GarageMenuPos As Vector3
 
-    Public Sub New(n As String, d As String, p As Integer, o As Integer, sp As Vector3, ep As Vector3, xp As Vector3, wp As Quaternion,
+    Public Sub New(n As String, d As String, p As Integer, sp As Vector3, ep As Vector3, xp As Vector3, wp As Quaternion,
                    ip As Vector3, gp As String, il As String, ascp As Quaternion, ascr As Vector3, si As Boolean)
         Name = Game.GetGXTEntry(n)
         Description = Game.GetGXTEntry(d)
         Price = p
-        Owner = o
         SavePos = sp
         EnterPos = ep
         ExitPos = xp
