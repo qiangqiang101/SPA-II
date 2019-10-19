@@ -93,7 +93,7 @@ Public Class BuildingClass
 
         If apts.Count <> 0 AndAlso Not bt = eBuildingType.Garage Then
             GarageBlip = World.CreateBlip(GarageEntrancePos)
-            With BuildingBlip
+            With GarageBlip
                 .Color = BlipColor.White
                 .IsShortRange = True
                 .Sprite = BlipSprite.Garage
@@ -102,13 +102,12 @@ Public Class BuildingClass
         End If
 
         AptMenu = New UIMenu("", Game.GetGXTEntry("MP_PROP_GEN2A"), New Point(0, -107))
-        Dim Rectangle As New UIResRectangle()
-        Rectangle.Color = Color.FromArgb(0, 0, 0, 0)
+        Dim Rectangle As New UIResRectangle(Point.Empty, New Size(0, 0), Color.FromArgb(0, 0, 0, 0))
         AptMenu.SetBannerType(Rectangle)
         AptMenu.MouseEdgeEnabled = False
         MenuPool.Add(AptMenu)
         With AptMenu
-            For Each apt In a
+            For Each apt As ApartmentData In a
                 Dim item As New UIMenuItem(Game.GetGXTEntry(apt.Name), Game.GetGXTEntry(apt.Description))
                 With item
                     Select Case config.GetValue(Of Integer)("BUILDING", apt.Name, -1)
@@ -124,8 +123,7 @@ Public Class BuildingClass
                         Case 3 'Player3
                             .SetRightBadge(UIMenuItem.BadgeStyle.Heart)
                     End Select
-                    .SubInteger1 = apt.Price
-                    .SubString1 = apt.Name
+                    .Tag = apt
                 End With
                 .AddItem(item)
             Next
@@ -152,6 +150,7 @@ Public Class BuildingClass
                         Case 3 'Player3
                             .SetRightBadge(UIMenuItem.BadgeStyle.Heart)
                     End Select
+                    .Tag = apt
                 End With
                 .AddItem(item)
             Next
@@ -177,6 +176,7 @@ Public Class BuildingClass
                     Case 3 'Player3
                         .SetRightBadge(UIMenuItem.BadgeStyle.Heart)
                 End Select
+                .Tag = apt
             End With
             AptMenu.AddItem(item)
         Next
@@ -200,6 +200,7 @@ Public Class BuildingClass
                     Case 3 'Player3
                         .SetRightBadge(UIMenuItem.BadgeStyle.Heart)
                 End Select
+                .Tag = apt
             End With
             GrgMenu.AddItem(item)
         Next
@@ -259,10 +260,71 @@ Public Class BuildingClass
         End Try
     End Sub
 
+    Private Sub RefreshBlips()
+        BuildingBlip = World.CreateBlip(EntrancePos)
+        With BuildingBlip
+            .Color = BlipColor.White
+            .IsShortRange = True
+            If Apartments.Count = 0 Then
+                Select Case BuildingType
+                    Case eBuildingType.Apartment
+                        .Sprite = BlipSprite.SafehouseForSale
+                        .Name = Game.GetGXTEntry("MP_PROP_SALE1") 'Apartment For Sale
+                    Case eBuildingType.Office
+                        .Sprite = BlipSprite.OfficeForSale
+                        .Name = Game.GetGXTEntry("MP_PROP_SALE2") 'Office For Sale
+                    Case eBuildingType.ClubHouse, eBuildingType.NightClub, eBuildingType.Bunker
+                        .Sprite = BlipSprite.BusinessForSale
+                        .Name = Game.GetGXTEntry("BLIP_373") 'Property For Sale
+                    Case eBuildingType.Garage
+                        .Sprite = BlipSprite.GarageForSale
+                        .Name = Game.GetGXTEntry("MP_PROP_SALE0") 'Garage For Sale
+                    Case eBuildingType.Hangar
+                        .Sprite = BlipSprite.HangarForSale
+                        .Name = Game.GetGXTEntry("BLIP_372") 'Hangar For Sale
+                    Case eBuildingType.Warehouse
+                        .Sprite = BlipSprite.WarehouseForSale
+                        .Name = Game.GetGXTEntry("BLIP_474") 'Warehouse For Sale
+                End Select
+            Else
+                Select Case BuildingType
+                    Case eBuildingType.Apartment
+                        .Sprite = BlipSprite.Safehouse
+                    Case eBuildingType.Office
+                        .Sprite = BlipSprite.Office
+                    Case eBuildingType.ClubHouse
+                        .Sprite = BlipSprite.BikerClubhouse
+                    Case eBuildingType.Garage
+                        .Sprite = BlipSprite.Garage
+                    Case eBuildingType.Hangar
+                        .Sprite = BlipSprite.GTAOHangar
+                    Case eBuildingType.NightClub
+                        .Sprite = BlipSprite.NightclubProperty
+                    Case eBuildingType.Warehouse
+                        .Sprite = BlipSprite.Warehouse
+                    Case eBuildingType.Bunker
+                        .Sprite = BlipSprite.Bunker
+                End Select
+                .Name = Name
+            End If
+        End With
+
+        If Apartments.Count <> 0 AndAlso Not BuildingType = eBuildingType.Garage Then
+            GarageBlip = World.CreateBlip(GarageEntrancePos)
+            With GarageBlip
+                .Color = BlipColor.White
+                .IsShortRange = True
+                .Sprite = BlipSprite.Garage
+                .Name = $"{Name} Garage"
+            End With
+        End If
+    End Sub
+
     Private Sub AptMenu_OnItemSelect(sender As UIMenu, selectedItem As UIMenuItem, index As Integer) Handles AptMenu.OnItemSelect
         Try
             For Each apt In Apartments
-                If selectedItem.SubString1 = apt.Name AndAlso selectedItem.RightBadge = UIMenuItem.BadgeStyle.None AndAlso config.GetValue(Of Integer)("BUILDING", apt.Name, -1) = -1 Then
+                Dim selectedApt As ApartmentData = selectedItem.Tag
+                If selectedApt.Name = apt.Name AndAlso selectedItem.RightBadge = UIMenuItem.BadgeStyle.None AndAlso apt.Owner = -1 Then
                     'Buy Apartment
                     If PM > apt.Price Then
                         apt.UpdateApartmentOwner()
@@ -286,10 +348,11 @@ Public Class BuildingClass
                                 selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Heart)
                         End Select
                         selectedItem.SetRightLabel(Nothing)
+                        RefreshBlips()
                     End If
-                ElseIf selectedItem.SubString1 = apt.Name AndAlso Not selectedItem.RightBadge = UIMenuItem.BadgeStyle.None AndAlso config.GetValue(Of Integer)("BUILDING", apt.Name, -1) = GetPlayerNum Then
+                ElseIf selectedApt.Name = apt.Name AndAlso Not selectedItem.RightBadge = UIMenuItem.BadgeStyle.None AndAlso apt.Owner = GetPlayerNum() Then
                     AptMenu.Visible = False
-                    hideHud = False
+                    HideHud = False
                     World.DestroyAllCameras()
                     World.RenderingCamera = Nothing
                     apt.SetInteriorActive()
@@ -306,7 +369,8 @@ Public Class BuildingClass
     Private Sub GrgMenu_OnItemSelect(sender As UIMenu, selectedItem As UIMenuItem, index As Integer) Handles GrgMenu.OnItemSelect
         Try
             For Each apt In Apartments
-                If selectedItem.SubString1 = apt.Name AndAlso selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
+                Dim selectedApt As ApartmentData = selectedItem.Tag
+                If selectedApt.Name = apt.Name AndAlso selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
                     If Not PP.IsInVehicle Then
                         'On Foot
                         FadeScreen(1)

@@ -82,6 +82,10 @@ Public Structure ApartmentData
     <XmlIgnore>
     Public GarageMenuPos As Vector3
 
+    Public Function Owner() As Integer
+        Return config.GetValue(Of Integer)("BUILDING", Name, -1)
+    End Function
+
     Public Sub New(n As String, d As String, p As Integer, sp As Vector3, ep As Vector3, xp As Vector3, wp As Quaternion,
                    ip As Vector3, gp As String, il As String, ascp As Quaternion, ascr As Vector3, si As Boolean)
         Name = Game.GetGXTEntry(n)

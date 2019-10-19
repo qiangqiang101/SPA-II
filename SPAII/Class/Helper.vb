@@ -135,6 +135,8 @@ Module Helper
     Public Sub UpdateApartmentOwner(ByRef apt As ApartmentData)
         config.SetValue(Of Integer)("BUILDING", apt.Name, GetPlayerNum)
         config.Save()
+
+        config = ScriptSettings.Load("scripts\SPA II\modconfig.ini")
     End Sub
 
     Public Sub LoadSettings()
