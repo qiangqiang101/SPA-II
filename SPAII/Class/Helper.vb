@@ -12,7 +12,6 @@ Module Helper
     Public config As ScriptSettings = ScriptSettings.Load("scripts\SPA II\modconfig.ini")
 
     'Path 
-    Public aptXmlPath As String = ".\scripts\SPA II\Apartments\"
     Public grgXmlPath As String = ".\scripts\SPA II\Garages\"
     Public soundPath As String = ".\scripts\SPA II\Sounds\"
 
@@ -45,7 +44,7 @@ Module Helper
 
     <Extension>
     Public Function Make(vehicle As Vehicle) As String
-        Return Game.GetGXTEntry(vehicle.Model.Hash.GetVehicleMakeName)
+        Return Game.GetGXTEntry(Native.Function.Call(Of String)(&HF7AF4F159FF99F97UL, vehicle.Model.Hash))
     End Function
 
     <Extension>
@@ -83,28 +82,9 @@ Module Helper
         Native.Function.Call(&HE41033B25D003A07UL, veh.Handle, colorID)
     End Sub
 
-    Public Function IsNitroModInstalled() As Boolean
-        Return Decor.Registered(nitroModDecor, Decor.eDecorType.Bool)
+    Public Function IsNitroModInstalled() As Integer
+        Return Decor.Registered(nitroModDecor, Decor.eDecorType.Int)
     End Function
-
-    Public Sub LoadBuildings(files As String())
-        Dim procFile As String = Nothing
-        buildings.Clear()
-
-        Try
-            For Each file As String In files
-                procFile = file
-                Dim bd = New BuildingData(file).Instance
-                Dim bc As New BuildingClass(bd.Name, bd.EntrancePos, bd.ExitPos, bd.GarageEntrancePos, bd.GarageExitPos, bd.CameraPos, bd.CameraRot, bd.Apartments, bd.GarageType, bd.BuildingType)
-                If Not buildings.Contains(bc) Then buildings.Add(bc)
-            Next
-        Catch ex As Exception
-            Logger.Log($"{ex.Message} {procFile}{ex.StackTrace}")
-        Finally
-            buildingsLoaded = True
-            UI.Notify($"Loaded {buildings.Count} or {files.Count} apartments.")
-        End Try
-    End Sub
 
     Public Sub DisplayHelpTextThisFrame(helpText As String, Optional Shape As Integer = -1)
         Native.Function.Call(Native.Hash._SET_TEXT_COMPONENT_FORMAT, "CELL_EMAIL_BCON")
@@ -132,7 +112,7 @@ Module Helper
     End Function
 
     <Extension>
-    Public Sub UpdateApartmentOwner(ByRef apt As ApartmentData)
+    Public Sub UpdateApartmentOwner(ByRef apt As ApartmentClass)
         config.SetValue(Of Integer)("BUILDING", apt.Name, GetPlayerNum)
         config.Save()
 
@@ -162,7 +142,7 @@ Module Helper
     End Sub
 
     <Extension>
-    Public Sub SetInteriorActive(apt As ApartmentData)
+    Public Sub SetInteriorActive(apt As ApartmentClass)
         Try
             Dim id As Integer = Native.Function.Call(Of Integer)(Hash.GET_INTERIOR_AT_COORDS, apt.InteriorPos.X, apt.InteriorPos.Y, apt.InteriorPos.Z)
             Native.Function.Call(Hash._0x2CA429C029CCF247, id)

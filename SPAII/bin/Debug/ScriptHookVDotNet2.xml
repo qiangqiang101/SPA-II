@@ -695,6 +695,14 @@
             <param name="right">The second quaternion to multiply.</param>
             <returns>The multiplied quaternion.</returns>
         </member>
+        <member name="M:GTA.Math.Quaternion.op_Multiply(GTA.Math.Quaternion,GTA.Math.Vector3)">
+            <summary>
+            Rotates a point using a quaternion.
+            </summary>
+            <param name="rotation">The quaternion to rotate the point with.</param>
+            <param name="point">The point to rotate.</param>
+            <returns>The rotated point coordinates.</returns>
+        </member>
         <member name="M:GTA.Math.Quaternion.op_Multiply(GTA.Math.Quaternion,System.Single)">
             <summary>
             Scales a quaternion by the given value.

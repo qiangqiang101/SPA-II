@@ -6,7 +6,7 @@ Public Class SPA2
     Inherits Script
 
     Public Sub New()
-        LoadBuildings(Directory.GetFiles(aptXmlPath, "*.xml"))
+        LoadBuildings()
     End Sub
 
     Private Sub SPA2_Tick(sender As Object, e As EventArgs) Handles Me.Tick
@@ -24,12 +24,14 @@ Public Class SPA2
                             If Game.IsControlJustReleased(0, Control.Context) Then
                                 FadeScreen(1)
                                 bd.AptMenu.Visible = True
-                                World.RenderingCamera = World.CreateCamera(bd.CameraPos.ToVector3, bd.CameraRot, bd.CameraPos.W)
+                                World.RenderingCamera = World.CreateCamera(bd.CameraPos.Position, bd.CameraPos.Rotation, bd.CameraPos.FOV)
                                 HideHud = True
                                 FadeScreen(0)
                             End If
                         End If
                     End If
+
+
                 Next
 
                 MenuPool.ProcessMenus()

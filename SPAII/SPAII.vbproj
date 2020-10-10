@@ -78,13 +78,14 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Class\BuildingList.vb" />
+    <Compile Include="Class\CameraPRH.vb" />
+    <Compile Include="Class\Database\ApartmentClass.vb" />
     <Compile Include="Class\Database\BuildingClass.vb" />
-    <Compile Include="Class\Database\BuildingData.vb" />
     <Compile Include="Class\Database\VehicleClass.vb" />
     <Compile Include="Class\Database\VehicleData.vb" />
     <Compile Include="Class\Helper.vb" />
     <Compile Include="Class\Logger.vb" />
-    <Compile Include="Class\ReadMemory.vb" />
     <Compile Include="SPA2.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
