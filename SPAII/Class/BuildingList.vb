@@ -35,6 +35,7 @@ Module BuildingList
                 .CameraPos = New CameraPRH(New Vector3(-215.2378, -1071.639, 32.85828), New Vector3(22.62831, 0, 26.93762), 50.0F)
                 .GarageType = eGarageType.TenCarGarage
                 .BuildingType = eBuildingType.Apartment
+                .HideObjects = {"hei_dt1_20_build2", "dt1_20_dt1_emissive_dt1_20"}
                 .Apartments = New List(Of ApartmentClass) From {_3AltaStreet57}
             End With
             If Not buildings.Contains(_3AltaStreet) Then buildings.Add(_3AltaStreet)
@@ -82,6 +83,7 @@ Module BuildingList
                 .CameraPos = New CameraPRH(New Vector3(-73.43955, -489.4017, 43.24729), New Vector3(20.34373, 0, -158.8398), 50.0F)
                 .GarageType = eGarageType.TenCarGarage
                 .BuildingType = eBuildingType.Apartment
+                .HideObjects = {"hei_dt1_03_build1x", "DT1_Emissive_DT1_03_b1", "dt1_03_dt1_Emissive_b1"}
                 .Apartments = New List(Of ApartmentClass) From {_4IntegrityWay30, _4IntegrityWay28}
             End With
             If Not buildings.Contains(_4IntegrityWay) Then buildings.Add(_4IntegrityWay)
@@ -129,6 +131,7 @@ Module BuildingList
                 .CameraPos = New CameraPRH(New Vector3(-1392.67, -572.4094, 35.15923), New Vector3(22.16564, 0, 66.90905), 50.0F)
                 .GarageType = eGarageType.TenCarGarage
                 .BuildingType = eBuildingType.Apartment
+                .HideObjects = {"sm_14_emissive", "hei_sm_14_bld2"}
                 .Apartments = New List(Of ApartmentClass) From {delPerroHts7, delPerroHts4}
             End With
             If Not buildings.Contains(delPerroHts) Then buildings.Add(delPerroHts)
@@ -224,6 +227,7 @@ Module BuildingList
                 .CameraPos = New CameraPRH(New Vector3(-881.4312, 214.6852, 91.3971), New Vector3(25.6109, 0, -39.32376), 50.0F)
                 .GarageType = eGarageType.TenCarGarage
                 .BuildingType = eBuildingType.Apartment
+                .HideObjects = {"apa_ss1_11_flats", "ss1_11_ss1_emissive_a", "ss1_11_detail01b", "ss1_11_Flats_LOD", "SS1_02_Building01_LOD", "SS1_LOD_01_02_08_09_10_11", "SS1_02_SLOD1"}
                 .Apartments = New List(Of ApartmentClass) From {eclipseTowers31, eclipseTowers3, eclipseTowersPH1, eclipseTowersPH2, eclipseTowersPH3}
             End With
             If Not buildings.Contains(eclipseTowers) Then buildings.Add(eclipseTowers)
@@ -271,6 +275,7 @@ Module BuildingList
                 .CameraPos = New CameraPRH(New Vector3(-958.2964, -478.6136, 38.73965), New Vector3(24.18255, 0, -19.8838), 50.0F)
                 .GarageType = eGarageType.TenCarGarage
                 .BuildingType = eBuildingType.Apartment
+                .HideObjects = {"hei_bh1_08_bld2", "bh1_emissive_bh1_08", "bh1_08_bld2_LOD", "hei_bh1_08_bld2", "bh1_08_em"}
                 .Apartments = New List(Of ApartmentClass) From {richardMajestic4, richardMajestic2}
             End With
             If Not buildings.Contains(richardMajestic) Then buildings.Add(richardMajestic)
@@ -318,6 +323,7 @@ Module BuildingList
                 .CameraPos = New CameraPRH(New Vector3(-678.4925, -30.95172, 48.26074), New Vector3(16.23258, 0, -43.18668), 50.0F)
                 .GarageType = eGarageType.TenCarGarage
                 .BuildingType = eBuildingType.Apartment
+                .HideObjects = {"apa_ss1_02_building01", "SS1_Emissive_SS1_02a_LOD", "ss1_02_ss1_emissive_ss1_02", "apa_ss1_02_building01", "SS1_02_Building01_LOD"}
                 .Apartments = New List(Of ApartmentClass) From {tinselTowers29, tinselTowers42}
             End With
             If Not buildings.Contains(tinselTowers) Then buildings.Add(tinselTowers)
@@ -349,6 +355,7 @@ Module BuildingList
                 .CameraPos = New CameraPRH(New Vector3(-965.4064, -563.0858, 34.91125), New Vector3(24.98755, 0, -31.1508), 50.0F)
                 .GarageType = eGarageType.TenCarGarage
                 .BuildingType = eBuildingType.Apartment
+                .HideObjects = {"hei_bh1_09_bld_01", "bh1_09_ema", "prop_wall_light_12a"}
                 .Apartments = New List(Of ApartmentClass) From {weazelPlaza70}
             End With
             If Not buildings.Contains(weazelPlaza) Then buildings.Add(weazelPlaza)
@@ -382,6 +389,7 @@ Module BuildingList
                 .CameraPos = New CameraPRH(New Vector3(-712.7956, 597.7189, 146.6349), New Vector3(-5.849331, 0, -87.56305), 50.0F)
                 .GarageType = eGarageType.SixCarGarage
                 .BuildingType = eBuildingType.Apartment
+                .HideObjects = {"apa_ch2_09c_hs11", "CH2_09c_Emissive_11_LOD", "CH2_09c_Emissive_11", "apa_ch2_09c_hs11_details"}
                 .Apartments = New List(Of ApartmentClass) From {_2862HillcrestAveApt}
             End With
             If Not buildings.Contains(_2862HillcrestAve) Then buildings.Add(_2862HillcrestAve)
@@ -413,6 +421,7 @@ Module BuildingList
                 .CameraPos = New CameraPRH(New Vector3(-734.5688, 618.7574, 148.982), New Vector3(-16.70547, 0, 86.47249), 50.0F)
                 .GarageType = eGarageType.SixCarGarage
                 .BuildingType = eBuildingType.Apartment
+                .HideObjects = {"apa_ch2_09b_hs01a_details", "apa_ch2_09b_hs01", "apa_ch2_09b_hs01_balcony", "apa_ch2_09b_Emissive_11_LOD", "apa_ch2_09b_Emissive_11", "apa_CH2_09b_House08_LOD"}
                 .Apartments = New List(Of ApartmentClass) From {_2868HillcrestAveApt}
             End With
             If Not buildings.Contains(_2868HillcrestAve) Then buildings.Add(_2868HillcrestAve)
@@ -444,6 +453,7 @@ Module BuildingList
                 .CameraPos = New CameraPRH(New Vector3(-863.697, 713.9671, 152.9681), New Vector3(-8.148409, 1.0781, -167.5327), 50.0F)
                 .GarageType = eGarageType.SixCarGarage
                 .BuildingType = eBuildingType.Apartment
+                .HideObjects = {"apa_ch2_09b_hs02", "apa_ch2_09b_hs02b_details", "apa_ch2_09b_Emissive_09_LOD", "ch2_09b_botpoolHouse02_LOD", "apa_ch2_09b_Emissive_09", "apa_ch2_09b_hs02_balcony"}
                 .Apartments = New List(Of ApartmentClass) From {_2874HillcrestAveApt}
             End With
             If Not buildings.Contains(_2874HillcrestAve) Then buildings.Add(_2874HillcrestAve)
@@ -475,6 +485,7 @@ Module BuildingList
                 .CameraPos = New CameraPRH(New Vector3(-1306.412, 467.0048, 102.6207), New Vector3(-17.02023, 0, -141.3645), 50.0F)
                 .GarageType = eGarageType.SixCarGarage
                 .BuildingType = eBuildingType.Apartment
+                .HideObjects = {"apa_ch2_12b_house03mc", "ch2_12b_emissive_02", "ch2_12b_house03_MC_a_LOD", "ch2_12b_emissive_02_LOD", "ch2_12b_railing_06"}
                 .Apartments = New List(Of ApartmentClass) From {_2113MadWayneThunderDrApt}
             End With
             If Not buildings.Contains(_2113MadWayneThunderDr) Then buildings.Add(_2113MadWayneThunderDr)
@@ -506,6 +517,7 @@ Module BuildingList
                 .CameraPos = New CameraPRH(New Vector3(-548.5573, 669.8001, 146.1121), New Vector3(-6.038576, 0, 124.0644), 50.0F)
                 .GarageType = eGarageType.SixCarGarage
                 .BuildingType = eBuildingType.Apartment
+                .HideObjects = {"apa_ch2_09c_hs07", "ch2_09c_build_11_07_LOD", "CH2_09c_Emissive_07_LOD", "apa_ch2_09c_build_11_07_LOD", "ch2_09c_hs07_details", "CH2_09c_Emissive_07"}
                 .Apartments = New List(Of ApartmentClass) From {_2117MiltonRdApt}
             End With
             If Not buildings.Contains(_2117MiltonRd) Then buildings.Add(_2117MiltonRd)
@@ -537,6 +549,7 @@ Module BuildingList
                 .CameraPos = New CameraPRH(New Vector3(347.726, 459.0123, 150.3243), New Vector3(-3.703, 0, 161.5176), 50.0F)
                 .GarageType = eGarageType.SixCarGarage
                 .BuildingType = eBuildingType.Apartment
+                .HideObjects = {"apa_ch2_04_house02", "apa_ch2_04_house02_d", "apa_ch2_04_M_a_LOD", "ch2_04_house02_railings", "ch2_04_emissive_04", "ch2_04_emissive_04_LOD", "apa_ch2_04_house02_details"}
                 .Apartments = New List(Of ApartmentClass) From {_2044NorthConkerAveApt}
             End With
             If Not buildings.Contains(_2044NorthConkerAve) Then buildings.Add(_2044NorthConkerAve)
@@ -568,6 +581,7 @@ Module BuildingList
                 .CameraPos = New CameraPRH(New Vector3(366.7971, 447.0355, 148.0793), New Vector3(-8.704479, -2.1593, -156.5936), 50.0F)
                 .GarageType = eGarageType.SixCarGarage
                 .BuildingType = eBuildingType.Apartment
+                .HideObjects = {"apa_ch2_04_house01", "apa_ch2_04_house01_d", "ch2_04_emissive_05_LOD", "apa_ch2_04_M_b_LOD", "ch2_04_emissive_05", "ch2_04_house01_details"}
                 .Apartments = New List(Of ApartmentClass) From {_2045NorthConkerAveApt}
             End With
             If Not buildings.Contains(_2045NorthConkerAve) Then buildings.Add(_2045NorthConkerAve)
@@ -599,6 +613,7 @@ Module BuildingList
                 .CameraPos = New CameraPRH(New Vector3(112.5791, 574.6387, 190.8119), New Vector3(-21.01317, 0, -144.2139), 50.0F)
                 .GarageType = eGarageType.SixCarGarage
                 .BuildingType = eBuildingType.Apartment
+                .HideObjects = {"apa_ch2_05c_b4", "ch2_05c_emissive_07", "ch2_05c_decals_05", "ch2_05c_B4_LOD"}
                 .Apartments = New List(Of ApartmentClass) From {_3677WhispymoundDrApt}
             End With
             If Not buildings.Contains(_3677WhispymoundDr) Then buildings.Add(_3677WhispymoundDr)
@@ -630,6 +645,7 @@ Module BuildingList
                 .CameraPos = New CameraPRH(New Vector3(-198.8929, 511.1027, 136.112), New Vector3(4.350469, 0, -128.423), 50.0F)
                 .GarageType = eGarageType.SixCarGarage
                 .BuildingType = eBuildingType.Apartment
+                .HideObjects = {"apa_ch2_05e_res5", "apa_ch2_05e_res5_LOD"}
                 .Apartments = New List(Of ApartmentClass) From {_3655WildOatsDrApt}
             End With
             If Not buildings.Contains(_3655WildOatsDr) Then buildings.Add(_3655WildOatsDr)
@@ -1351,6 +1367,10 @@ Module BuildingList
             End With
             If Not buildings.Contains(_140ZancudoAve) Then buildings.Add(_140ZancudoAve)
 #End Region
+
+            For Each bd In buildings
+                bd.Load()
+            Next
         Catch ex As Exception
             Logger.Log($"{ex.Message} {ex.StackTrace}")
         Finally

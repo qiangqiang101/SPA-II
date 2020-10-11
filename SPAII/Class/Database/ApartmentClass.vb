@@ -1,5 +1,8 @@
-﻿Imports GTA
+﻿Imports System.IO
+Imports GTA
 Imports GTA.Math
+Imports GTA.Native
+Imports INMNativeUI
 
 Public Class ApartmentClass
 
@@ -23,8 +26,10 @@ Public Class ApartmentClass
     Public GarageElevatorPos As Vector3
     Public GarageMenuPos As Vector3
 
-    Public Function Owner() As Integer
-        Return config.GetValue(Of Integer)("BUILDING", Name, -1)
+    Public WithEvents AptMenu As UIMenu
+
+    Public Function Owner() As eOwner
+        Return CType(config.GetValue(Of Integer)("BUILDING", Name, -1), eOwner)
     End Function
 
     Public Function FriendlyName() As String
@@ -36,7 +41,7 @@ Public Class ApartmentClass
     End Function
 
     Public Function InteriorPos() As Vector3
-        Return ApartmentInPos
+        Return WardrobePos.ToVector3
     End Function
 
     Public Function ShareInterior() As Boolean
@@ -46,6 +51,26 @@ Public Class ApartmentClass
             Case Else
                 Return False
         End Select
+    End Function
+
+    Public Function InteriorID()
+        Return Native.Function.Call(Of Integer)(Hash.GET_INTERIOR_AT_COORDS, InteriorPos.X, InteriorPos.Y, InteriorPos.Z)
+    End Function
+
+    Public Function Vehicles() As List(Of VehicleClass)
+        Dim procFile As String = Nothing
+        Dim list As New List(Of VehicleClass)
+        Try
+            For Each file As String In Directory.GetFiles($"{grgXmlPath}{GarageFilePath}", "*.xml")
+                procFile = file
+                Dim vd As VehicleData = New VehicleData(file).Instance
+                Dim v As VehicleClass = New VehicleClass(vd, Owner)
+                If Not list.Contains(v) Then list.Add(v)
+            Next
+        Catch ex As Exception
+            Logger.Log($"{ex.Message}{procFile}{ex.StackTrace}")
+        End Try
+        Return list
     End Function
 
     Public Sub New()
@@ -69,6 +94,17 @@ Public Class ApartmentClass
         ApartmentType = aptType
     End Sub
 
+    Public Sub SetInteriorActive()
+        Try
+            Dim intID As Integer = Native.Function.Call(Of Integer)(Hash.GET_INTERIOR_AT_COORDS, InteriorPos.X, InteriorPos.Y, InteriorPos.Z)
+            Native.Function.Call(PIN_INTERIOR_IN_MEMORY, New InputArgument() {intID})
+            Native.Function.Call(Hash.SET_INTERIOR_ACTIVE, intID, True)
+            Native.Function.Call(Hash.DISABLE_INTERIOR, intID, False)
+        Catch ex As Exception
+            Logger.Log($"{ex.Message} {ex.StackTrace}")
+        End Try
+    End Sub
+
 End Class
 
 Public Enum eApartmentType
@@ -77,4 +113,12 @@ Public Enum eApartmentType
     LowEnd
     IPL
     Other
+End Enum
+
+Public Enum eOwner
+    Nobody = -1
+    Michael
+    Franklin
+    Trevor
+    Others
 End Enum

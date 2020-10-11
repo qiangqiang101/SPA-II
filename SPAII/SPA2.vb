@@ -20,7 +20,7 @@ Public Class SPA2
                 For Each bd As BuildingClass In buildings
                     If bd.EntranceDistance <= 2.0F Then
                         If Not MenuPool.IsAnyMenuOpen() Then
-                            DisplayHelpTextThisFrame($"Press ~INPUT_CONTEXT~ to enter {bd.Name}.")
+                            UI.ShowHelpMessage($"Press ~INPUT_CONTEXT~ to enter {bd.Name}.")
                             If Game.IsControlJustReleased(0, Control.Context) Then
                                 FadeScreen(1)
                                 bd.AptMenu.Visible = True
@@ -31,6 +31,11 @@ Public Class SPA2
                         End If
                     End If
 
+                    If bd.IsAtHome() Then bd.HideExterior()
+
+                    For Each apt As ApartmentClass In bd.Apartments
+
+                    Next
 
                 Next
 

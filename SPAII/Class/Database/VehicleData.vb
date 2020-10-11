@@ -18,7 +18,7 @@ Public Structure VehicleData
     Public Make As String
     Public Name As String
     Public Hash As Integer
-    Public Owner As Integer
+    Public Owner As eOwner
     Public Aerials As Integer
     Public Suspension As Integer
     Public Armor As Integer
@@ -88,7 +88,7 @@ Public Structure VehicleData
     Public CustomSecondaryColor As VsColor
     Public HasCustomPrimaryColor As Boolean
     Public HasCustomSecondaryColor As Boolean
-    Public Extra0, Extra1, Extra2, Extra3, Extra4, Extra5, Extra6, Extra7, Extra8, Extra9, Extra10 As Boolean
+    Public Extra0, Extra1, Extra2, Extra3, Extra4, Extra5, Extra6, Extra7, Extra8, Extra9, Extra10, Extra11, Extra12, Extra13, Extra14, Extra15 As Boolean
     Public RoofState As Integer
     Public HasNitro As Boolean
     Public Livery1 As Integer

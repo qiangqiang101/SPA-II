@@ -34,6 +34,7 @@ Module Helper
 
     'Menu
     Public MenuPool As New MenuPool
+    Public MenuBanner As New UIResRectangle(Point.Empty, New Size(0, 0), Color.FromArgb(0, 0, 0, 0))
 
     'Coords
     Public TwoCarGarage As New Vector3(0, 0, 0)
@@ -44,7 +45,7 @@ Module Helper
 
     <Extension>
     Public Function Make(vehicle As Vehicle) As String
-        Return Game.GetGXTEntry(Native.Function.Call(Of String)(&HF7AF4F159FF99F97UL, vehicle.Model.Hash))
+        Return Game.GetGXTEntry(Native.Function.Call(Of String)(_GET_MAKE_NAME_FROM_VEHICLE_MODEL, vehicle.Model.Hash))
     End Function
 
     <Extension>
@@ -64,56 +65,44 @@ Module Helper
 
     <Extension()>
     Public Function Livery2(veh As Vehicle) As Integer
-        Return Native.Function.Call(Of Integer)(DirectCast(&H60190048C0764A26UL, Hash), veh.Handle)
+        Return Native.Function.Call(Of Integer)(_GET_VEHICLE_ROOF_LIVERY, veh.Handle)
     End Function
 
     <Extension()>
     Public Sub Livery2(veh As Vehicle, liv As Integer)
-        Native.Function.Call(DirectCast(&HA6D3A8750DC73270UL, Hash), veh.Handle, liv)
+        Native.Function.Call(_SET_VEHICLE_ROOF_LIVERY, veh.Handle, liv)
     End Sub
 
     <Extension>
     Public Function XenonHeadlightsColor(ByVal veh As Vehicle) As Integer
-        Return Native.Function.Call(Of Integer)(&H3DFF319A831E0CDB, veh.Handle)
+        Return Native.Function.Call(Of Integer)(_GET_VEHICLE_XENON_LIGHTS_COLOR, veh.Handle)
     End Function
 
     <Extension()>
     Public Sub XenonHeadlightsColor(ByVal veh As Vehicle, colorID As Integer)
-        Native.Function.Call(&HE41033B25D003A07UL, veh.Handle, colorID)
+        Native.Function.Call(_SET_VEHICLE_XENON_LIGHTS_COLOR, veh.Handle, colorID)
     End Sub
 
     Public Function IsNitroModInstalled() As Integer
         Return Decor.Registered(nitroModDecor, Decor.eDecorType.Int)
     End Function
 
-    Public Sub DisplayHelpTextThisFrame(helpText As String, Optional Shape As Integer = -1)
-        Native.Function.Call(Native.Hash._SET_TEXT_COMPONENT_FORMAT, "CELL_EMAIL_BCON")
-        Const maxStringLength As Integer = 99
-
-        Dim i As Integer = 0
-        While i < helpText.Length
-            Native.Function.Call(Native.Hash._0x6C188BE134E074AA, helpText.Substring(i, System.Math.Min(maxStringLength, helpText.Length - i)))
-            i += maxStringLength
-        End While
-        Native.Function.Call(Native.Hash._DISPLAY_HELP_TEXT_FROM_STRING_LABEL, 0, 0, 1, Shape)
-    End Sub
-
-    Public Function GetPlayerNum() As Integer
+    Public Function GetPlayer() As eOwner
         Select Case Game.Player.Character.Model.GetHashCode
             Case 225514697
-                Return 0
+                Return eOwner.Michael
             Case -1692214353
-                Return 1
+                Return eOwner.Franklin
             Case -1686040670
-                Return 2
+                Return eOwner.Trevor
             Case Else
-                Return 3
+                Return eOwner.Others
         End Select
     End Function
 
     <Extension>
     Public Sub UpdateApartmentOwner(ByRef apt As ApartmentClass)
-        config.SetValue(Of Integer)("BUILDING", apt.Name, GetPlayerNum)
+        config.SetValue(Of eOwner)("BUILDING", apt.Name, GetPlayer)
         config.Save()
 
         config = ScriptSettings.Load("scripts\SPA II\modconfig.ini")
@@ -142,22 +131,10 @@ Module Helper
     End Sub
 
     <Extension>
-    Public Sub SetInteriorActive(apt As ApartmentClass)
-        Try
-            Dim id As Integer = Native.Function.Call(Of Integer)(Hash.GET_INTERIOR_AT_COORDS, apt.InteriorPos.X, apt.InteriorPos.Y, apt.InteriorPos.Z)
-            Native.Function.Call(Hash._0x2CA429C029CCF247, id)
-            Native.Function.Call(Hash.SET_INTERIOR_ACTIVE, id, True)
-            Native.Function.Call(Hash.DISABLE_INTERIOR, id, False)
-        Catch ex As Exception
-            Logger.Log($"{ex.Message} {ex.StackTrace}")
-        End Try
-    End Sub
-
-    <Extension>
     Public Sub SetInteriorActive(coord As Vector3)
         Try
             Dim id As Integer = Native.Function.Call(Of Integer)(Hash.GET_INTERIOR_AT_COORDS, coord.X, coord.Y, coord.Z)
-            Native.Function.Call(Hash._0x2CA429C029CCF247, id)
+            Native.Function.Call(PIN_INTERIOR_IN_MEMORY, id)
             Native.Function.Call(Hash.SET_INTERIOR_ACTIVE, id, True)
             Native.Function.Call(Hash.DISABLE_INTERIOR, id, False)
         Catch ex As Exception
@@ -168,6 +145,11 @@ Module Helper
     <Extension>
     Public Function ToVector3(q As Quaternion) As Vector3
         Return New Vector3(q.X, q.Y, q.Z)
+    End Function
+
+    <Extension>
+    Public Function GetHashKey(str As String) As Integer
+        Return Native.Function.Call(Of Integer)(Hash.GET_HASH_KEY, str)
     End Function
 
 End Module
