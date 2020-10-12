@@ -79,7 +79,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class\BuildingList.vb" />
-    <Compile Include="Class\CameraPRH.vb" />
+    <Compile Include="Class\INM.vb" />
     <Compile Include="Class\Database\ApartmentClass.vb" />
     <Compile Include="Class\Database\BuildingClass.vb" />
     <Compile Include="Class\Database\VehicleClass.vb" />

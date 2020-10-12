@@ -3,6 +3,7 @@ Imports GTA
 Imports GTA.Math
 Imports GTA.Native
 Imports INMNativeUI
+Imports SPAII.INM
 
 Public Class BuildingClass
 
@@ -22,6 +23,7 @@ Public Class BuildingClass
     Public BuildingType As eBuildingType
     Public Apartments As List(Of ApartmentClass)
     Public HideObjects() As String
+    Public SaleSign As EntityVector
 
     Public BuildingBlip As Blip
     Public GarageBlip As Blip
@@ -37,6 +39,10 @@ Public Class BuildingClass
     Public Function IsVacant() As Boolean
         Dim apt = (From a In Apartments Where a.Owner <> eOwner.Nobody Select a)
         Return apt.Count = 0
+    End Function
+
+    Public Function SaleSignProp() As Prop
+        Return World.GetClosest(SaleSign.Position.ToVector3, World.GetNearbyProps(SaleSign.Position.ToVector3, 50.0F, SaleSign.Model))
     End Function
 
     Public Sub Load()
@@ -100,6 +106,34 @@ Public Class BuildingClass
             End With
         End If
 
+        BuyMenu = New UIMenu("", Game.GetGXTEntry("MP_PROP_GEN0"), New Point(0, -107))
+        BuyMenu.SetBannerType(MenuBanner)
+        BuyMenu.MouseEdgeEnabled = False
+        MenuPool.Add(BuyMenu)
+        With BuyMenu
+            For Each apt As ApartmentClass In Apartments
+                Dim item As New UIMenuItem(Game.GetGXTEntry(apt.Name), Game.GetGXTEntry(apt.Description))
+                With item
+                    Select Case config.GetValue(Of eOwner)("BUILDING", apt.Name, eOwner.Nobody)
+                        Case eOwner.Nobody 'For Sale
+                            .SetRightLabel($"${apt.Price.ToString("0,0")}")
+                            .SetRightBadge(UIMenuItem.BadgeStyle.None)
+                        Case eOwner.Michael
+                            .SetRightBadge(UIMenuItem.BadgeStyle.Michael)
+                        Case eOwner.Franklin
+                            .SetRightBadge(UIMenuItem.BadgeStyle.Franklin)
+                        Case eOwner.Trevor
+                            .SetRightBadge(UIMenuItem.BadgeStyle.Trevor)
+                        Case eOwner.Others
+                            .SetRightBadge(UIMenuItem.BadgeStyle.Heart)
+                    End Select
+                    .Tag = apt
+                End With
+                .AddItem(item)
+            Next
+            .RefreshIndex()
+        End With
+
         AptMenu = New UIMenu("", Game.GetGXTEntry("MP_PROP_GEN2A"), New Point(0, -107))
         AptMenu.SetBannerType(MenuBanner)
         AptMenu.MouseEdgeEnabled = False
@@ -108,17 +142,16 @@ Public Class BuildingClass
             For Each apt As ApartmentClass In Apartments
                 Dim item As New UIMenuItem(Game.GetGXTEntry(apt.Name), Game.GetGXTEntry(apt.Description))
                 With item
-                    Select Case config.GetValue(Of Integer)("BUILDING", apt.Name, -1)
-                        Case -1 'For Sale
-                            .SetRightLabel($"${apt.Price.ToString("0,0")}")
+                    Select Case config.GetValue(Of eOwner)("BUILDING", apt.Name, eOwner.Nobody)
+                        Case eOwner.Nobody 'For Sale
                             .SetRightBadge(UIMenuItem.BadgeStyle.None)
-                        Case 0 'Michael
+                        Case eOwner.Michael
                             .SetRightBadge(UIMenuItem.BadgeStyle.Michael)
-                        Case 1 'Frankline
+                        Case eOwner.Franklin
                             .SetRightBadge(UIMenuItem.BadgeStyle.Franklin)
-                        Case 2 'Trevor
+                        Case eOwner.Trevor
                             .SetRightBadge(UIMenuItem.BadgeStyle.Trevor)
-                        Case 3 'Player3
+                        Case eOwner.Others
                             .SetRightBadge(UIMenuItem.BadgeStyle.Heart)
                     End Select
                     .Tag = apt
@@ -136,16 +169,16 @@ Public Class BuildingClass
             For Each apt In Apartments
                 Dim item As New UIMenuItem(Game.GetGXTEntry(apt.Name), Game.GetGXTEntry(apt.Description))
                 With item
-                    Select Case config.GetValue(Of Integer)("BUILDING", apt.Name, -1)
-                        Case -1 'For Sale
+                    Select Case config.GetValue(Of eOwner)("BUILDING", apt.Name, eOwner.Nobody)
+                        Case eOwner.Nobody 'For Sale
                             .SetRightBadge(UIMenuItem.BadgeStyle.None)
-                        Case 0 'Michael
+                        Case eOwner.Michael
                             .SetRightBadge(UIMenuItem.BadgeStyle.Michael)
-                        Case 1 'Frankline
+                        Case eOwner.Franklin
                             .SetRightBadge(UIMenuItem.BadgeStyle.Franklin)
-                        Case 2 'Trevor
+                        Case eOwner.Trevor
                             .SetRightBadge(UIMenuItem.BadgeStyle.Trevor)
-                        Case 3 'Player3
+                        Case eOwner.Others
                             .SetRightBadge(UIMenuItem.BadgeStyle.Heart)
                     End Select
                     .Tag = apt
@@ -154,6 +187,36 @@ Public Class BuildingClass
             Next
             .RefreshIndex()
         End With
+
+        Dim ForSaleSign As Prop = World.CreateProp(SaleSign.Model, SaleSign.Position.ToVector3, New Vector3(0F, 0F, SaleSign.Position.W), False, False)
+        With ForSaleSign
+            .IsPersistent = True
+        End With
+    End Sub
+
+    Public Sub RefreshBuyMenu()
+        BuyMenu.MenuItems.Clear()
+        For Each apt In Apartments
+            Dim item As New UIMenuItem(Game.GetGXTEntry(apt.Name), Game.GetGXTEntry(apt.Description))
+            With item
+                Select Case config.GetValue(Of eOwner)("BUILDING", apt.Name, eOwner.Nobody)
+                    Case eOwner.Nobody 'For Sale
+                        .SetRightLabel($"${apt.Price.ToString("0,0")}")
+                        .SetRightBadge(UIMenuItem.BadgeStyle.None)
+                    Case eOwner.Michael
+                        .SetRightBadge(UIMenuItem.BadgeStyle.Michael)
+                    Case eOwner.Franklin
+                        .SetRightBadge(UIMenuItem.BadgeStyle.Franklin)
+                    Case eOwner.Trevor
+                        .SetRightBadge(UIMenuItem.BadgeStyle.Trevor)
+                    Case eOwner.Others
+                        .SetRightBadge(UIMenuItem.BadgeStyle.Heart)
+                End Select
+                .Tag = apt
+            End With
+            BuyMenu.AddItem(item)
+        Next
+        BuyMenu.RefreshIndex()
     End Sub
 
     Public Sub RefreshAptMenu()
@@ -161,17 +224,16 @@ Public Class BuildingClass
         For Each apt In Apartments
             Dim item As New UIMenuItem(Game.GetGXTEntry(apt.Name), Game.GetGXTEntry(apt.Description))
             With item
-                Select Case config.GetValue(Of Integer)("BUILDING", apt.Name, -1)
-                    Case -1 'For Sale
-                        .SetRightLabel($"${apt.Price.ToString("0,0")}")
+                Select Case config.GetValue(Of eOwner)("BUILDING", apt.Name, eOwner.Nobody)
+                    Case eOwner.Nobody 'For Sale
                         .SetRightBadge(UIMenuItem.BadgeStyle.None)
-                    Case 0 'Michael
+                    Case eOwner.Michael
                         .SetRightBadge(UIMenuItem.BadgeStyle.Michael)
-                    Case 1 'Frankline
+                    Case eOwner.Franklin
                         .SetRightBadge(UIMenuItem.BadgeStyle.Franklin)
-                    Case 2 'Trevor
+                    Case eOwner.Trevor
                         .SetRightBadge(UIMenuItem.BadgeStyle.Trevor)
-                    Case 3 'Player3
+                    Case eOwner.Others
                         .SetRightBadge(UIMenuItem.BadgeStyle.Heart)
                 End Select
                 .Tag = apt
@@ -186,16 +248,16 @@ Public Class BuildingClass
         For Each apt In Apartments
             Dim item As New UIMenuItem(Game.GetGXTEntry(apt.Name), Game.GetGXTEntry(apt.Description))
             With item
-                Select Case config.GetValue(Of Integer)("BUILDING", apt.Name, -1)
-                    Case -1 'For Sale
+                Select Case config.GetValue(Of eOwner)("BUILDING", apt.Name, eOwner.Nobody)
+                    Case eOwner.Nobody 'For Sale
                         .SetRightBadge(UIMenuItem.BadgeStyle.None)
-                    Case 0 'Michael
+                    Case eOwner.Michael
                         .SetRightBadge(UIMenuItem.BadgeStyle.Michael)
-                    Case 1 'Frankline
+                    Case eOwner.Franklin
                         .SetRightBadge(UIMenuItem.BadgeStyle.Franklin)
-                    Case 2 'Trevor
+                    Case eOwner.Trevor
                         .SetRightBadge(UIMenuItem.BadgeStyle.Trevor)
-                    Case 3 'Player3
+                    Case eOwner.Others
                         .SetRightBadge(UIMenuItem.BadgeStyle.Heart)
                 End Select
                 .Tag = apt
@@ -211,6 +273,10 @@ Public Class BuildingClass
 
     Public Function EntranceDistance() As Single
         Return Game.Player.Character.Position.DistanceToSquared(BuildingInPos)
+    End Function
+
+    Public Function SaleSignDistance() As Single
+        Return Game.Player.Character.Position.DistanceToSquared(SaleSign.Position.ToVector3)
     End Function
 
     Public Function IsForSale() As Boolean
@@ -242,12 +308,14 @@ Public Class BuildingClass
     End Function
 
     Public Sub HideExterior()
-        If IsAtHome() AndAlso HideObjects.Count <> 0 Then
-            Native.Function.Call(BEGIN_HIDE_MAP_OBJECT_THIS_FRAME)
-            For Each obj In HideObjects
-                Native.Function.Call(Hash._HIDE_MAP_OBJECT_THIS_FRAME, obj.GetHashKey)
-            Next
-            Native.Function.Call(DISABLE_OCCLUSION_THIS_FRAME)
+        If Not HideObjects Is Nothing Then
+            If IsAtHome() AndAlso HideObjects.Count <> 0 Then
+                Native.Function.Call(BEGIN_HIDE_MAP_OBJECT_THIS_FRAME)
+                For Each obj In HideObjects
+                    Native.Function.Call(Hash._HIDE_MAP_OBJECT_THIS_FRAME, obj.GetHashKey)
+                Next
+                Native.Function.Call(DISABLE_OCCLUSION_THIS_FRAME)
+            End If
         End If
     End Sub
 
@@ -313,6 +381,66 @@ Public Class BuildingClass
 
     Private Sub AptMenu_OnItemSelect(sender As UIMenu, selectedItem As UIMenuItem, index As Integer) Handles AptMenu.OnItemSelect
         Try
+            Dim selectedApt As ApartmentClass = selectedItem.Tag
+            If selectedApt.Owner = GetPlayer() Then
+                AptMenu.Visible = False
+                HideHud = False
+                World.DestroyAllCameras()
+                World.RenderingCamera = Nothing
+                selectedApt.SetInteriorActive()
+                FadeScreen(1)
+                PP.Position = selectedApt.ApartmentInPos
+                FadeScreen(0)
+            End If
+        Catch ex As Exception
+            Logger.Log($"{ex.Message} {ex.StackTrace}")
+        End Try
+    End Sub
+
+    Private Sub GrgMenu_OnItemSelect(sender As UIMenu, selectedItem As UIMenuItem, index As Integer) Handles GrgMenu.OnItemSelect
+        Try
+            Dim selectedApt As ApartmentClass = selectedItem.Tag
+            If selectedApt.Owner = GetPlayer() Then
+                GrgMenu.Visible = False
+                HideHud = False
+                World.DestroyAllCameras()
+                World.RenderingCamera = Nothing
+                Select Case GarageType
+                    Case eGarageType.TwoCarGarage
+                        TwoCarGarage.SetInteriorActive()
+                    Case eGarageType.SixCarGarage
+                        SixCarGarage.SetInteriorActive()
+                    Case eGarageType.TenCarGarage
+                        FadeScreen(1)
+                        TenCarGarage.SetInteriorActive()
+                        PP.Position = TenCarGarage
+                        FadeScreen(0)
+                    Case eGarageType.TwentyCarGarage
+                        TwentyCarGarage.SetInteriorActive()
+                End Select
+                If Not PP.IsInVehicle Then
+                    'On Foot
+
+                Else
+                    'In Vehicle
+
+                End If
+            End If
+        Catch ex As Exception
+            Logger.Log($"{ex.Message} {ex.StackTrace}")
+        End Try
+    End Sub
+
+    Private Sub AptMenu_OnMenuClose(sender As UIMenu) Handles AptMenu.OnMenuClose, BuyMenu.OnMenuClose
+        FadeScreen(1)
+        World.DestroyAllCameras()
+        World.RenderingCamera = Nothing
+        HideHud = False
+        FadeScreen(0)
+    End Sub
+
+    Private Sub BuyMenu_OnItemSelect(sender As UIMenu, selectedItem As UIMenuItem, index As Integer) Handles BuyMenu.OnItemSelect
+        Try
             For Each apt In Apartments
                 Dim selectedApt As ApartmentClass = selectedItem.Tag
                 If selectedApt.Name = apt.Name AndAlso selectedItem.RightBadge = UIMenuItem.BadgeStyle.None AndAlso apt.Owner = eOwner.Nobody Then
@@ -323,6 +451,7 @@ Public Class BuildingClass
                         Player.Money = (PM - apt.Price)
                         BuildingBlip.Remove()
                         If Not GarageBlip Is Nothing Then GarageBlip.Remove()
+                        RefreshBuyMenu()
                         RefreshAptMenu()
                         RefreshGrgMenu()
                         'UpdateMechanicMenu
@@ -341,61 +470,11 @@ Public Class BuildingClass
                         selectedItem.SetRightLabel(Nothing)
                         RefreshBlips()
                     End If
-                ElseIf selectedApt.Name = apt.Name AndAlso Not selectedItem.RightBadge = UIMenuItem.BadgeStyle.None AndAlso apt.Owner = GetPlayer Then
-                    AptMenu.Visible = False
-                    HideHud = False
-                    World.DestroyAllCameras()
-                    World.RenderingCamera = Nothing
-                    apt.SetInteriorActive()
-                    FadeScreen(1)
-                    PP.Position = apt.ApartmentInPos
-                    FadeScreen(0)
                 End If
             Next
         Catch ex As Exception
             Logger.Log($"{ex.Message} {ex.StackTrace}")
         End Try
-    End Sub
-
-    Private Sub GrgMenu_OnItemSelect(sender As UIMenu, selectedItem As UIMenuItem, index As Integer) Handles GrgMenu.OnItemSelect
-        Try
-            For Each apt In Apartments
-                Dim selectedApt As ApartmentClass = selectedItem.Tag
-                If selectedApt.Name = apt.Name AndAlso selectedItem.RightBadge = UIMenuItem.BadgeStyle.None Then
-                    If Not PP.IsInVehicle Then
-                        'On Foot
-                        FadeScreen(1)
-                        Select Case GarageType
-                            Case eGarageType.TwoCarGarage
-                                TwoCarGarage.SetInteriorActive()
-                            Case eGarageType.SixCarGarage
-                                SixCarGarage.SetInteriorActive()
-                            Case eGarageType.TenCarGarage
-                                TenCarGarage.SetInteriorActive()
-                            Case eGarageType.TwentyCarGarage
-                                TwentyCarGarage.SetInteriorActive()
-                        End Select
-                        FadeScreen(0)
-                    Else
-                        'In Vehicle
-
-                    End If
-
-
-
-                End If
-            Next
-        Catch ex As Exception
-
-        End Try
-    End Sub
-
-    Private Sub AptMenu_OnMenuClose(sender As UIMenu) Handles AptMenu.OnMenuClose
-        FadeScreen(1)
-        World.DestroyAllCameras()
-        World.RenderingCamera = Nothing
-        HideHud = False
-        FadeScreen(0)
     End Sub
 End Class
 

@@ -3,6 +3,7 @@ Imports GTA
 Imports GTA.Math
 Imports GTA.Native
 Imports INMNativeUI
+Imports SPAII.INM
 
 Public Class ApartmentClass
 
@@ -29,7 +30,7 @@ Public Class ApartmentClass
     Public WithEvents AptMenu As UIMenu
 
     Public Function Owner() As eOwner
-        Return CType(config.GetValue(Of Integer)("BUILDING", Name, -1), eOwner)
+        Return config.GetValue(Of eOwner)("BUILDING", Name, eOwner.Nobody)
     End Function
 
     Public Function FriendlyName() As String

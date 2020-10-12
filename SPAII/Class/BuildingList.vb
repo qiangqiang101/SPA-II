@@ -1,5 +1,6 @@
 ﻿Imports GTA
 Imports GTA.Math
+Imports SPAII.INM
 
 Module BuildingList
 
@@ -36,6 +37,7 @@ Module BuildingList
                 .GarageType = eGarageType.TenCarGarage
                 .BuildingType = eBuildingType.Apartment
                 .HideObjects = {"hei_dt1_20_build2", "dt1_20_dt1_emissive_dt1_20"}
+                .SaleSign = New EntityVector(ForSaleSign, New Quaternion(-252.6184F, -970.720764F, 30.22F, -20.0F))
                 .Apartments = New List(Of ApartmentClass) From {_3AltaStreet57}
             End With
             If Not buildings.Contains(_3AltaStreet) Then buildings.Add(_3AltaStreet)
@@ -84,6 +86,7 @@ Module BuildingList
                 .GarageType = eGarageType.TenCarGarage
                 .BuildingType = eBuildingType.Apartment
                 .HideObjects = {"hei_dt1_03_build1x", "DT1_Emissive_DT1_03_b1", "dt1_03_dt1_Emissive_b1"}
+                .SaleSign = New EntityVector(ForSaleSign, New Quaternion(-55.02158, -592.0102, 35.0381165, 70.0F))
                 .Apartments = New List(Of ApartmentClass) From {_4IntegrityWay30, _4IntegrityWay28}
             End With
             If Not buildings.Contains(_4IntegrityWay) Then buildings.Add(_4IntegrityWay)
@@ -132,6 +135,7 @@ Module BuildingList
                 .GarageType = eGarageType.TenCarGarage
                 .BuildingType = eBuildingType.Apartment
                 .HideObjects = {"sm_14_emissive", "hei_sm_14_bld2"}
+                .SaleSign = New EntityVector(ForSaleSign, New Quaternion(-1424.716F, -568.2133F, 29.50431F, 28.99996F))
                 .Apartments = New List(Of ApartmentClass) From {delPerroHts7, delPerroHts4}
             End With
             If Not buildings.Contains(delPerroHts) Then buildings.Add(delPerroHts)
@@ -227,6 +231,7 @@ Module BuildingList
                 .CameraPos = New CameraPRH(New Vector3(-881.4312, 214.6852, 91.3971), New Vector3(25.6109, 0, -39.32376), 50.0F)
                 .GarageType = eGarageType.TenCarGarage
                 .BuildingType = eBuildingType.Apartment
+                .SaleSign = New EntityVector(ForSaleSign, New Quaternion(-786.176453F, 299.092316F, 84.8250656F, 5.369569F))
                 .HideObjects = {"apa_ss1_11_flats", "ss1_11_ss1_emissive_a", "ss1_11_detail01b", "ss1_11_Flats_LOD", "SS1_02_Building01_LOD", "SS1_LOD_01_02_08_09_10_11", "SS1_02_SLOD1"}
                 .Apartments = New List(Of ApartmentClass) From {eclipseTowers31, eclipseTowers3, eclipseTowersPH1, eclipseTowersPH2, eclipseTowersPH3}
             End With
@@ -275,6 +280,7 @@ Module BuildingList
                 .CameraPos = New CameraPRH(New Vector3(-958.2964, -478.6136, 38.73965), New Vector3(24.18255, 0, -19.8838), 50.0F)
                 .GarageType = eGarageType.TenCarGarage
                 .BuildingType = eBuildingType.Apartment
+                .SaleSign = New EntityVector(ForSaleSign, New Quaternion(-963.0879F, -387.4315F, 36.75792F, -152.9992F))
                 .HideObjects = {"hei_bh1_08_bld2", "bh1_emissive_bh1_08", "bh1_08_bld2_LOD", "hei_bh1_08_bld2", "bh1_08_em"}
                 .Apartments = New List(Of ApartmentClass) From {richardMajestic4, richardMajestic2}
             End With
@@ -323,6 +329,7 @@ Module BuildingList
                 .CameraPos = New CameraPRH(New Vector3(-678.4925, -30.95172, 48.26074), New Vector3(16.23258, 0, -43.18668), 50.0F)
                 .GarageType = eGarageType.TenCarGarage
                 .BuildingType = eBuildingType.Apartment
+                .SaleSign = New EntityVector(ForSaleSign, New Quaternion(-639.4777F, 50.7458458F, 41.21087F, 80.8381348F))
                 .HideObjects = {"apa_ss1_02_building01", "SS1_Emissive_SS1_02a_LOD", "ss1_02_ss1_emissive_ss1_02", "apa_ss1_02_building01", "SS1_02_Building01_LOD"}
                 .Apartments = New List(Of ApartmentClass) From {tinselTowers29, tinselTowers42}
             End With
@@ -355,6 +362,7 @@ Module BuildingList
                 .CameraPos = New CameraPRH(New Vector3(-965.4064, -563.0858, 34.91125), New Vector3(24.98755, 0, -31.1508), 50.0F)
                 .GarageType = eGarageType.TenCarGarage
                 .BuildingType = eBuildingType.Apartment
+                .SaleSign = New EntityVector(ForSaleSign, New Quaternion(-822.0833F, -445.620331F, 35.6390381F, 95.36642F))
                 .HideObjects = {"hei_bh1_09_bld_01", "bh1_09_ema", "prop_wall_light_12a"}
                 .Apartments = New List(Of ApartmentClass) From {weazelPlaza70}
             End With
@@ -389,6 +397,7 @@ Module BuildingList
                 .CameraPos = New CameraPRH(New Vector3(-712.7956, 597.7189, 146.6349), New Vector3(-5.849331, 0, -87.56305), 50.0F)
                 .GarageType = eGarageType.SixCarGarage
                 .BuildingType = eBuildingType.Apartment
+                .SaleSign = New EntityVector(ForSaleSign, New Quaternion(-696.6597F, 593.5092F, 141.6509F, -144.9992F))
                 .HideObjects = {"apa_ch2_09c_hs11", "CH2_09c_Emissive_11_LOD", "CH2_09c_Emissive_11", "apa_ch2_09c_hs11_details"}
                 .Apartments = New List(Of ApartmentClass) From {_2862HillcrestAveApt}
             End With
@@ -421,6 +430,7 @@ Module BuildingList
                 .CameraPos = New CameraPRH(New Vector3(-734.5688, 618.7574, 148.982), New Vector3(-16.70547, 0, 86.47249), 50.0F)
                 .GarageType = eGarageType.SixCarGarage
                 .BuildingType = eBuildingType.Apartment
+                .SaleSign = New EntityVector(ForSaleSign, New Quaternion(-748.7184F, 615.1001F, 141.1166F, -72.99977F))
                 .HideObjects = {"apa_ch2_09b_hs01a_details", "apa_ch2_09b_hs01", "apa_ch2_09b_hs01_balcony", "apa_ch2_09b_Emissive_11_LOD", "apa_ch2_09b_Emissive_11", "apa_CH2_09b_House08_LOD"}
                 .Apartments = New List(Of ApartmentClass) From {_2868HillcrestAveApt}
             End With
@@ -453,6 +463,7 @@ Module BuildingList
                 .CameraPos = New CameraPRH(New Vector3(-863.697, 713.9671, 152.9681), New Vector3(-8.148409, 1.0781, -167.5327), 50.0F)
                 .GarageType = eGarageType.SixCarGarage
                 .BuildingType = eBuildingType.Apartment
+                .SaleSign = New EntityVector(ForSaleSign, New Quaternion(-866.5663F, 700.5796F, 148.072F, 39.99988F))
                 .HideObjects = {"apa_ch2_09b_hs02", "apa_ch2_09b_hs02b_details", "apa_ch2_09b_Emissive_09_LOD", "ch2_09b_botpoolHouse02_LOD", "apa_ch2_09b_Emissive_09", "apa_ch2_09b_hs02_balcony"}
                 .Apartments = New List(Of ApartmentClass) From {_2874HillcrestAveApt}
             End With
@@ -485,6 +496,7 @@ Module BuildingList
                 .CameraPos = New CameraPRH(New Vector3(-1306.412, 467.0048, 102.6207), New Vector3(-17.02023, 0, -141.3645), 50.0F)
                 .GarageType = eGarageType.SixCarGarage
                 .BuildingType = eBuildingType.Apartment
+                .SaleSign = New EntityVector(ForSaleSign, New Quaternion(-1290.902F, 456.3815F, 95.88345F, 2.999995F))
                 .HideObjects = {"apa_ch2_12b_house03mc", "ch2_12b_emissive_02", "ch2_12b_house03_MC_a_LOD", "ch2_12b_emissive_02_LOD", "ch2_12b_railing_06"}
                 .Apartments = New List(Of ApartmentClass) From {_2113MadWayneThunderDrApt}
             End With
@@ -517,6 +529,7 @@ Module BuildingList
                 .CameraPos = New CameraPRH(New Vector3(-548.5573, 669.8001, 146.1121), New Vector3(-6.038576, 0, 124.0644), 50.0F)
                 .GarageType = eGarageType.SixCarGarage
                 .BuildingType = eBuildingType.Apartment
+                .SaleSign = New EntityVector(ForSaleSign, New Quaternion(-560.4914F, 669.8436F, 144.3237F, -16.99999F))
                 .HideObjects = {"apa_ch2_09c_hs07", "ch2_09c_build_11_07_LOD", "CH2_09c_Emissive_07_LOD", "apa_ch2_09c_build_11_07_LOD", "ch2_09c_hs07_details", "CH2_09c_Emissive_07"}
                 .Apartments = New List(Of ApartmentClass) From {_2117MiltonRdApt}
             End With
@@ -549,6 +562,7 @@ Module BuildingList
                 .CameraPos = New CameraPRH(New Vector3(347.726, 459.0123, 150.3243), New Vector3(-3.703, 0, 161.5176), 50.0F)
                 .GarageType = eGarageType.SixCarGarage
                 .BuildingType = eBuildingType.Apartment
+                .SaleSign = New EntityVector(ForSaleSign, New Quaternion(349.7076F, 445.5944F, 145.218F, -38.99986F))
                 .HideObjects = {"apa_ch2_04_house02", "apa_ch2_04_house02_d", "apa_ch2_04_M_a_LOD", "ch2_04_house02_railings", "ch2_04_emissive_04", "ch2_04_emissive_04_LOD", "apa_ch2_04_house02_details"}
                 .Apartments = New List(Of ApartmentClass) From {_2044NorthConkerAveApt}
             End With
@@ -581,6 +595,7 @@ Module BuildingList
                 .CameraPos = New CameraPRH(New Vector3(366.7971, 447.0355, 148.0793), New Vector3(-8.704479, -2.1593, -156.5936), 50.0F)
                 .GarageType = eGarageType.SixCarGarage
                 .BuildingType = eBuildingType.Apartment
+                .SaleSign = New EntityVector(ForSaleSign, New Quaternion(379.1338F, 430.2363F, 143.1804F, 165.999F))
                 .HideObjects = {"apa_ch2_04_house01", "apa_ch2_04_house01_d", "ch2_04_emissive_05_LOD", "apa_ch2_04_M_b_LOD", "ch2_04_emissive_05", "ch2_04_house01_details"}
                 .Apartments = New List(Of ApartmentClass) From {_2045NorthConkerAveApt}
             End With
@@ -613,6 +628,7 @@ Module BuildingList
                 .CameraPos = New CameraPRH(New Vector3(112.5791, 574.6387, 190.8119), New Vector3(-21.01317, 0, -144.2139), 50.0F)
                 .GarageType = eGarageType.SixCarGarage
                 .BuildingType = eBuildingType.Apartment
+                .SaleSign = New EntityVector(ForSaleSign, New Quaternion(114.8398F, 567.6824F, 182.0014F, -177.9989F))
                 .HideObjects = {"apa_ch2_05c_b4", "ch2_05c_emissive_07", "ch2_05c_decals_05", "ch2_05c_B4_LOD"}
                 .Apartments = New List(Of ApartmentClass) From {_3677WhispymoundDrApt}
             End With
@@ -645,6 +661,7 @@ Module BuildingList
                 .CameraPos = New CameraPRH(New Vector3(-198.8929, 511.1027, 136.112), New Vector3(4.350469, 0, -128.423), 50.0F)
                 .GarageType = eGarageType.SixCarGarage
                 .BuildingType = eBuildingType.Apartment
+                .SaleSign = New EntityVector(ForSaleSign, New Quaternion(-182.7856F, 504.6987F, 134.3637F, -165.0006F))
                 .HideObjects = {"apa_ch2_05e_res5", "apa_ch2_05e_res5_LOD"}
                 .Apartments = New List(Of ApartmentClass) From {_3655WildOatsDrApt}
             End With
@@ -679,6 +696,7 @@ Module BuildingList
                 .CameraPos = New CameraPRH(New Vector3(-1012.979, -1429.618, 6.07423), New Vector3(9.87174, 0, -98.14085), 50.0F)
                 .GarageType = eGarageType.SixCarGarage
                 .BuildingType = eBuildingType.Apartment
+                .SaleSign = New EntityVector(ForSaleSign, New Quaternion(-985.858F, -1443.61987F, 4.185236F, 80.0F))
                 .Apartments = New List(Of ApartmentClass) From {_0115BayCityAve45}
             End With
             If Not buildings.Contains(_0115BayCityAve) Then buildings.Add(_0115BayCityAve)
@@ -710,6 +728,7 @@ Module BuildingList
                 .CameraPos = New CameraPRH(New Vector3(-730.9564, -866.194, 39.5012), New Vector3(9.584155, 0, 35.26235), 50.0F)
                 .GarageType = eGarageType.SixCarGarage
                 .BuildingType = eBuildingType.Apartment
+                .SaleSign = New EntityVector(ForSaleSign, New Quaternion(-756.5352F, -759.9523F, 25.2726F, -89.99974F))
                 .Apartments = New List(Of ApartmentClass) From {dreamTower15}
             End With
             If Not buildings.Contains(dreamTower) Then buildings.Add(dreamTower)
@@ -741,6 +760,7 @@ Module BuildingList
                 .CameraPos = New CameraPRH(New Vector3(-1437.455, 533.4254, 122.9885), New Vector3(-4.026862, 0, -94.79375), 50.0F)
                 .GarageType = eGarageType.SixCarGarage
                 .BuildingType = eBuildingType.Apartment
+                .SaleSign = New EntityVector(ForSaleSign, New Quaternion(-1425.671F, 524.3229F, 117.4346F, -89.99987F))
                 .Apartments = New List(Of ApartmentClass) From {_4HangmanAveApt}
             End With
             If Not buildings.Contains(_4HangmanAve) Then buildings.Add(_4HangmanAve)
@@ -772,6 +792,7 @@ Module BuildingList
                 .CameraPos = New CameraPRH(New Vector3(-31.15757, 105.2271, 81.74537), New Vector3(6.371637, 0, -137.1451), 50.0F)
                 .GarageType = eGarageType.SixCarGarage
                 .BuildingType = eBuildingType.Apartment
+                .SaleSign = New EntityVector(ForSaleSign, New Quaternion(-11.52826F, 90.36213F, 76.46286F, -109.9996F))
                 .Apartments = New List(Of ApartmentClass) From {_0604LasLagunasBlvd4}
             End With
             If Not buildings.Contains(_0604LasLagunasBlvd) Then buildings.Add(_0604LasLagunasBlvd)
@@ -803,6 +824,7 @@ Module BuildingList
                 .CameraPos = New CameraPRH(New Vector3(-526.9971, 133.2838, 65.28127), New Vector3(5.028964, 0, -148.544), 50.0F)
                 .GarageType = eGarageType.SixCarGarage
                 .BuildingType = eBuildingType.Apartment
+                .SaleSign = New EntityVector(ForSaleSign, New Quaternion(-506.6722F, 112.8424F, 62.4247F, 46.99992F))
                 .Apartments = New List(Of ApartmentClass) From {_0184MiltonRd13}
             End With
             If Not buildings.Contains(_0184MiltonRd) Then buildings.Add(_0184MiltonRd)
@@ -834,6 +856,7 @@ Module BuildingList
                 .CameraPos = New CameraPRH(New Vector3(247.5116, -143.1925, 67.63675), New Vector3(1.717242, 0, -99.06012), 50.0F)
                 .GarageType = eGarageType.SixCarGarage
                 .BuildingType = eBuildingType.Apartment
+                .SaleSign = New EntityVector(ForSaleSign, New Quaternion(270.8202F, -151.4185F, 62.89344F, -110.0003F))
                 .Apartments = New List(Of ApartmentClass) From {_1162PowerSt3}
             End With
             If Not buildings.Contains(_1162PowerSt) Then buildings.Add(_1162PowerSt)
@@ -865,6 +888,7 @@ Module BuildingList
                 .CameraPos = New CameraPRH(New Vector3(-304.3051, 6344.134, 33.43044), New Vector3(-6.942835, 0, -170.2991), 50.0F)
                 .GarageType = eGarageType.SixCarGarage
                 .BuildingType = eBuildingType.Apartment
+                .SaleSign = New EntityVector(ForSaleSign, New Quaternion(-309.4597F, 6332.186F, 30.26265F, 43.99991F))
                 .Apartments = New List(Of ApartmentClass) From {_4401ProcopioDrApt}
             End With
             If Not buildings.Contains(_4401ProcopioDr) Then buildings.Add(_4401ProcopioDr)
@@ -896,6 +920,7 @@ Module BuildingList
                 .CameraPos = New CameraPRH(New Vector3(-114.0698, 6545.125, 30.18196), New Vector3(-1.917315, 0, -155.1204), 50.0F)
                 .GarageType = eGarageType.SixCarGarage
                 .BuildingType = eBuildingType.Apartment
+                .SaleSign = New EntityVector(ForSaleSign, New Quaternion(-115.3847F, 6535.471F, 28.72985F, 44.99985F))
                 .Apartments = New List(Of ApartmentClass) From {_4584ProcopioDrApt}
             End With
             If Not buildings.Contains(_4584ProcopioDr) Then buildings.Add(_4584ProcopioDr)
@@ -927,6 +952,7 @@ Module BuildingList
                 .CameraPos = New CameraPRH(New Vector3(-663.4779, 162.9781, 62.82269), New Vector3(7.656792, 0, -92.89036), 50.0F)
                 .GarageType = eGarageType.SixCarGarage
                 .BuildingType = eBuildingType.Apartment
+                .SaleSign = New EntityVector(ForSaleSign, New Quaternion(-636.4809F, 164.2299F, 59.02254F, -88.99973F))
                 .Apartments = New List(Of ApartmentClass) From {_0504SMoMiltonDrApt}
             End With
             If Not buildings.Contains(_0504SMoMiltonDr) Then buildings.Add(_0504SMoMiltonDr)
@@ -958,6 +984,7 @@ Module BuildingList
                 .CameraPos = New CameraPRH(New Vector3(-846.1815, -821.6712, 21.12708), New Vector3(9.139385, 0, -142.4772), 50.0F)
                 .GarageType = eGarageType.SixCarGarage
                 .BuildingType = eBuildingType.Apartment
+                .SaleSign = New EntityVector(ForSaleSign, New Quaternion(-838.065552F, -849.9184F, 18.380209F, 41.99988F))
                 .Apartments = New List(Of ApartmentClass) From {_0325SouthRockfordDrApt}
             End With
             If Not buildings.Contains(_0325SouthRockfordDr) Then buildings.Add(_0325SouthRockfordDr)
@@ -989,6 +1016,7 @@ Module BuildingList
                 .CameraPos = New CameraPRH(New Vector3(-23.84228, 11.21701, 74.10461), New Vector3(10.09729, 0, -29.36126), 50.0F)
                 .GarageType = eGarageType.SixCarGarage
                 .BuildingType = eBuildingType.Apartment
+                .SaleSign = New EntityVector(ForSaleSign, New Quaternion(-1.729892F, 34.72532F, 70.17053F, -18.99999F))
                 .Apartments = New List(Of ApartmentClass) From {_0605SpanishAve1}
             End With
             If Not buildings.Contains(_0605SpanishAve) Then buildings.Add(_0605SpanishAve)
@@ -1020,6 +1048,7 @@ Module BuildingList
                 .CameraPos = New CameraPRH(New Vector3(1357.432, -1594.719, 53.01324), New Vector3(3.356584, 0, 35.79725), 50.0F)
                 .GarageType = eGarageType.SixCarGarage
                 .BuildingType = eBuildingType.Apartment
+                .SaleSign = New EntityVector(ForSaleSign, New Quaternion(1349.97876F, -1585.836F, 51.49663F, -142.999435F))
                 .Apartments = New List(Of ApartmentClass) From {_12SustanciaRdApt}
             End With
             If Not buildings.Contains(_12SustanciaRd) Then buildings.Add(_12SustanciaRd)
@@ -1051,6 +1080,7 @@ Module BuildingList
                 .CameraPos = New CameraPRH(New Vector3(-194.8486, 123.9623, 71.46825), New Vector3(1.435651, 0, -168.6253), 50.0F)
                 .GarageType = eGarageType.SixCarGarage
                 .BuildingType = eBuildingType.Apartment
+                .SaleSign = New EntityVector(ForSaleSign, New Quaternion(-202.1117F, 104.088F, 68.71951F, 150.9993F))
                 .Apartments = New List(Of ApartmentClass) From {theRoyale19}
             End With
             If Not buildings.Contains(theRoyale) Then buildings.Add(theRoyale)
@@ -1084,6 +1114,7 @@ Module BuildingList
                 .CameraPos = New CameraPRH(New Vector3(-1643.548, -435.6621, 41.09145), New Vector3(8.244346, 0, -86.32664), 50.0F)
                 .GarageType = eGarageType.TwoCarGarage
                 .BuildingType = eBuildingType.Apartment
+                .SaleSign = New EntityVector(ForSaleSign, New Quaternion(-1611.351F, -425.611F, 39.6413F, -126.9995F))
                 .Apartments = New List(Of ApartmentClass) From {_1115BlvdDelPerro18}
             End With
             If Not buildings.Contains(_1115BlvdDelPerro) Then buildings.Add(_1115BlvdDelPerro)
@@ -1115,6 +1146,7 @@ Module BuildingList
                 .CameraPos = New CameraPRH(New Vector3(-227.7641, 201.8866, 86.85343), New Vector3(-4.676774, 0, -109.3161), 50.0F)
                 .GarageType = eGarageType.TwoCarGarage
                 .BuildingType = eBuildingType.Apartment
+                .SaleSign = New EntityVector(ForSaleSign, New Quaternion(-211.5359F, 185.7793F, 78.2446F, -92.99972F))
                 .Apartments = New List(Of ApartmentClass) From {_1561SanVitasSt2}
             End With
             If Not buildings.Contains(_1561SanVitasSt) Then buildings.Add(_1561SanVitasSt)
@@ -1146,6 +1178,7 @@ Module BuildingList
                 .CameraPos = New CameraPRH(New Vector3(-1510.861, -407.8669, 42.94849), New Vector3(6.705585, 0, 82.56407), 50.0F)
                 .GarageType = eGarageType.TwoCarGarage
                 .BuildingType = eBuildingType.Apartment
+                .SaleSign = New EntityVector(ForSaleSign, New Quaternion(-1556.007F, -423.1586F, 40.99173F, -38.99994F))
                 .Apartments = New List(Of ApartmentClass) From {_1237ProsperitySt21}
             End With
             If Not buildings.Contains(_1237ProsperitySt) Then buildings.Add(_1237ProsperitySt)
@@ -1177,6 +1210,7 @@ Module BuildingList
                 .CameraPos = New CameraPRH(New Vector3(-1563.921, -321.3005, 51.06629), New Vector3(-4.889933, 0, -100.0785), 50.0F)
                 .GarageType = eGarageType.TwoCarGarage
                 .BuildingType = eBuildingType.Apartment
+                .SaleSign = New EntityVector(ForSaleSign, New Quaternion(-1538.956F, -330.1972F, 46.16157F, -123.0004F))
                 .Apartments = New List(Of ApartmentClass) From {_0069CougarAve19}
             End With
             If Not buildings.Contains(_0069CougarAve) Then buildings.Add(_0069CougarAve)
@@ -1208,6 +1242,7 @@ Module BuildingList
                 .CameraPos = New CameraPRH(New Vector3(-76.6449, -41.96963, 63.77706), New Vector3(4.850093, 0, -106.2234), 50.0F)
                 .GarageType = eGarageType.TwoCarGarage
                 .BuildingType = eBuildingType.Apartment
+                .SaleSign = New EntityVector(ForSaleSign, New Quaternion(-50.81142F, -56.97182F, 60.23486F, -105.9996F))
                 .Apartments = New List(Of ApartmentClass) From {_2143LasLagunasBlvd9}
             End With
             If Not buildings.Contains(_2143LasLagunasBlvd) Then buildings.Add(_2143LasLagunasBlvd)
@@ -1239,6 +1274,7 @@ Module BuildingList
                 .CameraPos = New CameraPRH(New Vector3(1683.295, 4774.074, 43.80255), New Vector3(-2.922752, 0, 93.5119), 50.0F)
                 .GarageType = eGarageType.TwoCarGarage
                 .BuildingType = eBuildingType.Apartment
+                .SaleSign = New EntityVector(ForSaleSign, New Quaternion(1668.179F, 4763.354F, 40.95217F, -79.99977F))
                 .Apartments = New List(Of ApartmentClass) From {_1893GrapeseedAveApt}
             End With
             If Not buildings.Contains(_1893GrapeseedAve) Then buildings.Add(_1893GrapeseedAve)
@@ -1270,6 +1306,7 @@ Module BuildingList
                 .CameraPos = New CameraPRH(New Vector3(-0.02845764, 6551.444, 32.63414), New Vector3(7.133693, 0, 85.69931), 50.0F)
                 .GarageType = eGarageType.TwoCarGarage
                 .BuildingType = eBuildingType.Apartment
+                .SaleSign = New EntityVector(ForSaleSign, New Quaternion(-6.288683F, 6543.385F, 30.70873F, 44.99983F))
                 .Apartments = New List(Of ApartmentClass) From {_0232PaletoBlvdApt}
             End With
             If Not buildings.Contains(_0232PaletoBlvd) Then buildings.Add(_0232PaletoBlvd)
@@ -1301,6 +1338,7 @@ Module BuildingList
                 .CameraPos = New CameraPRH(New Vector3(-835.3129, -1003.118, 16.48207), New Vector3(3.313114, 0, -32.55415), 50.0F)
                 .GarageType = eGarageType.TwoCarGarage
                 .BuildingType = eBuildingType.Apartment
+                .SaleSign = New EntityVector(ForSaleSign, New Quaternion(-817.4551F, -989.7587F, 12.51171F, -60.99983F))
                 .Apartments = New List(Of ApartmentClass) From {_0112SRockfordDr13}
             End With
             If Not buildings.Contains(_0112SRockfordDr) Then buildings.Add(_0112SRockfordDr)
@@ -1332,6 +1370,7 @@ Module BuildingList
                 .CameraPos = New CameraPRH(New Vector3(-644.9753, -820.6812, 33.11289), New Vector3(5.2089, -2.1432, 152.9055), 50.0F)
                 .GarageType = eGarageType.TwoCarGarage
                 .BuildingType = eBuildingType.Apartment
+                .SaleSign = New EntityVector(ForSaleSign, New Quaternion(-674.4222F, -855.0154F, 23.15351F, 179.9991F))
                 .Apartments = New List(Of ApartmentClass) From {_2057VespucciBlvd1}
             End With
             If Not buildings.Contains(_2057VespucciBlvd) Then buildings.Add(_2057VespucciBlvd)
@@ -1363,6 +1402,7 @@ Module BuildingList
                 .CameraPos = New CameraPRH(New Vector3(1901.893, 3758.286, 33.14275), New Vector3(-1.035176, 0, 30.5063), 50.0F)
                 .GarageType = eGarageType.TwoCarGarage
                 .BuildingType = eBuildingType.Apartment
+                .SaleSign = New EntityVector(ForSaleSign, New Quaternion(1896.717F, 3762.96F, 31.5966F, 33.99994F))
                 .Apartments = New List(Of ApartmentClass) From {_140ZancudoAveApt}
             End With
             If Not buildings.Contains(_140ZancudoAve) Then buildings.Add(_140ZancudoAve)

@@ -5,6 +5,7 @@ Imports GTA.Math
 Imports GTA.Native
 Imports INMNativeUI
 Imports Metadata
+Imports SPAII.INM
 
 Module Helper
 
@@ -42,6 +43,9 @@ Module Helper
     Public SixCarGarage As New Vector3(0, 0, 0)
     Public TenCarGarage As New Vector3(222.592, -968.1, -99)
     Public TwentyCarGarage As New Vector3(0, 0, 0)
+
+    'Prop
+    Public ForSaleSign As String = "prop_forsale_dyn_01"
 
     <Extension>
     Public Function Make(vehicle As Vehicle) As String
@@ -150,6 +154,11 @@ Module Helper
     <Extension>
     Public Function GetHashKey(str As String) As Integer
         Return Native.Function.Call(Of Integer)(Hash.GET_HASH_KEY, str)
+    End Function
+
+    <Extension>
+    Public Function ToRotation(heading As Single) As Vector3
+        Return New Vector3(0F, 0F, heading)
     End Function
 
 End Module
