@@ -6,12 +6,16 @@ Module BuildingList
 
     Public Sub LoadBuildings()
         buildings.Clear()
+        apartments.Clear()
 
         Try
+            config = ScriptSettings.Load("scripts\SPA II\modconfig.ini")
+
 #Region "High End Apartments"
             '3 Alta Street
             Dim _3AltaStreet57 As New ApartmentClass()
             With _3AltaStreet57
+                .ID = 6
                 .Name = "MP_PROP_6"
                 .Description = "MP_PROP_6DES"
                 .Price = 223000
@@ -45,6 +49,7 @@ Module BuildingList
             '4 Integrity Way       
             Dim _4IntegrityWay30 As New ApartmentClass()
             With _4IntegrityWay30
+                .ID = 38
                 .Name = "MP_PROP_38"
                 .Description = "MP_PROP_38DES"
                 .Price = 476000
@@ -61,6 +66,7 @@ Module BuildingList
             End With
             Dim _4IntegrityWay28 As New ApartmentClass()
             With _4IntegrityWay28
+                .ID = 71
                 .Name = "MP_PROP_71"
                 .Description = "MP_PROP_71DES"
                 .Price = 952000
@@ -94,6 +100,7 @@ Module BuildingList
             'Del Perro Hts
             Dim delPerroHts7 As New ApartmentClass()
             With delPerroHts7
+                .ID = 34
                 .Name = "MP_PROP_34"
                 .Description = "MP_PROP_34DES"
                 .Price = 468000
@@ -110,6 +117,7 @@ Module BuildingList
             End With
             Dim delPerroHts4 As New ApartmentClass()
             With delPerroHts4
+                .ID = 68
                 .Name = "MP_PROP_68"
                 .Description = "MP_PROP_68DES"
                 .Price = 936000
@@ -143,6 +151,7 @@ Module BuildingList
             'Eclipse Towers
             Dim eclipseTowers31 As New ApartmentClass()
             With eclipseTowers31
+                .ID = 1
                 .Name = "MP_PROP_1"
                 .Description = "MP_PROP_1DES"
                 .Price = 400000
@@ -159,6 +168,7 @@ Module BuildingList
             End With
             Dim eclipseTowers3 As New ApartmentClass()
             With eclipseTowers3
+                .ID = 67
                 .Name = "MP_PROP_67"
                 .Description = "MP_PROP_67DES"
                 .Price = 800000
@@ -175,6 +185,7 @@ Module BuildingList
             End With
             Dim eclipseTowersPH1 As New ApartmentClass()
             With eclipseTowersPH1
+                .ID = 79
                 .Name = "MP_PROP_79"
                 .Description = "MP_PROP_79DES"
                 .Price = 985000
@@ -183,7 +194,7 @@ Module BuildingList
                 .ApartmentOutPos = New Vector3(-781.851, 318.094, 217.6388)
                 .WardrobePos = New Quaternion(-796.9515, 328.2715, 220.4384, 359.5432)
                 .GarageFilePath = "eclipse_towers_phs_1"
-                .IPL = "apa_v_mp_h_01_a"
+                .IPL = config.GetValue("IPL", .Name, "apa_v_mp_h_01_a")
                 .AptStyleCam = New CameraPRH(New Vector3(-786.6251, 343.8772, 218.0287), New Vector3(-7.585561, 0, -163.3333), 50.0F)
                 .GarageElevatorPos = Vector3.Zero
                 .GarageMenuPos = Vector3.Zero
@@ -191,6 +202,7 @@ Module BuildingList
             End With
             Dim eclipseTowersPH2 As New ApartmentClass()
             With eclipseTowersPH2
+                .ID = 80
                 .Name = "MP_PROP_80"
                 .Description = "MP_PROP_80DES"
                 .Price = 905000
@@ -199,7 +211,7 @@ Module BuildingList
                 .ApartmentOutPos = New Vector3(-779.2371, 339.6224, 196.6866)
                 .WardrobePos = New Quaternion(-763.9934, 329.6285, 199.4863, 178.7236)
                 .GarageFilePath = "eclipse_towers_phs_2"
-                .IPL = "apa_v_mp_h_02_a"
+                .IPL = config.GetValue("IPL", .Name, "apa_v_mp_h_01_b")
                 .AptStyleCam = New CameraPRH(New Vector3(-774.2443, 314.4292, 196.6641), New Vector3(-2.762131, 0, 16.02366), 50.0F)
                 .GarageElevatorPos = Vector3.Zero
                 .GarageMenuPos = Vector3.Zero
@@ -207,6 +219,7 @@ Module BuildingList
             End With
             Dim eclipseTowersPH3 As New ApartmentClass()
             With eclipseTowersPH3
+                .ID = 81
                 .Name = "MP_PROP_81"
                 .Description = "MP_PROP_81DES"
                 .Price = 1100000
@@ -215,7 +228,7 @@ Module BuildingList
                 .ApartmentOutPos = New Vector3(-781.9078, 318.1647, 187.9138)
                 .WardrobePos = New Quaternion(-796.9515, 328.2715, 190.7134, 359.5432)
                 .GarageFilePath = "eclipse_towers_phs_3"
-                .IPL = "apa_v_mp_h_03_a"
+                .IPL = config.GetValue("IPL", .Name, "apa_v_mp_h_01_c")
                 .AptStyleCam = New CameraPRH(New Vector3(-786.7924, 343.3035, 187.8668), New Vector3(-1.956791, 0, -163.332), 50.0F)
                 .GarageElevatorPos = Vector3.Zero
                 .GarageMenuPos = Vector3.Zero
@@ -240,6 +253,7 @@ Module BuildingList
             'Richards Majestic
             Dim richardMajestic4 As New ApartmentClass()
             With richardMajestic4
+                .ID = 40
                 .Name = "MP_PROP_40"
                 .Description = "MP_PROP_40DES"
                 .Price = 484000
@@ -256,6 +270,7 @@ Module BuildingList
             End With
             Dim richardMajestic2 As New ApartmentClass()
             With richardMajestic2
+                .ID = 69
                 .Name = "MP_PROP_69"
                 .Description = "MP_PROP_69DES"
                 .Price = 968000
@@ -289,6 +304,7 @@ Module BuildingList
             'Tinsel Towers
             Dim tinselTowers29 As New ApartmentClass()
             With tinselTowers29
+                .ID = 43
                 .Name = "MP_PROP_43"
                 .Description = "MP_PROP_43DES"
                 .Price = 492000
@@ -305,6 +321,7 @@ Module BuildingList
             End With
             Dim tinselTowers42 As New ApartmentClass()
             With tinselTowers42
+                .ID = 70
                 .Name = "MP_PROP_70"
                 .Description = "MP_PROP_70DES"
                 .Price = 984000
@@ -338,6 +355,7 @@ Module BuildingList
             'Weazel Plaza
             Dim weazelPlaza70 As New ApartmentClass()
             With weazelPlaza70
+                .ID = 36
                 .Name = "MP_PROP_36"
                 .Description = "MP_PROP_36DES"
                 .Price = 335000
@@ -373,6 +391,7 @@ Module BuildingList
             '2862 Hillcrest Avenue
             Dim _2862HillcrestAveApt As New ApartmentClass()
             With _2862HillcrestAveApt
+                .ID = 86
                 .Name = "MP_PROP_86"
                 .Description = "MP_PROP_86DES"
                 .Price = 705000
@@ -406,6 +425,7 @@ Module BuildingList
             '2868 Hillcrest Avenue
             Dim _2868HillcrestAveApt As New ApartmentClass()
             With _2868HillcrestAveApt
+                .ID = 85
                 .Name = "MP_PROP_85"
                 .Description = "MP_PROP_85DES"
                 .Price = 672000
@@ -439,6 +459,7 @@ Module BuildingList
             '2874 Hillcrest Avenue
             Dim _2874HillcrestAveApt As New ApartmentClass()
             With _2874HillcrestAveApt
+                .ID = 92
                 .Name = "MP_PROP_92"
                 .Description = "MP_PROP_92DES"
                 .Price = 571000
@@ -472,6 +493,7 @@ Module BuildingList
             '2113 Mad Wayne Thunder Drive
             Dim _2113MadWayneThunderDrApt As New ApartmentClass()
             With _2113MadWayneThunderDrApt
+                .ID = 94
                 .Name = "MP_PROP_94"
                 .Description = "MP_PROP_94DES"
                 .Price = 449000
@@ -505,6 +527,7 @@ Module BuildingList
             '2117 Milton Road
             Dim _2117MiltonRdApt As New ApartmentClass()
             With _2117MiltonRdApt
+                .ID = 89
                 .Name = "MP_PROP_89"
                 .Description = "MP_PROP_89DES"
                 .Price = 608000
@@ -538,6 +561,7 @@ Module BuildingList
             '2044 North Conker Avenue
             Dim _2044NorthConkerAveApt As New ApartmentClass()
             With _2044NorthConkerAveApt
+                .ID = 84
                 .Name = "MP_PROP_84"
                 .Description = "MP_PROP_84DES"
                 .Price = 762000
@@ -571,6 +595,7 @@ Module BuildingList
             '2045 North Conker Avenue
             Dim _2045NorthConkerAveApt As New ApartmentClass()
             With _2045NorthConkerAveApt
+                .ID = 95
                 .Name = "MP_PROP_95"
                 .Description = "MP_PROP_95DES"
                 .Price = 727000
@@ -604,6 +629,7 @@ Module BuildingList
             '3677 Whispymound Drive
             Dim _3677WhispymoundDrApt As New ApartmentClass()
             With _3677WhispymoundDrApt
+                .ID = 87
                 .Name = "MP_PROP_87"
                 .Description = "MP_PROP_87DES"
                 .Price = 478000
@@ -637,6 +663,7 @@ Module BuildingList
             '3655 Wild Oats Drive
             Dim _3655WildOatsDrApt As New ApartmentClass()
             With _3655WildOatsDrApt
+                .ID = 83
                 .Name = "MP_PROP_83"
                 .Description = "MP_PROP_83DES"
                 .Price = 800000
@@ -672,6 +699,7 @@ Module BuildingList
             '0115 Bay City Ave
             Dim _0115BayCityAve45 As New ApartmentClass()
             With _0115BayCityAve45
+                .ID = 14
                 .Name = "MP_PROP_14"
                 .Description = "MP_PROP_14DES"
                 .Price = 150000
@@ -704,6 +732,7 @@ Module BuildingList
             'Dream Tower
             Dim dreamTower15 As New ApartmentClass()
             With dreamTower15
+                .ID = 16
                 .Name = "MP_PROP_16"
                 .Description = "MP_PROP_16DES"
                 .Price = 134000
@@ -736,6 +765,7 @@ Module BuildingList
             '4 Hangman Ave
             Dim _4HangmanAveApt As New ApartmentClass()
             With _4HangmanAveApt
+                .ID = 72
                 .Name = "MP_PROP_72"
                 .Description = "MP_PROP_72DES"
                 .Price = 175000
@@ -768,6 +798,7 @@ Module BuildingList
             '0604 Las Lagunas Blvd
             Dim _0604LasLagunasBlvd4 As New ApartmentClass()
             With _0604LasLagunasBlvd4
+                .ID = 10
                 .Name = "MP_PROP_10"
                 .Description = "MP_PROP_10DES"
                 .Price = 126000
@@ -800,6 +831,7 @@ Module BuildingList
             '0184 Milton Rd
             Dim _0184MiltonRd13 As New ApartmentClass()
             With _0184MiltonRd13
+                .ID = 11
                 .Name = "MP_PROP_11"
                 .Description = "MP_PROP_11DES"
                 .Price = 146000
@@ -832,6 +864,7 @@ Module BuildingList
             '1162 Power St
             Dim _1162PowerSt3 As New ApartmentClass()
             With _1162PowerSt3
+                .ID = 8
                 .Name = "MP_PROP_8"
                 .Description = "MP_PROP_8DES"
                 .Price = 130000
@@ -864,6 +897,7 @@ Module BuildingList
             '4401 Procopio Dr
             Dim _4401ProcopioDrApt As New ApartmentClass()
             With _4401ProcopioDrApt
+                .ID = 75
                 .Name = "MP_PROP_75"
                 .Description = "MP_PROP_75DES"
                 .Price = 165000
@@ -896,6 +930,7 @@ Module BuildingList
             '4584 Procopio Dr
             Dim _4584ProcopioDrApt As New ApartmentClass()
             With _4584ProcopioDrApt
+                .ID = 74
                 .Name = "MP_PROP_74"
                 .Description = "MP_PROP_74DES"
                 .Price = 155000
@@ -928,6 +963,7 @@ Module BuildingList
             '0504 S Mo Milton Dr
             Dim _0504SMoMiltonDrApt As New ApartmentClass()
             With _0504SMoMiltonDrApt
+                .ID = 13
                 .Name = "MP_PROP_13"
                 .Description = "MP_PROP_13DES"
                 .Price = 141000
@@ -960,6 +996,7 @@ Module BuildingList
             '0325 South Rockford Dr
             Dim _0325SouthRockfordDrApt As New ApartmentClass()
             With _0325SouthRockfordDrApt
+                .ID = 15
                 .Name = "MP_PROP_15"
                 .Description = "MP_PROP_15DES"
                 .Price = 137000
@@ -992,6 +1029,7 @@ Module BuildingList
             '0605 Spanish Ave
             Dim _0605SpanishAve1 As New ApartmentClass()
             With _0605SpanishAve1
+                .ID = 9
                 .Name = "MP_PROP_9"
                 .Description = "MP_PROP_9DES"
                 .Price = 128000
@@ -1024,6 +1062,7 @@ Module BuildingList
             '12 Sustancia Rd
             Dim _12SustanciaRdApt As New ApartmentClass()
             With _12SustanciaRdApt
+                .ID = 73
                 .Name = "MP_PROP_73"
                 .Description = "MP_PROP_73DES"
                 .Price = 143000
@@ -1056,6 +1095,7 @@ Module BuildingList
             'The Royale
             Dim theRoyale19 As New ApartmentClass()
             With theRoyale19
+                .ID = 12
                 .Name = "MP_PROP_12"
                 .Description = "MP_PROP_12DES"
                 .Price = 125000
@@ -1090,6 +1130,7 @@ Module BuildingList
             '1115 Blvd Del Perro
             Dim _1115BlvdDelPerro18 As New ApartmentClass()
             With _1115BlvdDelPerro18
+                .ID = 23
                 .Name = "MP_PROP_23"
                 .Description = "MP_PROP_23DES"
                 .Price = 93000
@@ -1122,6 +1163,7 @@ Module BuildingList
             '1561 San Vitas St
             Dim _1561SanVitasSt2 As New ApartmentClass()
             With _1561SanVitasSt2
+                .ID = 18
                 .Name = "MP_PROP_18"
                 .Description = "MP_PROP_18DES"
                 .Price = 99000
@@ -1154,6 +1196,7 @@ Module BuildingList
             '1237 Prosperity St
             Dim _1237ProsperitySt21 As New ApartmentClass()
             With _1237ProsperitySt21
+                .ID = 22
                 .Name = "MP_PROP_22"
                 .Description = "MP_PROP_22DES"
                 .Price = 105000
@@ -1186,6 +1229,7 @@ Module BuildingList
             '0069 Cougar Ave
             Dim _0069CougarAve19 As New ApartmentClass()
             With _0069CougarAve19
+                .ID = 21
                 .Name = "MP_PROP_21"
                 .Description = "MP_PROP_21DES"
                 .Price = 112000
@@ -1218,6 +1262,7 @@ Module BuildingList
             '2143 Las Lagunas Blvd
             Dim _2143LasLagunasBlvd9 As New ApartmentClass()
             With _2143LasLagunasBlvd9
+                .ID = 17
                 .Name = "MP_PROP_17"
                 .Description = "MP_PROP_17DES"
                 .Price = 115000
@@ -1250,6 +1295,7 @@ Module BuildingList
             '1893 Grapeseed Ave
             Dim _1893GrapeseedAveApt As New ApartmentClass()
             With _1893GrapeseedAveApt
+                .ID = 78
                 .Name = "MP_PROP_78"
                 .Description = "MP_PROP_78DES"
                 .Price = 118000
@@ -1282,6 +1328,7 @@ Module BuildingList
             '0232 Paleto Blvd
             Dim _0232PaletoBlvdApt As New ApartmentClass()
             With _0232PaletoBlvdApt
+                .ID = 76
                 .Name = "MP_PROP_76"
                 .Description = "MP_PROP_76DES"
                 .Price = 121000
@@ -1314,6 +1361,7 @@ Module BuildingList
             '0112 S Rockford Dr
             Dim _0112SRockfordDr13 As New ApartmentClass()
             With _0112SRockfordDr13
+                .ID = 19
                 .Name = "MP_PROP_19"
                 .Description = "MP_PROP_19DES"
                 .Price = 80000
@@ -1346,6 +1394,7 @@ Module BuildingList
             '2057 Vespucci Blvd
             Dim _2057VespucciBlvd1 As New ApartmentClass()
             With _2057VespucciBlvd1
+                .ID = 20
                 .Name = "MP_PROP_20"
                 .Description = "MP_PROP_20DES"
                 .Price = 87000
@@ -1378,6 +1427,7 @@ Module BuildingList
             '140 Zancudo Ave
             Dim _140ZancudoAveApt As New ApartmentClass()
             With _140ZancudoAveApt
+                .ID = 77
                 .Name = "MP_PROP_77"
                 .Description = "MP_PROP_77DES"
                 .Price = 121000

@@ -18,14 +18,14 @@ Module Helper
 
     'Decor
     Public nitroModDecor As String = "inm_nitro_active"
+    Public vehIdDecor As String = "inm_spa2_id"
+    Public vehUidDecor As String = "inm_spa2_uid"
 
     'Memory
     Public buildings As New List(Of BuildingClass)
-    Public mikesCars As New List(Of Vehicle)
-    Public franksCars As New List(Of Vehicle)
-    Public trevsCars As New List(Of Vehicle)
-    Public playersCars As New List(Of Vehicle)
+    Public apartments As New List(Of ApartmentClass)
     Public buildingsLoaded As Boolean = False
+    Public outVehicleList As New List(Of Vehicle)
 
     Public PP As Ped
     Public LV As Vehicle
@@ -39,9 +39,7 @@ Module Helper
 
     'Coords
     Public TwoCarGarage As New Vector3(0, 0, 0)
-    Public FourCarGarage As New Vector3(0, 0, 0)
     Public SixCarGarage As New Vector3(0, 0, 0)
-    Public TenCarGarage As New Vector3(222.592, -968.1, -99)
     Public TwentyCarGarage As New Vector3(0, 0, 0)
 
     'Prop
@@ -159,6 +157,144 @@ Module Helper
     <Extension>
     Public Function ToRotation(heading As Single) As Vector3
         Return New Vector3(0F, 0F, heading)
+    End Function
+
+    <Extension>
+    Public Function CreateGarageVehicle(vehClass As VehicleClass, pos As Quaternion, aptID As Integer) As Vehicle
+        Dim veh As Vehicle = Nothing
+        Dim model = New Model(vehClass.Hash)
+        model.Request(250)
+        If model.IsInCdImage AndAlso model.IsValid Then
+            While Not model.IsLoaded
+                Script.Yield()
+            End While
+            veh = World.CreateVehicle(vehClass.Hash, pos.ToVector3, pos.W)
+            With veh
+                .InstallModKit()
+                .WheelType = vehClass.WheelType
+                .SetMod(VehicleMod.Aerials, vehClass.Aerials, True)
+                .SetMod(VehicleMod.Suspension, vehClass.Suspension, True)
+                .SetMod(VehicleMod.Brakes, vehClass.Brakes, True)
+                .SetMod(VehicleMod.Engine, vehClass.Engine, True)
+                .SetMod(VehicleMod.Transmission, vehClass.Transmission, True)
+                .SetMod(VehicleMod.FrontBumper, vehClass.FrontBumper, True)
+                .SetMod(VehicleMod.RearBumper, vehClass.RearBumper, True)
+                .SetMod(VehicleMod.SideSkirt, vehClass.SideSkirt, True)
+                .SetMod(VehicleMod.Trim, vehClass.Trim, True)
+                .SetMod(VehicleMod.EngineBlock, vehClass.EngineBlock, True)
+                .SetMod(VehicleMod.AirFilter, vehClass.AirFilter, True)
+                .SetMod(VehicleMod.Struts, vehClass.Struts, True)
+                .SetMod(VehicleMod.ColumnShifterLevers, vehClass.ColumnShifterLevers, True)
+                .SetMod(VehicleMod.Dashboard, vehClass.Dashboard, True)
+                .SetMod(VehicleMod.DialDesign, vehClass.DialDesign, True)
+                .SetMod(VehicleMod.Ornaments, vehClass.Ornaments, True)
+                .SetMod(VehicleMod.Seats, vehClass.Seats, True)
+                .SetMod(VehicleMod.SteeringWheels, vehClass.SteeringWheel, True)
+                .SetMod(VehicleMod.TrimDesign, vehClass.TrimDesign, True)
+                .SetMod(VehicleMod.PlateHolder, vehClass.PlateHolder, True)
+                .SetMod(VehicleMod.VanityPlates, vehClass.VanityPlates, True)
+                .SetMod(VehicleMod.FrontWheels, vehClass.Frontwheels, vehClass.WheelsVariation)
+                .SetMod(VehicleMod.BackWheels, vehClass.BackWheels, vehClass.WheelsVariation)
+                .SetMod(VehicleMod.ArchCover, vehClass.ArchCover, True)
+                .SetMod(VehicleMod.Exhaust, vehClass.Exhaust, True)
+                .SetMod(VehicleMod.Fender, vehClass.Fender, True)
+                .SetMod(VehicleMod.RightFender, vehClass.RightFender, True)
+                .SetMod(VehicleMod.DoorSpeakers, vehClass.DoorSpeakers, True)
+                .SetMod(VehicleMod.Frame, vehClass.Frame, True)
+                .SetMod(VehicleMod.Grille, vehClass.Grille, True)
+                .SetMod(VehicleMod.Hood, vehClass.Hood, True)
+                .SetMod(VehicleMod.Horns, vehClass.Horn, True)
+                .SetMod(VehicleMod.Hydraulics, vehClass.Hydraulics, True)
+                .SetMod(VehicleMod.Livery, vehClass.Livery, True)
+                .SetMod(VehicleMod.Plaques, vehClass.Plaques, True)
+                .SetMod(VehicleMod.Roof, vehClass.Roof, True)
+                .SetMod(VehicleMod.Speakers, vehClass.Speakers, True)
+                .SetMod(VehicleMod.Spoilers, vehClass.Spoiler, True)
+                .SetMod(VehicleMod.Tank, vehClass.Tank, True)
+                .SetMod(VehicleMod.Trunk, vehClass.Trunk, True)
+                .SetMod(VehicleMod.Windows, vehClass.Windows, True)
+                .ToggleMod(VehicleToggleMod.XenonHeadlights, vehClass.Headlights)
+                .ToggleMod(VehicleToggleMod.Turbo, vehClass.Turbo)
+                .ToggleMod(VehicleToggleMod.TireSmoke, vehClass.Tiresmoke)
+                .TrimColor = vehClass.TrimColor
+                .NumberPlateType = vehClass.NumberPlate
+                .NumberPlate = vehClass.PlateNumber
+                .SetNeonLightsOn(VehicleNeonLight.Front, vehClass.FrontNeon)
+                .SetNeonLightsOn(VehicleNeonLight.Back, vehClass.BackNeon)
+                .SetNeonLightsOn(VehicleNeonLight.Left, vehClass.LeftNeon)
+                .SetNeonLightsOn(VehicleNeonLight.Right, vehClass.RightNeon)
+                .WindowTint = vehClass.Tint
+                .PrimaryColor = vehClass.PrimaryColor
+                .SecondaryColor = vehClass.SecondaryColor
+                .PearlescentColor = vehClass.PearlescentColor
+                .RimColor = vehClass.RimColor
+                .DashboardColor = vehClass.LightsColor
+                .NeonLightsColor = vehClass.NeonLightsColor.ToColor
+                .TireSmokeColor = vehClass.TireSmokeColor.ToColor
+                .Livery2(vehClass.Livery2)
+                .Livery = vehClass.Livery1
+                .XenonHeadlightsColor(vehClass.HeadlightsColor)
+                .CanTiresBurst = vehClass.BulletProofTires
+                If vehClass.HasCustomPrimaryColor Then .CustomPrimaryColor = vehClass.CustomPrimaryColor.ToColor
+                If vehClass.HasCustomSecondaryColor Then .CustomSecondaryColor = vehClass.CustomSecondaryColor.ToColor
+                .ToggleExtra(0, vehClass.Extra0)
+                .ToggleExtra(1, vehClass.Extra1)
+                .ToggleExtra(2, vehClass.Extra2)
+                .ToggleExtra(3, vehClass.Extra3)
+                .ToggleExtra(4, vehClass.Extra4)
+                .ToggleExtra(5, vehClass.Extra5)
+                .ToggleExtra(6, vehClass.Extra6)
+                .ToggleExtra(7, vehClass.Extra7)
+                .ToggleExtra(8, vehClass.Extra8)
+                .ToggleExtra(9, vehClass.Extra9)
+                .ToggleExtra(10, vehClass.Extra10)
+                .ToggleExtra(11, vehClass.Extra11)
+                .ToggleExtra(12, vehClass.Extra12)
+                .ToggleExtra(13, vehClass.Extra13)
+                .ToggleExtra(14, vehClass.Extra14)
+                .ToggleExtra(15, vehClass.Extra15)
+                .RoofState = vehClass.RoofState
+                If IsNitroModInstalled() Then .SetInt(nitroModDecor, vehClass.HasNitro)
+                .IsPersistent = True
+                .SetInt(vehIdDecor, aptID)
+                .SetInt(vehUidDecor, vehClass.UniqueID)
+            End With
+        End If
+        model.MarkAsNoLongerNeeded()
+        Return veh
+    End Function
+
+    Public Sub RegisterDecor(d As String, t As Decor.eDecorType)
+        If Not Decor.Registered(d, t) Then
+            Decor.Unlock()
+            Decor.Register(d, t)
+            Decor.Lock()
+        End If
+    End Sub
+
+    Public Sub Debug()
+        Dim playerText As New UIResText($"Player Position: {PP.Position}     Rotation: {PP.Rotation}", Point.Empty, 0.3F, Color.White, GTA.Font.ChaletLondon, UIResText.Alignment.Left)
+        Dim playerVehText As New UIResText($"Player Vehicle Position: {PP.LastVehicle.Position}     Rotation: {PP.LastVehicle.Rotation}", New Point(0, playerText.Position.Y + 20), 0.3F, Color.White, GTA.Font.ChaletLondon, UIResText.Alignment.Left)
+        Dim camText As New UIResText($"Camera Position: {GameplayCamera.Position}     Rotation: {GameplayCamera.Rotation}", New Point(0, playerVehText.Position.Y + 20), 0.3F, Color.White, GTA.Font.ChaletLondon, UIResText.Alignment.Left)
+        playerText.Draw()
+        playerVehText.Draw()
+        camText.Draw()
+    End Sub
+
+    Public Sub ChangeIPL(old As String, [new] As String)
+        If Native.Function.Call(Of Boolean)(Hash.IS_IPL_ACTIVE, old) Then Native.Function.Call(Hash.REMOVE_IPL, old)
+        While Not Native.Function.Call(Of Boolean)(Hash.IS_IPL_ACTIVE, [new])
+            Native.Function.Call(Hash.REQUEST_IPL, [new])
+            Script.Yield()
+        End While
+    End Sub
+
+    Public Function NewUiMenuItem2(title As String, Optional desc As String = Nothing, Optional rightbadge As UIMenuItem.BadgeStyle = UIMenuItem.BadgeStyle.None)
+        Dim item As New UIMenuItem(title, desc)
+        With item
+            .SetRightBadge(rightbadge)
+        End With
+        Return item
     End Function
 
 End Module

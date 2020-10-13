@@ -1,8 +1,10 @@
 ﻿Imports System.Drawing
+Imports System.IO
 Imports GTA
 Imports GTA.Math
 Imports GTA.Native
 Imports INMNativeUI
+Imports Metadata
 Imports SPAII.INM
 
 Public Class BuildingClass
@@ -192,6 +194,11 @@ Public Class BuildingClass
         With ForSaleSign
             .IsPersistent = True
         End With
+
+        For Each apt In Apartments
+            apt.Load()
+            If Not Helper.apartments.Contains(apt) Then Helper.apartments.Add(apt)
+        Next
     End Sub
 
     Public Sub RefreshBuyMenu()
@@ -281,18 +288,6 @@ Public Class BuildingClass
 
     Public Function IsForSale() As Boolean
         Return BuildingBlip.Sprite = BlipSprite.SafehouseForSale Or BlipSprite.OfficeForSale Or BlipSprite.GarageForSale
-    End Function
-
-    Public Function WardrobeDistance(apt As ApartmentClass) As Single
-        Return Game.Player.Character.Position.DistanceToSquared(apt.WardrobePos.Axis)
-    End Function
-
-    Public Function SaveDistance(apt As ApartmentClass) As Single
-        Return Game.Player.Character.Position.DistanceToSquared(apt.SavePos)
-    End Function
-
-    Public Function ExitDistance(apt As ApartmentClass) As Single
-        Return Game.Player.Character.Position.DistanceToSquared(apt.ApartmentOutPos)
     End Function
 
     Public Function GarageElevatorDistance(apt As ApartmentClass) As Single
@@ -412,19 +407,45 @@ Public Class BuildingClass
                         SixCarGarage.SetInteriorActive()
                     Case eGarageType.TenCarGarage
                         FadeScreen(1)
-                        TenCarGarage.SetInteriorActive()
-                        PP.Position = TenCarGarage
+                        TenCarGarage.Apartment = selectedApt
+                        TenCarGarage.Interior.SetInteriorActive()
+
+                        If PP.IsInVehicle Then
+                            'In Vehicle
+                            Dim currVeh = PP.CurrentVehicle
+                            Dim FromApartment = currVeh.GetInt(vehIdDecor)
+                            Dim UniqueID = currVeh.GetInt(vehUidDecor)
+
+                            PP.Task.WarpOutOfVehicle(PP.CurrentVehicle)
+
+                            Select Case FromApartment
+                                Case 0
+                                    'Nothing need to do for this step
+                                Case selectedApt.ID
+                                    Dim ExistingFileToDelete As String = $"{grgXmlPath}{selectedApt.GarageFilePath}\{UniqueID}.xml"
+                                    If File.Exists(ExistingFileToDelete) Then File.Delete(ExistingFileToDelete)
+                                Case Else
+                                    Dim ExistingFileToDelete As String = $"{grgXmlPath}{Helper.apartments.Find(Function(x) x.ID = FromApartment).GarageFilePath}\{UniqueID}.xml"
+                                    If File.Exists(ExistingFileToDelete) Then File.Delete(ExistingFileToDelete)
+                            End Select
+
+                            Dim uid As Integer = Guid.NewGuid.GetHashCode
+                            Dim newVeh As New VehicleData($"{grgXmlPath}{selectedApt.GarageFilePath}\{uid}.xml", New VehicleClass(currVeh, GetPlayer, selectedApt.ID, uid))
+                            newVeh.Save()
+                            PP.Position = tenCarGarage.Elevator
+                            TenCarGarage.LoadVehiclesSetPlayerPos(uid)
+                            currVeh.CurrentBlip.Remove()
+                            currVeh.Delete()
+                        Else
+                            'On Foot
+                            PP.Position = TenCarGarage.Elevator
+                            TenCarGarage.LoadVehicles()
+                        End If
+
                         FadeScreen(0)
                     Case eGarageType.TwentyCarGarage
                         TwentyCarGarage.SetInteriorActive()
                 End Select
-                If Not PP.IsInVehicle Then
-                    'On Foot
-
-                Else
-                    'In Vehicle
-
-                End If
             End If
         Catch ex As Exception
             Logger.Log($"{ex.Message} {ex.StackTrace}")

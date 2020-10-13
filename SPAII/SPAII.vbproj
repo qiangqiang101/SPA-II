@@ -79,6 +79,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class\BuildingList.vb" />
+    <Compile Include="Class\Garage\TenCarGarage.vb" />
     <Compile Include="Class\INM.vb" />
     <Compile Include="Class\Database\ApartmentClass.vb" />
     <Compile Include="Class\Database\BuildingClass.vb" />

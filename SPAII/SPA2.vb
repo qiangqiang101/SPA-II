@@ -1,15 +1,24 @@
 ﻿Imports System.IO
 Imports GTA
 Imports GTA.Native
+Imports Metadata
 
 Public Class SPA2
     Inherits Script
 
     Public Sub New()
+        Decor.Unlock()
+        Decor.Register(vehIdDecor, Decor.eDecorType.Int)
+        Decor.Register(vehUidDecor, Decor.eDecorType.Int)
+        Decor.Lock()
+
         LoadBuildings()
     End Sub
 
     Private Sub SPA2_Tick(sender As Object, e As EventArgs) Handles Me.Tick
+        RegisterDecor(vehIdDecor, Decor.eDecorType.Int)
+        RegisterDecor(vehUidDecor, Decor.eDecorType.Int)
+
         PP = Game.Player.Character
         LV = Game.Player.Character.LastVehicle
         PM = Game.Player.Money
@@ -62,17 +71,44 @@ Public Class SPA2
                         End If
                     End If
 
+                    'Open Garage Menu
+                    If bd.GarageDistance <= 5.0F Then
+                        If Not MenuPool.IsAnyMenuOpen Then
+                            UI.ShowHelpMessage(Game.GetGXTEntry("MP_PROP_BUZZ1B"))
+                            If Game.IsControlJustReleased(0, Control.Context) Then
+                                bd.GrgMenu.Visible = True
+                            End If
+                        End If
+                    End If
+
                     'When Player is in any interior
                     If bd.IsAtHome() Then
                         'Hide Building Exteriors
                         bd.HideExterior()
-
-                        For Each apt As ApartmentClass In bd.Apartments
-
-                        Next
                     End If
                 Next
 
+                TenCarGarageOnTick()
+
+                For Each apt As ApartmentClass In apartments
+                    'Open Exit Apartment Menu
+                    If apt.ExitDistance <= 2.0F Then
+                        If Not MenuPool.IsAnyMenuOpen Then
+                            UI.ShowHelpMessage(Game.GetGXTEntry("SHR_EXIT_HELP"))
+                            If Game.IsControlJustReleased(0, Control.Context) Then
+                                apt.AptMenu.Visible = True
+                            End If
+                        End If
+                    End If
+
+                    'Get into bed
+                    If apt.SaveDistance <= 2.0F Then
+                        UI.ShowHelpMessage(Game.GetGXTEntry("SA_BED_IN"))
+                        'todo
+                    End If
+                Next
+
+                Debug()
                 MenuPool.ProcessMenus()
             End If
         Catch ex As Exception
