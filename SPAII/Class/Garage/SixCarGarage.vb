@@ -3,7 +3,7 @@ Imports GTA
 Imports GTA.Math
 Imports Metadata
 
-Public Module TenCarGarage
+Module SixCarGarage
 
     Public Apartment As ApartmentClass
 
@@ -14,28 +14,20 @@ Public Module TenCarGarage
     Public Vehicle3 As Vehicle
     Public Vehicle4 As Vehicle
     Public Vehicle5 As Vehicle
-    Public Vehicle6 As Vehicle
-    Public Vehicle7 As Vehicle
-    Public Vehicle8 As Vehicle
-    Public Vehicle9 As Vehicle
     Public Vehicles As New List(Of Vehicle)
 
     'Coords
-    Public Interior As New Vector3(222.592, -968.1, -99)
-    Public Elevator As New Vector3(238.7097, -1004.8488, -99.9999)
-    Public GarageDoorL As New Vector3(231.9013, -1006.686, -99.9999)
-    Public GarageDoorR As New Vector3(224.4288, -1006.6892, -99.9999)
-    Public MenuActivator As New Vector3(225.0141, -975.5068, -99.9999)
-    Public Veh0Pos As New Quaternion(223.4, -1001, -99.0, 241.3)
-    Public Veh1Pos As New Quaternion(223.4, -996, -99.0, 241.3)
-    Public Veh2Pos As New Quaternion(223.4, -991, -99.0, 241.3)
-    Public Veh3Pos As New Quaternion(223.4, -986, -99.0, 241.3)
-    Public Veh4Pos As New Quaternion(223.4, -981, -99.0, 241.3)
-    Public Veh5Pos As New Quaternion(232.7, -1001, -99.0, 116.3)
-    Public Veh6Pos As New Quaternion(232.7, -996, -99.0, 116.3)
-    Public Veh7Pos As New Quaternion(232.7, -991, -99.0, 116.3)
-    Public Veh8Pos As New Quaternion(232.7, -986, -99.0, 116.3)
-    Public Veh9Pos As New Quaternion(232.7, -981, -99.0, 116.3)
+    Public Interior As New Vector3(193.9493, -1004.425, -99.99999)
+    Public Elevator As New Vector3(207.1506, -998.9948, -99.9999)
+    Public GarageDoorL As New Vector3(202.2906, -1007.7249, -99.9999)
+    Public GarageDoorR As New Vector3(194.4465, -1007.7326, -99.9999)
+    Public MenuActivator As New Vector3(204.1768, -995.3179, -99.9999)
+    Public Veh0Pos As New Quaternion(197.5, -1004.425, -99.99999, -4.035995)
+    Public Veh1Pos As New Quaternion(201.06, -1004.425, -99.99999, -4.035995)
+    Public Veh2Pos As New Quaternion(204.62, -1004.425, -99.99999, -4.035995)
+    Public Veh3Pos As New Quaternion(192.9262, -996.3292, -99.99999, 146.2832)
+    Public Veh4Pos As New Quaternion(197.5, -996.3292, -99.99999, 146.2832)
+    Public Veh5Pos As New Quaternion(203.9257, -999.1467, -99.99999, 146.2832)
 
     Public Sub LoadVehicles()
         Try
@@ -46,10 +38,6 @@ Public Module TenCarGarage
             If Vehicle3 <> Nothing Then Vehicle3.Delete()
             If Vehicle4 <> Nothing Then Vehicle4.Delete()
             If Vehicle5 <> Nothing Then Vehicle5.Delete()
-            If Vehicle6 <> Nothing Then Vehicle6.Delete()
-            If Vehicle7 <> Nothing Then Vehicle7.Delete()
-            If Vehicle8 <> Nothing Then Vehicle8.Delete()
-            If Vehicle9 <> Nothing Then Vehicle9.Delete()
 
             For Each veh In Apartment.Vehicles
                 If Not IsGarageVehicleAlreadyExistInWorldMap(Apartment.ID, veh.UniqueID) Then
@@ -78,22 +66,6 @@ Public Module TenCarGarage
                             Vehicle5 = CreateGarageVehicle(veh, Veh5Pos, Apartment.ID)
                             Vehicle5.PlaceOnGround()
                             Vehicles.Add(Vehicle5)
-                        Case 6
-                            Vehicle6 = CreateGarageVehicle(veh, Veh6Pos, Apartment.ID)
-                            Vehicle6.PlaceOnGround()
-                            Vehicles.Add(Vehicle6)
-                        Case 7
-                            Vehicle7 = CreateGarageVehicle(veh, Veh7Pos, Apartment.ID)
-                            Vehicle7.PlaceOnGround()
-                            Vehicles.Add(Vehicle7)
-                        Case 8
-                            Vehicle8 = CreateGarageVehicle(veh, Veh8Pos, Apartment.ID)
-                            Vehicle8.PlaceOnGround()
-                            Vehicles.Add(Vehicle8)
-                        Case 9
-                            Vehicle9 = CreateGarageVehicle(veh, Veh9Pos, Apartment.ID)
-                            Vehicle9.PlaceOnGround()
-                            Vehicles.Add(Vehicle9)
                     End Select
                 End If
             Next
@@ -128,7 +100,7 @@ Public Module TenCarGarage
         Return Game.Player.Character.Position.DistanceToSquared(GarageDoorR)
     End Function
 
-    Public Sub TenCarGarageOnTick()
+    Public Sub SixCarGarageOnTick()
         'Enter Apartment from Garage Elevator
         If GarageElevatorDistance() <= 2.0F Then
             UI.ShowHelpMessage(Game.GetGXTEntry("MP_PROP_BUZZ1"))
@@ -208,10 +180,6 @@ Public Module TenCarGarage
         If Vehicle3 <> Nothing Then Vehicle3.Delete()
         If Vehicle4 <> Nothing Then Vehicle4.Delete()
         If Vehicle5 <> Nothing Then Vehicle5.Delete()
-        If Vehicle6 <> Nothing Then Vehicle6.Delete()
-        If Vehicle7 <> Nothing Then Vehicle7.Delete()
-        If Vehicle8 <> Nothing Then Vehicle8.Delete()
-        If Vehicle9 <> Nothing Then Vehicle9.Delete()
     End Sub
 
 End Module

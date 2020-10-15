@@ -4,6 +4,7 @@ Imports Metadata
 
 Public Class VehicleClass
 
+    Public Index As Integer
     Public Make As String
     Public Name As String
     Public Hash As Integer
@@ -88,6 +89,7 @@ Public Class VehicleClass
 
     Public Sub New(vehicle As VehicleData, _owner As eOwner)
         Try
+            Index = vehicle.Index
             Make = vehicle.Make
             Name = vehicle.Name
             Hash = vehicle.Hash
@@ -187,8 +189,9 @@ Public Class VehicleClass
         End Try
     End Sub
 
-    Public Sub New(vehicle As Vehicle, _owner As eOwner, aptID As Integer, uid As Integer)
+    Public Sub New(vehicle As Vehicle, _owner As eOwner, aptID As Integer, uid As Integer, index As Integer)
         Try
+            Me.Index = index
             Make = vehicle.Make
             Name = vehicle.FriendlyName
             Hash = vehicle.Model.Hash

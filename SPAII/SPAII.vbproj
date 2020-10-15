@@ -78,8 +78,12 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Class\Apartment\LowEndApartment.vb" />
+    <Compile Include="Class\Apartment\MediumEndApartment.vb" />
     <Compile Include="Class\BuildingList.vb" />
+    <Compile Include="Class\Garage\SixCarGarage.vb" />
     <Compile Include="Class\Garage\TenCarGarage.vb" />
+    <Compile Include="Class\Garage\TwoCarGarage.vb" />
     <Compile Include="Class\INM.vb" />
     <Compile Include="Class\Database\ApartmentClass.vb" />
     <Compile Include="Class\Database\BuildingClass.vb" />

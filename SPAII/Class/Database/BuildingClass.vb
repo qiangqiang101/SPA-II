@@ -190,15 +190,17 @@ Public Class BuildingClass
             .RefreshIndex()
         End With
 
-        Dim ForSaleSign As Prop = World.CreateProp(SaleSign.Model, SaleSign.Position.ToVector3, New Vector3(0F, 0F, SaleSign.Position.W), False, False)
-        With ForSaleSign
-            .IsPersistent = True
-        End With
-
         For Each apt In Apartments
             apt.Load()
             If Not Helper.apartments.Contains(apt) Then Helper.apartments.Add(apt)
         Next
+    End Sub
+
+    Public Sub SpawnForSaleSigns()
+        Dim ForSaleSign As Prop = World.CreateProp(SaleSign.Model, SaleSign.Position.ToVector3, New Vector3(0F, 0F, SaleSign.Position.W), False, False)
+        With ForSaleSign
+            .IsPersistent = True
+        End With
     End Sub
 
     Public Sub RefreshBuyMenu()
@@ -379,12 +381,27 @@ Public Class BuildingClass
             Dim selectedApt As ApartmentClass = selectedItem.Tag
             If selectedApt.Owner = GetPlayer() Then
                 AptMenu.Visible = False
+                'If Not selectedApt.ShareInterior Then
+                'Dim scriptCam As Camera = World.CreateCamera(CameraPos.Position, CameraPos.Rotation, CameraPos.FOV)
+                '    Dim interpCam As Camera = World.CreateCamera(selectedApt.InteriorPos, Vector3.Zero, GameplayCamera.FieldOfView)
+                '    World.RenderingCamera = scriptCam
+                '    scriptCam.InterpTo(interpCam, 2000, True, True)
+                '    World.RenderingCamera = interpCam
+                '    interpCam.Shake(CameraShake.Hand, 0.4F)
+                '    Script.Wait(2000)
+                'End If
                 HideHud = False
                 World.DestroyAllCameras()
                 World.RenderingCamera = Nothing
                 selectedApt.SetInteriorActive()
                 FadeScreen(1)
                 PP.Position = selectedApt.ApartmentInPos
+                Select Case selectedApt.ApartmentType
+                    Case eApartmentType.LowEnd
+                        LowEndApartment.Apartment = selectedApt
+                    Case eApartmentType.MediumEnd
+                        MediumEndApartment.Apartment = selectedApt
+                End Select
                 FadeScreen(0)
             End If
         Catch ex As Exception
@@ -392,60 +409,162 @@ Public Class BuildingClass
         End Try
     End Sub
 
+    Public Function GetGarageVehicleCount() As Integer
+        Select Case GarageType
+            Case eGarageType.TwoCarGarage
+                Return 2
+            Case eGarageType.SixCarGarage
+                Return 6
+            Case eGarageType.TenCarGarage
+                Return 10
+            Case Else
+                Return 20
+        End Select
+    End Function
+
     Private Sub GrgMenu_OnItemSelect(sender As UIMenu, selectedItem As UIMenuItem, index As Integer) Handles GrgMenu.OnItemSelect
         Try
             Dim selectedApt As ApartmentClass = selectedItem.Tag
             If selectedApt.Owner = GetPlayer() Then
-                GrgMenu.Visible = False
-                HideHud = False
-                World.DestroyAllCameras()
-                World.RenderingCamera = Nothing
-                Select Case GarageType
-                    Case eGarageType.TwoCarGarage
-                        TwoCarGarage.SetInteriorActive()
-                    Case eGarageType.SixCarGarage
-                        SixCarGarage.SetInteriorActive()
-                    Case eGarageType.TenCarGarage
-                        FadeScreen(1)
-                        TenCarGarage.Apartment = selectedApt
-                        TenCarGarage.Interior.SetInteriorActive()
+                If Not selectedApt.Vehicles.Count = GetGarageVehicleCount() Then
+                    GrgMenu.Visible = False
+                    HideHud = False
+                    World.DestroyAllCameras()
+                    World.RenderingCamera = Nothing
+                    Select Case selectedApt.ApartmentType
+                        Case eApartmentType.LowEnd
+                            LowEndApartment.Apartment = selectedApt
+                        Case eApartmentType.MediumEnd
+                            MediumEndApartment.Apartment = selectedApt
+                    End Select
+                    Select Case GarageType
+                        Case eGarageType.TwoCarGarage
+                            FadeScreen(1)
+                            TwoCarGarage.Apartment = selectedApt
+                            TwoCarGarage.Interior.SetInteriorActive
 
-                        If PP.IsInVehicle Then
-                            'In Vehicle
-                            Dim currVeh = PP.CurrentVehicle
-                            Dim FromApartment = currVeh.GetInt(vehIdDecor)
-                            Dim UniqueID = currVeh.GetInt(vehUidDecor)
+                            If PP.IsInVehicle Then
+                                'In Vehicle
+                                Dim currVeh = PP.CurrentVehicle
+                                Dim FromApartment = currVeh.GetInt(vehIdDecor)
+                                Dim UniqueID = currVeh.GetInt(vehUidDecor)
 
-                            PP.Task.WarpOutOfVehicle(PP.CurrentVehicle)
+                                PP.Task.WarpOutOfVehicle(PP.CurrentVehicle)
 
-                            Select Case FromApartment
-                                Case 0
+                                Select Case FromApartment
+                                    Case 0
                                     'Nothing need to do for this step
-                                Case selectedApt.ID
-                                    Dim ExistingFileToDelete As String = $"{grgXmlPath}{selectedApt.GarageFilePath}\{UniqueID}.xml"
-                                    If File.Exists(ExistingFileToDelete) Then File.Delete(ExistingFileToDelete)
-                                Case Else
-                                    Dim ExistingFileToDelete As String = $"{grgXmlPath}{Helper.apartments.Find(Function(x) x.ID = FromApartment).GarageFilePath}\{UniqueID}.xml"
-                                    If File.Exists(ExistingFileToDelete) Then File.Delete(ExistingFileToDelete)
-                            End Select
+                                    Case selectedApt.ID
+                                        Dim ExistingFileToDelete As String = $"{grgXmlPath}{selectedApt.GarageFilePath}\{UniqueID}.xml"
+                                        If File.Exists(ExistingFileToDelete) Then File.Delete(ExistingFileToDelete)
+                                    Case Else
+                                        Dim ExistingFileToDelete As String = $"{grgXmlPath}{Helper.apartments.Find(Function(x) x.ID = FromApartment).GarageFilePath}\{UniqueID}.xml"
+                                        If File.Exists(ExistingFileToDelete) Then File.Delete(ExistingFileToDelete)
+                                End Select
 
-                            Dim uid As Integer = Guid.NewGuid.GetHashCode
-                            Dim newVeh As New VehicleData($"{grgXmlPath}{selectedApt.GarageFilePath}\{uid}.xml", New VehicleClass(currVeh, GetPlayer, selectedApt.ID, uid))
-                            newVeh.Save()
-                            PP.Position = tenCarGarage.Elevator
-                            TenCarGarage.LoadVehiclesSetPlayerPos(uid)
-                            currVeh.CurrentBlip.Remove()
-                            currVeh.Delete()
-                        Else
-                            'On Foot
-                            PP.Position = TenCarGarage.Elevator
-                            TenCarGarage.LoadVehicles()
-                        End If
+                                If currVeh.IsCurrentVehicleExistInList Then outVehicleList.Remove(currVeh)
+                                Dim uid As Integer = Guid.NewGuid.GetHashCode
+                                Dim newVeh As New VehicleData($"{grgXmlPath}{selectedApt.GarageFilePath}\{uid}.xml", New VehicleClass(currVeh, GetPlayer, selectedApt.ID, uid, GetAvailableIndex(selectedApt.Vehicles, GarageType)))
+                                newVeh.Save()
+                                PP.Position = TwoCarGarage.Elevator
+                                TwoCarGarage.LoadVehiclesSetPlayerPos(uid)
+                                currVeh.CurrentBlip.Remove()
+                                currVeh.Delete()
+                                PP.Task.LeaveVehicle()
+                            Else
+                                'On Foot
+                                PP.Position = TwoCarGarage.Elevator
+                                TwoCarGarage.LoadVehicles()
+                            End If
 
-                        FadeScreen(0)
-                    Case eGarageType.TwentyCarGarage
-                        TwentyCarGarage.SetInteriorActive()
-                End Select
+                            FadeScreen(0)
+                        Case eGarageType.SixCarGarage
+                            FadeScreen(1)
+                            SixCarGarage.Apartment = selectedApt
+                            SixCarGarage.Interior.SetInteriorActive
+
+                            If PP.IsInVehicle Then
+                                'In Vehicle
+                                Dim currVeh = PP.CurrentVehicle
+                                Dim FromApartment = currVeh.GetInt(vehIdDecor)
+                                Dim UniqueID = currVeh.GetInt(vehUidDecor)
+
+                                PP.Task.WarpOutOfVehicle(PP.CurrentVehicle)
+
+                                Select Case FromApartment
+                                    Case 0
+                                    'Nothing need to do for this step
+                                    Case selectedApt.ID
+                                        Dim ExistingFileToDelete As String = $"{grgXmlPath}{selectedApt.GarageFilePath}\{UniqueID}.xml"
+                                        If File.Exists(ExistingFileToDelete) Then File.Delete(ExistingFileToDelete)
+                                    Case Else
+                                        Dim ExistingFileToDelete As String = $"{grgXmlPath}{Helper.apartments.Find(Function(x) x.ID = FromApartment).GarageFilePath}\{UniqueID}.xml"
+                                        If File.Exists(ExistingFileToDelete) Then File.Delete(ExistingFileToDelete)
+                                End Select
+
+                                If currVeh.IsCurrentVehicleExistInList Then outVehicleList.Remove(currVeh)
+                                Dim uid As Integer = Guid.NewGuid.GetHashCode
+                                Dim newVeh As New VehicleData($"{grgXmlPath}{selectedApt.GarageFilePath}\{uid}.xml", New VehicleClass(currVeh, GetPlayer, selectedApt.ID, uid, GetAvailableIndex(selectedApt.Vehicles, GarageType)))
+                                newVeh.Save()
+                                PP.Position = SixCarGarage.Elevator
+                                SixCarGarage.LoadVehiclesSetPlayerPos(uid)
+                                currVeh.CurrentBlip.Remove()
+                                currVeh.Delete()
+                                PP.Task.LeaveVehicle()
+                            Else
+                                'On Foot
+                                PP.Position = SixCarGarage.Elevator
+                                SixCarGarage.LoadVehicles()
+                            End If
+
+                            FadeScreen(0)
+                        Case eGarageType.TenCarGarage
+                            FadeScreen(1)
+                            TenCarGarage.Apartment = selectedApt
+                            TenCarGarage.Interior.SetInteriorActive()
+
+                            If PP.IsInVehicle Then
+                                'In Vehicle
+                                Dim currVeh = PP.CurrentVehicle
+                                Dim FromApartment = currVeh.GetInt(vehIdDecor)
+                                Dim UniqueID = currVeh.GetInt(vehUidDecor)
+
+                                PP.Task.WarpOutOfVehicle(PP.CurrentVehicle)
+
+                                Select Case FromApartment
+                                    Case 0
+                                    'Nothing need to do for this step
+                                    Case selectedApt.ID
+                                        Dim ExistingFileToDelete As String = $"{grgXmlPath}{selectedApt.GarageFilePath}\{UniqueID}.xml"
+                                        If File.Exists(ExistingFileToDelete) Then File.Delete(ExistingFileToDelete)
+                                    Case Else
+                                        Dim ExistingFileToDelete As String = $"{grgXmlPath}{Helper.apartments.Find(Function(x) x.ID = FromApartment).GarageFilePath}\{UniqueID}.xml"
+                                        If File.Exists(ExistingFileToDelete) Then File.Delete(ExistingFileToDelete)
+                                End Select
+
+                                If currVeh.IsCurrentVehicleExistInList Then outVehicleList.Remove(currVeh)
+                                Dim uid As Integer = Guid.NewGuid.GetHashCode
+                                Dim newVeh As New VehicleData($"{grgXmlPath}{selectedApt.GarageFilePath}\{uid}.xml", New VehicleClass(currVeh, GetPlayer, selectedApt.ID, uid, GetAvailableIndex(selectedApt.Vehicles, GarageType)))
+                                newVeh.Save()
+                                PP.Position = TenCarGarage.Elevator
+                                TenCarGarage.LoadVehiclesSetPlayerPos(uid)
+                                currVeh.CurrentBlip.Remove()
+                                currVeh.Delete()
+                                PP.Task.LeaveVehicle()
+                            Else
+                                'On Foot
+                                PP.Position = TenCarGarage.Elevator
+                                TenCarGarage.LoadVehicles()
+                            End If
+
+                            FadeScreen(0)
+                        Case eGarageType.TwentyCarGarage
+                            TwentyCarGarage.SetInteriorActive()
+                    End Select
+                Else
+                    'Garage is full
+                    UI.ShowSubtitle(Game.GetGXTEntry("WEB_VEH_FULL"))
+                End If
             End If
         Catch ex As Exception
             Logger.Log($"{ex.Message} {ex.StackTrace}")
@@ -468,6 +587,7 @@ Public Class BuildingClass
                     'Buy Apartment
                     If PM > apt.Price Then
                         apt.UpdateApartmentOwner()
+                        BuyMenu.Visible = False
                         FadeScreen(1)
                         Player.Money = (PM - apt.Price)
                         BuildingBlip.Remove()

@@ -38,7 +38,7 @@ Public Class ApartmentClass
 
     Public Function Building() As BuildingClass
         Return (From b In buildings
-                From a In b.Apartments Where a.Name = Name Select b).FirstOrDefault
+                From a In b.Apartments Where a.ID = ID Select b).FirstOrDefault
     End Function
 
     Public Function FriendlyName() As String
@@ -87,7 +87,7 @@ Public Class ApartmentClass
     End Sub
 
     Public Function WardrobeDistance() As Single
-        Return Game.Player.Character.Position.DistanceToSquared(WardrobePos.Axis)
+        Return Game.Player.Character.Position.DistanceToSquared(WardrobePos.ToVector3)
     End Function
 
     Public Function SaveDistance() As Single
@@ -200,9 +200,15 @@ Public Class ApartmentClass
                     AptMenu.Visible = False
                     Select Case Building.GarageType
                         Case eGarageType.TwoCarGarage
-
+                            TwoCarGarage.Apartment = Me
+                            TwoCarGarage.Interior.SetInteriorActive
+                            PP.Position = TwoCarGarage.Elevator
+                            TwoCarGarage.LoadVehicles()
                         Case eGarageType.SixCarGarage
-
+                            SixCarGarage.Apartment = Me
+                            SixCarGarage.Interior.SetInteriorActive
+                            PP.Position = SixCarGarage.Elevator
+                            SixCarGarage.LoadVehicles()
                         Case eGarageType.TenCarGarage
                             TenCarGarage.Apartment = Me
                             TenCarGarage.Interior.SetInteriorActive()

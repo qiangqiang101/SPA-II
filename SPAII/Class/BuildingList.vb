@@ -1468,4 +1468,16 @@ Module BuildingList
         End Try
     End Sub
 
+    Public Sub SpawnForSaleSigns()
+        Try
+            For Each bd In buildings
+                bd.SpawnForSaleSigns()
+            Next
+        Catch ex As Exception
+            Logger.Log($"{ex.Message} {ex.StackTrace}")
+        Finally
+            forSaleSignSpawned = True
+        End Try
+    End Sub
+
 End Module

@@ -25,7 +25,9 @@ Module Helper
     Public buildings As New List(Of BuildingClass)
     Public apartments As New List(Of ApartmentClass)
     Public buildingsLoaded As Boolean = False
+    Public forSaleSignSpawned As Boolean = False
     Public outVehicleList As New List(Of Vehicle)
+    Public debug3rdLine As String = "Nothing to show now"
 
     Public PP As Ped
     Public LV As Vehicle
@@ -38,8 +40,6 @@ Module Helper
     Public MenuBanner As New UIResRectangle(Point.Empty, New Size(0, 0), Color.FromArgb(0, 0, 0, 0))
 
     'Coords
-    Public TwoCarGarage As New Vector3(0, 0, 0)
-    Public SixCarGarage As New Vector3(0, 0, 0)
     Public TwentyCarGarage As New Vector3(0, 0, 0)
 
     'Prop
@@ -118,13 +118,13 @@ Module Helper
     ''' In = 0, Out = 1
     ''' Duration is milliseconds
     ''' </summary>
-    Public Sub FadeScreen(inOut As Integer, Optional duration As Integer = 500)
+    Public Sub FadeScreen(inOut As Integer, Optional duration As Integer = 1000)
         If inOut = 1 Then
             Game.FadeScreenOut(duration)
         Else
             Game.FadeScreenIn(duration)
         End If
-        Script.Wait(500)
+        Script.Wait(duration)
     End Sub
 
     Public Sub PlayPropertyPurchase(aptName As String)
@@ -145,8 +145,8 @@ Module Helper
     End Sub
 
     <Extension>
-    Public Function ToVector3(q As Quaternion) As Vector3
-        Return New Vector3(q.X, q.Y, q.Z)
+    Public Function ToVector3(q As Quaternion, Optional placeOnGround As Boolean = False) As Vector3
+        Return New Vector3(q.X, q.Y, If(placeOnGround, World.GetGroundHeight(New Vector2(q.X, q.Y)), q.Z))
     End Function
 
     <Extension>
@@ -168,7 +168,7 @@ Module Helper
             While Not model.IsLoaded
                 Script.Yield()
             End While
-            veh = World.CreateVehicle(vehClass.Hash, pos.ToVector3, pos.W)
+            veh = CreateVehicle(vehClass.Hash, pos.ToVector3, pos.W)
             With veh
                 .InstallModKit()
                 .WheelType = vehClass.WheelType
@@ -276,9 +276,11 @@ Module Helper
         Dim playerText As New UIResText($"Player Position: {PP.Position}     Rotation: {PP.Rotation}", Point.Empty, 0.3F, Color.White, GTA.Font.ChaletLondon, UIResText.Alignment.Left)
         Dim playerVehText As New UIResText($"Player Vehicle Position: {PP.LastVehicle.Position}     Rotation: {PP.LastVehicle.Rotation}", New Point(0, playerText.Position.Y + 20), 0.3F, Color.White, GTA.Font.ChaletLondon, UIResText.Alignment.Left)
         Dim camText As New UIResText($"Camera Position: {GameplayCamera.Position}     Rotation: {GameplayCamera.Rotation}", New Point(0, playerVehText.Position.Y + 20), 0.3F, Color.White, GTA.Font.ChaletLondon, UIResText.Alignment.Left)
+        Dim thirdLine As New UIResText(debug3rdLine, New Point(0, camText.Position.Y + 20), 0.3F, Color.White, GTA.Font.ChaletLondon, UIResText.Alignment.Left)
         playerText.Draw()
         playerVehText.Draw()
         camText.Draw()
+        thirdLine.Draw()
     End Sub
 
     Public Sub ChangeIPL(old As String, [new] As String)
@@ -295,6 +297,172 @@ Module Helper
             .SetRightBadge(rightbadge)
         End With
         Return item
+    End Function
+
+    Public Function WorldCreateVehicle(model As Model, position As Vector3, Optional heading As Single = 0F) As Vehicle
+        If Not model.IsVehicle OrElse Not model.Request(1000) Then
+            Return Nothing
+        End If
+
+        Return New Vehicle(Native.Function.Call(Of Integer)(Hash.CREATE_VEHICLE, model.Hash, position.X, position.Y, position.Z, heading, False, False))
+    End Function
+
+    Public Function CreateVehicle(VehicleHash As Integer, Position As Vector3, Optional Heading As Single = 0) As Vehicle
+        Dim model = New Model(VehicleHash)
+        model.Request(250)
+        If model.IsInCdImage AndAlso model.IsValid Then
+            While Not model.IsLoaded
+                Script.Wait(0)
+            End While
+            Return WorldCreateVehicle(model, Position, Heading)
+        End If
+        model.MarkAsNoLongerNeeded()
+        Return Nothing
+    End Function
+
+    Public Function IsGarageVehicleAlreadyExistInWorldMap(aid As Integer, uid As Integer)
+        Return outVehicleList.Where(Function(x) x.GetInt(vehIdDecor) = aid AndAlso x.GetInt(vehUidDecor) = uid).Count >= 1
+    End Function
+
+    <Extension>
+    Public Function IsCurrentVehicleExistInList(vehicle As Vehicle) As Boolean
+        Return outVehicleList.Contains(vehicle)
+    End Function
+
+    <Extension>
+    Public Function CloneVehicle(source As Vehicle, pos As Vector2, head As Single, Optional cloneDamage As Boolean = False) As Vehicle
+        Dim newVeh As Vehicle = WorldCreateVehicle(source.Model, pos, head)
+        With newVeh
+            .InstallModKit()
+            .WheelType = source.WheelType
+            .SetMod(VehicleMod.Aerials, source.GetMod(VehicleMod.Aerials), True)
+            .SetMod(VehicleMod.Suspension, source.GetMod(VehicleMod.Suspension), True)
+            .SetMod(VehicleMod.Brakes, source.GetMod(VehicleMod.Brakes), True)
+            .SetMod(VehicleMod.Engine, source.GetMod(VehicleMod.Engine), True)
+            .SetMod(VehicleMod.Transmission, source.GetMod(VehicleMod.Transmission), True)
+            .SetMod(VehicleMod.FrontBumper, source.GetMod(VehicleMod.FrontBumper), True)
+            .SetMod(VehicleMod.RearBumper, source.GetMod(VehicleMod.RearBumper), True)
+            .SetMod(VehicleMod.SideSkirt, source.GetMod(VehicleMod.SideSkirt), True)
+            .SetMod(VehicleMod.Trim, source.GetMod(VehicleMod.Trim), True)
+            .SetMod(VehicleMod.EngineBlock, source.GetMod(VehicleMod.EngineBlock), True)
+            .SetMod(VehicleMod.AirFilter, source.GetMod(VehicleMod.AirFilter), True)
+            .SetMod(VehicleMod.Struts, source.GetMod(VehicleMod.Struts), True)
+            .SetMod(VehicleMod.ColumnShifterLevers, source.GetMod(VehicleMod.ColumnShifterLevers), True)
+            .SetMod(VehicleMod.Dashboard, source.GetMod(VehicleMod.Dashboard), True)
+            .SetMod(VehicleMod.DialDesign, source.GetMod(VehicleMod.DialDesign), True)
+            .SetMod(VehicleMod.Ornaments, source.GetMod(VehicleMod.Ornaments), True)
+            .SetMod(VehicleMod.Seats, source.GetMod(VehicleMod.Seats), True)
+            .SetMod(VehicleMod.SteeringWheels, source.GetMod(VehicleMod.SteeringWheels), True)
+            .SetMod(VehicleMod.TrimDesign, source.GetMod(VehicleMod.TrimDesign), True)
+            .SetMod(VehicleMod.PlateHolder, source.GetMod(VehicleMod.PlateHolder), True)
+            .SetMod(VehicleMod.VanityPlates, source.GetMod(VehicleMod.VanityPlates), True)
+            .SetMod(VehicleMod.FrontWheels, source.GetMod(VehicleMod.FrontWheels), source.WheelsVariation)
+            .SetMod(VehicleMod.BackWheels, source.GetMod(VehicleMod.BackWheels), source.WheelsVariation)
+            .SetMod(VehicleMod.ArchCover, source.GetMod(VehicleMod.ArchCover), True)
+            .SetMod(VehicleMod.Exhaust, source.GetMod(VehicleMod.Exhaust), True)
+            .SetMod(VehicleMod.Fender, source.GetMod(VehicleMod.Fender), True)
+            .SetMod(VehicleMod.RightFender, source.GetMod(VehicleMod.RightFender), True)
+            .SetMod(VehicleMod.DoorSpeakers, source.GetMod(VehicleMod.DoorSpeakers), True)
+            .SetMod(VehicleMod.Frame, source.GetMod(VehicleMod.Frame), True)
+            .SetMod(VehicleMod.Grille, source.GetMod(VehicleMod.Grille), True)
+            .SetMod(VehicleMod.Hood, source.GetMod(VehicleMod.Hood), True)
+            .SetMod(VehicleMod.Horns, source.GetMod(VehicleMod.Horns), True)
+            .SetMod(VehicleMod.Hydraulics, source.GetMod(VehicleMod.Hydraulics), True)
+            .SetMod(VehicleMod.Livery, source.GetMod(VehicleMod.Livery), True)
+            .SetMod(VehicleMod.Plaques, source.GetMod(VehicleMod.Plaques), True)
+            .SetMod(VehicleMod.Roof, source.GetMod(VehicleMod.Roof), True)
+            .SetMod(VehicleMod.Speakers, source.GetMod(VehicleMod.Speakers), True)
+            .SetMod(VehicleMod.Spoilers, source.GetMod(VehicleMod.Spoilers), True)
+            .SetMod(VehicleMod.Tank, source.GetMod(VehicleMod.Tank), True)
+            .SetMod(VehicleMod.Trunk, source.GetMod(VehicleMod.Trunk), True)
+            .SetMod(VehicleMod.Windows, source.GetMod(VehicleMod.Windows), True)
+            .ToggleMod(VehicleToggleMod.XenonHeadlights, source.IsToggleModOn(VehicleToggleMod.XenonHeadlights))
+            .ToggleMod(VehicleToggleMod.Turbo, source.IsToggleModOn(VehicleToggleMod.Turbo))
+            .ToggleMod(VehicleToggleMod.TireSmoke, source.IsToggleModOn(VehicleToggleMod.TireSmoke))
+            .TrimColor = source.TrimColor
+            .NumberPlateType = source.NumberPlateType
+            .NumberPlate = source.NumberPlate
+            .SetNeonLightsOn(VehicleNeonLight.Front, source.IsNeonLightsOn(VehicleNeonLight.Front))
+            .SetNeonLightsOn(VehicleNeonLight.Back, source.IsNeonLightsOn(VehicleNeonLight.Back))
+            .SetNeonLightsOn(VehicleNeonLight.Left, source.IsNeonLightsOn(VehicleNeonLight.Left))
+            .SetNeonLightsOn(VehicleNeonLight.Right, source.IsNeonLightsOn(VehicleNeonLight.Right))
+            .WindowTint = source.WindowTint
+            .PrimaryColor = source.PrimaryColor
+            .SecondaryColor = source.SecondaryColor
+            .PearlescentColor = source.PearlescentColor
+            .RimColor = source.RimColor
+            .DashboardColor = source.DashboardColor
+            .NeonLightsColor = source.NeonLightsColor
+            .TireSmokeColor = source.TireSmokeColor
+            .Livery2(source.Livery2)
+            .Livery = source.Livery
+            .XenonHeadlightsColor(source.XenonHeadlightsColor)
+            .CanTiresBurst = source.CanTiresBurst
+            If source.IsPrimaryColorCustom Then .CustomPrimaryColor = source.CustomPrimaryColor
+            If source.IsSecondaryColorCustom Then .CustomSecondaryColor = source.CustomSecondaryColor
+            .ToggleExtra(0, source.IsExtraOn(0))
+            .ToggleExtra(1, source.IsExtraOn(1))
+            .ToggleExtra(2, source.IsExtraOn(2))
+            .ToggleExtra(3, source.IsExtraOn(3))
+            .ToggleExtra(4, source.IsExtraOn(4))
+            .ToggleExtra(5, source.IsExtraOn(5))
+            .ToggleExtra(6, source.IsExtraOn(6))
+            .ToggleExtra(7, source.IsExtraOn(7))
+            .ToggleExtra(8, source.IsExtraOn(8))
+            .ToggleExtra(9, source.IsExtraOn(9))
+            .ToggleExtra(10, source.IsExtraOn(10))
+            .ToggleExtra(11, source.IsExtraOn(11))
+            .ToggleExtra(12, source.IsExtraOn(12))
+            .ToggleExtra(13, source.IsExtraOn(13))
+            .ToggleExtra(14, source.IsExtraOn(14))
+            .ToggleExtra(15, source.IsExtraOn(15))
+            .RoofState = source.RoofState
+            If IsNitroModInstalled() Then .SetInt(nitroModDecor, source.GetInt(nitroModDecor))
+            .IsPersistent = True
+            .SetInt(vehIdDecor, source.GetInt(vehIdDecor))
+            .SetInt(vehUidDecor, source.GetInt(vehUidDecor))
+        End With
+        If cloneDamage Then Native.Function.Call(COPY_VEHICLE_DAMAGES, source, newVeh)
+        Return newVeh
+    End Function
+
+    <Extension>
+    Public Sub SetPlayerIntoVehicle(vehicle As Vehicle, Optional seat As VehicleSeat = VehicleSeat.Driver)
+        Native.Function.Call(Hash.SET_PED_INTO_VEHICLE, Game.Player.Character, vehicle.Handle, seat)
+    End Sub
+
+    <Extension>
+    Public Function IsPersonalVehicle(veh As Vehicle) As Boolean
+        Return Not veh.GetInt(vehUidDecor) = 0
+    End Function
+
+    Public Sub RequestAdditionalText(gxt2Lib As String, gxt As String)
+        If Not Native.Function.Call(Of Boolean)(Hash.HAS_THIS_ADDITIONAL_TEXT_LOADED, gxt2Lib, 10) Then
+            Native.Function.Call(Hash.CLEAR_ADDITIONAL_TEXT, 10, True)
+            Native.Function.Call(Hash.REQUEST_ADDITIONAL_TEXT, gxt2Lib, 10)
+        End If
+        If Game.GetGXTEntry(gxt) = "NULL" Then RequestAdditionalText(gxt2Lib, gxt)
+    End Sub
+
+    Public Function GetAvailableIndex(vcList As List(Of VehicleClass), garageType As eGarageType) As Integer
+        Dim vol As Integer = 10
+        Select Case garageType
+            Case eGarageType.TwoCarGarage
+                vol = 2
+            Case eGarageType.SixCarGarage
+                vol = 6
+            Case eGarageType.TenCarGarage
+                vol = 10
+            Case eGarageType.TwentyCarGarage
+                vol = 20
+        End Select
+
+        Dim existingIndexes As New List(Of Integer)
+        For Each vc In vcList
+            existingIndexes.Add(vc.Index)
+        Next
+        Dim missingIndexes = Enumerable.Range(0, vol - 0 + 1).Except(existingIndexes)
+        Return missingIndexes.FirstOrDefault
     End Function
 
 End Module

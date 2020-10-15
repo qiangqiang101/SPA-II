@@ -25,6 +25,8 @@ Public Class SPA2
         Player = Game.Player
 
         Try
+            If Not forSaleSignSpawned Then SpawnForSaleSigns()
+
             If buildingsLoaded Then
                 For Each bd As BuildingClass In buildings
                     'Open Buy Menu
@@ -72,7 +74,7 @@ Public Class SPA2
                     End If
 
                     'Open Garage Menu
-                    If bd.GarageDistance <= 5.0F Then
+                    If bd.GarageDistance <= 10.0F Then
                         If Not MenuPool.IsAnyMenuOpen Then
                             UI.ShowHelpMessage(Game.GetGXTEntry("MP_PROP_BUZZ1B"))
                             If Game.IsControlJustReleased(0, Control.Context) Then
@@ -85,39 +87,61 @@ Public Class SPA2
                     If bd.IsAtHome() Then
                         'Hide Building Exteriors
                         bd.HideExterior()
+
+                        TwoCarGarageOnTick()
+                        SixCarGarageOnTick()
+                        TenCarGarageOnTick()
+                        MediumEndApartmentOnTick()
+                        LowEndApartmentOnTick()
                     End If
                 Next
-
-                TenCarGarageOnTick()
 
                 For Each apt As ApartmentClass In apartments
-                    'Open Exit Apartment Menu
-                    If apt.ExitDistance <= 2.0F Then
-                        If Not MenuPool.IsAnyMenuOpen Then
-                            UI.ShowHelpMessage(Game.GetGXTEntry("SHR_EXIT_HELP"))
-                            If Game.IsControlJustReleased(0, Control.Context) Then
-                                apt.AptMenu.Visible = True
+                    If Not apt.ShareInterior Then
+                        'Using Wardrobe
+                        If apt.WardrobeDistance() <= 2.0F Then
+                            'todo
+                        End If
+
+                        'Open Exit Apartment Menu
+                        If apt.ExitDistance <= 2.0F Then
+                            If Not MenuPool.IsAnyMenuOpen Then
+                                UI.ShowHelpMessage(Game.GetGXTEntry("SHR_EXIT_HELP"))
+                                If Game.IsControlJustReleased(0, Control.Context) Then
+                                    apt.AptMenu.Visible = True
+                                End If
                             End If
                         End If
-                    End If
 
-                    'Get into bed
-                    If apt.SaveDistance <= 2.0F Then
-                        UI.ShowHelpMessage(Game.GetGXTEntry("SA_BED_IN"))
-                        'todo
+                        'Get into bed
+                        If apt.SaveDistance <= 2.0F Then
+                            UI.ShowHelpMessage(Game.GetGXTEntry("SA_BED_IN"))
+                            'todo
+                        End If
                     End If
                 Next
+
+                If PP.LastVehicle.IsPersonalVehicle Then
+                    If PP.IsInVehicle() Then
+                        PP.LastVehicle.CurrentBlip.Alpha = 0
+                    Else
+                        PP.LastVehicle.CurrentBlip.Alpha = 255
+                    End If
+                End If
 
                 Debug()
                 MenuPool.ProcessMenus()
             End If
+
+            'Request GXT2 texts
+            RequestAdditionalText("s_range", "SHR_EXIT_HELP")
+
+            If HideHud Then
+                Native.Function.Call(Hash.HIDE_HUD_AND_RADAR_THIS_FRAME)
+            End If
         Catch ex As Exception
             Logger.Log($"{ex.Message} {ex.StackTrace}")
         End Try
-
-        If HideHud Then
-            Native.Function.Call(Hash.HIDE_HUD_AND_RADAR_THIS_FRAME)
-        End If
     End Sub
 
     Private Sub SPA2_Aborted(sender As Object, e As EventArgs) Handles Me.Aborted
@@ -126,6 +150,15 @@ Public Class SPA2
             building.BuildingBlip.Remove()
             If Not building.GarageBlip = Nothing Then building.GarageBlip.Remove()
         Next
+
+        For Each vehicle In outVehicleList
+            vehicle.CurrentBlip.Remove()
+            vehicle.Delete()
+        Next
+
+        TwoCarGarage.Clear()
+        SixCarGarage.Clear()
+        TenCarGarage.Clear()
     End Sub
 
 End Class

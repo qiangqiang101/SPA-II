@@ -15,6 +15,7 @@ Public Structure VehicleData
     <XmlIgnore>
     Public Property FileName() As String
 
+    Public Index As Integer
     Public Make As String
     Public Name As String
     Public Hash As Integer
@@ -101,6 +102,7 @@ Public Structure VehicleData
 
     Public Sub New(_filename As String, vehicle As VehicleClass)
         FileName = _filename
+        Index = vehicle.Index
         Make = vehicle.Make
         Name = vehicle.Name
         Hash = vehicle.Hash

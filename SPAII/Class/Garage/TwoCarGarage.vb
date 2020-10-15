@@ -3,53 +3,28 @@ Imports GTA
 Imports GTA.Math
 Imports Metadata
 
-Public Module TenCarGarage
+Module TwoCarGarage
 
     Public Apartment As ApartmentClass
 
     'Vehicle
     Public Vehicle0 As Vehicle
     Public Vehicle1 As Vehicle
-    Public Vehicle2 As Vehicle
-    Public Vehicle3 As Vehicle
-    Public Vehicle4 As Vehicle
-    Public Vehicle5 As Vehicle
-    Public Vehicle6 As Vehicle
-    Public Vehicle7 As Vehicle
-    Public Vehicle8 As Vehicle
-    Public Vehicle9 As Vehicle
     Public Vehicles As New List(Of Vehicle)
 
     'Coords
-    Public Interior As New Vector3(222.592, -968.1, -99)
-    Public Elevator As New Vector3(238.7097, -1004.8488, -99.9999)
-    Public GarageDoorL As New Vector3(231.9013, -1006.686, -99.9999)
-    Public GarageDoorR As New Vector3(224.4288, -1006.6892, -99.9999)
-    Public MenuActivator As New Vector3(225.0141, -975.5068, -99.9999)
-    Public Veh0Pos As New Quaternion(223.4, -1001, -99.0, 241.3)
-    Public Veh1Pos As New Quaternion(223.4, -996, -99.0, 241.3)
-    Public Veh2Pos As New Quaternion(223.4, -991, -99.0, 241.3)
-    Public Veh3Pos As New Quaternion(223.4, -986, -99.0, 241.3)
-    Public Veh4Pos As New Quaternion(223.4, -981, -99.0, 241.3)
-    Public Veh5Pos As New Quaternion(232.7, -1001, -99.0, 116.3)
-    Public Veh6Pos As New Quaternion(232.7, -996, -99.0, 116.3)
-    Public Veh7Pos As New Quaternion(232.7, -991, -99.0, 116.3)
-    Public Veh8Pos As New Quaternion(232.7, -986, -99.0, 116.3)
-    Public Veh9Pos As New Quaternion(232.7, -981, -99.0, 116.3)
+    Public Interior As New Vector3(173.1176F, -1003.27887F, -99)
+    Public Elevator As New Vector3(179.1001, -1005.655, -99.9999)
+    Public GarageDoor As New Vector3(172.9447, -1008.339, -99.9999)
+    Public MenuActivator As New Vector3(177.0298, -1000.605, -99.9999)
+    Public Veh0Pos As New Quaternion(175.2132, -1004.104, -99, -178.4487)
+    Public Veh1Pos As New Quaternion(171.7141, -1004.023, -99, -178.4487)
 
     Public Sub LoadVehicles()
         Try
             Vehicles.Clear()
             If Vehicle0 <> Nothing Then Vehicle0.Delete()
             If Vehicle1 <> Nothing Then Vehicle1.Delete()
-            If Vehicle2 <> Nothing Then Vehicle2.Delete()
-            If Vehicle3 <> Nothing Then Vehicle3.Delete()
-            If Vehicle4 <> Nothing Then Vehicle4.Delete()
-            If Vehicle5 <> Nothing Then Vehicle5.Delete()
-            If Vehicle6 <> Nothing Then Vehicle6.Delete()
-            If Vehicle7 <> Nothing Then Vehicle7.Delete()
-            If Vehicle8 <> Nothing Then Vehicle8.Delete()
-            If Vehicle9 <> Nothing Then Vehicle9.Delete()
 
             For Each veh In Apartment.Vehicles
                 If Not IsGarageVehicleAlreadyExistInWorldMap(Apartment.ID, veh.UniqueID) Then
@@ -62,38 +37,6 @@ Public Module TenCarGarage
                             Vehicle1 = CreateGarageVehicle(veh, Veh1Pos, Apartment.ID)
                             Vehicle1.PlaceOnGround()
                             Vehicles.Add(Vehicle1)
-                        Case 2
-                            Vehicle2 = CreateGarageVehicle(veh, Veh2Pos, Apartment.ID)
-                            Vehicle2.PlaceOnGround()
-                            Vehicles.Add(Vehicle2)
-                        Case 3
-                            Vehicle3 = CreateGarageVehicle(veh, Veh3Pos, Apartment.ID)
-                            Vehicle3.PlaceOnGround()
-                            Vehicles.Add(Vehicle3)
-                        Case 4
-                            Vehicle4 = CreateGarageVehicle(veh, Veh4Pos, Apartment.ID)
-                            Vehicle4.PlaceOnGround()
-                            Vehicles.Add(Vehicle4)
-                        Case 5
-                            Vehicle5 = CreateGarageVehicle(veh, Veh5Pos, Apartment.ID)
-                            Vehicle5.PlaceOnGround()
-                            Vehicles.Add(Vehicle5)
-                        Case 6
-                            Vehicle6 = CreateGarageVehicle(veh, Veh6Pos, Apartment.ID)
-                            Vehicle6.PlaceOnGround()
-                            Vehicles.Add(Vehicle6)
-                        Case 7
-                            Vehicle7 = CreateGarageVehicle(veh, Veh7Pos, Apartment.ID)
-                            Vehicle7.PlaceOnGround()
-                            Vehicles.Add(Vehicle7)
-                        Case 8
-                            Vehicle8 = CreateGarageVehicle(veh, Veh8Pos, Apartment.ID)
-                            Vehicle8.PlaceOnGround()
-                            Vehicles.Add(Vehicle8)
-                        Case 9
-                            Vehicle9 = CreateGarageVehicle(veh, Veh9Pos, Apartment.ID)
-                            Vehicle9.PlaceOnGround()
-                            Vehicles.Add(Vehicle9)
                     End Select
                 End If
             Next
@@ -121,14 +64,14 @@ Public Module TenCarGarage
     End Function
 
     Public Function GarageDoorLeftDistance() As Single
-        Return Game.Player.Character.Position.DistanceToSquared(GarageDoorL)
+        Return Game.Player.Character.Position.DistanceToSquared(GarageDoor)
     End Function
 
     Public Function GarageDoorRightDistance() As Single
-        Return Game.Player.Character.Position.DistanceToSquared(GarageDoorR)
+        Return GarageDoorLeftDistance()
     End Function
 
-    Public Sub TenCarGarageOnTick()
+    Public Sub TwoCarGarageOnTick()
         'Enter Apartment from Garage Elevator
         If GarageElevatorDistance() <= 2.0F Then
             UI.ShowHelpMessage(Game.GetGXTEntry("MP_PROP_BUZZ1"))
@@ -204,14 +147,6 @@ Public Module TenCarGarage
     Public Sub Clear()
         If Vehicle0 <> Nothing Then Vehicle0.Delete()
         If Vehicle1 <> Nothing Then Vehicle1.Delete()
-        If Vehicle2 <> Nothing Then Vehicle2.Delete()
-        If Vehicle3 <> Nothing Then Vehicle3.Delete()
-        If Vehicle4 <> Nothing Then Vehicle4.Delete()
-        If Vehicle5 <> Nothing Then Vehicle5.Delete()
-        If Vehicle6 <> Nothing Then Vehicle6.Delete()
-        If Vehicle7 <> Nothing Then Vehicle7.Delete()
-        If Vehicle8 <> Nothing Then Vehicle8.Delete()
-        If Vehicle9 <> Nothing Then Vehicle9.Delete()
     End Sub
 
 End Module
