@@ -21,6 +21,7 @@ Public Class BuildingClass
     Public GarageInPos As Vector3
     Public GarageOutPos As Quaternion
     Public CameraPos As CameraPRH
+    Public EnterCamera1, EnterCamera2 As CameraPRH
     Public GarageType As eGarageType
     Public BuildingType As eBuildingType
     Public Apartments As List(Of ApartmentClass)
@@ -29,6 +30,7 @@ Public Class BuildingClass
 
     Public BuildingBlip As Blip
     Public GarageBlip As Blip
+    Public SaleSignProp As Prop
 
     Public WithEvents BuyMenu As UIMenu
     Public WithEvents AptMenu As UIMenu
@@ -43,10 +45,6 @@ Public Class BuildingClass
         Return apt.Count = 0
     End Function
 
-    Public Function SaleSignProp() As Prop
-        Return World.GetClosest(SaleSign.Position.ToVector3, World.GetNearbyProps(SaleSign.Position.ToVector3, 50.0F, SaleSign.Model))
-    End Function
-
     Public Sub Load()
         config = ScriptSettings.Load("scripts\SPA II\modconfig.ini")
 
@@ -55,25 +53,45 @@ Public Class BuildingClass
             .Color = BlipColor.White
             .IsShortRange = True
             If IsVacant() Then
+                'Select Case BuildingType
+                '    Case eBuildingType.Apartment
+                '        .Sprite = BlipSprite.SafehouseForSale
+                '        .Name = Game.GetGXTEntry("MP_PROP_SALE1") 'Apartment For Sale
+                '    Case eBuildingType.Office
+                '        .Sprite = BlipSprite.OfficeForSale
+                '        .Name = Game.GetGXTEntry("MP_PROP_SALE2") 'Office For Sale
+                '    Case eBuildingType.ClubHouse, eBuildingType.NightClub, eBuildingType.Bunker
+                '        .Sprite = BlipSprite.BusinessForSale
+                '        .Name = Game.GetGXTEntry("BLIP_373") 'Property For Sale
+                '    Case eBuildingType.Garage
+                '        .Sprite = BlipSprite.GarageForSale
+                '        .Name = Game.GetGXTEntry("MP_PROP_SALE0") 'Garage For Sale
+                '    Case eBuildingType.Hangar
+                '        .Sprite = BlipSprite.HangarForSale
+                '        .Name = Game.GetGXTEntry("BLIP_372") 'Hangar For Sale
+                '    Case eBuildingType.Warehouse
+                '        .Sprite = BlipSprite.WarehouseForSale
+                '        .Name = Game.GetGXTEntry("BLIP_474") 'Warehouse For Sale
+                'End Select
                 Select Case BuildingType
                     Case eBuildingType.Apartment
                         .Sprite = BlipSprite.SafehouseForSale
-                        .Name = Game.GetGXTEntry("MP_PROP_SALE1") 'Apartment For Sale
+                        .Name = Name 'Apartment For Sale
                     Case eBuildingType.Office
                         .Sprite = BlipSprite.OfficeForSale
-                        .Name = Game.GetGXTEntry("MP_PROP_SALE2") 'Office For Sale
+                        .Name = Name 'Office For Sale
                     Case eBuildingType.ClubHouse, eBuildingType.NightClub, eBuildingType.Bunker
                         .Sprite = BlipSprite.BusinessForSale
-                        .Name = Game.GetGXTEntry("BLIP_373") 'Property For Sale
+                        .Name = Name 'Property For Sale
                     Case eBuildingType.Garage
                         .Sprite = BlipSprite.GarageForSale
-                        .Name = Game.GetGXTEntry("MP_PROP_SALE0") 'Garage For Sale
+                        .Name = Name 'Garage For Sale
                     Case eBuildingType.Hangar
                         .Sprite = BlipSprite.HangarForSale
-                        .Name = Game.GetGXTEntry("BLIP_372") 'Hangar For Sale
+                        .Name = Name 'Hangar For Sale
                     Case eBuildingType.Warehouse
                         .Sprite = BlipSprite.WarehouseForSale
-                        .Name = Game.GetGXTEntry("BLIP_474") 'Warehouse For Sale
+                        .Name = Name 'Warehouse For Sale
                 End Select
             Else
                 Select Case BuildingType
@@ -197,8 +215,8 @@ Public Class BuildingClass
     End Sub
 
     Public Sub SpawnForSaleSigns()
-        Dim ForSaleSign As Prop = World.CreateProp(SaleSign.Model, SaleSign.Position.ToVector3, New Vector3(0F, 0F, SaleSign.Position.W), False, False)
-        With ForSaleSign
+        SaleSignProp = World.CreateProp(SaleSign.Model, SaleSign.Position.ToVector3, New Vector3(0F, 0F, SaleSign.Position.W), True, False)
+        With SaleSignProp
             .IsPersistent = True
         End With
     End Sub
@@ -285,7 +303,11 @@ Public Class BuildingClass
     End Function
 
     Public Function SaleSignDistance() As Single
-        Return Game.Player.Character.Position.DistanceToSquared(SaleSign.Position.ToVector3)
+        If SaleSignProp <> Nothing Then
+            Return Game.Player.Character.Position.DistanceToSquared(SaleSignProp.Position - SaleSignProp.RightVector)
+        Else
+            Return Game.Player.Character.Position.DistanceToSquared(SaleSign.Position.ToVector3)
+        End If
     End Function
 
     Public Function IsForSale() As Boolean
@@ -306,7 +328,7 @@ Public Class BuildingClass
 
     Public Sub HideExterior()
         If Not HideObjects Is Nothing Then
-            If IsAtHome() AndAlso HideObjects.Count <> 0 Then
+            If IsAtHome() AndAlso HideObjects.Count <> 0 AndAlso HighEndApartment.Building Is Me Then
                 Native.Function.Call(BEGIN_HIDE_MAP_OBJECT_THIS_FRAME)
                 For Each obj In HideObjects
                     Native.Function.Call(Hash._HIDE_MAP_OBJECT_THIS_FRAME, obj.GetHashKey)
@@ -381,16 +403,7 @@ Public Class BuildingClass
             Dim selectedApt As ApartmentClass = selectedItem.Tag
             If selectedApt.Owner = GetPlayer() Then
                 AptMenu.Visible = False
-                'If Not selectedApt.ShareInterior Then
-                'Dim scriptCam As Camera = World.CreateCamera(CameraPos.Position, CameraPos.Rotation, CameraPos.FOV)
-                '    Dim interpCam As Camera = World.CreateCamera(selectedApt.InteriorPos, Vector3.Zero, GameplayCamera.FieldOfView)
-                '    World.RenderingCamera = scriptCam
-                '    scriptCam.InterpTo(interpCam, 2000, True, True)
-                '    World.RenderingCamera = interpCam
-                '    interpCam.Shake(CameraShake.Hand, 0.4F)
-                '    Script.Wait(2000)
-                'End If
-                HideHud = False
+                If Not EnterCamera1.Position = Vector3.Zero Then PlayApartmentCamera(EnterCamera1, EnterCamera2, 3000, True, True, CameraShake.Hand, 0.4F)
                 World.DestroyAllCameras()
                 World.RenderingCamera = Nothing
                 selectedApt.SetInteriorActive()
@@ -401,8 +414,11 @@ Public Class BuildingClass
                         LowEndApartment.Apartment = selectedApt
                     Case eApartmentType.MediumEnd
                         MediumEndApartment.Apartment = selectedApt
+                    Case eApartmentType.None, eApartmentType.IPL
+                        HighEndApartment.Building = Me
                 End Select
                 FadeScreen(0)
+                HideHud = False
             End If
         Catch ex As Exception
             Logger.Log($"{ex.Message} {ex.StackTrace}")
@@ -436,6 +452,8 @@ Public Class BuildingClass
                             LowEndApartment.Apartment = selectedApt
                         Case eApartmentType.MediumEnd
                             MediumEndApartment.Apartment = selectedApt
+                        Case eApartmentType.None, eApartmentType.IPL
+                            HighEndApartment.Building = Me
                     End Select
                     Select Case GarageType
                         Case eGarageType.TwoCarGarage
@@ -610,6 +628,12 @@ Public Class BuildingClass
                         End Select
                         selectedItem.SetRightLabel(Nothing)
                         RefreshBlips()
+                        Script.Wait(2000)
+                        FadeScreen(1)
+                        World.DestroyAllCameras()
+                        World.RenderingCamera = Nothing
+                        HideHud = False
+                        FadeScreen(0)
                     End If
                 End If
             Next

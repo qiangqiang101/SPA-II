@@ -465,4 +465,18 @@ Module Helper
         Return missingIndexes.FirstOrDefault
     End Function
 
+    Public Sub PlayApartmentCamera(cam1Pos As CameraPRH, cam2Pos As CameraPRH, duration As Integer, easePosition As Boolean, easeRotation As Boolean, camShake As CameraShake, amplitude As Single)
+        Dim scriptCam As Camera = World.CreateCamera(cam1Pos.Position, cam1Pos.Rotation, cam1Pos.FOV)
+        Dim interpCam As Camera = World.CreateCamera(cam2Pos.Position, cam2Pos.Rotation, cam2Pos.FOV)
+        World.RenderingCamera = scriptCam
+        scriptCam.InterpTo(interpCam, duration, easePosition, easeRotation)
+        World.RenderingCamera = interpCam
+        interpCam.Shake(camShake, amplitude)
+        Script.Wait(duration)
+    End Sub
+
+    Public Sub DoorControl(modelhash As Integer, pos As Vector3, lock As Boolean)
+        Native.Function.Call(Hash._DOOR_CONTROL, modelhash, pos.X, pos.Y, pos.Z, lock, 0.0, 50.0, 0)
+    End Sub
+
 End Module

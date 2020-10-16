@@ -33,4 +33,16 @@ Namespace INM
 
     End Class
 
+    Public Class Door
+
+        Public ModelHash As Integer
+        Public Position As Vector3
+
+        Public Sub New(hash As Integer, position As Vector3)
+            ModelHash = hash
+            Me.Position = position
+        End Sub
+
+    End Class
+
 End Namespace

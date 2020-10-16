@@ -12,6 +12,7 @@ Public Class ApartmentClass
     Public Name As String
     Public Description As String
     Public Price As Integer
+    Public Door As Door
     Public SavePos As Vector3
     ''' <summary>
     ''' a.k.a TeleportInside in SPA
@@ -24,6 +25,7 @@ Public Class ApartmentClass
     Public WardrobePos As Quaternion
     Public GarageFilePath As String
     Public OldIPL, IPL As String
+    Public EnterCam As CameraPRH
     Public AptStyleCam As CameraPRH
     Public ApartmentType As eApartmentType
     Public GarageElevatorPos As Vector3
@@ -181,6 +183,8 @@ Public Class ApartmentClass
             If ApartmentType = eApartmentType.IPL Then
                 Native.Function.Call(Hash.REQUEST_IPL, IPL)
             End If
+
+
         Catch ex As Exception
             Logger.Log($"{ex.Message} {ex.StackTrace}")
         End Try

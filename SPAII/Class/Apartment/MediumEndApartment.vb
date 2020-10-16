@@ -1,5 +1,6 @@
 ﻿Imports GTA
 Imports GTA.Math
+Imports SPAII.INM
 
 Module MediumEndApartment
 
@@ -11,6 +12,8 @@ Module MediumEndApartment
     Public InPos As New Vector3(346.5235, -1002.9012, -99.1962)
     Public OutPos As New Vector3(346.3732, -1013.137, -99.1962)
     Public WardrobePos As New Quaternion(350.8938, -993.6076, -99.1961, 200.6809)
+    Public EnterCam As New CameraPRH(New Vector3(347.7869F, -1002.219F, -99.49624F), New Vector3(-5.068632F, 0F, 125.6882F), 50.0F)
+    Public Door As New Door(0, Vector3.Zero)
 
     Public Function WardrobeDistance() As Single
         Return Game.Player.Character.Position.DistanceToSquared(WardrobePos.ToVector3)
@@ -37,7 +40,7 @@ Module MediumEndApartment
         End If
 
         'Open Exit Apartment Menu
-        If ExitDistance() <= 2.0FThen
+        If ExitDistance() <= 2.0F Then
             If Not MenuPool.IsAnyMenuOpen Then
                 UI.ShowHelpMessage(Game.GetGXTEntry("SHR_EXIT_HELP"))
                 If Game.IsControlJustReleased(0, Control.Context) Then

@@ -1,7 +1,11 @@
 ﻿Imports System.IO
+Imports System.Threading
+Imports System.Windows.Forms
 Imports GTA
+Imports GTA.Math
 Imports GTA.Native
 Imports Metadata
+Imports GameControl = GTA.Control
 
 Public Class SPA2
     Inherits Script
@@ -40,7 +44,7 @@ Public Class SPA2
                                 Case eBuildingType.Office, eBuildingType.Bunker, eBuildingType.NightClub, eBuildingType.Warehouse
                                     UI.ShowHelpMessage(Game.GetGXTEntry("MP_PROP_OFF_BUY"))
                             End Select
-                            If Game.IsControlJustReleased(0, Control.Context) Then
+                            If Game.IsControlJustReleased(0, GameControl.Context) Then
                                 FadeScreen(1)
                                 bd.BuyMenu.Visible = True
                                 World.RenderingCamera = World.CreateCamera(bd.CameraPos.Position, bd.CameraPos.Rotation, bd.CameraPos.FOV)
@@ -63,7 +67,7 @@ Public Class SPA2
                                 Case eBuildingType.Office
                                     UI.ShowHelpMessage(Game.GetGXTEntry("MP_BUZZ_OFF"))
                             End Select
-                            If Game.IsControlJustReleased(0, Control.Context) Then
+                            If Game.IsControlJustReleased(0, GameControl.Context) Then
                                 FadeScreen(1)
                                 bd.AptMenu.Visible = True
                                 World.RenderingCamera = World.CreateCamera(bd.CameraPos.Position, bd.CameraPos.Rotation, bd.CameraPos.FOV)
@@ -77,7 +81,7 @@ Public Class SPA2
                     If bd.GarageDistance <= 10.0F Then
                         If Not MenuPool.IsAnyMenuOpen Then
                             UI.ShowHelpMessage(Game.GetGXTEntry("MP_PROP_BUZZ1B"))
-                            If Game.IsControlJustReleased(0, Control.Context) Then
+                            If Game.IsControlJustReleased(0, GameControl.Context) Then
                                 bd.GrgMenu.Visible = True
                             End If
                         End If
@@ -107,7 +111,7 @@ Public Class SPA2
                         If apt.ExitDistance <= 2.0F Then
                             If Not MenuPool.IsAnyMenuOpen Then
                                 UI.ShowHelpMessage(Game.GetGXTEntry("SHR_EXIT_HELP"))
-                                If Game.IsControlJustReleased(0, Control.Context) Then
+                                If Game.IsControlJustReleased(0, GameControl.Context) Then
                                     apt.AptMenu.Visible = True
                                 End If
                             End If
@@ -139,6 +143,15 @@ Public Class SPA2
             If HideHud Then
                 Native.Function.Call(Hash.HIDE_HUD_AND_RADAR_THIS_FRAME)
             End If
+
+            If Player.IsAiming Then
+                Dim prop = Player.GetTargetedEntity
+                If prop = Nothing Then
+                    debug3rdLine = "Nothing to show"
+                Else
+                    debug3rdLine = $".Door = New Door({prop.Model.Hash}, New Vector3({prop.Position.X}F, {prop.Position.Y}F, {prop.Position.Z}F))"
+                End If
+            End If
         Catch ex As Exception
             Logger.Log($"{ex.Message} {ex.StackTrace}")
         End Try
@@ -159,6 +172,37 @@ Public Class SPA2
         TwoCarGarage.Clear()
         SixCarGarage.Clear()
         TenCarGarage.Clear()
+    End Sub
+
+    Private Sub SPA2_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
+        'If Game.IsKeyPressed(Keys.NumPad0) Then
+        '    Dim gpcp = GameplayCamera.Position
+        '    Dim gpcr = GameplayCamera.Rotation
+        '    Logger.Logg($".EnterCamera1 = New CameraPRH(New Vector3({gpcp.X}F, {gpcp.Y}F, {gpcp.Z}F), New Vector3({gpcr.X}F, 0F, {gpcr.Z}F), 50.0F){vbNewLine}.EnterCamera2 = New CameraPRH(New Vector3({gpcp.X}F, {gpcp.Y}F, {gpcp.Z}F), New Vector3({gpcr.X + 60.0F}F, 0F, {gpcr.Z}F), 50.0F)")
+        '    UI.ShowSubtitle("Gameplay camera copied")
+        'End If
+        If Game.IsKeyPressed(Keys.Left) Then
+            Dim gpcp = Game.Player.Character.Position
+            Dim gpcr = GameplayCamera.Rotation
+            Logger.Logg($".EnterCam = New CameraPRH(New Vector3({gpcp.X}F, {gpcp.Y}F, {gpcp.Z}F), New Vector3({gpcr.X}F, 0F, {gpcr.Z}F), 50.0F)")
+            UI.ShowSubtitle("Gameplay camera copied")
+        End If
+        If Game.IsKeyPressed(Keys.Right) Then
+            Logger.Logg(debug3rdLine)
+            UI.ShowSubtitle("Prop captured")
+        End If
+        'If Game.IsKeyPressed(Keys.NumPad1) Then
+        '    Dim gpcp = GameplayCamera.Position
+        '    Dim gpcr = GameplayCamera.Rotation
+        '    Logger.Logg($".EnterCamera1 = New CameraPRH(New Vector3({gpcp.X}F, {gpcp.Y}F, {gpcp.Z}F), New Vector3({gpcr.X}F, 0F, {gpcr.Z}F), 50.0F)")
+        '    UI.ShowSubtitle("Gameplay camera copied 1")
+        'End If
+        'If Game.IsKeyPressed(Keys.NumPad2) Then
+        '    Dim gpcp = GameplayCamera.Position
+        '    Dim gpcr = GameplayCamera.Rotation
+        '    Logger.Logg($".EnterCamera2 = New CameraPRH(New Vector3({gpcp.X}F, {gpcp.Y}F, {gpcp.Z}F), New Vector3({gpcr.X}F, 0F, {gpcr.Z}F), 50.0F)")
+        '    UI.ShowSubtitle("Gameplay camera copied 2")
+        'End If
     End Sub
 
 End Class

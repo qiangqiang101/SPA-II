@@ -23,9 +23,9 @@ E:\Users\Bartholomew\Documents\GitHub\SPA-II\SPAII\bin\Debug\ScriptHookVDotNet2.
 E:\Users\Bartholomew\Documents\GitHub\SPA-II\SPAII\bin\Debug\INMNativeUI.pdb
 E:\Users\Bartholomew\Documents\GitHub\SPA-II\SPAII\bin\Debug\Metadata.pdb
 E:\Users\Bartholomew\Documents\GitHub\SPA-II\SPAII\bin\Debug\ScriptHookVDotNet2.xml
-E:\Users\Bartholomew\Documents\GitHub\SPA-II\SPAII\obj\Debug\SPAII.vbprojResolveAssemblyReference.cache
 E:\Users\Bartholomew\Documents\GitHub\SPA-II\SPAII\obj\Debug\SPAII.Resources.resources
 E:\Users\Bartholomew\Documents\GitHub\SPA-II\SPAII\obj\Debug\SPAII.vbproj.GenerateResource.Cache
 E:\Users\Bartholomew\Documents\GitHub\SPA-II\SPAII\obj\Debug\SPAII.dll
 E:\Users\Bartholomew\Documents\GitHub\SPA-II\SPAII\obj\Debug\SPAII.xml
 E:\Users\Bartholomew\Documents\GitHub\SPA-II\SPAII\obj\Debug\SPAII.pdb
+E:\Users\Bartholomew\Documents\GitHub\SPA-II\SPAII\obj\Debug\SPAII.vbprojResolveAssemblyReference.cache
