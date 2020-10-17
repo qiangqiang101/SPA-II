@@ -18,6 +18,7 @@ Public Class ApartmentClass
     ''' a.k.a TeleportInside in SPA
     ''' </summary>
     Public ApartmentInPos As Vector3
+    Public ApartmentDoorPos As Vector3
     ''' <summary>
     ''' a.k.a ApartmentExit in SPA
     ''' </summary>

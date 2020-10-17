@@ -16,7 +16,7 @@ Module TwoCarGarage
     Public Interior As New Vector3(173.1176F, -1003.27887F, -99)
     Public Elevator As New Vector3(179.1001, -1005.655, -99.9999)
     Public GarageDoor As New Vector3(172.9447, -1008.339, -99.9999)
-    Public MenuActivator As New Vector3(177.0298, -1000.605, -99.9999)
+    Public MenuActivator As New Vector3(178.9034F, -1007.407F, -99.99998F)
     Public Veh0Pos As New Quaternion(175.2132, -1004.104, -99, -178.4487)
     Public Veh1Pos As New Quaternion(171.7141, -1004.023, -99, -178.4487)
 

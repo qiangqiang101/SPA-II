@@ -275,7 +275,7 @@ Module Helper
     Public Sub Debug()
         Dim playerText As New UIResText($"Player Position: {PP.Position}     Rotation: {PP.Rotation}", Point.Empty, 0.3F, Color.White, GTA.Font.ChaletLondon, UIResText.Alignment.Left)
         Dim playerVehText As New UIResText($"Player Vehicle Position: {PP.LastVehicle.Position}     Rotation: {PP.LastVehicle.Rotation}", New Point(0, playerText.Position.Y + 20), 0.3F, Color.White, GTA.Font.ChaletLondon, UIResText.Alignment.Left)
-        Dim camText As New UIResText($"Camera Position: {GameplayCamera.Position}     Rotation: {GameplayCamera.Rotation}", New Point(0, playerVehText.Position.Y + 20), 0.3F, Color.White, GTA.Font.ChaletLondon, UIResText.Alignment.Left)
+        Dim camText As New UIResText($"Camera Position: {GameplayCamera.Position}     Rotation: {GameplayCamera.Rotation}     FOV: {GameplayCamera.FieldOfView}", New Point(0, playerVehText.Position.Y + 20), 0.3F, Color.White, GTA.Font.ChaletLondon, UIResText.Alignment.Left)
         Dim thirdLine As New UIResText(debug3rdLine, New Point(0, camText.Position.Y + 20), 0.3F, Color.White, GTA.Font.ChaletLondon, UIResText.Alignment.Left)
         playerText.Draw()
         playerVehText.Draw()
@@ -465,9 +465,10 @@ Module Helper
         Return missingIndexes.FirstOrDefault
     End Function
 
-    Public Sub PlayApartmentCamera(cam1Pos As CameraPRH, cam2Pos As CameraPRH, duration As Integer, easePosition As Boolean, easeRotation As Boolean, camShake As CameraShake, amplitude As Single)
-        Dim scriptCam As Camera = World.CreateCamera(cam1Pos.Position, cam1Pos.Rotation, cam1Pos.FOV)
-        Dim interpCam As Camera = World.CreateCamera(cam2Pos.Position, cam2Pos.Rotation, cam2Pos.FOV)
+    <Extension>
+    Public Sub PlayApartmentCamera(bld As BuildingClass, duration As Integer, easePosition As Boolean, easeRotation As Boolean, camShake As CameraShake, amplitude As Single)
+        Dim scriptCam As Camera = World.CreateCamera(bld.EnterCamera1.Position, bld.EnterCamera1.Rotation, bld.EnterCamera1.FOV)
+        Dim interpCam As Camera = World.CreateCamera(bld.EnterCamera2.Position, bld.EnterCamera2.Rotation, bld.EnterCamera2.FOV)
         World.RenderingCamera = scriptCam
         scriptCam.InterpTo(interpCam, duration, easePosition, easeRotation)
         World.RenderingCamera = interpCam
@@ -475,8 +476,17 @@ Module Helper
         Script.Wait(duration)
     End Sub
 
-    Public Sub DoorControl(modelhash As Integer, pos As Vector3, lock As Boolean)
-        Native.Function.Call(Hash._DOOR_CONTROL, modelhash, pos.X, pos.Y, pos.Z, lock, 0.0, 50.0, 0)
+    <Extension>
+    Public Sub PlayApartmentEnterCutscene(apt As ApartmentClass)
+        apt.Door.UnlockDoor()
+        World.RenderingCamera = World.CreateCamera(apt.EnterCam.Position, apt.EnterCam.Rotation, apt.EnterCam.FOV)
+        Dim frontdoor As Prop = World.GetClosest(Of Prop)(apt.Door.Position, If(apt.Door.ModelHash = 0, World.GetNearbyProps(apt.Door.Position, 3.0F), World.GetNearbyProps(apt.Door.Position, 3.0F, apt.Door.ModelHash)))
+        Game.Player.Character.Position = apt.ApartmentDoorPos
+        Game.Player.Character.Task.GoTo(apt.ApartmentInPos, False, 3000)
+        Script.Wait(3000)
+        apt.Door.LockDoor()
+        World.DestroyAllCameras()
+        World.RenderingCamera = Nothing
     End Sub
 
 End Module

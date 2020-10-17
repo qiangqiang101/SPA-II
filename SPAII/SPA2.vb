@@ -172,6 +172,8 @@ Public Class SPA2
         TwoCarGarage.Clear()
         SixCarGarage.Clear()
         TenCarGarage.Clear()
+        LowEndApartment.Clear()
+        MediumEndApartment.Clear()
     End Sub
 
     Private Sub SPA2_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
@@ -190,6 +192,11 @@ Public Class SPA2
         If Game.IsKeyPressed(Keys.Right) Then
             Logger.Logg(debug3rdLine)
             UI.ShowSubtitle("Prop captured")
+        End If
+        If Game.IsKeyPressed(Keys.Up) Then
+            Dim gpcp = Game.Player.Character.Position
+            Logger.Logg($".ApartmentDoorPos = New Vector3({gpcp.X}F, {gpcp.Y}F, {gpcp.Z - 1.0F}F)")
+            UI.ShowSubtitle("Position copied")
         End If
         'If Game.IsKeyPressed(Keys.NumPad1) Then
         '    Dim gpcp = GameplayCamera.Position

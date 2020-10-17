@@ -403,21 +403,22 @@ Public Class BuildingClass
             Dim selectedApt As ApartmentClass = selectedItem.Tag
             If selectedApt.Owner = GetPlayer() Then
                 AptMenu.Visible = False
-                If Not EnterCamera1.Position = Vector3.Zero Then PlayApartmentCamera(EnterCamera1, EnterCamera2, 3000, True, True, CameraShake.Hand, 0.4F)
-                World.DestroyAllCameras()
-                World.RenderingCamera = Nothing
+                PlayApartmentCamera(3000, True, True, CameraShake.Hand, 0.4F)
                 selectedApt.SetInteriorActive()
-                FadeScreen(1)
                 PP.Position = selectedApt.ApartmentInPos
                 Select Case selectedApt.ApartmentType
                     Case eApartmentType.LowEnd
                         LowEndApartment.Apartment = selectedApt
+                        LowEndApartment.SpawnDoor()
                     Case eApartmentType.MediumEnd
                         MediumEndApartment.Apartment = selectedApt
+                        MediumEndApartment.SpawnDoor()
                     Case eApartmentType.None, eApartmentType.IPL
                         HighEndApartment.Building = Me
                 End Select
-                FadeScreen(0)
+                selectedApt.PlayApartmentEnterCutscene()
+                World.DestroyAllCameras()
+                World.RenderingCamera = Nothing
                 HideHud = False
             End If
         Catch ex As Exception
@@ -450,8 +451,10 @@ Public Class BuildingClass
                     Select Case selectedApt.ApartmentType
                         Case eApartmentType.LowEnd
                             LowEndApartment.Apartment = selectedApt
+                            LowEndApartment.SpawnDoor()
                         Case eApartmentType.MediumEnd
                             MediumEndApartment.Apartment = selectedApt
+                            MediumEndApartment.SpawnDoor()
                         Case eApartmentType.None, eApartmentType.IPL
                             HighEndApartment.Building = Me
                     End Select

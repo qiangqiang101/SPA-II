@@ -1,5 +1,6 @@
 ﻿Imports GTA
 Imports GTA.Math
+Imports GTA.Native
 
 Namespace INM
 
@@ -41,6 +42,14 @@ Namespace INM
         Public Sub New(hash As Integer, position As Vector3)
             ModelHash = hash
             Me.Position = position
+        End Sub
+
+        Public Sub LockDoor()
+            Native.Function.Call(Hash._DOOR_CONTROL, ModelHash, Position.X, Position.Y, Position.Z, True, 0.0, 50.0, 0)
+        End Sub
+
+        Public Sub UnlockDoor()
+            Native.Function.Call(Hash._DOOR_CONTROL, ModelHash, Position.X, Position.Y, Position.Z, False, 0.0, 50.0, 0)
         End Sub
 
     End Class

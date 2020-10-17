@@ -20,6 +20,7 @@ Module BuildingList
                 .Description = "MP_PROP_6DES"
                 .Price = 223000
                 .SavePos = New Vector3(-284.4262, -958.5359, 86.3036)
+                .ApartmentDoorPos = New Vector3(-278.4184F, -937.9305F, 91.51087F)
                 .ApartmentInPos = New Vector3(-281.0908, -943.2817, 92.5108)
                 .ApartmentOutPos = New Vector3(-279.2097, -940.9369, 92.5108)
                 .WardrobePos = New Quaternion(-277.7127, -960.4503, 86.3143, 328.5379)
@@ -58,6 +59,7 @@ Module BuildingList
                 .Description = "MP_PROP_38DES"
                 .Price = 476000
                 .SavePos = New Vector3(-36.6321, -578.1332, 83.9075)
+                .ApartmentDoorPos = New Vector3(-15.53505F, -582.8347F, 89.11481F)
                 .ApartmentInPos = New Vector3(-21.0966, -580.4884, 90.1148)
                 .ApartmentOutPos = New Vector3(-18.0797, -582.1524, 90.1148)
                 .WardrobePos = New Quaternion(-37.8572, -583.7734, 83.9183, 255.3193)
@@ -77,6 +79,7 @@ Module BuildingList
                 .Description = "MP_PROP_71DES"
                 .Price = 952000
                 .SavePos = New Vector3(-36.3656, -583.9371, 78.8302)
+                .ApartmentDoorPos = New Vector3(-27.13547F, -596.6679F, 79.03082F)
                 .ApartmentInPos = New Vector3(-21.5202, -598.4841, 80.0662)
                 .ApartmentOutPos = New Vector3(-24.4089, -597.69, 80.0311)
                 .WardrobePos = New Quaternion(-38.1595, -589.3992, 78.8302, 336.2282)
@@ -115,6 +118,7 @@ Module BuildingList
                 .Description = "MP_PROP_34DES"
                 .Price = 468000
                 .SavePos = New Vector3(-1471.4473, -533.1909, 50.7216)
+                .ApartmentDoorPos = New Vector3(-1455.385F, -518.4211F, 55.929F)
                 .ApartmentInPos = New Vector3(-1460.3659, -522.0636, 56.929)
                 .ApartmentOutPos = New Vector3(-1457.5853, -520.3571, 56.929)
                 .WardrobePos = New Quaternion(-1467.6958, -537.2778, 50.7325, 314.1525)
@@ -134,6 +138,7 @@ Module BuildingList
                 .Description = "MP_PROP_68DES"
                 .Price = 936000
                 .SavePos = New Vector3(-1454.6335, -552.5497, 72.8437)
+                .ApartmentDoorPos = New Vector3(-1454.578F, -537.0783F, 73.04426F)
                 .ApartmentInPos = New Vector3(-1458.6523, -531.4198, 74.0796)
                 .ApartmentOutPos = New Vector3(-1456.5989, -534.5363, 74.0445)
                 .WardrobePos = New Quaternion(-1449.6384, -549.0426, 72.8437, 122.2167)
@@ -172,6 +177,7 @@ Module BuildingList
                 .Description = "MP_PROP_1DES"
                 .Price = 400000
                 .SavePos = New Vector3(-795.527, 337.415, 201.413)
+                .ApartmentDoorPos = New Vector3(-774.799F, 340.4209F, 159.0015F)
                 .ApartmentInPos = New Vector3(-780.152, 340.443, 207.621)
                 .ApartmentOutPos = New Vector3(-777.584, 340.172, 207.621)
                 .WardrobePos = New Quaternion(-795.0659, 331.7157, 201.4243, 268.5623)
@@ -191,6 +197,7 @@ Module BuildingList
                 .Description = "MP_PROP_67DES"
                 .Price = 800000
                 .SavePos = New Vector3(-793.2186, 332.4132, 210.7966)
+                .ApartmentDoorPos = New Vector3(-780.8734F, 323.6186F, 210.9971F)
                 .ApartmentInPos = New Vector3(-774.3142, 323.8076, 212.0325)
                 .ApartmentOutPos = New Vector3(-777.6211, 323.5111, 211.9974)
                 .WardrobePos = New Quaternion(-793.4239, 326.7805, 210.7966, 356.4841)
@@ -210,6 +217,7 @@ Module BuildingList
                 .Description = "MP_PROP_79DES"
                 .Price = 985000
                 .SavePos = New Vector3(-797.7579, 337.3798, 220.4384)
+                .ApartmentDoorPos = New Vector3(-781.9011F, 315.2137F, 216.6385F)
                 .ApartmentInPos = New Vector3(-784.0423, 320.9214, 217.439)
                 .ApartmentOutPos = New Vector3(-781.851, 318.094, 217.6388)
                 .WardrobePos = New Quaternion(-796.9515, 328.2715, 220.4384, 359.5432)
@@ -229,6 +237,7 @@ Module BuildingList
                 .Description = "MP_PROP_80DES"
                 .Price = 905000
                 .SavePos = New Vector3(-763.3478, 320.4298, 199.4861)
+                .ApartmentDoorPos = New Vector3(-781.6838F, 314.9191F, 186.9136F)
                 .ApartmentInPos = New Vector3(-776.9169, 336.887, 196.4864)
                 .ApartmentOutPos = New Vector3(-779.2371, 339.6224, 196.6866)
                 .WardrobePos = New Quaternion(-763.9934, 329.6285, 199.4863, 178.7236)
@@ -248,6 +257,7 @@ Module BuildingList
                 .Description = "MP_PROP_81DES"
                 .Price = 1100000
                 .SavePos = New Vector3(-797.7316, 337.315, 190.7134)
+                .ApartmentDoorPos = New Vector3(-779.198F, 342.5551F, 195.6864F)
                 .ApartmentInPos = New Vector3(-784.0712, 320.7265, 187.7136)
                 .ApartmentOutPos = New Vector3(-781.9078, 318.1647, 187.9138)
                 .WardrobePos = New Quaternion(-796.9515, 328.2715, 190.7134, 359.5432)
@@ -286,6 +296,7 @@ Module BuildingList
                 .Description = "MP_PROP_40DES"
                 .Price = 484000
                 .SavePos = New Vector3(-900.8789, -374.416, 79.2731)
+                .ApartmentDoorPos = New Vector3(-919.0216F, -386.5883F, 84.48055F)
                 .ApartmentInPos = New Vector3(-913.1502, -384.5727, 85.4804)
                 .ApartmentOutPos = New Vector3(-916.3039, -384.9148, 85.4804)
                 .WardrobePos = New Quaternion(-904.1464, -369.6518, 79.2839, 112.4174)
@@ -305,6 +316,7 @@ Module BuildingList
                 .Description = "MP_PROP_69DES"
                 .Price = 968000
                 .SavePos = New Vector3(-901.0586, -369.1378, 113.0741)
+                .ApartmentDoorPos = New Vector3(-916.2762F, -366.9405F, 113.2747F)
                 .ApartmentInPos = New Vector3(-922.1152, -370.0627, 114.3101)
                 .ApartmentOutPos = New Vector3(-919.3095, -368.5584, 114.275)
                 .WardrobePos = New Quaternion(-903.3266, -364.2998, 113.074, 195.6396)
@@ -343,6 +355,7 @@ Module BuildingList
                 .Description = "MP_PROP_43DES"
                 .Price = 492000
                 .SavePos = New Vector3(-583.2249, 44.9624, 87.4188)
+                .ApartmentDoorPos = New Vector3(-604.8759F, 42.28208F, 92.62614F)
                 .ApartmentInPos = New Vector3(-598.9042, 41.8059, 93.6261)
                 .ApartmentOutPos = New Vector3(-601.8906, 42.3395, 93.6261)
                 .WardrobePos = New Quaternion(-583.9974, 50.5919, 87.4296, 79.9632)
@@ -362,6 +375,7 @@ Module BuildingList
                 .Description = "MP_PROP_70DES"
                 .Price = 984000
                 .SavePos = New Vector3(-594.5658, 50.1804, 96.9996)
+                .ApartmentDoorPos = New Vector3(-607.3305F, 58.77972F, 97.2001F)
                 .ApartmentInPos = New Vector3(-614.032, 58.9435, 98.2355)
                 .ApartmentOutPos = New Vector3(-610.6395, 58.8867, 98.2004)
                 .WardrobePos = New Quaternion(-594.8418, 55.761, 96.9996, 173.2113)
@@ -400,6 +414,7 @@ Module BuildingList
                 .Description = "MP_PROP_36DES"
                 .Price = 335000
                 .SavePos = New Vector3(-913.0292, -440.8677, 115.3998)
+                .ApartmentDoorPos = New Vector3(-894.4053F, -428.5895F, 120.6071F)
                 .ApartmentInPos = New Vector3(-900.6082, -431.0182, 121.607)
                 .ApartmentOutPos = New Vector3(-897.3925, -430.1651, 121.607)
                 .WardrobePos = New Quaternion(-909.721, -445.5214, 115.7431, 296.1297)
@@ -440,6 +455,7 @@ Module BuildingList
                 .Description = "MP_PROP_86DES"
                 .Price = 705000
                 .SavePos = New Vector3(-666.4602, 586.9831, 141.5956)
+                .ApartmentDoorPos = New Vector3(-684.502F, 594.7916F, 144.3796F)
                 .ApartmentInPos = New Vector3(-680.1067, 590.6495, 145.393)
                 .ApartmentOutPos = New Vector3(-682.4827, 592.6603, 145.3797)
                 .WardrobePos = New Quaternion(-671.645, 587.338, 141.5698, 213.4807)
@@ -478,6 +494,7 @@ Module BuildingList
                 .Description = "MP_PROP_85DES"
                 .Price = 672000
                 .SavePos = New Vector3(-769.5107, 606.3783, 140.3565)
+                .ApartmentDoorPos = New Vector3(-755.4508F, 619.9409F, 143.1404F)
                 .ApartmentInPos = New Vector3(-761.0836, 617.9774, 144.1539)
                 .ApartmentOutPos = New Vector3(-758.2289, 619.0676, 144.1405)
                 .WardrobePos = New Quaternion(-767.4208, 611.0219, 140.3307, 113.3104)
@@ -516,6 +533,7 @@ Module BuildingList
                 .Description = "MP_PROP_92DES"
                 .Price = 571000
                 .SavePos = New Vector3(-851.2404, 677.0281, 149.0784)
+                .ApartmentDoorPos = New Vector3(-860.0256F, 693.7671F, 151.8527F)
                 .ApartmentInPos = New Vector3(-859.5645, 688.7182, 152.8571)
                 .ApartmentOutPos = New Vector3(-859.9158, 691.5079, 152.8589)
                 .WardrobePos = New Quaternion(-855.3519, 680.0969, 149.0531, 182.5082)
@@ -554,6 +572,7 @@ Module BuildingList
                 .Description = "MP_PROP_94DES"
                 .Price = 449000
                 .SavePos = New Vector3(-1282.3803, 434.7835, 94.1202)
+                .ApartmentDoorPos = New Vector3(-1289.949F, 452.1783F, 96.89451F)
                 .ApartmentInPos = New Vector3(-1289.6389, 446.7739, 97.8989)
                 .ApartmentOutPos = New Vector3(-1289.9187, 449.8238, 97.9025)
                 .WardrobePos = New Quaternion(-1286.1141, 438.157, 94.0948, 177.5665)
@@ -592,6 +611,7 @@ Module BuildingList
                 .Description = "MP_PROP_89DES"
                 .Price = 608000
                 .SavePos = New Vector3(-568.4787, 645.6554, 142.0576)
+                .ApartmentDoorPos = New Vector3(-571.3181F, 664.392F, 144.8318F)
                 .ApartmentInPos = New Vector3(-572.4428, 658.958, 145.8364)
                 .ApartmentOutPos = New Vector3(-571.8295, 662.1631, 145.8388)
                 .WardrobePos = New Quaternion(-571.277, 649.8883, 142.0322, 166.0936)
@@ -630,6 +650,7 @@ Module BuildingList
                 .Description = "MP_PROP_84DES"
                 .Price = 762000
                 .SavePos = New Vector3(332.7306, 423.6146, 145.5968)
+                .ApartmentDoorPos = New Vector3(344.6125F, 439.5033F, 148.3806F)
                 .ApartmentInPos = New Vector3(340.6531, 436.7456, 149.394)
                 .ApartmentOutPos = New Vector3(342.1347, 437.8865, 149.3808)
                 .WardrobePos = New Quaternion(334.2987, 428.6485, 145.5708, 103.0573)
@@ -668,6 +689,7 @@ Module BuildingList
                 .Description = "MP_PROP_95DES"
                 .Price = 727000
                 .SavePos = New Vector3(377.2632, 407.4584, 142.1256)
+                .ApartmentDoorPos = New Vector3(374.2007F, 426.1936F, 144.8999F)
                 .ApartmentInPos = New Vector3(373.2864, 420.6612, 145.9045)
                 .ApartmentOutPos = New Vector3(373.7533, 423.8348, 145.9078)
                 .WardrobePos = New Quaternion()
@@ -706,6 +728,7 @@ Module BuildingList
                 .Description = "MP_PROP_87DES"
                 .Price = 478000
                 .SavePos = New Vector3(126.1813, 545.9031, 180.5226)
+                .ApartmentDoorPos = New Vector3(116.9348F, 562.4651F, 183.2969F)
                 .ApartmentInPos = New Vector3(117.5057, 557.3167, 184.3022)
                 .ApartmentOutPos = New Vector3(117.2371, 560.0856, 184.3048)
                 .WardrobePos = New Quaternion(122.0242, 548.9013, 180.4972, 182.3311)
@@ -744,6 +767,7 @@ Module BuildingList
                 .Description = "MP_PROP_83DES"
                 .Price = 800000
                 .SavePos = New Vector3(-163.1819, 484.9918, 133.8695)
+                .ApartmentDoorPos = New Vector3(-175.3112F, 500.5898F, 136.6535F)
                 .ApartmentInPos = New Vector3(-173.286, 495.0179, 137.667)
                 .ApartmentOutPos = New Vector3(-174.3115, 497.8294, 137.6536)
                 .WardrobePos = New Quaternion(-167.5116, 487.8223, 133.8438, 103.0573)
@@ -784,6 +808,7 @@ Module BuildingList
                 .Description = "MP_PROP_14DES"
                 .Price = 150000
                 .SavePos = MediumEndApartment.SavePos
+                .ApartmentDoorPos = MediumEndApartment.DoorPos
                 .ApartmentInPos = MediumEndApartment.InPos
                 .ApartmentOutPos = MediumEndApartment.OutPos
                 .WardrobePos = MediumEndApartment.WardrobePos
@@ -821,6 +846,7 @@ Module BuildingList
                 .Description = "MP_PROP_16DES"
                 .Price = 134000
                 .SavePos = MediumEndApartment.SavePos
+                .ApartmentDoorPos = MediumEndApartment.DoorPos
                 .ApartmentInPos = MediumEndApartment.InPos
                 .ApartmentOutPos = MediumEndApartment.OutPos
                 .WardrobePos = MediumEndApartment.WardrobePos
@@ -858,6 +884,7 @@ Module BuildingList
                 .Description = "MP_PROP_72DES"
                 .Price = 175000
                 .SavePos = MediumEndApartment.SavePos
+                .ApartmentDoorPos = MediumEndApartment.DoorPos
                 .ApartmentInPos = MediumEndApartment.InPos
                 .ApartmentOutPos = MediumEndApartment.OutPos
                 .WardrobePos = MediumEndApartment.WardrobePos
@@ -895,6 +922,7 @@ Module BuildingList
                 .Description = "MP_PROP_10DES"
                 .Price = 126000
                 .SavePos = MediumEndApartment.SavePos
+                .ApartmentDoorPos = MediumEndApartment.DoorPos
                 .ApartmentInPos = MediumEndApartment.InPos
                 .ApartmentOutPos = MediumEndApartment.OutPos
                 .WardrobePos = MediumEndApartment.WardrobePos
@@ -932,6 +960,7 @@ Module BuildingList
                 .Description = "MP_PROP_11DES"
                 .Price = 146000
                 .SavePos = MediumEndApartment.SavePos
+                .ApartmentDoorPos = MediumEndApartment.DoorPos
                 .ApartmentInPos = MediumEndApartment.InPos
                 .ApartmentOutPos = MediumEndApartment.OutPos
                 .WardrobePos = MediumEndApartment.WardrobePos
@@ -969,6 +998,7 @@ Module BuildingList
                 .Description = "MP_PROP_8DES"
                 .Price = 130000
                 .SavePos = MediumEndApartment.SavePos
+                .ApartmentDoorPos = MediumEndApartment.DoorPos
                 .ApartmentInPos = MediumEndApartment.InPos
                 .ApartmentOutPos = MediumEndApartment.OutPos
                 .WardrobePos = MediumEndApartment.WardrobePos
@@ -1006,6 +1036,7 @@ Module BuildingList
                 .Description = "MP_PROP_75DES"
                 .Price = 165000
                 .SavePos = MediumEndApartment.SavePos
+                .ApartmentDoorPos = MediumEndApartment.DoorPos
                 .ApartmentInPos = MediumEndApartment.InPos
                 .ApartmentOutPos = MediumEndApartment.OutPos
                 .WardrobePos = MediumEndApartment.WardrobePos
@@ -1043,6 +1074,7 @@ Module BuildingList
                 .Description = "MP_PROP_74DES"
                 .Price = 155000
                 .SavePos = MediumEndApartment.SavePos
+                .ApartmentDoorPos = MediumEndApartment.DoorPos
                 .ApartmentInPos = MediumEndApartment.InPos
                 .ApartmentOutPos = MediumEndApartment.OutPos
                 .WardrobePos = MediumEndApartment.WardrobePos
@@ -1080,6 +1112,7 @@ Module BuildingList
                 .Description = "MP_PROP_13DES"
                 .Price = 141000
                 .SavePos = MediumEndApartment.SavePos
+                .ApartmentDoorPos = MediumEndApartment.DoorPos
                 .ApartmentInPos = MediumEndApartment.InPos
                 .ApartmentOutPos = MediumEndApartment.OutPos
                 .WardrobePos = MediumEndApartment.WardrobePos
@@ -1117,6 +1150,7 @@ Module BuildingList
                 .Description = "MP_PROP_15DES"
                 .Price = 137000
                 .SavePos = MediumEndApartment.SavePos
+                .ApartmentDoorPos = MediumEndApartment.DoorPos
                 .ApartmentInPos = MediumEndApartment.InPos
                 .ApartmentOutPos = MediumEndApartment.OutPos
                 .WardrobePos = MediumEndApartment.WardrobePos
@@ -1154,6 +1188,7 @@ Module BuildingList
                 .Description = "MP_PROP_9DES"
                 .Price = 128000
                 .SavePos = MediumEndApartment.SavePos
+                .ApartmentDoorPos = MediumEndApartment.DoorPos
                 .ApartmentInPos = MediumEndApartment.InPos
                 .ApartmentOutPos = MediumEndApartment.OutPos
                 .WardrobePos = MediumEndApartment.WardrobePos
@@ -1191,6 +1226,7 @@ Module BuildingList
                 .Description = "MP_PROP_73DES"
                 .Price = 143000
                 .SavePos = MediumEndApartment.SavePos
+                .ApartmentDoorPos = MediumEndApartment.DoorPos
                 .ApartmentInPos = MediumEndApartment.InPos
                 .ApartmentOutPos = MediumEndApartment.OutPos
                 .WardrobePos = MediumEndApartment.WardrobePos
@@ -1228,6 +1264,7 @@ Module BuildingList
                 .Description = "MP_PROP_12DES"
                 .Price = 125000
                 .SavePos = MediumEndApartment.SavePos
+                .ApartmentDoorPos = MediumEndApartment.DoorPos
                 .ApartmentInPos = MediumEndApartment.InPos
                 .ApartmentOutPos = MediumEndApartment.OutPos
                 .WardrobePos = MediumEndApartment.WardrobePos
@@ -1267,6 +1304,7 @@ Module BuildingList
                 .Description = "MP_PROP_23DES"
                 .Price = 93000
                 .SavePos = LowEndApartment.SavePos
+                .ApartmentDoorPos = LowEndApartment.DoorPos
                 .ApartmentInPos = LowEndApartment.InPos
                 .ApartmentOutPos = LowEndApartment.OutPos
                 .WardrobePos = LowEndApartment.WardrobePos
@@ -1304,6 +1342,7 @@ Module BuildingList
                 .Description = "MP_PROP_18DES"
                 .Price = 99000
                 .SavePos = LowEndApartment.SavePos
+                .ApartmentDoorPos = LowEndApartment.DoorPos
                 .ApartmentInPos = LowEndApartment.InPos
                 .ApartmentOutPos = LowEndApartment.OutPos
                 .WardrobePos = LowEndApartment.WardrobePos
@@ -1341,6 +1380,7 @@ Module BuildingList
                 .Description = "MP_PROP_22DES"
                 .Price = 105000
                 .SavePos = LowEndApartment.SavePos
+                .ApartmentDoorPos = LowEndApartment.DoorPos
                 .ApartmentInPos = LowEndApartment.InPos
                 .ApartmentOutPos = LowEndApartment.OutPos
                 .WardrobePos = LowEndApartment.WardrobePos
@@ -1378,6 +1418,7 @@ Module BuildingList
                 .Description = "MP_PROP_21DES"
                 .Price = 112000
                 .SavePos = LowEndApartment.SavePos
+                .ApartmentDoorPos = LowEndApartment.DoorPos
                 .ApartmentInPos = LowEndApartment.InPos
                 .ApartmentOutPos = LowEndApartment.OutPos
                 .WardrobePos = LowEndApartment.WardrobePos
@@ -1415,6 +1456,7 @@ Module BuildingList
                 .Description = "MP_PROP_17DES"
                 .Price = 115000
                 .SavePos = LowEndApartment.SavePos
+                .ApartmentDoorPos = LowEndApartment.DoorPos
                 .ApartmentInPos = LowEndApartment.InPos
                 .ApartmentOutPos = LowEndApartment.OutPos
                 .WardrobePos = LowEndApartment.WardrobePos
@@ -1452,6 +1494,7 @@ Module BuildingList
                 .Description = "MP_PROP_78DES"
                 .Price = 118000
                 .SavePos = LowEndApartment.SavePos
+                .ApartmentDoorPos = LowEndApartment.DoorPos
                 .ApartmentInPos = LowEndApartment.InPos
                 .ApartmentOutPos = LowEndApartment.OutPos
                 .WardrobePos = LowEndApartment.WardrobePos
@@ -1489,6 +1532,7 @@ Module BuildingList
                 .Description = "MP_PROP_76DES"
                 .Price = 121000
                 .SavePos = LowEndApartment.SavePos
+                .ApartmentDoorPos = LowEndApartment.DoorPos
                 .ApartmentInPos = LowEndApartment.InPos
                 .ApartmentOutPos = LowEndApartment.OutPos
                 .WardrobePos = LowEndApartment.WardrobePos
@@ -1526,6 +1570,7 @@ Module BuildingList
                 .Description = "MP_PROP_19DES"
                 .Price = 80000
                 .SavePos = LowEndApartment.SavePos
+                .ApartmentDoorPos = LowEndApartment.DoorPos
                 .ApartmentInPos = LowEndApartment.InPos
                 .ApartmentOutPos = LowEndApartment.OutPos
                 .WardrobePos = LowEndApartment.WardrobePos
@@ -1563,6 +1608,7 @@ Module BuildingList
                 .Description = "MP_PROP_20DES"
                 .Price = 87000
                 .SavePos = LowEndApartment.SavePos
+                .ApartmentDoorPos = LowEndApartment.DoorPos
                 .ApartmentInPos = LowEndApartment.InPos
                 .ApartmentOutPos = LowEndApartment.OutPos
                 .WardrobePos = LowEndApartment.WardrobePos
@@ -1600,6 +1646,7 @@ Module BuildingList
                 .Description = "MP_PROP_77DES"
                 .Price = 121000
                 .SavePos = LowEndApartment.SavePos
+                .ApartmentDoorPos = LowEndApartment.DoorPos
                 .ApartmentInPos = LowEndApartment.InPos
                 .ApartmentOutPos = LowEndApartment.OutPos
                 .WardrobePos = LowEndApartment.WardrobePos
