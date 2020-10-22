@@ -6,6 +6,7 @@ Imports GTA.Math
 Imports GTA.Native
 Imports Metadata
 Imports GameControl = GTA.Control
+Imports NFunc = GTA.Native.Function
 
 Public Class SPA2
     Inherits Script
@@ -141,7 +142,7 @@ Public Class SPA2
             RequestAdditionalText("s_range", "SHR_EXIT_HELP")
 
             If HideHud Then
-                Native.Function.Call(Hash.HIDE_HUD_AND_RADAR_THIS_FRAME)
+                NFunc.Call(Hash.HIDE_HUD_AND_RADAR_THIS_FRAME)
             End If
 
             If Player.IsAiming Then
@@ -197,6 +198,11 @@ Public Class SPA2
             Dim gpcp = Game.Player.Character.Position
             Logger.Logg($".ApartmentDoorPos = New Vector3({gpcp.X}F, {gpcp.Y}F, {gpcp.Z - 1.0F}F)")
             UI.ShowSubtitle("Position copied")
+        End If
+        If Game.IsKeyPressed(Keys.Down) Then
+            Dim gpcp = Game.Player.Character.Position
+            Dim head = Game.Player.Character.Heading
+            Logger.Logg($"New Quaternion({gpcp.X}F, {gpcp.Y}F, {gpcp.Z}F, {head}F")
         End If
         'If Game.IsKeyPressed(Keys.NumPad1) Then
         '    Dim gpcp = GameplayCamera.Position

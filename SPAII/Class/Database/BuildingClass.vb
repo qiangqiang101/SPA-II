@@ -6,6 +6,7 @@ Imports GTA.Native
 Imports INMNativeUI
 Imports Metadata
 Imports SPAII.INM
+Imports NFunc = GTA.Native.Function
 
 Public Class BuildingClass
 
@@ -13,7 +14,8 @@ Public Class BuildingClass
     ''' <summary>
     ''' a.k.a Entrance in SPA
     ''' </summary>
-    Public BuildingInPos As Vector3
+    Public BuildingInPos As Quaternion
+    Public BuildingLobby As Quaternion
     ''' <summary>
     ''' a.k.a TeleportOutside in SPA
     ''' </summary>
@@ -48,7 +50,7 @@ Public Class BuildingClass
     Public Sub Load()
         config = ScriptSettings.Load("scripts\SPA II\modconfig.ini")
 
-        BuildingBlip = World.CreateBlip(BuildingInPos)
+        BuildingBlip = World.CreateBlip(BuildingInPos.ToVector3)
         With BuildingBlip
             .Color = BlipColor.White
             .IsShortRange = True
@@ -299,7 +301,7 @@ Public Class BuildingClass
     End Function
 
     Public Function EntranceDistance() As Single
-        Return Game.Player.Character.Position.DistanceToSquared(BuildingInPos)
+        Return Game.Player.Character.Position.DistanceToSquared(BuildingInPos.ToVector3)
     End Function
 
     Public Function SaleSignDistance() As Single
@@ -323,23 +325,23 @@ Public Class BuildingClass
     End Function
 
     Public Function IsAtHome() As Boolean
-        Return Native.Function.Call(Of Boolean)(Hash.IS_INTERIOR_SCENE)
+        Return NFunc.Call(Of Boolean)(Hash.IS_INTERIOR_SCENE)
     End Function
 
     Public Sub HideExterior()
         If Not HideObjects Is Nothing Then
             If IsAtHome() AndAlso HideObjects.Count <> 0 AndAlso HighEndApartment.Building Is Me Then
-                Native.Function.Call(BEGIN_HIDE_MAP_OBJECT_THIS_FRAME)
+                NFunc.Call(BEGIN_HIDE_MAP_OBJECT_THIS_FRAME)
                 For Each obj In HideObjects
-                    Native.Function.Call(Hash._HIDE_MAP_OBJECT_THIS_FRAME, obj.GetHashKey)
+                    NFunc.Call(Hash._HIDE_MAP_OBJECT_THIS_FRAME, obj.GetHashKey)
                 Next
-                Native.Function.Call(DISABLE_OCCLUSION_THIS_FRAME)
+                NFunc.Call(DISABLE_OCCLUSION_THIS_FRAME)
             End If
         End If
     End Sub
 
     Private Sub RefreshBlips()
-        BuildingBlip = World.CreateBlip(BuildingInPos)
+        BuildingBlip = World.CreateBlip(BuildingInPos.ToVector3)
         With BuildingBlip
             .Color = BlipColor.White
             .IsShortRange = True
@@ -403,7 +405,7 @@ Public Class BuildingClass
             Dim selectedApt As ApartmentClass = selectedItem.Tag
             If selectedApt.Owner = GetPlayer() Then
                 AptMenu.Visible = False
-                PlayApartmentCamera(3000, True, True, CameraShake.Hand, 0.4F)
+                PlayEnterApartmentCamera(3000, True, True, CameraShake.Hand, 0.4F)
                 selectedApt.SetInteriorActive()
                 PP.Position = selectedApt.ApartmentInPos
                 Select Case selectedApt.ApartmentType
@@ -644,6 +646,29 @@ Public Class BuildingClass
             Logger.Log($"{ex.Message} {ex.StackTrace}")
         End Try
     End Sub
+
+    Public Sub PlayEnterApartmentCamera(duration As Integer, easePosition As Boolean, easeRotation As Boolean, camShake As CameraShake, amplitude As Single)
+        Dim scriptCam As Camera = World.CreateCamera(EnterCamera1.Position, EnterCamera1.Rotation, EnterCamera1.FOV)
+        Dim interpCam As Camera = World.CreateCamera(EnterCamera2.Position, EnterCamera2.Rotation, EnterCamera2.FOV)
+        World.RenderingCamera = scriptCam
+        scriptCam.InterpTo(interpCam, duration, easePosition, easeRotation)
+        World.RenderingCamera = interpCam
+        interpCam.Shake(camShake, amplitude)
+        Script.Wait(duration)
+    End Sub
+
+    Public Sub PlayExitApartmentCamera(duration As Integer, easePosition As Boolean, easeRotation As Boolean, camShake As CameraShake, amplitude As Single)
+        Dim scriptCam As Camera = World.CreateCamera(EnterCamera2.Position, EnterCamera2.Rotation, EnterCamera2.FOV)
+        Dim interpCam As Camera = World.CreateCamera(EnterCamera1.Position, EnterCamera1.Rotation, EnterCamera1.FOV)
+        World.RenderingCamera = scriptCam
+        scriptCam.InterpTo(interpCam, duration, easePosition, easeRotation)
+        World.RenderingCamera = interpCam
+        interpCam.Shake(camShake, amplitude)
+        Script.Wait(duration)
+        World.DestroyAllCameras()
+        World.RenderingCamera = Nothing
+    End Sub
+
 End Class
 
 Public Enum eGarageType

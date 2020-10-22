@@ -6,6 +6,7 @@ Imports GTA.Native
 Imports INMNativeUI
 Imports Metadata
 Imports SPAII.INM
+Imports NFunc = GTA.Native.Function
 
 Module Helper
 
@@ -47,12 +48,12 @@ Module Helper
 
     <Extension>
     Public Function Make(vehicle As Vehicle) As String
-        Return Game.GetGXTEntry(Native.Function.Call(Of String)(_GET_MAKE_NAME_FROM_VEHICLE_MODEL, vehicle.Model.Hash))
+        Return Game.GetGXTEntry(NFunc.Call(Of String)(_GET_MAKE_NAME_FROM_VEHICLE_MODEL, vehicle.Model.Hash))
     End Function
 
     <Extension>
     Public Function WheelsVariation(vehicle As Vehicle) As Boolean
-        Return Native.Function.Call(Of Boolean)(Native.Hash.GET_VEHICLE_MOD_VARIATION, vehicle, VehicleMod.FrontWheels)
+        Return NFunc.Call(Of Boolean)(Native.Hash.GET_VEHICLE_MOD_VARIATION, vehicle, VehicleMod.FrontWheels)
     End Function
 
     <Extension>
@@ -67,22 +68,22 @@ Module Helper
 
     <Extension()>
     Public Function Livery2(veh As Vehicle) As Integer
-        Return Native.Function.Call(Of Integer)(_GET_VEHICLE_ROOF_LIVERY, veh.Handle)
+        Return NFunc.Call(Of Integer)(_GET_VEHICLE_ROOF_LIVERY, veh.Handle)
     End Function
 
     <Extension()>
     Public Sub Livery2(veh As Vehicle, liv As Integer)
-        Native.Function.Call(_SET_VEHICLE_ROOF_LIVERY, veh.Handle, liv)
+        NFunc.Call(_SET_VEHICLE_ROOF_LIVERY, veh.Handle, liv)
     End Sub
 
     <Extension>
     Public Function XenonHeadlightsColor(ByVal veh As Vehicle) As Integer
-        Return Native.Function.Call(Of Integer)(_GET_VEHICLE_XENON_LIGHTS_COLOR, veh.Handle)
+        Return NFunc.Call(Of Integer)(_GET_VEHICLE_XENON_LIGHTS_COLOR, veh.Handle)
     End Function
 
     <Extension()>
     Public Sub XenonHeadlightsColor(ByVal veh As Vehicle, colorID As Integer)
-        Native.Function.Call(_SET_VEHICLE_XENON_LIGHTS_COLOR, veh.Handle, colorID)
+        NFunc.Call(_SET_VEHICLE_XENON_LIGHTS_COLOR, veh.Handle, colorID)
     End Sub
 
     Public Function IsNitroModInstalled() As Integer
@@ -128,17 +129,17 @@ Module Helper
     End Sub
 
     Public Sub PlayPropertyPurchase(aptName As String)
-        Native.Function.Call(Hash.PLAY_SOUND_FRONTEND, -1, "PROPERTY_PURCHASE", "HUD_AWARDS", False)
+        NFunc.Call(Hash.PLAY_SOUND_FRONTEND, -1, "PROPERTY_PURCHASE", "HUD_AWARDS", False)
         BigMessageThread.MessageInstance.ShowWeaponPurchasedMessage("~y~" & Game.GetGXTEntry("PROPR_PURCHASED"), "~w~" & Game.GetGXTEntry(aptName), Nothing)
     End Sub
 
     <Extension>
     Public Sub SetInteriorActive(coord As Vector3)
         Try
-            Dim id As Integer = Native.Function.Call(Of Integer)(Hash.GET_INTERIOR_AT_COORDS, coord.X, coord.Y, coord.Z)
-            Native.Function.Call(PIN_INTERIOR_IN_MEMORY, id)
-            Native.Function.Call(Hash.SET_INTERIOR_ACTIVE, id, True)
-            Native.Function.Call(Hash.DISABLE_INTERIOR, id, False)
+            Dim id As Integer = NFunc.Call(Of Integer)(Hash.GET_INTERIOR_AT_COORDS, coord.X, coord.Y, coord.Z)
+            NFunc.Call(PIN_INTERIOR_IN_MEMORY, id)
+            NFunc.Call(Hash.SET_INTERIOR_ACTIVE, id, True)
+            NFunc.Call(Hash.DISABLE_INTERIOR, id, False)
         Catch ex As Exception
             Logger.Log($"{ex.Message} {ex.StackTrace}")
         End Try
@@ -151,7 +152,7 @@ Module Helper
 
     <Extension>
     Public Function GetHashKey(str As String) As Integer
-        Return Native.Function.Call(Of Integer)(Hash.GET_HASH_KEY, str)
+        Return NFunc.Call(Of Integer)(Hash.GET_HASH_KEY, str)
     End Function
 
     <Extension>
@@ -284,9 +285,9 @@ Module Helper
     End Sub
 
     Public Sub ChangeIPL(old As String, [new] As String)
-        If Native.Function.Call(Of Boolean)(Hash.IS_IPL_ACTIVE, old) Then Native.Function.Call(Hash.REMOVE_IPL, old)
-        While Not Native.Function.Call(Of Boolean)(Hash.IS_IPL_ACTIVE, [new])
-            Native.Function.Call(Hash.REQUEST_IPL, [new])
+        If NFunc.Call(Of Boolean)(Hash.IS_IPL_ACTIVE, old) Then NFunc.Call(Hash.REMOVE_IPL, old)
+        While Not NFunc.Call(Of Boolean)(Hash.IS_IPL_ACTIVE, [new])
+            NFunc.Call(Hash.REQUEST_IPL, [new])
             Script.Yield()
         End While
     End Sub
@@ -304,7 +305,7 @@ Module Helper
             Return Nothing
         End If
 
-        Return New Vehicle(Native.Function.Call(Of Integer)(Hash.CREATE_VEHICLE, model.Hash, position.X, position.Y, position.Z, heading, False, False))
+        Return New Vehicle(NFunc.Call(Of Integer)(Hash.CREATE_VEHICLE, model.Hash, position.X, position.Y, position.Z, heading, False, False))
     End Function
 
     Public Function CreateVehicle(VehicleHash As Integer, Position As Vector3, Optional Heading As Single = 0) As Vehicle
@@ -422,13 +423,13 @@ Module Helper
             .SetInt(vehIdDecor, source.GetInt(vehIdDecor))
             .SetInt(vehUidDecor, source.GetInt(vehUidDecor))
         End With
-        If cloneDamage Then Native.Function.Call(COPY_VEHICLE_DAMAGES, source, newVeh)
+        If cloneDamage Then NFunc.Call(COPY_VEHICLE_DAMAGES, source, newVeh)
         Return newVeh
     End Function
 
     <Extension>
     Public Sub SetPlayerIntoVehicle(vehicle As Vehicle, Optional seat As VehicleSeat = VehicleSeat.Driver)
-        Native.Function.Call(Hash.SET_PED_INTO_VEHICLE, Game.Player.Character, vehicle.Handle, seat)
+        NFunc.Call(Hash.SET_PED_INTO_VEHICLE, Game.Player.Character, vehicle.Handle, seat)
     End Sub
 
     <Extension>
@@ -437,9 +438,9 @@ Module Helper
     End Function
 
     Public Sub RequestAdditionalText(gxt2Lib As String, gxt As String)
-        If Not Native.Function.Call(Of Boolean)(Hash.HAS_THIS_ADDITIONAL_TEXT_LOADED, gxt2Lib, 10) Then
-            Native.Function.Call(Hash.CLEAR_ADDITIONAL_TEXT, 10, True)
-            Native.Function.Call(Hash.REQUEST_ADDITIONAL_TEXT, gxt2Lib, 10)
+        If Not NFunc.Call(Of Boolean)(Hash.HAS_THIS_ADDITIONAL_TEXT_LOADED, gxt2Lib, 10) Then
+            NFunc.Call(Hash.CLEAR_ADDITIONAL_TEXT, 10, True)
+            NFunc.Call(Hash.REQUEST_ADDITIONAL_TEXT, gxt2Lib, 10)
         End If
         If Game.GetGXTEntry(gxt) = "NULL" Then RequestAdditionalText(gxt2Lib, gxt)
     End Sub
@@ -464,29 +465,5 @@ Module Helper
         Dim missingIndexes = Enumerable.Range(0, vol - 0 + 1).Except(existingIndexes)
         Return missingIndexes.FirstOrDefault
     End Function
-
-    <Extension>
-    Public Sub PlayApartmentCamera(bld As BuildingClass, duration As Integer, easePosition As Boolean, easeRotation As Boolean, camShake As CameraShake, amplitude As Single)
-        Dim scriptCam As Camera = World.CreateCamera(bld.EnterCamera1.Position, bld.EnterCamera1.Rotation, bld.EnterCamera1.FOV)
-        Dim interpCam As Camera = World.CreateCamera(bld.EnterCamera2.Position, bld.EnterCamera2.Rotation, bld.EnterCamera2.FOV)
-        World.RenderingCamera = scriptCam
-        scriptCam.InterpTo(interpCam, duration, easePosition, easeRotation)
-        World.RenderingCamera = interpCam
-        interpCam.Shake(camShake, amplitude)
-        Script.Wait(duration)
-    End Sub
-
-    <Extension>
-    Public Sub PlayApartmentEnterCutscene(apt As ApartmentClass)
-        apt.Door.UnlockDoor()
-        World.RenderingCamera = World.CreateCamera(apt.EnterCam.Position, apt.EnterCam.Rotation, apt.EnterCam.FOV)
-        Dim frontdoor As Prop = World.GetClosest(Of Prop)(apt.Door.Position, If(apt.Door.ModelHash = 0, World.GetNearbyProps(apt.Door.Position, 3.0F), World.GetNearbyProps(apt.Door.Position, 3.0F, apt.Door.ModelHash)))
-        Game.Player.Character.Position = apt.ApartmentDoorPos
-        Game.Player.Character.Task.GoTo(apt.ApartmentInPos, False, 3000)
-        Script.Wait(3000)
-        apt.Door.LockDoor()
-        World.DestroyAllCameras()
-        World.RenderingCamera = Nothing
-    End Sub
 
 End Module

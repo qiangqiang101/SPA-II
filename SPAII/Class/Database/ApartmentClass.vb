@@ -5,6 +5,7 @@ Imports GTA.Math
 Imports GTA.Native
 Imports INMNativeUI
 Imports SPAII.INM
+Imports NFunc = GTA.Native.Function
 
 Public Class ApartmentClass
 
@@ -18,7 +19,7 @@ Public Class ApartmentClass
     ''' a.k.a TeleportInside in SPA
     ''' </summary>
     Public ApartmentInPos As Vector3
-    Public ApartmentDoorPos As Vector3
+    Public ApartmentDoorPos As Quaternion
     ''' <summary>
     ''' a.k.a ApartmentExit in SPA
     ''' </summary>
@@ -27,6 +28,7 @@ Public Class ApartmentClass
     Public GarageFilePath As String
     Public OldIPL, IPL As String
     Public EnterCam As CameraPRH
+    Public ExitCam As CameraPRH
     Public AptStyleCam As CameraPRH
     Public ApartmentType As eApartmentType
     Public GarageElevatorPos As Vector3
@@ -66,7 +68,7 @@ Public Class ApartmentClass
     End Function
 
     Public Function InteriorID()
-        Return Native.Function.Call(Of Integer)(Hash.GET_INTERIOR_AT_COORDS, InteriorPos.X, InteriorPos.Y, InteriorPos.Z)
+        Return NFunc.Call(Of Integer)(Hash.GET_INTERIOR_AT_COORDS, InteriorPos.X, InteriorPos.Y, InteriorPos.Z)
     End Function
 
     Public Function Vehicles() As List(Of VehicleClass)
@@ -113,6 +115,8 @@ Public Class ApartmentClass
             If ApartmentType = eApartmentType.IPL Then .AddItem(aptStyle) 'Apartment Style
             .RefreshIndex()
         End With
+
+        If Not Directory.Exists($"{grgXmlPath}{GarageFilePath}") Then Directory.CreateDirectory($"{grgXmlPath}{GarageFilePath}")
 
         If ApartmentType = eApartmentType.IPL Then
             StyleMenu = New UIMenu("", Game.GetGXTEntry("PM_APT_VARCAPS"), New Point(0, -107))
@@ -176,16 +180,14 @@ Public Class ApartmentClass
 
     Public Sub SetInteriorActive()
         Try
-            Dim intID As Integer = Native.Function.Call(Of Integer)(Hash.GET_INTERIOR_AT_COORDS, InteriorPos.X, InteriorPos.Y, InteriorPos.Z)
-            Native.Function.Call(PIN_INTERIOR_IN_MEMORY, New InputArgument() {intID})
-            Native.Function.Call(Hash.SET_INTERIOR_ACTIVE, intID, True)
-            Native.Function.Call(Hash.DISABLE_INTERIOR, intID, False)
+            Dim intID As Integer = NFunc.Call(Of Integer)(Hash.GET_INTERIOR_AT_COORDS, InteriorPos.X, InteriorPos.Y, InteriorPos.Z)
+            NFunc.Call(PIN_INTERIOR_IN_MEMORY, New InputArgument() {intID})
+            NFunc.Call(Hash.SET_INTERIOR_ACTIVE, intID, True)
+            NFunc.Call(Hash.DISABLE_INTERIOR, intID, False)
 
             If ApartmentType = eApartmentType.IPL Then
-                Native.Function.Call(Hash.REQUEST_IPL, IPL)
+                NFunc.Call(Hash.REQUEST_IPL, IPL)
             End If
-
-
         Catch ex As Exception
             Logger.Log($"{ex.Message} {ex.StackTrace}")
         End Try
@@ -195,11 +197,13 @@ Public Class ApartmentClass
         Try
             Select Case selectedItem.Tag
                 Case "Exit"
-                    FadeScreen(1)
+                    'FadeScreen(1)
                     AptMenu.Visible = False
+                    PlayApartmerntExitCutscene()
                     PP.Position = Building.BuildingOutPos.ToVector3
                     PP.Heading = Building.BuildingOutPos.W
-                    FadeScreen(0)
+                    Building.PlayExitApartmentCamera(3000, True, True, CameraShake.Hand, 0.4F)
+                    'FadeScreen(0)
                 Case "Garage"
                     FadeScreen(1)
                     AptMenu.Visible = False
@@ -422,6 +426,29 @@ Public Class ApartmentClass
         World.RenderingCamera = Nothing
         HideHud = False
         FadeScreen(0)
+    End Sub
+
+    Public Sub PlayApartmentEnterCutscene()
+        Door.UnlockDoor()
+        World.RenderingCamera = World.CreateCamera(EnterCam.Position, EnterCam.Rotation, EnterCam.FOV)
+        'Dim frontdoor As Prop = World.GetClosest(Of Prop)(Door.Position, If(Door.ModelHash = 0, World.GetNearbyProps(Door.Position, 3.0F), World.GetNearbyProps(Door.Position, 3.0F, Door.ModelHash)))
+        Game.Player.Character.Position = ApartmentDoorPos.ToVector3
+        Game.Player.Character.Heading = ApartmentDoorPos.W
+        Game.Player.Character.Task.GoTo(ApartmentInPos, False, 7000)
+        Script.Wait(7000)
+        Door.LockDoor()
+        World.DestroyAllCameras()
+        World.RenderingCamera = Nothing
+    End Sub
+
+    Public Sub PlayApartmerntExitCutscene()
+        Door.UnlockDoor()
+        World.RenderingCamera = World.CreateCamera(EnterCam.Position, EnterCam.Rotation, EnterCam.FOV)
+        Game.Player.Character.Position = ApartmentInPos
+        Game.Player.Character.Heading = ApartmentDoorPos.W - 180.0F
+        Game.Player.Character.Task.GoTo(ApartmentDoorPos.ToVector3, False, 7000)
+        Script.Wait(7000)
+        Door.LockDoor()
     End Sub
 End Class
 
