@@ -1,4 +1,5 @@
-﻿Imports System.IO
+﻿Imports System.Drawing
+Imports System.IO
 Imports System.Threading
 Imports System.Windows.Forms
 Imports GTA
@@ -79,7 +80,7 @@ Public Class SPA2
                     End If
 
                     'Open Garage Menu
-                    If bd.GarageDistance <= 10.0F Then
+                    If bd.GarageDistance <= 5.0F Then
                         If Not MenuPool.IsAnyMenuOpen Then
                             UI.ShowHelpMessage(Game.GetGXTEntry("MP_PROP_BUZZ1B"))
                             If Game.IsControlJustReleased(0, GameControl.Context) Then
@@ -99,6 +100,10 @@ Public Class SPA2
                         MediumEndApartmentOnTick()
                         LowEndApartmentOnTick()
                     End If
+
+                    'Draw circle
+                    World.DrawMarker(MarkerType.VerticalCylinder, bd.BuildingInPos.ToVector3, Vector3.Zero, Vector3.Zero, New Vector3(0.8F, 0.8F, 0.4F), Color.FromArgb(150, Color.DeepSkyBlue))
+                    World.DrawMarker(MarkerType.VerticalCylinder, bd.GarageFootInPos.ToVector3, Vector3.Zero, Vector3.Zero, New Vector3(0.8F, 0.8F, 0.4F), Color.FromArgb(150, Color.DeepSkyBlue))
                 Next
 
                 For Each apt As ApartmentClass In apartments
@@ -159,10 +164,10 @@ Public Class SPA2
     End Sub
 
     Private Sub SPA2_Aborted(sender As Object, e As EventArgs) Handles Me.Aborted
-        For Each building In buildings
-            If building.SaleSignProp <> Nothing Then building.SaleSignProp.Delete()
-            building.BuildingBlip.Remove()
-            If Not building.GarageBlip = Nothing Then building.GarageBlip.Remove()
+        For Each Building In buildings
+            If Building.SaleSignProp <> Nothing Then Building.SaleSignProp.Delete()
+            Building.BuildingBlip.Remove()
+            If Not Building.GarageBlip = Nothing Then Building.GarageBlip.Remove()
         Next
 
         For Each vehicle In outVehicleList
@@ -178,44 +183,30 @@ Public Class SPA2
     End Sub
 
     Private Sub SPA2_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
-        'If Game.IsKeyPressed(Keys.NumPad0) Then
-        '    Dim gpcp = GameplayCamera.Position
-        '    Dim gpcr = GameplayCamera.Rotation
-        '    Logger.Logg($".EnterCamera1 = New CameraPRH(New Vector3({gpcp.X}F, {gpcp.Y}F, {gpcp.Z}F), New Vector3({gpcr.X}F, 0F, {gpcr.Z}F), 50.0F){vbNewLine}.EnterCamera2 = New CameraPRH(New Vector3({gpcp.X}F, {gpcp.Y}F, {gpcp.Z}F), New Vector3({gpcr.X + 60.0F}F, 0F, {gpcr.Z}F), 50.0F)")
-        '    UI.ShowSubtitle("Gameplay camera copied")
-        'End If
+        If Game.IsKeyPressed(Keys.Up) Then
+            Dim gpcp = Game.Player.Character.Position
+            Logger.Logg($"New Vector3({gpcp.X}F, {gpcp.Y}F, {gpcp.Z - 1.0F}F)")
+            UI.ShowSubtitle("Position copied")
+        End If
+
+        If Game.IsKeyPressed(Keys.Down) Then
+            Dim gpcp = Game.Player.Character.Position
+            Dim head = Game.Player.Character.Heading
+            Logger.Logg($"New Quaternion({gpcp.X}F, {gpcp.Y}F, {gpcp.Z - 1.0F}F, {head}F)")
+            UI.ShowSubtitle("Quaternion copied")
+        End If
+
         If Game.IsKeyPressed(Keys.Left) Then
             Dim gpcp = Game.Player.Character.Position
             Dim gpcr = GameplayCamera.Rotation
-            Logger.Logg($".EnterCam = New CameraPRH(New Vector3({gpcp.X}F, {gpcp.Y}F, {gpcp.Z}F), New Vector3({gpcr.X}F, 0F, {gpcr.Z}F), 50.0F)")
+            Logger.Logg($"New CameraPRH(New Vector3({gpcp.X}F, {gpcp.Y}F, {gpcp.Z}F), New Vector3({gpcr.X}F, {gpcr.Y}F, {gpcr.Z}F), 50.0F)")
             UI.ShowSubtitle("Gameplay camera copied")
         End If
+
         If Game.IsKeyPressed(Keys.Right) Then
             Logger.Logg(debug3rdLine)
             UI.ShowSubtitle("Prop captured")
         End If
-        If Game.IsKeyPressed(Keys.Up) Then
-            Dim gpcp = Game.Player.Character.Position
-            Logger.Logg($".ApartmentDoorPos = New Vector3({gpcp.X}F, {gpcp.Y}F, {gpcp.Z - 1.0F}F)")
-            UI.ShowSubtitle("Position copied")
-        End If
-        If Game.IsKeyPressed(Keys.Down) Then
-            Dim gpcp = Game.Player.Character.Position
-            Dim head = Game.Player.Character.Heading
-            Logger.Logg($"New Quaternion({gpcp.X}F, {gpcp.Y}F, {gpcp.Z}F, {head}F")
-        End If
-        'If Game.IsKeyPressed(Keys.NumPad1) Then
-        '    Dim gpcp = GameplayCamera.Position
-        '    Dim gpcr = GameplayCamera.Rotation
-        '    Logger.Logg($".EnterCamera1 = New CameraPRH(New Vector3({gpcp.X}F, {gpcp.Y}F, {gpcp.Z}F), New Vector3({gpcr.X}F, 0F, {gpcr.Z}F), 50.0F)")
-        '    UI.ShowSubtitle("Gameplay camera copied 1")
-        'End If
-        'If Game.IsKeyPressed(Keys.NumPad2) Then
-        '    Dim gpcp = GameplayCamera.Position
-        '    Dim gpcr = GameplayCamera.Rotation
-        '    Logger.Logg($".EnterCamera2 = New CameraPRH(New Vector3({gpcp.X}F, {gpcp.Y}F, {gpcp.Z}F), New Vector3({gpcr.X}F, 0F, {gpcr.Z}F), 50.0F)")
-        '    UI.ShowSubtitle("Gameplay camera copied 2")
-        'End If
     End Sub
 
 End Class

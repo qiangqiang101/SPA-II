@@ -21,6 +21,7 @@ Public Class BuildingClass
     ''' </summary>
     Public BuildingOutPos As Quaternion
     Public GarageInPos As Vector3
+    Public GarageFootInPos As Quaternion
     Public GarageOutPos As Quaternion
     Public CameraPos As CameraPRH
     Public EnterCamera1, EnterCamera2 As CameraPRH
@@ -134,7 +135,7 @@ Public Class BuildingClass
         MenuPool.Add(BuyMenu)
         With BuyMenu
             For Each apt As ApartmentClass In Apartments
-                Dim item As New UIMenuItem(Game.GetGXTEntry(apt.Name), Game.GetGXTEntry(apt.Description))
+                Dim item As New UIMenuItem(Game.GetGXTEntry(apt.Name), Game.GetGXTEntry(apt.Description).Truncate)
                 With item
                     Select Case config.GetValue(Of eOwner)("BUILDING", apt.Name, eOwner.Nobody)
                         Case eOwner.Nobody 'For Sale
@@ -162,7 +163,7 @@ Public Class BuildingClass
         MenuPool.Add(AptMenu)
         With AptMenu
             For Each apt As ApartmentClass In Apartments
-                Dim item As New UIMenuItem(Game.GetGXTEntry(apt.Name), Game.GetGXTEntry(apt.Description))
+                Dim item As New UIMenuItem(Game.GetGXTEntry(apt.Name), Game.GetGXTEntry(apt.Description).Truncate)
                 With item
                     Select Case config.GetValue(Of eOwner)("BUILDING", apt.Name, eOwner.Nobody)
                         Case eOwner.Nobody 'For Sale
@@ -189,7 +190,7 @@ Public Class BuildingClass
         MenuPool.Add(GrgMenu)
         With GrgMenu
             For Each apt In Apartments
-                Dim item As New UIMenuItem(Game.GetGXTEntry(apt.Name), Game.GetGXTEntry(apt.Description))
+                Dim item As New UIMenuItem(Game.GetGXTEntry(apt.Name), Game.GetGXTEntry(apt.Description).Truncate)
                 With item
                     Select Case config.GetValue(Of eOwner)("BUILDING", apt.Name, eOwner.Nobody)
                         Case eOwner.Nobody 'For Sale
@@ -226,7 +227,7 @@ Public Class BuildingClass
     Public Sub RefreshBuyMenu()
         BuyMenu.MenuItems.Clear()
         For Each apt In Apartments
-            Dim item As New UIMenuItem(Game.GetGXTEntry(apt.Name), Game.GetGXTEntry(apt.Description))
+            Dim item As New UIMenuItem(Game.GetGXTEntry(apt.Name), Game.GetGXTEntry(apt.Description).Truncate)
             With item
                 Select Case config.GetValue(Of eOwner)("BUILDING", apt.Name, eOwner.Nobody)
                     Case eOwner.Nobody 'For Sale
@@ -251,7 +252,7 @@ Public Class BuildingClass
     Public Sub RefreshAptMenu()
         AptMenu.MenuItems.Clear()
         For Each apt In Apartments
-            Dim item As New UIMenuItem(Game.GetGXTEntry(apt.Name), Game.GetGXTEntry(apt.Description))
+            Dim item As New UIMenuItem(Game.GetGXTEntry(apt.Name), Game.GetGXTEntry(apt.Description).Truncate)
             With item
                 Select Case config.GetValue(Of eOwner)("BUILDING", apt.Name, eOwner.Nobody)
                     Case eOwner.Nobody 'For Sale
@@ -275,7 +276,7 @@ Public Class BuildingClass
     Public Sub RefreshGrgMenu()
         GrgMenu.MenuItems.Clear()
         For Each apt In Apartments
-            Dim item As New UIMenuItem(Game.GetGXTEntry(apt.Name), Game.GetGXTEntry(apt.Description))
+            Dim item As New UIMenuItem(Game.GetGXTEntry(apt.Name), Game.GetGXTEntry(apt.Description).Truncate)
             With item
                 Select Case config.GetValue(Of eOwner)("BUILDING", apt.Name, eOwner.Nobody)
                     Case eOwner.Nobody 'For Sale
@@ -297,7 +298,11 @@ Public Class BuildingClass
     End Sub
 
     Public Function GarageDistance() As Single
-        Return Game.Player.Character.Position.DistanceToSquared(GarageInPos)
+        If Game.Player.Character.IsInVehicle Then
+            Return Game.Player.Character.CurrentVehicle.Position.DistanceToSquared(GarageInPos)
+        Else
+            Return Game.Player.Character.Position.DistanceToSquared(GarageFootInPos.ToVector3)
+        End If
     End Function
 
     Public Function EntranceDistance() As Single
@@ -648,6 +653,7 @@ Public Class BuildingClass
     End Sub
 
     Public Sub PlayEnterApartmentCamera(duration As Integer, easePosition As Boolean, easeRotation As Boolean, camShake As CameraShake, amplitude As Single)
+        PP.Task.GoTo(BuildingLobby.ToVector3, True, 7000)
         Dim scriptCam As Camera = World.CreateCamera(EnterCamera1.Position, EnterCamera1.Rotation, EnterCamera1.FOV)
         Dim interpCam As Camera = World.CreateCamera(EnterCamera2.Position, EnterCamera2.Rotation, EnterCamera2.FOV)
         World.RenderingCamera = scriptCam
@@ -658,6 +664,9 @@ Public Class BuildingClass
     End Sub
 
     Public Sub PlayExitApartmentCamera(duration As Integer, easePosition As Boolean, easeRotation As Boolean, camShake As CameraShake, amplitude As Single)
+        PP.Position = BuildingLobby.ToVector3
+        PP.Heading = BuildingOutPos.W
+        PP.Task.GoTo(BuildingOutPos.ToVector3, False, 7000)
         Dim scriptCam As Camera = World.CreateCamera(EnterCamera2.Position, EnterCamera2.Rotation, EnterCamera2.FOV)
         Dim interpCam As Camera = World.CreateCamera(EnterCamera1.Position, EnterCamera1.Rotation, EnterCamera1.FOV)
         World.RenderingCamera = scriptCam

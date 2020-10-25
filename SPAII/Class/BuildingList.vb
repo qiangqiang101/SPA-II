@@ -27,8 +27,8 @@ Module BuildingList
                 .GarageFilePath = "3_alta_st_apt_10"
                 .IPL = Nothing
                 .AptStyleCam = Nothing
-                .EnterCam = New CameraPRH(New Vector3(-262.847F, -967.6619F, 77.23132F), New Vector3(-10.36576F, 0F, 119.1316F), 50.0F)
-                .ExitCam = Nothing
+                .EnterCam = New CameraPRH(New Vector3(-261.7339F, -966.8005F, 77.23132F), New Vector3(-6.462961F, 0F, 115.6255F), 50.0F)
+                .ExitCam = New CameraPRH(New Vector3(-262.7977F, -970.2361F, 77.23131F), New Vector3(-7.714643F, 0F, 26.30853F), 50.0F)
                 .GarageElevatorPos = Vector3.Zero
                 .GarageMenuPos = Vector3.Zero
                 .ApartmentType = eApartmentType.None
@@ -48,8 +48,8 @@ Module BuildingList
                 .GarageFilePath = "3_alta_st_apt_57"
                 .IPL = Nothing
                 .AptStyleCam = Nothing
-                .EnterCam = New CameraPRH(New Vector3(-280.7506, -942.0327, 93.1538), New Vector3(-9.167694, 0, -46.99063), 50.0F)
-                .ExitCam = Nothing
+                .EnterCam = New CameraPRH(New Vector3(-281.657F, -941.6938F, 92.51088F), New Vector3(-5.602437F, 0F, -60.74197F), 50.0F)
+                .ExitCam = New CameraPRH(New Vector3(-280.5514F, -938.1181F, 92.51088F), New Vector3(-8.184019F, 0F, -147.3312F), 50.0F)
                 .GarageElevatorPos = Vector3.Zero
                 .GarageMenuPos = Vector3.Zero
                 .ApartmentType = eApartmentType.None
@@ -58,10 +58,11 @@ Module BuildingList
             Dim _3AltaStreet As New BuildingClass()
             With _3AltaStreet
                 .Name = "3 Alta St"
-                .BuildingInPos = New Quaternion(-261.768, -970.4873, 31.2199, 0F)
-                .BuildingOutPos = New Quaternion(-258.1236, -969.0657, 31.2199, 0F)
-                .BuildingLobby = New Quaternion
+                .BuildingInPos = New Quaternion(-259.8061F, -969.4397F, 30.21999F, 70.91596F)
+                .BuildingOutPos = New Quaternion(-261.1243F, -972.8566F, 30.21996F, 203.0815F)
+                .BuildingLobby = New Quaternion(-263.679F, -966.7826F, 30.22428F, 204.0962F)
                 .GarageInPos = New Vector3(-279.7589, -995.9545, 24.5305)
+                .GarageFootInPos = New Quaternion(-279.7421F, -992.0921F, 23.30595F, 74.48383F)
                 .GarageOutPos = New Quaternion(-271.5633, -999.2233, 26.0224, 249.66F)
                 .CameraPos = New CameraPRH(New Vector3(-215.2378, -1071.639, 32.85828), New Vector3(22.62831, 0, 26.93762), 50.0F)
                 .EnterCamera1 = New CameraPRH(New Vector3(-261.2893F, -985.9326F, 34.31419F), New Vector3(-15.94485F, 0, 0.3253375F), 50.0F)
@@ -89,12 +90,33 @@ Module BuildingList
                 .GarageFilePath = "4_integrity_way_apt_30"
                 .IPL = Nothing
                 .AptStyleCam = Nothing
-                .EnterCam = New CameraPRH(New Vector3(-17.68656F, -581.9166F, 90.01482F), New Vector3(-6.479766F, 0F, -149.6715F), 50.0F)
-                .ExitCam = Nothing
+                .EnterCam = New CameraPRH(New Vector3(-19.07393F, -579.4979F, 90.1149F), New Vector3(-7.949333F, 0F, -156.2887F), 50.0F)
+                .ExitCam = New CameraPRH(New Vector3(-15.09218F, -580.9767F, 90.1149F), New Vector3(-8.653407F, 0F, 118.9272F), 50.0F)
                 .GarageElevatorPos = Vector3.Zero
                 .GarageMenuPos = Vector3.Zero
                 .ApartmentType = eApartmentType.None
                 .Door = New Door(330294775, New Vector3(-18.01365F, -582.781F, 90.22865F))
+            End With
+            Dim _4IntegrityWay35 As New ApartmentClass() 'Newly Added
+            With _4IntegrityWay35
+                .ID = 39
+                .Name = "MP_PROP_39"
+                .Description = "MP_PROP_39DES"
+                .Price = 247000
+                .SavePos = New Vector3(-12.1413F, -589.0066F, 93.02555F)
+                .ApartmentDoorPos = New Quaternion(-16.9212F, -609.7066F, 99.23285F, 337.0011F)
+                .ApartmentInPos = New Vector3(-15.47026F, -606.2604F, 99.23285F)
+                .ApartmentOutPos = New Vector3(-16.02406F, -607.7055F, 99.23285F)
+                .WardrobePos = New Quaternion(-17.66597F, -587.9076F, 93.03635F, 157.4506F)
+                .GarageFilePath = "4_integrity_way_apt_35"
+                .IPL = Nothing
+                .AptStyleCam = Nothing
+                .EnterCam = New CameraPRH(New Vector3(-13.85419F, -606.1687F, 100.2328F), New Vector3(-6.495338F, 0F, 126.4813F), 50.0F)
+                .ExitCam = New CameraPRH(New Vector3(-15.87129F, -610.6494F, 100.2328F), New Vector3(-6.886484F, 0F, 11.51289F), 50.0F)
+                .GarageElevatorPos = Vector3.Zero
+                .GarageMenuPos = Vector3.Zero
+                .ApartmentType = eApartmentType.None
+                .Door = New Door(330294775, New Vector3(-16.84285F, -607.7756F, 100.3467F))
             End With
             Dim _4IntegrityWay28 As New ApartmentClass()
             With _4IntegrityWay28
@@ -110,8 +132,8 @@ Module BuildingList
                 .GarageFilePath = "4_integrity_way_apt_28"
                 .IPL = Nothing
                 .AptStyleCam = Nothing
-                .EnterCam = New CameraPRH(New Vector3(-24.72929F, -597.3537F, 79.93071F), New Vector3(-5.498612F, 0F, 105.681F), 50.0F)
-                .ExitCam = Nothing
+                .EnterCam = New CameraPRH(New Vector3(-21.91163F, -596.6729F, 80.03086F), New Vector3(-8.231552F, 0.0000002156653F, 102.6055F), 50.0F)
+                .ExitCam = New CameraPRH(New Vector3(-26.6074F, -595.4224F, 80.03078F), New Vector3(-7.214558F, 0.0000002151468F, -144.1773F), 50.0F)
                 .GarageElevatorPos = Vector3.Zero
                 .GarageMenuPos = Vector3.Zero
                 .ApartmentType = eApartmentType.None
@@ -120,10 +142,11 @@ Module BuildingList
             Dim _4IntegrityWay As New BuildingClass()
             With _4IntegrityWay
                 .Name = "4 Integrity Way"
-                .BuildingInPos = New Quaternion(-48.0058, -587.9324, 37.9529, 0F)
-                .BuildingOutPos = New Quaternion(-49.3243, -583.1716, 37.0333, 0F)
-                .BuildingLobby = New Quaternion
+                .BuildingInPos = New Quaternion(-48.77471F, -589.6611F, 36.95303F, 154.7383F)
+                .BuildingOutPos = New Quaternion(-51.9436F, -586.4485F, 35.61865F, 69.12932F)
+                .BuildingLobby = New Quaternion(-45.4696F, -588.8636F, 37.16109F, 66.20447F)
                 .GarageInPos = New Vector3(-31.3821, -622.3356, 35.1917)
+                .GarageFootInPos = New Quaternion(-31.84189F, -619.3001F, 34.24325F, 65.96133F)
                 .GarageOutPos = New Quaternion(-24.074, -624.9826, 35.0905, 251.6195F)
                 .CameraPos = New CameraPRH(New Vector3(-73.43955, -489.4017, 43.24729), New Vector3(20.34373, 0, -158.8398), 50.0F)
                 .EnterCamera1 = New CameraPRH(New Vector3(-64.34825F, -571.0589F, 39.82454F), New Vector3(-7.169178F, 0F, -140.2224F), 50.0F)
@@ -132,7 +155,7 @@ Module BuildingList
                 .BuildingType = eBuildingType.Apartment
                 .HideObjects = {"hei_dt1_03_build1x", "DT1_Emissive_DT1_03_b1", "dt1_03_dt1_Emissive_b1"}
                 .SaleSign = New EntityVector(ForSaleSign, New Quaternion(-55.02158, -592.0102, 35.0381165, 70.0F))
-                .Apartments = New List(Of ApartmentClass) From {_4IntegrityWay30, _4IntegrityWay28}
+                .Apartments = New List(Of ApartmentClass) From {_4IntegrityWay30, _4IntegrityWay35, _4IntegrityWay28}
             End With
             If Not buildings.Contains(_4IntegrityWay) Then buildings.Add(_4IntegrityWay)
 
@@ -151,12 +174,33 @@ Module BuildingList
                 .GarageFilePath = "del_perro_hts_apt_7"
                 .IPL = Nothing
                 .AptStyleCam = Nothing
-                .EnterCam = New CameraPRH(New Vector3(-1457.234F, -519.7858F, 56.82638F), New Vector3(-5.217051F, 0F, -94.56832F), 50.0F)
-                .ExitCam = Nothing
+                .EnterCam = New CameraPRH(New Vector3(-1460.763F, -519.9211F, 56.92899F), New Vector3(-3.242044F, 0F, -95.52348F), 50.0F)
+                .ExitCam = New CameraPRH(New Vector3(-1456.251F, -517.1392F, 56.92899F), New Vector3(-1.520989F, 0F, 165.6819F), 50.0F)
                 .GarageElevatorPos = Vector3.Zero
                 .GarageMenuPos = Vector3.Zero
                 .ApartmentType = eApartmentType.None
                 .Door = New Door(330294775, New Vector3(-1456.818F, -520.5037F, 57.04281F))
+            End With
+            Dim delPerroHts20 As New ApartmentClass() 'Newly Added
+            With delPerroHts20
+                .ID = 7
+                .Name = "MP_PROP_7"
+                .Description = "MP_PROP_7DES"
+                .Price = 205000
+                .SavePos = New Vector3(-1471.385F, -533.0422F, 62.34929F)
+                .ApartmentDoorPos = New Quaternion(-1455.568F, -518.8206F, 68.5566F, 126.4175F)
+                .ApartmentInPos = New Vector3(-1459.287F, -521.3007F, 68.5566F)
+                .ApartmentOutPos = New Vector3(-1457.529F, -520.3102F, 68.5566F)
+                .WardrobePos = New Quaternion(-1467.583F, -537.3127F, 62.36013F, 303.6598F)
+                .GarageFilePath = "del_perro_hts_apt_20"
+                .IPL = Nothing
+                .AptStyleCam = Nothing
+                .EnterCam = New CameraPRH(New Vector3(-1460.123F, -520.1954F, 69.55661F), New Vector3(2.432733F, 3.338062E-9F, -88.93969F), 50.0F)
+                .ExitCam = New CameraPRH(New Vector3(-1456.329F, -517.3151F, 69.55661F), New Vector3(2.354509F, 0F, 165.1574F), 50.0F)
+                .GarageElevatorPos = Vector3.Zero
+                .GarageMenuPos = Vector3.Zero
+                .ApartmentType = eApartmentType.None
+                .Door = New Door(330294775, New Vector3(-1456.818F, -520.5037F, 69.67043F))
             End With
             Dim delPerroHts4 As New ApartmentClass()
             With delPerroHts4
@@ -172,8 +216,8 @@ Module BuildingList
                 .GarageFilePath = "del_perro_hts_apt_4"
                 .IPL = Nothing
                 .AptStyleCam = Nothing
-                .EnterCam = New CameraPRH(New Vector3(-1456.374F, -534.6463F, 73.74419F), New Vector3(-2.963886F, 0F, -117.0986F), 50.0F)
-                .ExitCam = Nothing
+                .EnterCam = New CameraPRH(New Vector3(-1459.016F, -533.272F, 74.04427F), New Vector3(-3.006529F, 0.0000002137376F, -118.3033F), 50.0F)
+                .ExitCam = New CameraPRH(New Vector3(-1455.819F, -537.8351F, 74.04427F), New Vector3(-3.475906F, 0F, 8.203254F), 50.0F)
                 .GarageElevatorPos = Vector3.Zero
                 .GarageMenuPos = Vector3.Zero
                 .ApartmentType = eApartmentType.None
@@ -182,10 +226,11 @@ Module BuildingList
             Dim delPerroHts As New BuildingClass()
             With delPerroHts
                 .Name = "Del Perro Hts"
-                .BuildingInPos = New Quaternion(-1443.0578, -544.7794, 34.7418, 0F)
-                .BuildingOutPos = New Quaternion(-1439.5905, -550.6906, 34.7418, 0F)
-                .BuildingLobby = New Quaternion
+                .BuildingInPos = New Quaternion(-1441.338F, -544.1608F, 33.74182F, 28.90462F)
+                .BuildingOutPos = New Quaternion(-1440.7F, -547.9163F, 33.74182F, 208.3939F)
+                .BuildingLobby = New Quaternion(-1445.426F, -540.9664F, 33.7409F, 211.3736F)
                 .GarageInPos = New Vector3(-1457.6473, -500.7265, 32.1985)
+                .GarageFootInPos = New Quaternion(-1454.177F, -499.3703F, 31.34857F, 208.1144F)
                 .GarageOutPos = New Quaternion(-1457.4394, -490.838, 33.028, 300.666)
                 .CameraPos = New CameraPRH(New Vector3(-1392.67, -572.4094, 35.15923), New Vector3(22.16564, 0, 66.90905), 50.0F)
                 .EnterCamera1 = New CameraPRH(New Vector3(-1400.889F, -547.8552F, 36.19013F), New Vector3(-3.623728F, 0F, 81.89333F), 50.0F)
@@ -194,31 +239,94 @@ Module BuildingList
                 .BuildingType = eBuildingType.Apartment
                 .HideObjects = {"sm_14_emissive", "hei_sm_14_bld2"}
                 .SaleSign = New EntityVector(ForSaleSign, New Quaternion(-1424.716F, -568.2133F, 29.50431F, 28.99996F))
-                .Apartments = New List(Of ApartmentClass) From {delPerroHts7, delPerroHts4}
+                .Apartments = New List(Of ApartmentClass) From {delPerroHts7, delPerroHts4, delPerroHts20}
             End With
             If Not buildings.Contains(delPerroHts) Then buildings.Add(delPerroHts)
 
             'Eclipse Towers
+            Dim eclipseTowers5 As New ApartmentClass() 'Newly Added
+            With eclipseTowers5
+                .ID = 4
+                .Name = "MP_PROP_4"
+                .Description = "MP_PROP_4DES"
+                .Price = 382000
+                .SavePos = New Vector3(-795.8528F, 337.3569F, 200.4137F)
+                .ApartmentDoorPos = New Quaternion(-774.9395F, 340.0221F, 206.6209F, 89.76749F)
+                .ApartmentInPos = New Vector3(-778.6495F, 339.9896F, 206.6209F)
+                .ApartmentOutPos = New Vector3(-777.1475F, 339.9858F, 206.6209F)
+                .WardrobePos = New Quaternion(-795.308F, 331.7791F, 200.4244F, 267.3853F)
+                .GarageFilePath = "eclipse_towers_apt_5"
+                .IPL = Nothing
+                .AptStyleCam = Nothing
+                .EnterCam = New CameraPRH(New Vector3(-779.3718F, 341.6851F, 207.621F), New Vector3(4.559001F, -0.0000002141209F, -124.4503F), 50.0F)
+                .ExitCam = New CameraPRH(New Vector3(-774.1694F, 341.8526F, 207.621F), New Vector3(0.02166957F, 0F, 126.6593F), 50.0F)
+                .GarageElevatorPos = Vector3.Zero
+                .GarageMenuPos = Vector3.Zero
+                .ApartmentType = eApartmentType.None
+                .Door = New Door(330294775, New Vector3(-776.7023F, 339.3779F, 207.7347F))
+            End With
+            Dim eclipseTowers9 As New ApartmentClass() 'Newly Added
+            With eclipseTowers9
+                .ID = 2
+                .Name = "MP_PROP_2"
+                .Description = "MP_PROP_2DES"
+                .Price = 373000
+                .SavePos = New Vector3(-760.1433F, 319.805F, 169.5965F)
+                .ApartmentDoorPos = New Quaternion(-781.5336F, 317.0257F, 175.8037F, 272.0089F)
+                .ApartmentInPos = New Vector3(-777.4405F, 317.2533F, 175.8037F)
+                .ApartmentOutPos = New Vector3(-778.8439F, 317.2298F, 175.8037F)
+                .WardrobePos = New Quaternion(-760.9385F, 325.5685F, 169.6072F, 93.80261F)
+                .GarageFilePath = "eclipse_towers_apt_9"
+                .IPL = Nothing
+                .AptStyleCam = Nothing
+                .EnterCam = New CameraPRH(New Vector3(-777.0729F, 315.7802F, 176.8037F), New Vector3(2.772609F, 0.0000001068468F, 58.8126F), 50.0F)
+                .ExitCam = New CameraPRH(New Vector3(-781.7292F, 315.3671F, 176.8037F), New Vector3(4.102514F, 0F, -52.55024F), 50.0F)
+                .GarageElevatorPos = Vector3.Zero
+                .GarageMenuPos = Vector3.Zero
+                .ApartmentType = eApartmentType.None
+                .Door = New Door(330294775, New Vector3(-779.3145F, 317.8782F, 176.9175F))
+            End With
             Dim eclipseTowers31 As New ApartmentClass()
             With eclipseTowers31
                 .ID = 1
                 .Name = "MP_PROP_1"
                 .Description = "MP_PROP_1DES"
                 .Price = 400000
-                .SavePos = New Vector3(-795.527, 337.415, 201.413)
-                .ApartmentDoorPos = New Quaternion(-774.799F, 340.4209F, 159.0015F, 0F)
-                .ApartmentInPos = New Vector3(-780.152, 340.443, 207.621)
-                .ApartmentOutPos = New Vector3(-777.584, 340.172, 207.621)
-                .WardrobePos = New Quaternion(-795.0659, 331.7157, 201.4243, 268.5623)
+                .SavePos = New Vector3(-796.1494F, 337.7686F, 152.7943F)
+                .ApartmentDoorPos = New Quaternion(-775.1887F, 340.5337F, 159.0015F, 105.508F)
+                .ApartmentInPos = New Vector3(-779.5142F, 340.4413F, 159.0015F)
+                .ApartmentOutPos = New Vector3(-777.7382F, 340.3186F, 159.0015F)
+                .WardrobePos = New Quaternion(-795.5802F, 332.1348F, 152.805F, 296.0995F)
                 .GarageFilePath = "eclipse_towers_apt_31"
                 .IPL = Nothing
                 .AptStyleCam = Nothing
-                .EnterCam = New CameraPRH(New Vector3(-777.0963F, 340.8053F, 159.8991F), New Vector3(-6.062005F, 0F, -128.3136F), 50.0F)
-                .ExitCam = Nothing
+                .EnterCam = New CameraPRH(New Vector3(-779.7419F, 342.1838F, 160.0015F), New Vector3(3.189691F, -0.0000001068873F, -128.8085F), 50.0F)
+                .ExitCam = New CameraPRH(New Vector3(-774.5495F, 342.2296F, 160.0015F), New Vector3(0.6081049F, 0.00000002668193F, 123.6403F), 50.0F)
                 .GarageElevatorPos = Vector3.Zero
                 .GarageMenuPos = Vector3.Zero
                 .ApartmentType = eApartmentType.None
                 .Door = New Door(330294775, New Vector3(-777.1694F, 339.7701F, 160.1154F))
+            End With
+            Dim eclipseTowers40 As New ApartmentClass() 'Newly Added
+            With eclipseTowers40
+                .ID = 3
+                .Name = "MP_PROP_3"
+                .Description = "MP_PROP_3DES"
+                .Price = 391000
+                .SavePos = New Vector3(-760.2632F, 319.8222F, 216.0504F)
+                .ApartmentDoorPos = New Quaternion(-781.5247F, 317.2469F, 222.2576F, 269.913F)
+                .ApartmentInPos = New Vector3(-777.5369F, 317.3156F, 222.2576F)
+                .ApartmentOutPos = New Vector3(-778.976F, 317.259F, 222.2576F)
+                .WardrobePos = New Quaternion(-760.9446F, 325.4596F, 216.0613F, 96.50211F)
+                .GarageFilePath = "eclipse_towers_apt_40"
+                .IPL = Nothing
+                .AptStyleCam = Nothing
+                .EnterCam = New CameraPRH(New Vector3(-776.9001F, 315.682F, 223.2576F), New Vector3(0.9605104F, -0.00000005336834F, 55.58452F), 50.0F)
+                .ExitCam = New CameraPRH(New Vector3(-781.786F, 315.2228F, 223.2576F), New Vector3(0.4129034F, 0F, -50.73047F), 50.0F)
+                .GarageElevatorPos = Vector3.Zero
+                .GarageMenuPos = Vector3.Zero
+                .ApartmentType = eApartmentType.None
+                .Door = New Door(330294775, New Vector3(-779.405F, 317.8782F, 223.3715F))
             End With
             Dim eclipseTowers3 As New ApartmentClass()
             With eclipseTowers3
@@ -234,8 +342,8 @@ Module BuildingList
                 .GarageFilePath = "eclipse_towers_apt_3"
                 .IPL = Nothing
                 .AptStyleCam = Nothing
-                .EnterCam = New CameraPRH(New Vector3(-778.0002F, 323.6482F, 211.697F), New Vector3(-3.949488F, 0F, 119.6821F), 50.0F)
-                .ExitCam = Nothing
+                .EnterCam = New CameraPRH(New Vector3(-775.1635F, 325.3173F, 211.9971F), New Vector3(-3.812282F, 0F, 119.4265F), 50.0F)
+                .ExitCam = New CameraPRH(New Vector3(-780.6631F, 324.9863F, 211.9971F), New Vector3(0.0992108F, 0F, -122.1022F), 50.0F)
                 .GarageElevatorPos = Vector3.Zero
                 .GarageMenuPos = Vector3.Zero
                 .ApartmentType = eApartmentType.None
@@ -248,19 +356,19 @@ Module BuildingList
                 .Description = "MP_PROP_79DES"
                 .Price = 985000
                 .SavePos = New Vector3(-797.7579, 337.3798, 220.4384)
-                .ApartmentDoorPos = New Quaternion(-781.9011F, 315.2137F, 216.6385F, 0F)
+                .ApartmentDoorPos = New Quaternion(-781.4227F, 315.9428F, 216.6336F, 0.7958455F)
                 .ApartmentInPos = New Vector3(-784.0423, 320.9214, 217.439)
                 .ApartmentOutPos = New Vector3(-781.851, 318.094, 217.6388)
                 .WardrobePos = New Quaternion(-796.9515, 328.2715, 220.4384, 359.5432)
                 .GarageFilePath = "eclipse_towers_phs_1"
                 .IPL = config.GetValue("IPL", .Name, "apa_v_mp_h_01_a")
                 .AptStyleCam = New CameraPRH(New Vector3(-786.6251, 343.8772, 218.0287), New Vector3(-7.585561, 0, -163.3333), 50.0F)
-                .EnterCam = New CameraPRH(New Vector3(-781.5798F, 317.4169F, 217.34F), New Vector3(-10.35674F, 0F, 138.7544F), 50.0F)
-                .ExitCam = Nothing
+                .EnterCam = New CameraPRH(New Vector3(-780.761F, 320.4848F, 217.6408F), New Vector3(1.187448F, 0.00000002668616F, 160.2057F), 50.0F)
+                .ExitCam = New CameraPRH(New Vector3(-780.725F, 314.4459F, 217.6385F), New Vector3(-0.6118351F, -0.00000001334097F, 16.64737F), 50.0F)
                 .GarageElevatorPos = Vector3.Zero
                 .GarageMenuPos = Vector3.Zero
                 .ApartmentType = eApartmentType.IPL
-                .Door = New Door(0, New Vector3(-782.4496F, 317.5228F, 217.7876F))
+                .Door = .IPL.GetEclipseTowersPenthouseDoor
             End With
             Dim eclipseTowersPH2 As New ApartmentClass()
             With eclipseTowersPH2
@@ -281,7 +389,7 @@ Module BuildingList
                 .GarageElevatorPos = Vector3.Zero
                 .GarageMenuPos = Vector3.Zero
                 .ApartmentType = eApartmentType.IPL
-                .Door = New Door(0, New Vector3(-782.4497F, 317.5156F, 188.0627F))
+                .Door = .IPL.GetEclipseTowersPenthouseDoor
             End With
             Dim eclipseTowersPH3 As New ApartmentClass()
             With eclipseTowersPH3
@@ -302,15 +410,16 @@ Module BuildingList
                 .GarageElevatorPos = Vector3.Zero
                 .GarageMenuPos = Vector3.Zero
                 .ApartmentType = eApartmentType.IPL
-                .Door = New Door(0, New Vector3(-778.5566F, 340.2328F, 196.8354F))
+                .Door = .IPL.GetEclipseTowersPenthouseDoor
             End With
             Dim eclipseTowers As New BuildingClass()
             With eclipseTowers
                 .Name = "Eclipse Towers"
-                .BuildingInPos = New Quaternion(-770.258, 313.033, 85.6981, 0F)
-                .BuildingOutPos = New Quaternion(-773.282, 312.275, 84.698, 0F)
-                .BuildingLobby = New Quaternion
+                .BuildingInPos = New Quaternion(-778.8126F, 312.6634F, 84.69843F, 12.38459F)
+                .BuildingOutPos = New Quaternion(-777.3685F, 310.2097F, 84.69816F, 185.7139F)
+                .BuildingLobby = New Quaternion(-777.247F, 316.0079F, 84.66265F, 182.7023F)
                 .GarageInPos = New Vector3(-796.1685, 311.4121, 85.7088)
+                .GarageFootInPos = New Quaternion(-790.242F, 307.9147F, 84.70213F, 4.71801F)
                 .GarageOutPos = New Quaternion(-796.2648, 302.5102, 85.1543, 179.532F)
                 .CameraPos = New CameraPRH(New Vector3(-881.4312, 214.6852, 91.3971), New Vector3(25.6109, 0, -39.32376), 50.0F)
                 .EnterCamera1 = New CameraPRH(New Vector3(-772.3347F, 282.756F, 88.23641F), New Vector3(1.163976F, 0F, 4.700311F), 50.0F)
@@ -319,13 +428,13 @@ Module BuildingList
                 .BuildingType = eBuildingType.Apartment
                 .SaleSign = New EntityVector(ForSaleSign, New Quaternion(-786.176453F, 299.092316F, 84.8250656F, 5.369569F))
                 .HideObjects = {"apa_ss1_11_flats", "ss1_11_ss1_emissive_a", "ss1_11_detail01b", "ss1_11_Flats_LOD", "SS1_02_Building01_LOD", "SS1_LOD_01_02_08_09_10_11", "SS1_02_SLOD1"}
-                .Apartments = New List(Of ApartmentClass) From {eclipseTowers31, eclipseTowers3, eclipseTowersPH1, eclipseTowersPH2, eclipseTowersPH3}
+                .Apartments = New List(Of ApartmentClass) From {eclipseTowers5, eclipseTowers9, eclipseTowers31, eclipseTowers40, eclipseTowers3, eclipseTowersPH1, eclipseTowersPH2, eclipseTowersPH3}
             End With
             If Not buildings.Contains(eclipseTowers) Then buildings.Add(eclipseTowers)
 
             'Richards Majestic
-            Dim richardMajestic4 As New ApartmentClass()
-            With richardMajestic4
+            Dim richardsMajestic4 As New ApartmentClass()
+            With richardsMajestic4
                 .ID = 40
                 .Name = "MP_PROP_40"
                 .Description = "MP_PROP_40DES"
@@ -335,18 +444,39 @@ Module BuildingList
                 .ApartmentInPos = New Vector3(-913.1502, -384.5727, 85.4804)
                 .ApartmentOutPos = New Vector3(-916.3039, -384.9148, 85.4804)
                 .WardrobePos = New Quaternion(-904.1464, -369.6518, 79.2839, 112.4174)
-                .GarageFilePath = "richard_majestic_apt_4"
+                .GarageFilePath = "richards_majestic_apt_4"
                 .IPL = Nothing
                 .AptStyleCam = Nothing
-                .EnterCam = New CameraPRH(New Vector3(-916.2482F, -385.766F, 85.27789F), New Vector3(-11.06085F, 0F, 72.22939F), 50.0F)
-                .ExitCam = Nothing
+                .EnterCam = New CameraPRH(New Vector3(-913.8183F, -385.6429F, 85.48054F), New Vector3(1.513178F, -0.00000002668973F, 80.01873F), 50.0F)
+                .ExitCam = New CameraPRH(New Vector3(-917.986F, -388.7605F, 85.48054F), New Vector3(-2.86769F, 0.0000001068555F, -25.52587F), 50.0F)
                 .GarageElevatorPos = Vector3.Zero
                 .GarageMenuPos = Vector3.Zero
                 .ApartmentType = eApartmentType.None
                 .Door = New Door(330294775, New Vector3(-916.985F, -384.7734F, 85.59431F))
             End With
-            Dim richardMajestic2 As New ApartmentClass()
-            With richardMajestic2
+            Dim richardsMajestic51 As New ApartmentClass() 'Newly Added
+            With richardsMajestic51
+                .ID = 41
+                .Name = "MP_PROP_41"
+                .Description = "MP_PROP_41DES"
+                .Price = 253000
+                .SavePos = New Vector3(-929.2203F, -376.9355F, 102.233F)
+                .ApartmentDoorPos = New Quaternion(-911.7111F, -364.968F, 108.4403F, 111.8704F)
+                .ApartmentInPos = New Vector3(-915.0739F, -366.594F, 108.4404F)
+                .ApartmentOutPos = New Vector3(-913.8405F, -365.995F, 108.4404F)
+                .WardrobePos = New Quaternion(-926.0495F, -381.5455F, 102.2438F, 298.6485F)
+                .GarageFilePath = "richards_majestic_apt_51"
+                .IPL = Nothing
+                .AptStyleCam = Nothing
+                .EnterCam = New CameraPRH(New Vector3(-916.823F, -365.8321F, 109.4404F), New Vector3(-0.07243962F, -2.08441E-10F, -91.85226F), 50.0F)
+                .ExitCam = New CameraPRH(New Vector3(-911.9507F, -362.8972F, 109.4404F), New Vector3(-4.062161F, 0F, 154.1064F), 50.0F)
+                .GarageElevatorPos = Vector3.Zero
+                .GarageMenuPos = Vector3.Zero
+                .ApartmentType = eApartmentType.None
+                .Door = New Door(330294775, New Vector3(-913.2027F, -366.3348F, 109.5541F))
+            End With
+            Dim richardsMajestic2 As New ApartmentClass()
+            With richardsMajestic2
                 .ID = 69
                 .Name = "MP_PROP_69"
                 .Description = "MP_PROP_69DES"
@@ -356,35 +486,36 @@ Module BuildingList
                 .ApartmentInPos = New Vector3(-922.1152, -370.0627, 114.3101)
                 .ApartmentOutPos = New Vector3(-919.3095, -368.5584, 114.275)
                 .WardrobePos = New Quaternion(-903.3266, -364.2998, 113.074, 195.6396)
-                .GarageFilePath = "richard_majestic_apt_2"
+                .GarageFilePath = "richards_majestic_apt_2"
                 .IPL = Nothing
                 .AptStyleCam = Nothing
-                .EnterCam = New CameraPRH(New Vector3(-919.0735F, -368.1402F, 114.075F), New Vector3(-10.07501F, 0F, -34.20811F), 50.0F)
-                .ExitCam = Nothing
+                .EnterCam = New CameraPRH(New Vector3(-920.3886F, -371.1837F, 114.2746F), New Vector3(1.278489F, 0F, -24.80474F), 50.0F)
+                .ExitCam = New CameraPRH(New Vector3(-915.5103F, -368.1128F, 114.2747F), New Vector3(-2.789463F, 0F, 89.33965F), 50.0F)
                 .GarageElevatorPos = Vector3.Zero
                 .GarageMenuPos = Vector3.Zero
                 .ApartmentType = eApartmentType.None
                 .Door = New Door(34120519, New Vector3(-919.1519F, -367.7008F, 114.4243F))
             End With
-            Dim richardMajestic As New BuildingClass()
-            With richardMajestic
+            Dim richardsMajestic As New BuildingClass()
+            With richardsMajestic
                 .Name = "Richards Majestic"
-                .BuildingInPos = New Quaternion(-935.4753, -378.6128, 38.9613, 0F)
-                .BuildingOutPos = New Quaternion(-933.4771, -383.6144, 38.9613, 0F)
-                .BuildingLobby = New Quaternion
+                .BuildingInPos = New Quaternion(-935.0035F, -380.3281F, 37.96134F, 294.9317F)
+                .BuildingOutPos = New Quaternion(-935.3661F, -384.3943F, 37.96133F, 115.7187F)
+                .BuildingLobby = New Quaternion(-929.8174F, -381.9229F, 37.96129F, 111.6455F)
                 .GarageInPos = New Vector3(-876.1354, -363.0524, 36.3538)
+                .GarageFootInPos = New Quaternion(-875.8687F, -359.7995F, 34.86322F, 292.4232F)
                 .GarageOutPos = New Quaternion(-873.362, -368.5318, 37.3505, 207.6679)
                 .CameraPos = New CameraPRH(New Vector3(-958.2964, -478.6136, 38.73965), New Vector3(24.18255, 0, -19.8838), 50.0F)
-                .EnterCamera1 = New CameraPRH(New Vector3(-953.0244F, -388.7012F, 39.53387F), New Vector3(0.4599827F, 0F, -65.65911F), 50.0F)
-                .EnterCamera2 = New CameraPRH(New Vector3(-953.0244F, -388.7012F, 39.53387F), New Vector3(60.45998F, 0F, -65.65911F), 50.0F)
+                .EnterCamera1 = New CameraPRH(New Vector3(-944.4233F, -409.0229F, 39.88211F), New Vector3(-15.48672F, -0.0000004429699F, -29.8702F), 50.0F)
+                .EnterCamera2 = New CameraPRH(New Vector3(-944.4233F, -409.0229F, 39.88211F), New Vector3(60.52476F, 0.000001076515F, -32.37362F), 50.0F)
                 .GarageType = eGarageType.TenCarGarage
                 .BuildingType = eBuildingType.Apartment
                 .SaleSign = New EntityVector(ForSaleSign, New Quaternion(-963.0879F, -387.4315F, 36.75792F, -152.9992F))
                 .HideObjects = {"hei_bh1_08_bld2", "bh1_emissive_bh1_08", "bh1_08_bld2_LOD", "hei_bh1_08_bld2", "bh1_08_em"}
-                .Apartments = New List(Of ApartmentClass) From {richardMajestic4, richardMajestic2}
+                .Apartments = New List(Of ApartmentClass) From {richardsMajestic4, richardsMajestic2, richardsMajestic51}
             End With
-            If Not buildings.Contains(richardMajestic) Then buildings.Add(richardMajestic)
-
+            If Not buildings.Contains(richardsMajestic) Then buildings.Add(richardsMajestic)
+            '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''<< continue tomorrow
             'Tinsel Towers
             Dim tinselTowers29 As New ApartmentClass()
             With tinselTowers29
@@ -435,6 +566,7 @@ Module BuildingList
                 .BuildingOutPos = New Quaternion(-617.9388, 35.7848, 43.5558, 0F)
                 .BuildingLobby = New Quaternion
                 .GarageInPos = New Vector3(-634.3952, 56.0859, 43.7127)
+                .GarageFootInPos = New Quaternion
                 .GarageOutPos = New Quaternion(-641.8661, 57.0499, 43.4129, 84.922)
                 .CameraPos = New CameraPRH(New Vector3(-678.4925, -30.95172, 48.26074), New Vector3(16.23258, 0, -43.18668), 50.0F)
                 .EnterCamera1 = New CameraPRH(New Vector3(-595.746F, 7.326121F, 44.76005F), New Vector3(-1.93387F, 0F, 6.364491F), 50.0F)
@@ -476,6 +608,7 @@ Module BuildingList
                 .BuildingOutPos = New Quaternion(-914.3189, -455.2902, 39.5998, 0F)
                 .BuildingLobby = New Quaternion
                 .GarageInPos = New Vector3(-823.0811, -438.4828, 36.6387)
+                .GarageFootInPos = New Quaternion
                 .GarageOutPos = New Quaternion(-831.567, -430.7581, 36.0904, 116.1013)
                 .CameraPos = New CameraPRH(New Vector3(-965.4064, -563.0858, 34.91125), New Vector3(24.98755, 0, -31.1508), 50.0F)
                 .EnterCamera1 = New CameraPRH(New Vector3(-937.9976F, -464.0622F, 41.10617F), New Vector3(-12.63568F, 0F, -64.28323F), 50.0F)
@@ -519,6 +652,7 @@ Module BuildingList
                 .BuildingOutPos = New Quaternion(-688.8965, 598.6945, 143.5084, 0F)
                 .BuildingLobby = New Quaternion
                 .GarageInPos = New Vector3(-684.222, 602.92, 142.926)
+                .GarageFootInPos = New Quaternion
                 .GarageOutPos = New Quaternion(-682.2719, 605.082, 143.0796, 8.87)
                 .CameraPos = New CameraPRH(New Vector3(-712.7956, 597.7189, 146.6349), New Vector3(-5.849331, 0, -87.56305), 50.0F)
                 .EnterCamera1 = New CameraPRH(New Vector3(-701.4848F, 605.7996F, 145.7361F), New Vector3(-5.291216F, 0F, -128.1343F), 50.0F)
@@ -560,6 +694,7 @@ Module BuildingList
                 .BuildingOutPos = New Quaternion(-751.1387, 621.1008, 142.2527, 0F)
                 .BuildingLobby = New Quaternion
                 .GarageInPos = New Vector3(-754.1208, 629.6571, 141.9053)
+                .GarageFootInPos = New Quaternion
                 .GarageOutPos = New Quaternion(-752.724, 625.291, 141.7961, 244.24)
                 .CameraPos = New CameraPRH(New Vector3(-734.5688, 618.7574, 148.982), New Vector3(-16.70547, 0, 86.47249), 50.0F)
                 .EnterCamera1 = New CameraPRH(New Vector3(-742.1857F, 633.7081F, 143.8869F), New Vector3(-7.755984F, 0F, 130.1775F), 50.0F)
@@ -601,6 +736,7 @@ Module BuildingList
                 .BuildingOutPos = New Quaternion(-853.2899, 698.7006, 148.7756, 0F)
                 .BuildingLobby = New Quaternion
                 .GarageInPos = New Vector3(-864.5076, 698.6345, 148.6063)
+                .GarageFootInPos = New Quaternion
                 .GarageOutPos = New Quaternion(-862.7094, 700.4839, 148.595, 328.02F)
                 .CameraPos = New CameraPRH(New Vector3(-863.697, 713.9671, 152.9681), New Vector3(-8.148409, 1.0781, -167.5327), 50.0F)
                 .EnterCamera1 = New CameraPRH(New Vector3(-870.0036F, 714.3647F, 152.0396F), New Vector3(-12.18705F, 0F, -156.5171F), 50.0F)
@@ -642,6 +778,7 @@ Module BuildingList
                 .BuildingOutPos = New Quaternion(-1294.2279, 456.4709, 97.0794, 0F)
                 .BuildingLobby = New Quaternion
                 .GarageInPos = New Vector3(-1294.9924, 456.477, 97.0332)
+                .GarageFootInPos = New Quaternion
                 .GarageOutPos = New Quaternion(-1297.027, 456.455, 96.9554, 322.69)
                 .CameraPos = New CameraPRH(New Vector3(-1306.412, 467.0048, 102.6207), New Vector3(-17.02023, 0, -141.3645), 50.0F)
                 .EnterCamera1 = New CameraPRH(New Vector3(-1299.812F, 469.2448F, 98.88928F), New Vector3(-7.54013F, 0F, -155.5267F), 50.0F)
@@ -683,6 +820,7 @@ Module BuildingList
                 .BuildingOutPos = New Quaternion(-558.0556, 666.2042, 145.1311, 0F)
                 .BuildingLobby = New Quaternion
                 .GarageInPos = New Vector3(-555.3114, 665.145, 144.6135)
+                .GarageFootInPos = New Quaternion
                 .GarageOutPos = New Quaternion(-555.117, 666.15, 144.4309, 343.26)
                 .CameraPos = New CameraPRH(New Vector3(-548.5573, 669.8001, 146.1121), New Vector3(-6.038576, 0, 124.0644), 50.0F)
                 .EnterCamera1 = New CameraPRH(New Vector3(-547.1796F, 672.5804F, 147.4934F), New Vector3(-15.5667F, 0F, 127.3951F), 50.0F)
@@ -724,6 +862,7 @@ Module BuildingList
                 .BuildingOutPos = New Quaternion(349.893, 442.8174, 147.3472, 0F)
                 .BuildingLobby = New Quaternion
                 .GarageInPos = New Vector3(352.814, 437.2492, 146.3828)
+                .GarageFootInPos = New Quaternion
                 .GarageOutPos = New Quaternion(356.54, 439.226, 145.098, 294.08)
                 .CameraPos = New CameraPRH(New Vector3(347.726, 459.0123, 150.3243), New Vector3(-3.703, 0, 161.5176), 50.0F)
                 .EnterCamera1 = New CameraPRH(New Vector3(357.144F, 453.5841F, 148.8181F), New Vector3(-8.454393F, 0F, 134.5525F), 50.0F)
@@ -765,6 +904,7 @@ Module BuildingList
                 .BuildingOutPos = New Quaternion(371.9392, 430.4312, 145.1107, 0F)
                 .BuildingLobby = New Quaternion
                 .GarageInPos = New Vector3(391.3488, 430.2205, 143.1705)
+                .GarageFootInPos = New Quaternion
                 .GarageOutPos = New Quaternion(392.482, 430.467, 143.0165, 298.54)
                 .CameraPos = New CameraPRH(New Vector3(366.7971, 447.0355, 148.0793), New Vector3(-8.704479, -2.1593, -156.5936), 50.0F)
                 .EnterCamera1 = New CameraPRH(New Vector3(367.6814F, 448.751F, 148.0813F), New Vector3(-9.862497F, 0F, -167.5893F), 50.0F)
@@ -806,6 +946,7 @@ Module BuildingList
                 .BuildingOutPos = New Quaternion(118.8673, 567.283, 183.1295, 0F)
                 .BuildingLobby = New Quaternion
                 .GarageInPos = New Vector3(131.7664, 568.0024, 183.1025)
+                .GarageFootInPos = New Quaternion
                 .GarageOutPos = New Quaternion(132.723, 568.142, 183.099, 335.12)
                 .CameraPos = New CameraPRH(New Vector3(112.5791, 574.6387, 190.8119), New Vector3(-21.01317, 0, -144.2139), 50.0F)
                 .EnterCamera1 = New CameraPRH(New Vector3(110.5211F, 577.4346F, 184.6888F), New Vector3(-0.3576312F, 0F, -139.767F), 50.0F)
@@ -847,6 +988,7 @@ Module BuildingList
                 .BuildingOutPos = New Quaternion(-177.3793, 503.8313, 136.8531, 0F)
                 .BuildingLobby = New Quaternion
                 .GarageInPos = New Vector3(-189.307, 502.66, 133.9093)
+                .GarageFootInPos = New Quaternion
                 .GarageOutPos = New Quaternion(-187.563, 502.25, 134.13, 332.11)
                 .CameraPos = New CameraPRH(New Vector3(-198.8929, 511.1027, 136.112), New Vector3(4.350469, 0, -128.423), 50.0F)
                 .EnterCamera1 = New CameraPRH(New Vector3(-193.8861F, 517.1055F, 137.4361F), New Vector3(-1.835988F, 0F, -144.4966F), 50.0F)
@@ -890,6 +1032,7 @@ Module BuildingList
                 .BuildingOutPos = New Quaternion(-974.1464, -1433.113, 7.679172, 0F)
                 .BuildingLobby = New Quaternion
                 .GarageInPos = New Vector3(-982.9502, -1450.931, 4.38989)
+                .GarageFootInPos = New Quaternion
                 .GarageOutPos = New Quaternion(-993.4175, -1425.568, 4.386545, 107.4124)
                 .CameraPos = New CameraPRH(New Vector3(-1012.979, -1429.618, 6.07423), New Vector3(9.87174, 0, -98.14085), 50.0F)
                 .EnterCamera1 = New CameraPRH(New Vector3(-992.3F, -1455.474F, 8.042947F), New Vector3(5.626956F, 0F, -42.1384F), 50.0F)
@@ -930,6 +1073,7 @@ Module BuildingList
                 .BuildingOutPos = New Quaternion(-757.82， -753.8024， 26.6554, 0F)
                 .BuildingLobby = New Quaternion
                 .GarageInPos = New Vector3(-787.0813, -801.8603, 20.6192)
+                .GarageFootInPos = New Quaternion
                 .GarageOutPos = New Quaternion(-789.551, -815.7581, 20.1855, 181.6813)
                 .CameraPos = New CameraPRH(New Vector3(-730.9564, -866.194, 39.5012), New Vector3(9.584155, 0, 35.26235), 50.0F)
                 .EnterCamera1 = New CameraPRH(New Vector3(-743.0842F, -743.1183F, 37.04325F), New Vector3(-17.28252F, 0F, 124.74F), 50.0F)
@@ -970,6 +1114,7 @@ Module BuildingList
                 .BuildingOutPos = New Quaternion(-1406.652, 533.3694, 122.9286, 0F)
                 .BuildingLobby = New Quaternion
                 .GarageInPos = New Vector3(-1409.864, 540.1284, 122.5761)
+                .GarageFootInPos = New Quaternion
                 .GarageOutPos = New Quaternion(-1421.402, 535.7197, 120.7177, 111.9388)
                 .CameraPos = New CameraPRH(New Vector3(-1437.455, 533.4254, 122.9885), New Vector3(-4.026862, 0, -94.79375), 50.0F)
                 .EnterCamera1 = New CameraPRH(New Vector3(-1433.229F, 529.8447F, 123.8805F), New Vector3(-12.98773F, 0F, -83.01761F), 50.0F)
@@ -1010,6 +1155,7 @@ Module BuildingList
                 .BuildingOutPos = New Quaternion(10.9781, 86.45157, 78.39816, 0F)
                 .BuildingLobby = New Quaternion
                 .GarageInPos = New Vector3(27.83206, 80.46669, 74.25099)
+                .GarageFootInPos = New Quaternion
                 .GarageOutPos = New Quaternion(39.44078, 77.11552, 74.9635, 241.9727)
                 .CameraPos = New CameraPRH(New Vector3(-31.15757, 105.2271, 81.74537), New Vector3(6.371637, 0, -137.1451), 50.0F)
                 .EnterCamera1 = New CameraPRH(New Vector3(-20.9733F, 109.4043F, 83.1152F), New Vector3(5.766655F, 0F, -139.2088F), 50.0F)
@@ -1050,6 +1196,7 @@ Module BuildingList
                 .BuildingOutPos = New Quaternion(-512.2141, 111.8229, 63.33881, 0F)
                 .BuildingLobby = New Quaternion
                 .GarageInPos = New Vector3(-521.9894, 92.31882, 59.75345)
+                .GarageFootInPos = New Quaternion
                 .GarageOutPos = New Quaternion(-536.3447, 92.78167, 60.42566, 87.18483)
                 .CameraPos = New CameraPRH(New Vector3(-526.9971, 133.2838, 65.28127), New Vector3(5.028964, 0, -148.544), 50.0F)
                 .EnterCamera1 = New CameraPRH(New Vector3(-514.3969F, 132.7893F, 67.846F), New Vector3(1.331019F, 0F, -168.7934F), 50.0F)
@@ -1090,6 +1237,7 @@ Module BuildingList
                 .BuildingOutPos = New Quaternion(282.245, -159.5781, 63.62236, 0F)
                 .BuildingLobby = New Quaternion
                 .GarageInPos = New Vector3(281.59, -146.9051, 64.62709)
+                .GarageFootInPos = New Quaternion
                 .GarageOutPos = New Quaternion(271.4526, -143.1953, 64.92351, 71.11879)
                 .CameraPos = New CameraPRH(New Vector3(247.5116, -143.1925, 67.63675), New Vector3(1.717242, 0, -99.06012), 50.0F)
                 .EnterCamera1 = New CameraPRH(New Vector3(264.757F, -154.3596F, 65.61347F), New Vector3(-9.511657F, 0F, -88.20109F), 50.0F)
@@ -1130,6 +1278,7 @@ Module BuildingList
                 .BuildingOutPos = New Quaternion(-305.5824, 6330.911, 32.48935, 0F)
                 .BuildingLobby = New Quaternion
                 .GarageInPos = New Vector3(-294.8063, 6338.88, 32.00024)
+                .GarageFootInPos = New Quaternion
                 .GarageOutPos = New Quaternion(-296.2461, 6340.683, 31.76276, 44.08249)
                 .CameraPos = New CameraPRH(New Vector3(-304.3051, 6344.134, 33.43044), New Vector3(-6.942835, 0, -170.2991), 50.0F)
                 .EnterCamera1 = New CameraPRH(New Vector3(-302.4189F, 6344.361F, 33.79319F), New Vector3(-4.512773F, 0F, -149.3539F), 50.0F)
@@ -1170,6 +1319,7 @@ Module BuildingList
                 .BuildingOutPos = New Quaternion(-108.5332, 6531.883, 29.80916, 0F)
                 .BuildingLobby = New Quaternion
                 .GarageInPos = New Vector3(-105.0798, 6534.642, 29.56255)
+                .GarageFootInPos = New Quaternion
                 .GarageOutPos = New Quaternion(-108.9384, 6538.451, 29.60509, 47.39733)
                 .CameraPos = New CameraPRH(New Vector3(-114.0698, 6545.125, 30.18196), New Vector3(-1.917315, 0, -155.1204), 50.0F)
                 .EnterCamera1 = New CameraPRH(New Vector3(-115.7358F, 6545.911F, 32.30983F), New Vector3(-10.63827F, 0F, -159.0272F), 50.0F)
@@ -1210,6 +1360,7 @@ Module BuildingList
                 .BuildingOutPos = New Quaternion(-633.7015, 169.4392, 61.22641, 0F)
                 .BuildingLobby = New Quaternion
                 .GarageInPos = New Vector3(-630.657, 152.3768, 56.41848)
+                .GarageFootInPos = New Quaternion
                 .GarageOutPos = New Quaternion(-638.4281, 152.3656, 57.24699, 89.08953)
                 .CameraPos = New CameraPRH(New Vector3(-663.4779, 162.9781, 62.82269), New Vector3(7.656792, 0, -92.89036), 50.0F)
                 .EnterCamera1 = New CameraPRH(New Vector3(-641.499F, 146.8024F, 62.44689F), New Vector3(-4.820535F, 0F, -58.53614F), 50.0F)
@@ -1250,6 +1401,7 @@ Module BuildingList
                 .BuildingOutPos = New Quaternion(-831.6166, -856.5034, 19.59702, 0F)
                 .BuildingLobby = New Quaternion
                 .GarageInPos = New Vector3(-758.8065, -870.7308, 20.9393)
+                .GarageFootInPos = New Quaternion
                 .GarageOutPos = New Quaternion(-755.0645, -870.7145, 21.18062, 267.8936)
                 .CameraPos = New CameraPRH(New Vector3(-846.1815, -821.6712, 21.12708), New Vector3(9.139385, 0, -142.4772), 50.0F)
                 .EnterCamera1 = New CameraPRH(New Vector3(-837.5078F, -840.4797F, 25.09497F), New Vector3(-0.8073542F, 0F, -151.9999F), 50.0F)
@@ -1290,6 +1442,7 @@ Module BuildingList
                 .BuildingOutPos = New Quaternion(2.387458, 34.19853, 71.16882, 0F)
                 .BuildingLobby = New Quaternion
                 .GarageInPos = New Vector3(-11.9249, 37.897, 71.08931)
+                .GarageFootInPos = New Quaternion
                 .GarageOutPos = New Quaternion(-12.86958, 35.41181, 71.03293, 158.7376)
                 .CameraPos = New CameraPRH(New Vector3(-23.84228, 11.21701, 74.10461), New Vector3(10.09729, 0, -29.36126), 50.0F)
                 .EnterCamera1 = New CameraPRH(New Vector3(-5.189341F, 6.643641F, 73.18093F), New Vector3(-3.764352F, 0F, -15.98091F), 50.0F)
@@ -1330,6 +1483,7 @@ Module BuildingList
                 .BuildingOutPos = New Quaternion(1344.532, -1581.023, 54.05513, 0F)
                 .BuildingLobby = New Quaternion
                 .GarageInPos = New Vector3(1351.739, -1574.466, 53.83353)
+                .GarageFootInPos = New Quaternion
                 .GarageOutPos = New Quaternion(1354.933, -1578.982, 53.38385, 216.5491)
                 .CameraPos = New CameraPRH(New Vector3(1357.432, -1594.719, 53.01324), New Vector3(3.356584, 0, 35.79725), 50.0F)
                 .EnterCamera1 = New CameraPRH(New Vector3(1331.451F, -1585.656F, 54.93246F), New Vector3(-5.454278F, 0F, -40.00616F), 50.0F)
@@ -1370,6 +1524,7 @@ Module BuildingList
                 .BuildingOutPos = New Quaternion(-197.6289, 90.04182, 69.65993, 0F)
                 .BuildingLobby = New Quaternion
                 .GarageInPos = New Vector3(-212.6948, 73.81252, 66.74328)
+                .GarageFootInPos = New Quaternion
                 .GarageOutPos = New Quaternion(-215.8855, 75.07529, 66.78372, 81.58614)
                 .CameraPos = New CameraPRH(New Vector3(-194.8486, 123.9623, 71.46825), New Vector3(1.435651, 0, -168.6253), 50.0F)
                 .EnterCamera1 = New CameraPRH(New Vector3(-197.1429F, 107.9836F, 76.95716F), New Vector3(-8.904154F, 0F, -175.3624F), 50.0F)
@@ -1412,6 +1567,7 @@ Module BuildingList
                 .BuildingOutPos = New Quaternion(-1610.868, -428.8814, 40.46698, 0F)
                 .BuildingLobby = New Quaternion
                 .GarageInPos = New Vector3(-1608.53, -451.0937, 37.58678)
+                .GarageFootInPos = New Quaternion
                 .GarageOutPos = New Quaternion(-1611.859, -454.9521, 37.49269, 138.179)
                 .CameraPos = New CameraPRH(New Vector3(-1643.548, -435.6621, 41.09145), New Vector3(8.244346, 0, -86.32664), 50.0F)
                 .EnterCamera1 = New CameraPRH(New Vector3(-1622.862F, -419.2167F, 42.48126F), New Vector3(-3.694005F, 0F, -128.9246F), 50.0F)
@@ -1452,6 +1608,7 @@ Module BuildingList
                 .BuildingOutPos = New Quaternion(-205.4685, 184.4087, 80.32763, 0F)
                 .BuildingLobby = New Quaternion
                 .GarageInPos = New Vector3(-205.952, 192.6613, 79.88345)
+                .GarageFootInPos = New Quaternion
                 .GarageOutPos = New Quaternion(-213.1964, 193.2091, 80.66739, 82.44815)
                 .CameraPos = New CameraPRH(New Vector3(-227.7641, 201.8866, 86.85343), New Vector3(-4.676774, 0, -109.3161), 50.0F)
                 .EnterCamera1 = New CameraPRH(New Vector3(-224.4747F, 195.8861F, 83.09782F), New Vector3(2.501759F, 0F, -100.0096F), 50.0F)
@@ -1492,6 +1649,7 @@ Module BuildingList
                 .BuildingOutPos = New Quaternion(-1562.17, -408.0945, 42.38398, 0F)
                 .BuildingLobby = New Quaternion
                 .GarageInPos = New Vector3(-1554.318, -402.5234, 41.53171)
+                .GarageFootInPos = New Quaternion
                 .GarageOutPos = New Quaternion(-1548.194, -407.8083, 41.50047, 228.1096)
                 .CameraPos = New CameraPRH(New Vector3(-1510.861, -407.8669, 42.94849), New Vector3(6.705585, 0, 82.56407), 50.0F)
                 .EnterCamera1 = New CameraPRH(New Vector3(-1547.973F, -427.3674F, 46.60262F), New Vector3(7.007823F, 0F, 39.1917F), 50.0F)
@@ -1532,6 +1690,7 @@ Module BuildingList
                 .BuildingOutPos = New Quaternion(-1535.237, -325.281, 47.48159, 0F)
                 .BuildingLobby = New Quaternion
                 .GarageInPos = New Vector3(-1530.807, -346.3962, 44.66446)
+                .GarageFootInPos = New Quaternion
                 .GarageOutPos = New Quaternion(-1536.455, -352.6137, 44.54288, 135.3604)
                 .CameraPos = New CameraPRH(New Vector3(-1563.921, -321.3005, 51.06629), New Vector3(-4.889933, 0, -100.0785), 50.0F)
                 .EnterCamera1 = New CameraPRH(New Vector3(-1556.265F, -321.7628F, 50.83025F), New Vector3(0.8824388F, 0F, -99.8124F), 50.0F)
@@ -1572,6 +1731,7 @@ Module BuildingList
                 .BuildingOutPos = New Quaternion(-44.99031, -60.94749, 63.58578, 0F)
                 .BuildingLobby = New Quaternion
                 .GarageInPos = New Vector3(-32.13178, -69.51645, 58.91152)
+                .GarageFootInPos = New Quaternion
                 .GarageOutPos = New Quaternion(-40.82223, -67.3935, 58.69315, 69.59575)
                 .CameraPos = New CameraPRH(New Vector3(-76.6449, -41.96963, 63.77706), New Vector3(4.850093, 0, -106.2234), 50.0F)
                 .EnterCamera1 = New CameraPRH(New Vector3(-68.52925F, -45.01423F, 67.37651F), New Vector3(1.234458F, 0F, -109.9153F), 50.0F)
@@ -1612,6 +1772,7 @@ Module BuildingList
                 .BuildingOutPos = New Quaternion(1665.579, 4776.712, 41.93869, 0F)
                 .BuildingLobby = New Quaternion
                 .GarageInPos = New Vector3(1662.088, 4768.009, 41.79552)
+                .GarageFootInPos = New Quaternion
                 .GarageOutPos = New Quaternion(1667.8, 4768.668, 41.70086, 275.8229)
                 .CameraPos = New CameraPRH(New Vector3(1683.295, 4774.074, 43.80255), New Vector3(-2.922752, 0, 93.5119), 50.0F)
                 .EnterCamera1 = New CameraPRH(New Vector3(1659.381F, 4793.532F, 44.32456F), New Vector3(-7.496302F, 0F, 178.3484F), 50.0F)
@@ -1652,6 +1813,7 @@ Module BuildingList
                 .BuildingOutPos = New Quaternion(-12.83225, 6560.163, 31.97093, 0F)
                 .BuildingLobby = New Quaternion
                 .GarageInPos = New Vector3(-12.11096, 6563.872, 31.77629)
+                .GarageFootInPos = New Quaternion
                 .GarageOutPos = New Quaternion(-6.329562, 6558.033, 31.7927, 225.0206)
                 .CameraPos = New CameraPRH(New Vector3(-0.02845764, 6551.444, 32.63414), New Vector3(7.133693, 0, 85.69931), 50.0F)
                 .EnterCamera1 = New CameraPRH(New Vector3(3.452975F, 6552.198F, 33.88968F), New Vector3(-0.5256906F, 0F, 68.92777F), 50.0F)
@@ -1692,6 +1854,7 @@ Module BuildingList
                 .BuildingOutPos = New Quaternion(-814.8087, -984.2986, 14.03712, 0F)
                 .BuildingLobby = New Quaternion
                 .GarageInPos = New Vector3(-812.1517, -954.1611, 15.22835)
+                .GarageFootInPos = New Quaternion
                 .GarageOutPos = New Quaternion(-822.1036, -955.2672, 15.24641, 99.68565)
                 .CameraPos = New CameraPRH(New Vector3(-835.3129, -1003.118, 16.48207), New Vector3(3.313114, 0, -32.55415), 50.0F)
                 .EnterCamera1 = New CameraPRH(New Vector3(-823.5617F, -993.9997F, 17.33217F), New Vector3(-5.102105F, 0F, -39.18001F), 50.0F)
@@ -1732,6 +1895,7 @@ Module BuildingList
                 .BuildingOutPos = New Quaternion(-662.6467, -851.4024, 24.4296, 0F)
                 .BuildingLobby = New Quaternion
                 .GarageInPos = New Vector3(-667.7385, -853.5117, 23.84)
+                .GarageFootInPos = New Quaternion
                 .GarageOutPos = New Quaternion(-667.6065, -849.4223, 23.8855, 358.19)
                 .CameraPos = New CameraPRH(New Vector3(-644.9753, -820.6812, 33.11289), New Vector3(5.2089, -2.1432, 152.9055), 50.0F)
                 .EnterCamera1 = New CameraPRH(New Vector3(-647.1116F, -844.6727F, 30.94582F), New Vector3(-10.94582F, 0F, 136.1524F), 50.0F)
@@ -1772,6 +1936,7 @@ Module BuildingList
                 .BuildingOutPos = New Quaternion(1901.745, 3783.513, 32.79797, 0F)
                 .BuildingLobby = New Quaternion
                 .GarageInPos = New Vector3(1884.389, 3769.249, 32.68288)
+                .GarageFootInPos = New Quaternion
                 .GarageOutPos = New Quaternion(1887.34, 3764.256, 32.59146, 214.5068)
                 .CameraPos = New CameraPRH(New Vector3(1901.893, 3758.286, 33.14275), New Vector3(-1.035176, 0, 30.5063), 50.0F)
                 .EnterCamera1 = New CameraPRH(New Vector3(1907.115F, 3768.551F, 33.62659F), New Vector3(-6.510109F, 0F, 31.67839F), 50.0F)
