@@ -35,7 +35,6 @@ Module Helper
     Public LV As Vehicle
     Public PM As Integer
     Public Player As Player
-    Public HideHud As Boolean
 
     'Menu
     Public MenuPool As New MenuPool
@@ -576,6 +575,10 @@ Module Helper
         Else
             Return value.Length
         End If
+    End Function
+
+    Public Function QuaternionZero() As Quaternion
+        Return New Quaternion(0F, 0F, 0F, 0F)
     End Function
 
 End Module

@@ -146,20 +146,32 @@ Public Module TenCarGarage
             UI.ShowHelpMessage(Game.GetGXTEntry("SHR_EXIT_HELP"))
             If Game.IsControlJustReleased(0, Control.Context) Then
                 FadeScreen(1)
-                Game.Player.Character.Position = Apartment.Building.GarageOutPos.ToVector3
-                Game.Player.Character.Heading = Apartment.Building.GarageOutPos.W
+                If Apartment.Building.GarageDoor = eFrontDoor.StandardDoor Then
+                    Game.Player.Character.Position = Apartment.Building.GarageFootOutPos.ToVector3
+                    Game.Player.Character.Heading = Apartment.Building.GarageFootOutPos.W
+                    Apartment.Building.PlayExitGarageCamera(5000, True, True, CameraShake.Hand, 0.4F)
+                Else
+                    Game.Player.Character.Position = Apartment.Building.GarageOutPos.ToVector3
+                    Game.Player.Character.Heading = Apartment.Building.GarageOutPos.W
+                    FadeScreen(0)
+                End If
                 Clear()
-                FadeScreen(0)
             End If
         End If
         If GarageDoorRightDistance() <= 2.0F Then
             UI.ShowHelpMessage(Game.GetGXTEntry("SHR_EXIT_HELP"))
             If Game.IsControlJustReleased(0, Control.Context) Then
                 FadeScreen(1)
-                Game.Player.Character.Position = Apartment.Building.GarageOutPos.ToVector3
-                Game.Player.Character.Heading = Apartment.Building.GarageOutPos.W
+                If Apartment.Building.GarageDoor = eFrontDoor.StandardDoor Then
+                    Game.Player.Character.Position = Apartment.Building.GarageFootOutPos.ToVector3
+                    Game.Player.Character.Heading = Apartment.Building.GarageFootOutPos.W
+                    Apartment.Building.PlayExitGarageCamera(5000, True, True, CameraShake.Hand, 0.4F)
+                Else
+                    Game.Player.Character.Position = Apartment.Building.GarageOutPos.ToVector3
+                    Game.Player.Character.Heading = Apartment.Building.GarageOutPos.W
+                    FadeScreen(0)
+                End If
                 Clear()
-                FadeScreen(0)
             End If
         End If
 
@@ -169,8 +181,15 @@ Public Module TenCarGarage
                 FadeScreen(1)
                 Dim curVeh As Vehicle = Vehicles.Find(Function(x) x.GetInt(vehUidDecor) = Game.Player.Character.CurrentVehicle.GetInt(vehUidDecor) AndAlso x.GetInt(vehIdDecor) = Apartment.ID)
                 Dim bd = Apartment.Building
-                Game.Player.Character.Position = bd.GarageOutPos.ToVector3
-                Dim newVeh As Vehicle = curVeh.CloneVehicle(bd.GarageOutPos.ToVector3, bd.GarageOutPos.W, False)
+
+                Dim newVeh As Vehicle
+                If Apartment.Building.GarageDoor = eFrontDoor.StandardDoor Then
+                    Game.Player.Character.Position = bd.GarageDoorPos.ToVector3
+                    newVeh = curVeh.CloneVehicle(bd.GarageDoorPos.ToVector3, bd.GarageDoorPos.W, False)
+                Else
+                    Game.Player.Character.Position = bd.GarageOutPos.ToVector3
+                    newVeh = curVeh.CloneVehicle(bd.GarageOutPos.ToVector3, bd.GarageOutPos.W, False)
+                End If
                 With newVeh
                     .AddBlip()
                     .CurrentBlip.Sprite = BlipSprite.PersonalVehicleCar
@@ -189,17 +208,26 @@ Public Module TenCarGarage
                     .PlaceOnGround()
                 End With
                 outVehicleList.Add(newVeh)
-                newVeh.Position = bd.GarageOutPos.ToVector3
+                If Apartment.Building.GarageDoor = eFrontDoor.StandardDoor Then
+                    newVeh.Position = bd.GarageDoorPos.ToVector3
+                Else
+                    newVeh.Position = bd.GarageOutPos.ToVector3
+                End If
                 newVeh.SetPlayerIntoVehicle
                 newVeh.EngineRunning = True
                 Clear()
                 FadeScreen(0)
+                Apartment.Building.PlayExitGarageCamera(5000, True, True, CameraShake.Hand, 0.4F)
             End If
         End If
 
         'Draw marker
-        World.DrawMarker(MarkerType.VerticalCylinder, MenuActivator, Vector3.Zero, Vector3.Zero, New Vector3(0.8F, 0.8F, 0.4F), Color.FromArgb(150, Color.DeepSkyBlue))
+        If MenuDistance() <= 300.0F Then World.DrawMarker(MarkerType.VerticalCylinder, MenuActivator, Vector3.Zero, Vector3.Zero, New Vector3(0.8F, 0.8F, 0.4F), Color.FromArgb(150, Color.DeepSkyBlue))
     End Sub
+
+    Public Function MenuDistance() As Single
+        Return Game.Player.Character.Position.DistanceToSquared(MenuActivator)
+    End Function
 
     Public Sub Clear()
         If Vehicle0 <> Nothing Then Vehicle0.Delete()

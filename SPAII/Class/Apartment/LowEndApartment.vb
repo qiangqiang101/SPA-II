@@ -10,11 +10,11 @@ Module LowEndApartment
     Public Interior As New Vector3(260.0521, -1004.1469, -99.0085)
     Public SavePos As New Vector3(262.9082, -1003.095, -99.0086)
     Public DoorPos As New Quaternion(264.9383F, -1003.388F, -100.0086F, 0F)
-    Public InPos As New Vector3(265.0789F, -1000.602F, -100.0087F)
+    Public InPos As New Vector3(265.0363F, -999.6489F, -100.0086F)
     Public OutPos As New Vector3(265.0587F, -1000.946F, -100.0087F)
     Public WardrobePos As New Quaternion(260.0521, -1004.1469, -99.0085, 359.818)
-    Public EnterCam As New CameraPRH(New Vector3(266.1597F, -999.3329F, -99.00871F), New Vector3(-9.15961F, 0F, 145.0906F), 50.0F) 'New CameraPRH(New Vector3(265.5739F, -1001.004F, -99.40854F), New Vector3(-0.9101265F, 0F, 134.0882F), 50.0F)
-    Public ExitCam As New CameraPRH(Vector3.Zero, Vector3.Zero, 0F)
+    Public EnterCam As New CameraPRH(New Vector3(263.8463F, -999.1443F, -99.00864F), New Vector3(-2.109026F, 0F, -153.4576F), 50.0F)
+    Public ExitCam As New CameraPRH(New Vector3(266.5735F, -1004.03F, -99.00564F), New Vector3(-3.908313F, 0F, 30.38097F), 50.0F)
     Public Door As New Door("v_ilev_mp_low_frontdoor".GetHashKey, New Vector3(264.483F, -1001.621F, -100.0F))
     Public DoorRot As New Vector3(0F, 0F, 180.0F)
 
@@ -57,10 +57,10 @@ Module LowEndApartment
 
     Public Sub SpawnDoor()
         If FrontDoor <> Nothing Then FrontDoor.Delete()
-        FrontDoor = World.CreateProp(Door.ModelHash, Door.Position, DoorRot, True, False)
+        FrontDoor = World.CreateProp(Door.ModelHash, Door.Position, DoorRot, False, False)
         With FrontDoor
             .IsPersistent = True
-            .FreezePosition = True
+            .FreezePosition = False
         End With
     End Sub
 

@@ -31,7 +31,7 @@ Public Class SPA2
         Player = Game.Player
 
         Try
-            If Not forSaleSignSpawned Then SpawnForSaleSigns()
+            If Not forSaleSignSpawned Then SpawnForSaleSignsAndLockDoors()
 
             If buildingsLoaded Then
                 For Each bd As BuildingClass In buildings
@@ -50,7 +50,7 @@ Public Class SPA2
                                 FadeScreen(1)
                                 bd.BuyMenu.Visible = True
                                 World.RenderingCamera = World.CreateCamera(bd.CameraPos.Position, bd.CameraPos.Rotation, bd.CameraPos.FOV)
-                                HideHud = True
+                                NewFunc.HideHud = True
                                 FadeScreen(0)
                             End If
                         End If
@@ -73,7 +73,7 @@ Public Class SPA2
                                 FadeScreen(1)
                                 bd.AptMenu.Visible = True
                                 World.RenderingCamera = World.CreateCamera(bd.CameraPos.Position, bd.CameraPos.Rotation, bd.CameraPos.FOV)
-                                HideHud = True
+                                NewFunc.HideHud = True
                                 FadeScreen(0)
                             End If
                         End If
@@ -102,8 +102,8 @@ Public Class SPA2
                     End If
 
                     'Draw circle
-                    World.DrawMarker(MarkerType.VerticalCylinder, bd.BuildingInPos.ToVector3, Vector3.Zero, Vector3.Zero, New Vector3(0.8F, 0.8F, 0.4F), Color.FromArgb(150, Color.DeepSkyBlue))
-                    World.DrawMarker(MarkerType.VerticalCylinder, bd.GarageFootInPos.ToVector3, Vector3.Zero, Vector3.Zero, New Vector3(0.8F, 0.8F, 0.4F), Color.FromArgb(150, Color.DeepSkyBlue))
+                    If bd.EntranceDistance <= 300.0F Then World.DrawMarker(MarkerType.VerticalCylinder, bd.BuildingInPos.ToVector3, Vector3.Zero, Vector3.Zero, New Vector3(0.8F, 0.8F, 0.4F), Color.FromArgb(150, Color.DeepSkyBlue))
+                    If bd.GarageDistance <= 300.0F Then World.DrawMarker(MarkerType.VerticalCylinder, bd.GarageFootInPos.ToVector3, Vector3.Zero, Vector3.Zero, New Vector3(0.8F, 0.8F, 0.4F), Color.FromArgb(150, Color.DeepSkyBlue))
                 Next
 
                 For Each apt As ApartmentClass In apartments
@@ -131,6 +131,7 @@ Public Class SPA2
                     End If
                 Next
 
+                'Hide vehicle blip
                 If PP.LastVehicle.IsPersonalVehicle Then
                     If PP.IsInVehicle() Then
                         PP.LastVehicle.CurrentBlip.Alpha = 0
@@ -146,16 +147,13 @@ Public Class SPA2
             'Request GXT2 texts
             RequestAdditionalText("s_range", "SHR_EXIT_HELP")
 
-            If HideHud Then
-                NFunc.Call(Hash.HIDE_HUD_AND_RADAR_THIS_FRAME)
-            End If
-
+            'debug only
             If Player.IsAiming Then
                 Dim prop = Player.GetTargetedEntity
                 If prop = Nothing Then
                     debug3rdLine = "Nothing to show"
                 Else
-                    debug3rdLine = $".Door = New Door({prop.Model.Hash}, New Vector3({prop.Position.X}F, {prop.Position.Y}F, {prop.Position.Z}F))"
+                    debug3rdLine = $"New Door({prop.Model.Hash}, New Vector3({prop.Position.X}F, {prop.Position.Y}F, {prop.Position.Z}F))"
                 End If
             End If
         Catch ex As Exception
@@ -185,6 +183,7 @@ Public Class SPA2
     Private Sub SPA2_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
         If Game.IsKeyPressed(Keys.Up) Then
             Dim gpcp = Game.Player.Character.Position
+            If Game.Player.Character.IsInVehicle Then gpcp = Game.Player.Character.CurrentVehicle.Position
             Logger.Logg($"New Vector3({gpcp.X}F, {gpcp.Y}F, {gpcp.Z - 1.0F}F)")
             UI.ShowSubtitle("Position copied")
         End If
@@ -192,6 +191,10 @@ Public Class SPA2
         If Game.IsKeyPressed(Keys.Down) Then
             Dim gpcp = Game.Player.Character.Position
             Dim head = Game.Player.Character.Heading
+            If Game.Player.Character.IsInVehicle Then
+                gpcp = Game.Player.Character.CurrentVehicle.Position
+                head = Game.Player.Character.CurrentVehicle.Heading
+            End If
             Logger.Logg($"New Quaternion({gpcp.X}F, {gpcp.Y}F, {gpcp.Z - 1.0F}F, {head}F)")
             UI.ShowSubtitle("Quaternion copied")
         End If

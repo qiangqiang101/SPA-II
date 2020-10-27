@@ -4,6 +4,7 @@ Imports GTA
 Imports GTA.Math
 Imports GTA.Native
 Imports INMNativeUI
+Imports Metadata
 Imports SPAII.INM
 Imports NFunc = GTA.Native.Function
 
@@ -197,11 +198,11 @@ Public Class ApartmentClass
         Try
             Select Case selectedItem.Tag
                 Case "Exit"
-                    'FadeScreen(1)
                     AptMenu.Visible = False
+                    NewFunc.HideHud = True
                     PlayApartmerntExitCutscene()
                     Building.PlayExitApartmentCamera(3000, True, True, CameraShake.Hand, 0.4F)
-                    'FadeScreen(0)
+                    NewFunc.HideHud = False
                 Case "Garage"
                     FadeScreen(1)
                     AptMenu.Visible = False
@@ -227,7 +228,7 @@ Public Class ApartmentClass
                     FadeScreen(0)
                 Case "Style"
                     FadeScreen(1)
-                    HideHud = True
+                    NewFunc.HideHud = True
                     World.RenderingCamera = World.CreateCamera(AptStyleCam.Position, AptStyleCam.Rotation, AptStyleCam.FOV)
                     FadeScreen(0)
             End Select
@@ -422,7 +423,7 @@ Public Class ApartmentClass
         ChangeIPL(IPL, config.GetValue("IPL", Name, "apa_v_mp_h_01_a"))
         World.DestroyAllCameras()
         World.RenderingCamera = Nothing
-        HideHud = False
+        NewFunc.HideHud = False
         FadeScreen(0)
     End Sub
 
