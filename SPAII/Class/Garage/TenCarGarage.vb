@@ -26,16 +26,16 @@ Public Module TenCarGarage
     Public GarageDoorL As New Vector3(231.9013, -1006.686, -99.9999)
     Public GarageDoorR As New Vector3(224.4288, -1006.6892, -99.9999)
     Public MenuActivator As New Vector3(225.0141, -975.5068, -99.9999)
-    Public Veh0Pos As New Quaternion(223.4, -1001, -99.0, 241.3)
-    Public Veh1Pos As New Quaternion(223.4, -996, -99.0, 241.3)
-    Public Veh2Pos As New Quaternion(223.4, -991, -99.0, 241.3)
-    Public Veh3Pos As New Quaternion(223.4, -986, -99.0, 241.3)
-    Public Veh4Pos As New Quaternion(223.4, -981, -99.0, 241.3)
-    Public Veh5Pos As New Quaternion(232.7, -1001, -99.0, 116.3)
-    Public Veh6Pos As New Quaternion(232.7, -996, -99.0, 116.3)
-    Public Veh7Pos As New Quaternion(232.7, -991, -99.0, 116.3)
-    Public Veh8Pos As New Quaternion(232.7, -986, -99.0, 116.3)
-    Public Veh9Pos As New Quaternion(232.7, -981, -99.0, 116.3)
+    Public Veh0Pos As New Quaternion(223.4, -1001, -99.99999, 241.3)
+    Public Veh1Pos As New Quaternion(223.4, -996, -99.99999, 241.3)
+    Public Veh2Pos As New Quaternion(223.4, -991, -99.99999, 241.3)
+    Public Veh3Pos As New Quaternion(223.4, -986, -99.99999, 241.3)
+    Public Veh4Pos As New Quaternion(223.4, -981, -99.99999, 241.3)
+    Public Veh5Pos As New Quaternion(232.7, -1001, -99.99999, 116.3)
+    Public Veh6Pos As New Quaternion(232.7, -996, -99.99999, 116.3)
+    Public Veh7Pos As New Quaternion(232.7, -991, -99.99999, 116.3)
+    Public Veh8Pos As New Quaternion(232.7, -986, -99.99999, 116.3)
+    Public Veh9Pos As New Quaternion(232.7, -981, -99.99999, 116.3)
 
     Public Sub LoadVehicles()
         Try
@@ -147,9 +147,7 @@ Public Module TenCarGarage
             If Game.IsControlJustReleased(0, Control.Context) Then
                 FadeScreen(1)
                 If Apartment.Building.GarageDoor = eFrontDoor.StandardDoor Then
-                    Game.Player.Character.Position = Apartment.Building.GarageFootOutPos.ToVector3
-                    Game.Player.Character.Heading = Apartment.Building.GarageFootOutPos.W
-                    Apartment.Building.PlayExitGarageCamera(5000, True, True, CameraShake.Hand, 0.4F)
+                    Apartment.Building.PlayExitGarageCamera(10000, True, True, CameraShake.Hand, 0.4F)
                 Else
                     Game.Player.Character.Position = Apartment.Building.GarageOutPos.ToVector3
                     Game.Player.Character.Heading = Apartment.Building.GarageOutPos.W
@@ -163,9 +161,7 @@ Public Module TenCarGarage
             If Game.IsControlJustReleased(0, Control.Context) Then
                 FadeScreen(1)
                 If Apartment.Building.GarageDoor = eFrontDoor.StandardDoor Then
-                    Game.Player.Character.Position = Apartment.Building.GarageFootOutPos.ToVector3
-                    Game.Player.Character.Heading = Apartment.Building.GarageFootOutPos.W
-                    Apartment.Building.PlayExitGarageCamera(5000, True, True, CameraShake.Hand, 0.4F)
+                    Apartment.Building.PlayExitGarageCamera(10000, True, True, CameraShake.Hand, 0.4F)
                 Else
                     Game.Player.Character.Position = Apartment.Building.GarageOutPos.ToVector3
                     Game.Player.Character.Heading = Apartment.Building.GarageOutPos.W
@@ -222,7 +218,7 @@ Public Module TenCarGarage
         End If
 
         'Draw marker
-        If MenuDistance() <= 300.0F Then World.DrawMarker(MarkerType.VerticalCylinder, MenuActivator, Vector3.Zero, Vector3.Zero, New Vector3(0.8F, 0.8F, 0.4F), Color.FromArgb(150, Color.DeepSkyBlue))
+        If MenuDistance() <= 300.0F Then MenuActivator.DrawMarker
     End Sub
 
     Public Function MenuDistance() As Single

@@ -581,4 +581,57 @@ Module Helper
         Return New Quaternion(0F, 0F, 0F, 0F)
     End Function
 
+    <Extension>
+    Public Sub DrawMarker(pos As Vector3, Optional col As Color = Nothing, Optional size As Vector3 = Nothing, Optional text As String = Nothing)
+        If col = Nothing Then col = Color.DeepSkyBlue
+        If size = Nothing Then size = New Vector3(0.8F, 0.8F, 0.4F)
+        World.DrawMarker(MarkerType.VerticalCylinder, pos, Vector3.Zero, Vector3.Zero, size, Color.FromArgb(150, col))
+        If Not text = Nothing Then pos.Draw3DText(text)
+    End Sub
+
+    <Extension>
+    Public Sub Draw3DText(pos As Vector3, text As String)
+        Dim onScreen = pos.GetScreenCoordFromWorldCoord
+        Dim camCoords = GameplayCamera.Position
+        Dim distance = camCoords.GetDistanceBetweenCoords(pos)
+        Dim scale = (1 / distance) * 2
+        Dim fov = (1 / GameplayCamera.FieldOfView) * 100
+        scale = scale * fov
+
+        DrawText(text, scale, scale, GTA.Font.ChaletLondon, onScreen)
+    End Sub
+
+    <Extension>
+    Public Function ToPoint(v2 As Vector2) As Point
+        Return New Point(CInt(v2.X), CInt(v2.Y))
+    End Function
+
+    <Extension>
+    Public Function GetScreenCoordFromWorldCoord(pos As Vector3) As Vector2
+        Dim x, y As New OutputArgument
+        NFunc.Call(Of Boolean)(GET_SCREEN_COORD_FROM_WORLD_COORD, pos.X, pos.Y, pos.Z, x, y)
+        Return New Vector2(x.GetResult(Of Single), y.GetResult(Of Single))
+    End Function
+
+    <Extension>
+    Public Function GetDistanceBetweenCoords(pos1 As Vector3, pos2 As Vector3) As Single
+        Return NFunc.Call(Of Single)(Hash.GET_DISTANCE_BETWEEN_COORDS, pos1.X, pos1.Y, pos1.Z, pos2.X, pos2.Y, pos2.Z, True)
+    End Function
+
+    Public Sub DrawText(text As String, scale As Single, size As Single, font As GTA.Font, pos As Vector2)
+        NFunc.Call(Hash.SET_TEXT_SCALE, scale, size)
+        NFunc.Call(Hash.SET_TEXT_FONT, font)
+        NFunc.Call(Hash.SET_TEXT_PROPORTIONAL, True)
+        Dim c As Color = Color.White
+        NFunc.Call(Hash.SET_TEXT_COLOUR, c.R, c.B, c.G, 150)
+        Dim s As Color = Color.Black
+        NFunc.Call(Hash.SET_TEXT_DROPSHADOW, 0, s.R, s.G, s.B, 255)
+        NFunc.Call(Hash.SET_TEXT_DROP_SHADOW)
+        NFunc.Call(Hash.SET_TEXT_OUTLINE)
+        NFunc.Call(Hash._SET_TEXT_ENTRY, "STRING")
+        NFunc.Call(Hash.SET_TEXT_CENTRE, True)
+        NFunc.Call(Hash._ADD_TEXT_COMPONENT_STRING, text)
+        NFunc.Call(Hash._DRAW_TEXT, pos.X, pos.Y)
+    End Sub
+
 End Module

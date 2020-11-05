@@ -102,8 +102,20 @@ Public Class SPA2
                     End If
 
                     'Draw circle
-                    If bd.EntranceDistance <= 300.0F Then World.DrawMarker(MarkerType.VerticalCylinder, bd.BuildingInPos.ToVector3, Vector3.Zero, Vector3.Zero, New Vector3(0.8F, 0.8F, 0.4F), Color.FromArgb(150, Color.DeepSkyBlue))
-                    If bd.GarageDistance <= 300.0F Then World.DrawMarker(MarkerType.VerticalCylinder, bd.GarageFootInPos.ToVector3, Vector3.Zero, Vector3.Zero, New Vector3(0.8F, 0.8F, 0.4F), Color.FromArgb(150, Color.DeepSkyBlue))
+                    If bd.EntranceDistance <= 300.0F Then bd.BuildingInPos.ToVector3.DrawMarker
+                    If bd.GarageDistance <= 300.0F Then bd.GarageFootInPos.ToVector3.DrawMarker
+
+                    'Debug Circle
+                    If bd.EntranceDistance <= 1000.0F Then
+                        bd.BuildingLobby.ToVector3.DrawMarker(Color.LightPink, text:="Lobby")
+                        bd.BuildingOutPos.ToVector3.DrawMarker(Color.Red, text:="Out Pos")
+                    End If
+                    If bd.GarageDistance <= 1000.0F Then
+                        bd.GarageInPos.DrawMarker(Color.Orange, text:="Car in Pos")
+                        bd.GarageFootOutPos.ToVector3.DrawMarker(Color.Yellow, text:="Foot out Pos")
+                        bd.GarageOutPos.ToVector3.DrawMarker(Color.Green, text:="Car out Pos")
+                        bd.GarageDoorPos.ToVector3.DrawMarker(Color.Indigo, text:="Garage door Pos")
+                    End If
                 Next
 
                 For Each apt As ApartmentClass In apartments
@@ -140,7 +152,6 @@ Public Class SPA2
                     End If
                 End If
 
-                Debug()
                 MenuPool.ProcessMenus()
             End If
 
@@ -148,6 +159,7 @@ Public Class SPA2
             RequestAdditionalText("s_range", "SHR_EXIT_HELP")
 
             'debug only
+            Debug()
             If Player.IsAiming Then
                 Dim prop = Player.GetTargetedEntity
                 If prop = Nothing Then
@@ -182,20 +194,26 @@ Public Class SPA2
 
     Private Sub SPA2_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
         If Game.IsKeyPressed(Keys.Up) Then
-            Dim gpcp = Game.Player.Character.Position
-            If Game.Player.Character.IsInVehicle Then gpcp = Game.Player.Character.CurrentVehicle.Position
-            Logger.Logg($"New Vector3({gpcp.X}F, {gpcp.Y}F, {gpcp.Z - 1.0F}F)")
+            If Game.Player.Character.IsInVehicle Then
+                Dim gpccvp = Game.Player.Character.CurrentVehicle.Position
+                Logger.Logg($"New Vector3({gpccvp.X}F, {gpccvp.Y}F, {gpccvp.Z}F)")
+            Else
+                Dim gpcp = Game.Player.Character.Position
+                Logger.Logg($"New Vector3({gpcp.X}F, {gpcp.Y}F, {gpcp.Z - 1.0F}F)")
+            End If
             UI.ShowSubtitle("Position copied")
         End If
 
         If Game.IsKeyPressed(Keys.Down) Then
-            Dim gpcp = Game.Player.Character.Position
-            Dim head = Game.Player.Character.Heading
             If Game.Player.Character.IsInVehicle Then
-                gpcp = Game.Player.Character.CurrentVehicle.Position
-                head = Game.Player.Character.CurrentVehicle.Heading
+                Dim gpccvp = Game.Player.Character.CurrentVehicle.Position
+                Dim cvhead = Game.Player.Character.CurrentVehicle.Heading
+                Logger.Logg($"New Quaternion({gpccvp.X}F, {gpccvp.Y}F, {gpccvp.Z}F, {cvhead}F)")
+            Else
+                Dim gpcp = Game.Player.Character.Position
+                Dim head = Game.Player.Character.Heading
+                Logger.Logg($"New Quaternion({gpcp.X}F, {gpcp.Y}F, {gpcp.Z - 1.0F}F, {head}F)")
             End If
-            Logger.Logg($"New Quaternion({gpcp.X}F, {gpcp.Y}F, {gpcp.Z - 1.0F}F, {head}F)")
             UI.ShowSubtitle("Quaternion copied")
         End If
 

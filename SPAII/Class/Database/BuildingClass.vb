@@ -461,7 +461,7 @@ Public Class BuildingClass
                 If Not selectedApt.Vehicles.Count = GetGarageVehicleCount() Then
                     GrgMenu.Visible = False
                     NewFunc.HideHud = False
-                    PlayEnterGarageCamera(3000, True, True, CameraShake.Hand, 0.4F)
+                    PlayEnterGarageCamera(5000, True, True, CameraShake.Hand, 0.4F)
                     FadeScreen(1)
                     World.DestroyAllCameras()
                     World.RenderingCamera = Nothing
@@ -736,9 +736,9 @@ Public Class BuildingClass
                 interpCam.Shake(camShake, amplitude)
                 Script.Wait(duration)
             Else
-                PP.Position = GarageInPos
+                PP.Position = New Vector3(GarageInPos.X, GarageInPos.Y, GarageInPos.Z - 1.0F)
                 PP.Heading = GarageOutPos.W - 180.0F
-                PP.Task.GoTo(GarageDoorPos.ToVector3, False, 7000)
+                PP.Task.GoTo(GarageDoorPos.ToVector3, False, duration)
                 Dim scriptCam As Camera = World.CreateCamera(EnterCamera3.Position, EnterCamera3.Rotation, EnterCamera3.FOV)
                 Dim interpCam As Camera = World.CreateCamera(EnterCamera4.Position, EnterCamera4.Rotation, EnterCamera4.FOV)
                 World.RenderingCamera = scriptCam
@@ -761,27 +761,27 @@ Public Class BuildingClass
             If PP.IsInVehicle Then
                 PP.CurrentVehicle.Position = GarageDoorPos.ToVector3
                 PP.CurrentVehicle.Heading = GarageDoorPos.W
-                PP.Task.DriveTo(PP.CurrentVehicle, GarageOutPos.ToVector3, 3.0F, 10.0F)
-                FadeScreen(0)
+                PP.Task.DriveTo(PP.CurrentVehicle, GarageOutPos.ToVector3, 3.0F, 5.0F)
                 Dim scriptCam As Camera = World.CreateCamera(EnterCamera4.Position, EnterCamera4.Rotation, EnterCamera4.FOV)
                 Dim interpCam As Camera = World.CreateCamera(EnterCamera3.Position, EnterCamera3.Rotation, EnterCamera3.FOV)
                 World.RenderingCamera = scriptCam
                 scriptCam.InterpTo(interpCam, duration, easePosition, easeRotation)
                 World.RenderingCamera = interpCam
                 interpCam.Shake(camShake, amplitude)
+                FadeScreen(0)
                 Script.Wait(duration)
             Else
                 PP.Position = GarageFootOutPos.ToVector3
                 PP.Heading = GarageFootOutPos.W
-                PP.Task.GoTo(GarageOutPos.ToVector3, False, 10000)
-                FadeScreen(0)
+                PP.Task.GoTo(GarageFootInPos.ToVector3, False, duration)
                 Dim scriptCam As Camera = World.CreateCamera(EnterCamera4.Position, EnterCamera4.Rotation, EnterCamera4.FOV)
                 Dim interpCam As Camera = World.CreateCamera(EnterCamera3.Position, EnterCamera3.Rotation, EnterCamera3.FOV)
                 World.RenderingCamera = scriptCam
                 scriptCam.InterpTo(interpCam, duration, easePosition, easeRotation)
                 World.RenderingCamera = interpCam
                 interpCam.Shake(camShake, amplitude)
-                Script.Wait(10000)
+                FadeScreen(0)
+                Script.Wait(duration)
             End If
             World.DestroyAllCameras()
             World.RenderingCamera = Nothing

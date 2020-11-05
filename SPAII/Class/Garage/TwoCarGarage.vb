@@ -86,9 +86,7 @@ Module TwoCarGarage
             If Game.IsControlJustReleased(0, Control.Context) Then
                 FadeScreen(1)
                 If Apartment.Building.GarageDoor = eFrontDoor.StandardDoor Then
-                    Game.Player.Character.Position = Apartment.Building.GarageFootOutPos.ToVector3
-                    Game.Player.Character.Heading = Apartment.Building.GarageFootOutPos.W
-                    Apartment.Building.PlayExitGarageCamera(5000, True, True, CameraShake.Hand, 0.4F)
+                    Apartment.Building.PlayExitGarageCamera(10000, True, True, CameraShake.Hand, 0.4F)
                 Else
                     Game.Player.Character.Position = Apartment.Building.GarageOutPos.ToVector3
                     Game.Player.Character.Heading = Apartment.Building.GarageOutPos.W
@@ -145,7 +143,7 @@ Module TwoCarGarage
         End If
 
         'Draw marker
-        If MenuDistance() <= 200.0F Then World.DrawMarker(MarkerType.VerticalCylinder, MenuActivator, Vector3.Zero, Vector3.Zero, New Vector3(0.8F, 0.8F, 0.4F), Color.FromArgb(150, Color.DeepSkyBlue))
+        If MenuDistance() <= 200.0F Then MenuActivator.DrawMarker
     End Sub
 
     Public Function MenuDistance() As Single
