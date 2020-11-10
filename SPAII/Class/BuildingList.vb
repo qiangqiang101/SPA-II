@@ -77,7 +77,7 @@ Module BuildingList
                 .Door2 = New Door(-1934393132, New Vector3(-260.6575F, -969.2133F, 31.60706F))
                 .GarageDoor = eFrontDoor.StandardDoor
                 .Door3 = New Door(1529620568, New Vector3(-282.5465F, -995.163F, 24.68051F))
-                .GarageDoorPos = New Quaternion(-290.6072F, -992.1369F, 22.65152F, 250.6259F)
+                .GarageWaypoint = New Quaternion(-290.6072F, -992.1369F, 22.65152F, 250.6259F)
                 .EnterCamera3 = New CameraPRH(New Vector3(-288.8877F, -994.0138F, 24.12381F), New Vector3(-3.488037F, -0.0000001069198F, -100.3268F), 50.0F)
                 .EnterCamera4 = New CameraPRH(New Vector3(-298.3831F, -990.7642F, 24.12381F), New Vector3(-3.879195F, -0.00000001337085F, -87.55238F), 50.0F)
                 .Apartments = New List(Of ApartmentClass) From {_3AltaStreet10, _3AltaStreet57}
@@ -170,7 +170,7 @@ Module BuildingList
                 .Door2 = Nothing
                 .GarageDoor = eFrontDoor.StandardDoor
                 .Door3 = New Door(1652829067, New Vector3(-33.80561F, -621.6387F, 36.06102F))
-                .GarageDoorPos = New Quaternion(-38.24696F, -620.0452F, 33.59096F, 248.9837F)
+                .GarageWaypoint = New Quaternion(-38.24696F, -620.0452F, 33.59096F, 248.9837F)
                 .EnterCamera3 = New CameraPRH(New Vector3(-39.21017F, -621.2138F, 35.66154F), New Vector3(-7.39955F, 0.00000005380897F, -94.96883F), 50.0F)
                 .EnterCamera4 = New CameraPRH(New Vector3(-41.55785F, -620.5078F, 35.66154F), New Vector3(-7.634233F, 0.00000005383805F, -87.75737F), 50.0F)
                 .Apartments = New List(Of ApartmentClass) From {_4IntegrityWay30, _4IntegrityWay35, _4IntegrityWay28}
@@ -263,7 +263,7 @@ Module BuildingList
                 .Door2 = New Door(1640157877, New Vector3(-1442.299F, -543.6338F, 34.98407F))
                 .GarageDoor = eFrontDoor.StandardDoor
                 .Door3 = New Door(245838764, New Vector3(-1455.871F, -503.8927F, 32.31301F))
-                .GarageDoorPos = New Quaternion(-1447.752F, -515.782F, 30.09689F, 34.72319F)
+                .GarageWaypoint = New Quaternion(-1447.752F, -515.782F, 30.09689F, 34.72319F)
                 .EnterCamera3 = New CameraPRH(New Vector3(-1451.946F, -515.6177F, 31.54084F), New Vector3(-5.834974F, 0F, 3.413804F), 50.0F)
                 .EnterCamera4 = New CameraPRH(New Vector3(-1448.056F, -521.9968F, 31.54084F), New Vector3(-5.834974F, 0F, 3.413804F), 50.0F)
                 .Apartments = New List(Of ApartmentClass) From {delPerroHts7, delPerroHts4, delPerroHts20}
@@ -461,7 +461,7 @@ Module BuildingList
                 .Door2 = New Door(100848840, New Vector3(-776.1967F, 313.5395F, 86.14334F))
                 .GarageDoor = eFrontDoor.StandardDoor
                 .Door3 = New Door(-1573772550, New Vector3(-796.0817F, 313.676F, 86.68316F))
-                .GarageDoorPos = New Quaternion(-798.2641F, 326.3963F, 85.21525F, 181.2166F)
+                .GarageWaypoint = New Quaternion(-798.2641F, 326.3963F, 85.21525F, 181.2166F)
                 .EnterCamera3 = New CameraPRH(New Vector3(-798.883F, 321.1833F, 86.86268F), New Vector3(-4.817973F, 0.0000002142003F, -165.7958F), 50.0F)
                 .EnterCamera4 = New CameraPRH(New Vector3(-801.0359F, 332.1553F, 86.86268F), New Vector3(-11.4675F, -0.000000871164F, -150.8577F), 50.0F)
                 .Apartments = New List(Of ApartmentClass) From {eclipseTowers5, eclipseTowers9, eclipseTowers31, eclipseTowers40, eclipseTowers3, eclipseTowersPH1, eclipseTowersPH2, eclipseTowersPH3}
@@ -554,7 +554,7 @@ Module BuildingList
                 .Door2 = Nothing
                 .GarageDoor = eFrontDoor.StandardDoor
                 .Door3 = New Door(-976225932, New Vector3(-878.0236F, -359.4587F, 36.28026F))
-                .GarageDoorPos = New Quaternion(-885.1744F, -345.4747F, 33.05091F, 206.8757F)
+                .GarageWaypoint = New Quaternion(-885.1744F, -345.4747F, 33.05091F, 206.8757F)
                 .EnterCamera3 = New CameraPRH(New Vector3(-882.0393F, -355.215F, 35.81071F), New Vector3(-6.46077F, 0F, -136.0225F), 50.0F)
                 .EnterCamera4 = New CameraPRH(New Vector3(-889.6566F, -341.996F, 34.51073F), New Vector3(-6.46077F, 0F, -136.0225F), 50.0F)
                 .Apartments = New List(Of ApartmentClass) From {richardsMajestic4, richardsMajestic2, richardsMajestic51}
@@ -633,7 +633,7 @@ Module BuildingList
                 .BuildingLobby = New Quaternion(-614.6836F, 41.68021F, 42.59146F, 181.9344F)
                 .GarageInPos = New Vector3(-634.3952, 56.0859, 43.7127)
                 .GarageFootInPos = New Quaternion(-631.3752F, 52.95258F, 42.72498F, 175.5509F)
-                .GarageFootOutPos = New Quaternion(-622.0246F, 56.42989F, 42.73281F, 87.49985F)
+                .GarageFootOutPos = New Quaternion(-624.9257F, 56.47275F, 42.72746F, 93.49864F)
                 .GarageOutPos = New Quaternion(-641.8661, 57.0499, 43.4129, 84.922)
                 .CameraPos = New CameraPRH(New Vector3(-678.4925, -30.95172, 48.26074), New Vector3(16.23258, 0, -43.18668), 50.0F)
                 .EnterCamera1 = New CameraPRH(New Vector3(-595.746F, 7.326121F, 44.76005F), New Vector3(-1.93387F, 0F, 6.364491F), 50.0F)
@@ -647,7 +647,7 @@ Module BuildingList
                 .Door2 = New Door(100848840, New Vector3(-613.6412F, 38.37005F, 44.03822F))
                 .GarageDoor = eFrontDoor.StandardDoor
                 .Door3 = New Door(-1573772550, New Vector3(-629.9071F, 56.57387F, 44.72438F))
-                .GarageDoorPos = New Quaternion(-620.0411F, 59.18661F, 42.25226F, 102.8858F)
+                .GarageWaypoint = New Quaternion(-620.0411F, 59.18661F, 42.25226F, 102.8858F)
                 .EnterCamera3 = New CameraPRH(New Vector3(-622.3945F, 59.88835F, 43.5915F), New Vector3(-3.644489F, 0F, 110.8087F), 50.0F)
                 .EnterCamera4 = New CameraPRH(New Vector3(-615.8323F, 61.20481F, 43.5915F), New Vector3(-4.035642F, 0F, 126.1583F), 50.0F)
                 .Apartments = New List(Of ApartmentClass) From {tinselTowers29, tinselTowers42, tinselTowers45}
@@ -740,7 +740,7 @@ Module BuildingList
                 .Door2 = New Door(-1719104598, New Vector3(-912.9144F, -455.8944F, 39.80682F))
                 .GarageDoor = eFrontDoor.StandardDoor
                 .Door3 = New Door(815741875, New Vector3(-820.5675F, -436.8086F, 37.44185F))
-                .GarageDoorPos = New Quaternion(-812.4279F, -427.9642F, 33.74161F, 150.2066F)
+                .GarageWaypoint = New Quaternion(-812.4279F, -427.9642F, 33.74161F, 150.2066F)
                 .EnterCamera3 = New CameraPRH(New Vector3(-818.048F, -430.0121F, 36.71004F), New Vector3(-2.627478F, 0F, 154.9526F), 50.0F)
                 .EnterCamera4 = New CameraPRH(New Vector3(-809.6729F, -418.2455F, 34.41008F), New Vector3(-5.75667F, 0.0000002145253F, 145.7837F), 50.0F)
                 .Apartments = New List(Of ApartmentClass) From {weazelPlaza26, weazelPlaza70, weazelPlaza101}
@@ -792,7 +792,7 @@ Module BuildingList
                 .Door2 = Nothing
                 .GarageDoor = eFrontDoor.NoDoor
                 .Door3 = Nothing
-                .GarageDoorPos = QuaternionZero()
+                .GarageWaypoint = QuaternionZero()
                 .Apartments = New List(Of ApartmentClass) From {_2862HillcrestAveApt}
             End With
             If Not buildings.Contains(_2862HillcrestAve) Then buildings.Add(_2862HillcrestAve)
@@ -840,7 +840,7 @@ Module BuildingList
                 .Door2 = New Door(-1248765289, New Vector3(-754.114F, 621.1347F, 143.2394F))
                 .GarageDoor = eFrontDoor.NoDoor
                 .Door3 = Nothing
-                .GarageDoorPos = QuaternionZero()
+                .GarageWaypoint = QuaternionZero()
                 .Apartments = New List(Of ApartmentClass) From {_2868HillcrestAveApt}
             End With
             If Not buildings.Contains(_2868HillcrestAve) Then buildings.Add(_2868HillcrestAve)
@@ -888,7 +888,7 @@ Module BuildingList
                 .Door2 = Nothing
                 .GarageDoor = eFrontDoor.NoDoor
                 .Door3 = Nothing
-                .GarageDoorPos = QuaternionZero()
+                .GarageWaypoint = QuaternionZero()
                 .Apartments = New List(Of ApartmentClass) From {_2874HillcrestAveApt}
             End With
             If Not buildings.Contains(_2874HillcrestAve) Then buildings.Add(_2874HillcrestAve)
@@ -936,7 +936,7 @@ Module BuildingList
                 .Door2 = Nothing
                 .GarageDoor = eFrontDoor.NoDoor
                 .Door3 = Nothing
-                .GarageDoorPos = QuaternionZero()
+                .GarageWaypoint = QuaternionZero()
                 .Apartments = New List(Of ApartmentClass) From {_2113MadWayneThunderDrApt}
             End With
             If Not buildings.Contains(_2113MadWayneThunderDr) Then buildings.Add(_2113MadWayneThunderDr)
@@ -984,7 +984,7 @@ Module BuildingList
                 .Door2 = Nothing
                 .GarageDoor = eFrontDoor.NoDoor
                 .Door3 = Nothing
-                .GarageDoorPos = QuaternionZero()
+                .GarageWaypoint = QuaternionZero()
                 .Apartments = New List(Of ApartmentClass) From {_2117MiltonRdApt}
             End With
             If Not buildings.Contains(_2117MiltonRd) Then buildings.Add(_2117MiltonRd)
@@ -1032,7 +1032,7 @@ Module BuildingList
                 .Door2 = Nothing
                 .GarageDoor = eFrontDoor.NoDoor
                 .Door3 = Nothing
-                .GarageDoorPos = QuaternionZero()
+                .GarageWaypoint = QuaternionZero()
                 .Apartments = New List(Of ApartmentClass) From {_2044NorthConkerAveApt}
             End With
             If Not buildings.Contains(_2044NorthConkerAve) Then buildings.Add(_2044NorthConkerAve)
@@ -1080,7 +1080,7 @@ Module BuildingList
                 .Door2 = Nothing
                 .GarageDoor = eFrontDoor.NoDoor
                 .Door3 = Nothing
-                .GarageDoorPos = QuaternionZero()
+                .GarageWaypoint = QuaternionZero()
                 .Apartments = New List(Of ApartmentClass) From {_2045NorthConkerAveApt}
             End With
             If Not buildings.Contains(_2045NorthConkerAve) Then buildings.Add(_2045NorthConkerAve)
@@ -1127,7 +1127,7 @@ Module BuildingList
                 .Door2 = Nothing
                 .GarageDoor = eFrontDoor.NoDoor
                 .Door3 = Nothing
-                .GarageDoorPos = QuaternionZero()
+                .GarageWaypoint = QuaternionZero()
                 .HideObjects = {"apa_ch2_05c_b4", "ch2_05c_emissive_07", "ch2_05c_decals_05", "ch2_05c_B4_LOD"}
                 .Apartments = New List(Of ApartmentClass) From {_3677WhispymoundDrApt}
             End With
@@ -1175,7 +1175,7 @@ Module BuildingList
                 .Door2 = Nothing
                 .GarageDoor = eFrontDoor.NoDoor
                 .Door3 = Nothing
-                .GarageDoorPos = QuaternionZero()
+                .GarageWaypoint = QuaternionZero()
                 .HideObjects = {"apa_ch2_05e_res5", "apa_ch2_05e_res5_LOD"}
                 .Apartments = New List(Of ApartmentClass) From {_3655WildOatsDrApt}
             End With
@@ -1225,7 +1225,7 @@ Module BuildingList
                 .Door2 = New Door(-2042007659, New Vector3(-968.6031F, -1432.039F, 6.768328F))
                 .GarageDoor = eFrontDoor.NoDoor
                 .Door3 = Nothing
-                .GarageDoorPos = QuaternionZero()
+                .GarageWaypoint = QuaternionZero()
                 .Apartments = New List(Of ApartmentClass) From {_0115BayCityAve45}
             End With
             If Not buildings.Contains(_0115BayCityAve) Then buildings.Add(_0115BayCityAve)
@@ -1272,7 +1272,7 @@ Module BuildingList
                 .Door2 = New Door(1543931499, New Vector3(-763.9038F, -752.4891F, 28.18733F))
                 .GarageDoor = eFrontDoor.NoDoor
                 .Door3 = Nothing
-                .GarageDoorPos = QuaternionZero()
+                .GarageWaypoint = QuaternionZero()
                 .Apartments = New List(Of ApartmentClass) From {dreamTower15}
             End With
             If Not buildings.Contains(dreamTower) Then buildings.Add(dreamTower)
@@ -1319,7 +1319,7 @@ Module BuildingList
                 .Door2 = Nothing
                 .GarageDoor = eFrontDoor.NoDoor
                 .Door3 = Nothing
-                .GarageDoorPos = QuaternionZero()
+                .GarageWaypoint = QuaternionZero()
                 .Apartments = New List(Of ApartmentClass) From {_4HangmanAveApt}
             End With
             If Not buildings.Contains(_4HangmanAve) Then buildings.Add(_4HangmanAve)
@@ -1366,7 +1366,7 @@ Module BuildingList
                 .Door2 = Nothing
                 .GarageDoor = eFrontDoor.NoDoor
                 .Door3 = Nothing
-                .GarageDoorPos = QuaternionZero()
+                .GarageWaypoint = QuaternionZero()
                 .Apartments = New List(Of ApartmentClass) From {_0604LasLagunasBlvd4}
             End With
             If Not buildings.Contains(_0604LasLagunasBlvd) Then buildings.Add(_0604LasLagunasBlvd)
@@ -1413,7 +1413,7 @@ Module BuildingList
                 .Door2 = New Door(827574885, New Vector3(-512.844F, 107.6585F, 64.01761F))
                 .GarageDoor = eFrontDoor.NoDoor
                 .Door3 = Nothing
-                .GarageDoorPos = QuaternionZero()
+                .GarageWaypoint = QuaternionZero()
                 .Apartments = New List(Of ApartmentClass) From {_0184MiltonRd13}
             End With
             If Not buildings.Contains(_0184MiltonRd) Then buildings.Add(_0184MiltonRd)
@@ -1460,7 +1460,7 @@ Module BuildingList
                 .Door2 = New Door(1596276849, New Vector3(285.9412F, -161.8838F, 64.84488F))
                 .GarageDoor = eFrontDoor.NoDoor
                 .Door3 = Nothing
-                .GarageDoorPos = QuaternionZero()
+                .GarageWaypoint = QuaternionZero()
                 .Apartments = New List(Of ApartmentClass) From {_1162PowerSt3}
             End With
             If Not buildings.Contains(_1162PowerSt) Then buildings.Add(_1162PowerSt)
@@ -1507,7 +1507,7 @@ Module BuildingList
                 .Door2 = Nothing
                 .GarageDoor = eFrontDoor.NoDoor
                 .Door3 = Nothing
-                .GarageDoorPos = QuaternionZero()
+                .GarageWaypoint = QuaternionZero()
                 .Apartments = New List(Of ApartmentClass) From {_4401ProcopioDrApt}
             End With
             If Not buildings.Contains(_4401ProcopioDr) Then buildings.Add(_4401ProcopioDr)
@@ -1554,7 +1554,7 @@ Module BuildingList
                 .Door2 = Nothing
                 .GarageDoor = eFrontDoor.NoDoor
                 .Door3 = Nothing
-                .GarageDoorPos = QuaternionZero()
+                .GarageWaypoint = QuaternionZero()
                 .Apartments = New List(Of ApartmentClass) From {_4584ProcopioDrApt}
             End With
             If Not buildings.Contains(_4584ProcopioDr) Then buildings.Add(_4584ProcopioDr)
@@ -1601,7 +1601,7 @@ Module BuildingList
                 .Door2 = New Door(216030657, New Vector3(-627.3351F, 168.5309F, 61.2907F))
                 .GarageDoor = eFrontDoor.NoDoor
                 .Door3 = Nothing
-                .GarageDoorPos = QuaternionZero()
+                .GarageWaypoint = QuaternionZero()
                 .Apartments = New List(Of ApartmentClass) From {_0504SMoMiltonDrApt}
             End With
             If Not buildings.Contains(_0504SMoMiltonDr) Then buildings.Add(_0504SMoMiltonDr)
@@ -1648,7 +1648,7 @@ Module BuildingList
                 .Door2 = New Door(1701450624, New Vector3(-832.8119F, -862.9924F, 21.08801F))
                 .GarageDoor = eFrontDoor.NoDoor
                 .Door3 = Nothing
-                .GarageDoorPos = QuaternionZero()
+                .GarageWaypoint = QuaternionZero()
                 .Apartments = New List(Of ApartmentClass) From {_0325SouthRockfordDrApt}
             End With
             If Not buildings.Contains(_0325SouthRockfordDr) Then buildings.Add(_0325SouthRockfordDr)
@@ -1695,7 +1695,7 @@ Module BuildingList
                 .Door2 = Nothing
                 .GarageDoor = eFrontDoor.NoDoor
                 .Door3 = Nothing
-                .GarageDoorPos = QuaternionZero()
+                .GarageWaypoint = QuaternionZero()
                 .Apartments = New List(Of ApartmentClass) From {_0605SpanishAve1}
             End With
             If Not buildings.Contains(_0605SpanishAve) Then buildings.Add(_0605SpanishAve)
@@ -1742,7 +1742,7 @@ Module BuildingList
                 .Door2 = Nothing
                 .GarageDoor = eFrontDoor.NoDoor
                 .Door3 = Nothing
-                .GarageDoorPos = QuaternionZero()
+                .GarageWaypoint = QuaternionZero()
                 .Apartments = New List(Of ApartmentClass) From {_12SustanciaRdApt}
             End With
             If Not buildings.Contains(_12SustanciaRd) Then buildings.Add(_12SustanciaRd)
@@ -1789,7 +1789,7 @@ Module BuildingList
                 .Door2 = Nothing
                 .GarageDoor = eFrontDoor.NoDoor
                 .Door3 = Nothing
-                .GarageDoorPos = QuaternionZero()
+                .GarageWaypoint = QuaternionZero()
                 .Apartments = New List(Of ApartmentClass) From {theRoyale19}
             End With
             If Not buildings.Contains(theRoyale) Then buildings.Add(theRoyale)
@@ -1838,7 +1838,7 @@ Module BuildingList
                 .Door2 = New Door(-725970636, New Vector3(-1606.588F, -433.838F, 40.63837F))
                 .GarageDoor = eFrontDoor.NoDoor
                 .Door3 = Nothing
-                .GarageDoorPos = QuaternionZero()
+                .GarageWaypoint = QuaternionZero()
                 .Apartments = New List(Of ApartmentClass) From {_1115BlvdDelPerro18}
             End With
             If Not buildings.Contains(_1115BlvdDelPerro) Then buildings.Add(_1115BlvdDelPerro)
@@ -1885,7 +1885,7 @@ Module BuildingList
                 .Door2 = New Door(-725970636, New Vector3(-1606.588F, -433.838F, 40.63837F))
                 .GarageDoor = eFrontDoor.NoDoor
                 .Door3 = Nothing
-                .GarageDoorPos = QuaternionZero()
+                .GarageWaypoint = QuaternionZero()
                 .Apartments = New List(Of ApartmentClass) From {_1561SanVitasSt2}
             End With
             If Not buildings.Contains(_1561SanVitasSt) Then buildings.Add(_1561SanVitasSt)
@@ -1932,7 +1932,7 @@ Module BuildingList
                 .Door2 = New Door(-725970636, New Vector3(-1564.006F, -405.0421F, 42.60904F))
                 .GarageDoor = eFrontDoor.NoDoor
                 .Door3 = Nothing
-                .GarageDoorPos = QuaternionZero()
+                .GarageWaypoint = QuaternionZero()
                 .Apartments = New List(Of ApartmentClass) From {_1237ProsperitySt21}
             End With
             If Not buildings.Contains(_1237ProsperitySt) Then buildings.Add(_1237ProsperitySt)
@@ -1979,7 +1979,7 @@ Module BuildingList
                 .Door2 = Nothing
                 .GarageDoor = eFrontDoor.NoDoor
                 .Door3 = Nothing
-                .GarageDoorPos = QuaternionZero()
+                .GarageWaypoint = QuaternionZero()
                 .Apartments = New List(Of ApartmentClass) From {_0069CougarAve19}
             End With
             If Not buildings.Contains(_0069CougarAve) Then buildings.Add(_0069CougarAve)
@@ -2026,7 +2026,7 @@ Module BuildingList
                 .Door2 = Nothing
                 .GarageDoor = eFrontDoor.NoDoor
                 .Door3 = Nothing
-                .GarageDoorPos = QuaternionZero()
+                .GarageWaypoint = QuaternionZero()
                 .Apartments = New List(Of ApartmentClass) From {_2143LasLagunasBlvd9}
             End With
             If Not buildings.Contains(_2143LasLagunasBlvd) Then buildings.Add(_2143LasLagunasBlvd)
@@ -2073,7 +2073,7 @@ Module BuildingList
                 .Door2 = Nothing
                 .GarageDoor = eFrontDoor.NoDoor
                 .Door3 = Nothing
-                .GarageDoorPos = QuaternionZero()
+                .GarageWaypoint = QuaternionZero()
                 .Apartments = New List(Of ApartmentClass) From {_1893GrapeseedAveApt}
             End With
             If Not buildings.Contains(_1893GrapeseedAve) Then buildings.Add(_1893GrapeseedAve)
@@ -2120,7 +2120,7 @@ Module BuildingList
                 .Door2 = Nothing
                 .GarageDoor = eFrontDoor.NoDoor
                 .Door3 = Nothing
-                .GarageDoorPos = QuaternionZero()
+                .GarageWaypoint = QuaternionZero()
                 .Apartments = New List(Of ApartmentClass) From {_0232PaletoBlvdApt}
             End With
             If Not buildings.Contains(_0232PaletoBlvd) Then buildings.Add(_0232PaletoBlvd)
@@ -2167,7 +2167,7 @@ Module BuildingList
                 .Door2 = New Door(340291898, New Vector3(-811.2488F, -981.2729F, 14.60607F))
                 .GarageDoor = eFrontDoor.NoDoor
                 .Door3 = Nothing
-                .GarageDoorPos = QuaternionZero()
+                .GarageWaypoint = QuaternionZero()
                 .Apartments = New List(Of ApartmentClass) From {_0112SRockfordDr13}
             End With
             If Not buildings.Contains(_0112SRockfordDr) Then buildings.Add(_0112SRockfordDr)
@@ -2214,7 +2214,7 @@ Module BuildingList
                 .Door2 = Nothing
                 .GarageDoor = eFrontDoor.NoDoor
                 .Door3 = Nothing
-                .GarageDoorPos = QuaternionZero()
+                .GarageWaypoint = QuaternionZero()
                 .Apartments = New List(Of ApartmentClass) From {_2057VespucciBlvd1}
             End With
             If Not buildings.Contains(_2057VespucciBlvd) Then buildings.Add(_2057VespucciBlvd)
@@ -2261,10 +2261,182 @@ Module BuildingList
                 .Door2 = Nothing
                 .GarageDoor = eFrontDoor.NoDoor
                 .Door3 = Nothing
-                .GarageDoorPos = QuaternionZero()
+                .GarageWaypoint = QuaternionZero()
                 .Apartments = New List(Of ApartmentClass) From {_140ZancudoAveApt}
             End With
             If Not buildings.Contains(_140ZancudoAve) Then buildings.Add(_140ZancudoAve)
+#End Region
+
+#Region "High End Garage"
+            'Murrieta Heights
+            Dim _0120MurrietaHeightsGrg As New ApartmentClass()
+            With _0120MurrietaHeightsGrg
+                .ID = 24
+                .Name = "MP_PROP_24"
+                .Description = "MP_PROP_24DES"
+                .Price = 150000
+                .GarageFilePath = "0120_murrieta_heights"
+                .SetAsGarage
+            End With
+            Dim _0120MurrietaHeights As New BuildingClass()
+            With _0120MurrietaHeights
+                .Name = "0120 Murrieta Heights"
+                .GarageInPos = New Vector3(966.7083F, -1019.782F, 40.12651F)
+                .GarageFootInPos = New Quaternion(963.7991F, -1022.556F, 39.84747F, 88.24952F)
+                .GarageOutPos = New Quaternion(970.2502F, -1019.784F, 40.18027F, 270.5528F)
+                .CameraPos = New CameraPRH(New Vector3(979.8295F, -1042.648F, 45.68815F), New Vector3(0.3886027F, -0.00000005336208F, 48.74495F), 50.0F)
+                .GarageType = eGarageType.TenCarGarage
+                .SaleSign = New EntityVector(ForSaleSign, New Quaternion(965.572F, -1011.164F, 40.04047F, 0F))
+                .SetAsGarage
+                .Apartments = New List(Of ApartmentClass) From {_0120MurrietaHeightsGrg}
+            End With
+            If Not buildings.Contains(_0120MurrietaHeights) Then buildings.Add(_0120MurrietaHeights)
+
+            'Unit 2 Popular St
+            Dim unit2PopularStGrg As New ApartmentClass()
+            With unit2PopularStGrg
+                .ID = 26
+                .Name = "MP_PROP_26"
+                .Description = "MP_PROP_26DES"
+                .Price = 142500
+                .GarageFilePath = "unit_2_popular_st"
+                .SetAsGarage
+            End With
+            Dim unit2PopularSt As New BuildingClass()
+            With unit2PopularSt
+                .Name = "Unit 2 Popular St"
+                .GarageInPos = New Vector3(814.6552F, -920.3521F, 25.20862F)
+                .GarageFootInPos = New Quaternion(812.2126F, -924.0813F, 25.19506F, 173.4696F)
+                .GarageOutPos = New Quaternion(812.6961F, -918.2408F, 25.017F, 37.62095F)
+                .CameraPos = New CameraPRH(New Vector3(796.3094F, -910.439F, 32.21284F), New Vector3(-4.784281F, 0F, -135.616F), 50.0F)
+                .GarageType = eGarageType.TenCarGarage
+                .SaleSign = New EntityVector(ForSaleSign, New Quaternion(826.0184F, -924.6767F, 25.23146F, 0F))
+                .SetAsGarage
+                .Apartments = New List(Of ApartmentClass) From {unit2PopularStGrg}
+            End With
+            If Not buildings.Contains(unit2PopularSt) Then buildings.Add(unit2PopularSt)
+
+            '331 Supply Street
+            Dim _331SupplyStGrg As New ApartmentClass()
+            With _331SupplyStGrg
+                .ID = 27
+                .Name = "MP_PROP_27"
+                .Description = "MP_PROP_27DES"
+                .Price = 135000
+                .GarageFilePath = "331_supply_st"
+                .SetAsGarage
+            End With
+            Dim _331SupplySt As New BuildingClass()
+            With _331SupplySt
+                .Name = "331 Supply St"
+                .GarageInPos = New Vector3(763.1778F, -752.5948F, 26.13646F)
+                .GarageFootInPos = New Quaternion(759.6586F, -750.0385F, 26.1365F, 92.18512F)
+                .GarageOutPos = New Quaternion(763.1874F, -752.6099F, 26.13522F, 269.8095F)
+                .CameraPos = New CameraPRH(New Vector3(773.3146F, -738.6525F, 32.96489F), New Vector3(-8.04293F, 0.0000002155638F, 120.9082F), 50.0F)
+                .GarageType = eGarageType.TenCarGarage
+                .SaleSign = New EntityVector(ForSaleSign, New Quaternion(758.4609F, -749.3088F, 26.17052F, -89.99959F))
+                .SetAsGarage
+                .Apartments = New List(Of ApartmentClass) From {_331SupplyStGrg}
+            End With
+            If Not buildings.Contains(_331SupplySt) Then buildings.Add(_331SupplySt)
+
+            'Unit 76 Greenwich Parkway
+            Dim unit76GreenwichParkwayGrg As New ApartmentClass()
+            With unit76GreenwichParkwayGrg
+                .ID = 63
+                .Name = "MP_PROP_63"
+                .Description = "MP_PROP_63DES"
+                .Price = 120000
+                .GarageFilePath = "unit_76_greenwich_parkway"
+                .SetAsGarage
+            End With
+            Dim unit76GreenwichParkway As New BuildingClass()
+            With unit76GreenwichParkway
+                .Name = "Unit 76 Greenwich Parkway"
+                .GarageInPos = New Vector3(-1085.557F, -2231.689F, 12.51501F)
+                .GarageFootInPos = New Quaternion(-1090.821F, -2231.277F, 12.22299F, 134.4253F)
+                .GarageOutPos = New Quaternion(-1084.718F, -2230.858F, 12.51934F, 315.4821F)
+                .CameraPos = New CameraPRH(New Vector3(-1097.107F, -2198.045F, 22.43835F), New Vector3(-13.56797F, -0.0000002195711F, 170.8932F), 50.0F)
+                .GarageType = eGarageType.TenCarGarage
+                .SaleSign = New EntityVector(ForSaleSign, New Quaternion(-1083.94F, -2239.23F, 12.21982F, -45.99988F))
+                .SetAsGarage
+                .Apartments = New List(Of ApartmentClass) From {unit76GreenwichParkwayGrg}
+            End With
+            If Not buildings.Contains(unit76GreenwichParkway) Then buildings.Add(unit76GreenwichParkway)
+
+            '1337 Exceptionalists Way
+            Dim _1337ExceptionalistWayGrg As New ApartmentClass()
+            With _1337ExceptionalistWayGrg
+                .ID = 62
+                .Name = "MP_PROP_62"
+                .Description = "MP_PROP_62DES"
+                .Price = 112500
+                .GarageFilePath = "1337_exceptionalists_way"
+                .SetAsGarage
+            End With
+            Dim _1337ExceptionalistWay As New BuildingClass()
+            With _1337ExceptionalistWay
+                .Name = "1337 Exceptionalists Way"
+                .GarageInPos = New Vector3(-667.9601F, -2378.509F, 13.13723F)
+                .GarageFootInPos = New Quaternion(-666.9728F, -2383.446F, 12.92736F, 252.5499F)
+                .GarageOutPos = New Quaternion(-671.0975F, -2376.583F, 13.0891F, 58.12129F)
+                .CameraPos = New CameraPRH(New Vector3(-687.2374F, -2390.862F, 18.91904F), New Vector3(-9.248301F, 0F, -83.19398F), 50.0F)
+                .GarageType = eGarageType.TenCarGarage
+                .SaleSign = New EntityVector(ForSaleSign, New Quaternion(-662.3256F, -2377.067F, 12.94378F, -119.9995F))
+                .SetAsGarage
+                .Apartments = New List(Of ApartmentClass) From {_1337ExceptionalistWayGrg}
+            End With
+            If Not buildings.Contains(_1337ExceptionalistWay) Then buildings.Add(_1337ExceptionalistWay)
+
+            '1623 South Shambles St
+            Dim _1623SouthShamblesStGrg As New ApartmentClass()
+            With _1623SouthShamblesStGrg
+                .ID = 60
+                .Name = "MP_PROP_60"
+                .Description = "MP_PROP_60DES"
+                .Price = 105000
+                .GarageFilePath = "1623_south_shambles_st"
+                .SetAsGarage
+            End With
+            Dim _1623SouthShamblesSt As New BuildingClass()
+            With _1623SouthShamblesSt
+                .Name = "1623 South Shambles St"
+                .GarageInPos = New Vector3(1028.648F, -2398.632F, 29.10441F)
+                .GarageFootInPos = New Quaternion(1026.086F, -2394.247F, 29.08026F, 89.86459F)
+                .GarageOutPos = New Quaternion(1028.658F, -2398.667F, 29.10262F, 265.4493F)
+                .CameraPos = New CameraPRH(New Vector3(1048.913F, -2392.251F, 30.87638F), New Vector3(13.07097F, -0.0000004382413F, 100.7564F), 50.0F)
+                .GarageType = eGarageType.TenCarGarage
+                .SaleSign = New EntityVector(ForSaleSign, New Quaternion(1024.221F, -2406.932F, 28.60019F, -95.00002F))
+                .SetAsGarage
+                .Apartments = New List(Of ApartmentClass) From {_1623SouthShamblesStGrg}
+            End With
+            If Not buildings.Contains(_1623SouthShamblesSt) Then buildings.Add(_1623SouthShamblesSt)
+#End Region
+
+#Region "Medium Garage"
+            '0552 Roy Lowenstein Blvd
+            Dim _0552RoyLowensteinBlvdGrg As New ApartmentClass()
+            With _0552RoyLowensteinBlvdGrg
+                .ID = 32
+                .Name = "MP_PROP_32"
+                .Description = "MP_PROP_32DES"
+                .Price = 80000
+                .GarageFilePath = "0552_roy_lowenstein_blvd"
+                .SetAsGarage
+            End With
+            Dim _0552RoyLowensteinBlvd As New BuildingClass()
+            With _0552RoyLowensteinBlvd
+                .Name = "0552 Roy Lowenstein Blvd"
+                .GarageInPos = New Vector3(507.9363F, -1497.015F, 28.56527F)
+                .GarageFootInPos = New Quaternion(504.7118F, -1493.334F, 28.2883F, 2.796054F)
+                .GarageOutPos = New Quaternion(507.6498F, -1501.703F, 28.56643F, 176.5381F)
+                .CameraPos = New CameraPRH(New Vector3(493.9597F, -1504.415F, 31.0884F), New Vector3(-8.802479F, 0F, -30.41007F), 50.0F)
+                .GarageType = eGarageType.SixCarGarage
+                .SaleSign = New EntityVector(ForSaleSign, New Quaternion(511.222F, -1496.117F, 28.28793F, -88.99961F))
+                .SetAsGarage
+                .Apartments = New List(Of ApartmentClass) From {_0552RoyLowensteinBlvdGrg}
+            End With
+            If Not buildings.Contains(_0552RoyLowensteinBlvd) Then buildings.Add(_0552RoyLowensteinBlvd)
 #End Region
 
             For Each bd In buildings

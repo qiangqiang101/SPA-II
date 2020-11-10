@@ -19,6 +19,7 @@ Module SixCarGarage
     'Coords
     Public Interior As New Vector3(193.9493, -1004.425, -99.99999)
     Public Elevator As New Vector3(207.1506, -998.9948, -99.9999)
+    Public ElevatorInside As New Quaternion(209.4215F, -999.0895F, -100.0F, 90.90394F)
     Public GarageDoorL As New Vector3(202.2906, -1007.7249, -99.9999)
     Public GarageDoorR As New Vector3(194.4465, -1007.7326, -99.9999)
     Public MenuActivator As New Vector3(204.1768, -995.3179, -99.9999)
@@ -102,14 +103,30 @@ Module SixCarGarage
 
     Public Sub SixCarGarageOnTick()
         'Enter Apartment from Garage Elevator
-        If GarageElevatorDistance() <= 2.0F Then
-            UI.ShowHelpMessage(Game.GetGXTEntry("MP_PROP_BUZZ1"))
-            If Game.IsControlJustReleased(0, Control.Context) Then
-                FadeScreen(1)
-                Apartment.SetInteriorActive()
-                Game.Player.Character.Position = Apartment.ApartmentInPos
-                Clear()
-                FadeScreen(0)
+        If Not Apartment.ApartmentType = eApartmentType.Other Then
+            If GarageElevatorDistance() <= 2.0F Then
+                UI.ShowHelpMessage(Game.GetGXTEntry("MP_PROP_BUZZ1"))
+                If Game.IsControlJustReleased(0, Control.Context) Then
+                    HideHud = True
+                    Apartment.Building.PlayEnterElevatorCutScene(5000)
+                    Apartment.SetInteriorActive()
+                    Game.Player.Character.Position = Apartment.ApartmentInPos
+                    Select Case Apartment.ApartmentType
+                        Case eApartmentType.LowEnd
+                            LowEndApartment.Apartment = Apartment
+                            LowEndApartment.SpawnDoor()
+                        Case eApartmentType.MediumEnd
+                            MediumEndApartment.Apartment = Apartment
+                            MediumEndApartment.SpawnDoor()
+                        Case eApartmentType.None, eApartmentType.IPL
+                            HighEndApartment.Building = Apartment.Building
+                    End Select
+                    Apartment.PlayApartmentEnterCutscene()
+                    Clear()
+                    World.DestroyAllCameras()
+                    World.RenderingCamera = Nothing
+                    HideHud = False
+                End If
             End If
         End If
 
@@ -119,7 +136,7 @@ Module SixCarGarage
             If Game.IsControlJustReleased(0, Control.Context) Then
                 FadeScreen(1)
                 If Apartment.Building.GarageDoor = eFrontDoor.StandardDoor Then
-                    Apartment.Building.PlayExitGarageCamera(10000, True, True, CameraShake.Hand, 0.4F)
+                    Apartment.Building.PlayExitGarageCamera(5000, True, True, CameraShake.Hand, 0.4F)
                 Else
                     Game.Player.Character.Position = Apartment.Building.GarageOutPos.ToVector3
                     Game.Player.Character.Heading = Apartment.Building.GarageOutPos.W
@@ -133,7 +150,7 @@ Module SixCarGarage
             If Game.IsControlJustReleased(0, Control.Context) Then
                 FadeScreen(1)
                 If Apartment.Building.GarageDoor = eFrontDoor.StandardDoor Then
-                    Apartment.Building.PlayExitGarageCamera(10000, True, True, CameraShake.Hand, 0.4F)
+                    Apartment.Building.PlayExitGarageCamera(5000, True, True, CameraShake.Hand, 0.4F)
                 Else
                     Game.Player.Character.Position = Apartment.Building.GarageOutPos.ToVector3
                     Game.Player.Character.Heading = Apartment.Building.GarageOutPos.W
@@ -152,8 +169,8 @@ Module SixCarGarage
 
                 Dim newVeh As Vehicle
                 If Apartment.Building.GarageDoor = eFrontDoor.StandardDoor Then
-                    Game.Player.Character.Position = bd.GarageDoorPos.ToVector3
-                    newVeh = curVeh.CloneVehicle(bd.GarageDoorPos.ToVector3, bd.GarageDoorPos.W, False)
+                    Game.Player.Character.Position = bd.GarageWaypoint.ToVector3
+                    newVeh = curVeh.CloneVehicle(bd.GarageWaypoint.ToVector3, bd.GarageWaypoint.W, False)
                 Else
                     Game.Player.Character.Position = bd.GarageOutPos.ToVector3
                     newVeh = curVeh.CloneVehicle(bd.GarageOutPos.ToVector3, bd.GarageOutPos.W, False)
@@ -177,15 +194,15 @@ Module SixCarGarage
                 End With
                 outVehicleList.Add(newVeh)
                 If Apartment.Building.GarageDoor = eFrontDoor.StandardDoor Then
-                    newVeh.Position = bd.GarageDoorPos.ToVector3
+                    newVeh.Position = bd.GarageWaypoint.ToVector3
                 Else
                     newVeh.Position = bd.GarageOutPos.ToVector3
                 End If
                 newVeh.SetPlayerIntoVehicle
                 newVeh.EngineRunning = True
                 Clear()
-                FadeScreen(0)
-                Apartment.Building.PlayExitGarageCamera(5000, True, True, CameraShake.Hand, 0.4F)
+                If Apartment.Building.GarageDoor = eFrontDoor.NoDoor Then FadeScreen(0)
+                Apartment.Building.PlayExitGarageCamera(7000, True, True, CameraShake.Hand, 0.4F)
             End If
         End If
 

@@ -36,7 +36,7 @@ Public Class BuildingClass
     Public Door2 As Door
     Public GarageDoor As eFrontDoor
     Public Door3 As Door
-    Public GarageDoorPos As Quaternion
+    Public GarageWaypoint As Quaternion
 
     Public BuildingBlip As Blip
     Public GarageBlip As Blip
@@ -417,7 +417,7 @@ Public Class BuildingClass
             Dim selectedApt As ApartmentClass = selectedItem.Tag
             If selectedApt.Owner = GetPlayer() Then
                 AptMenu.Visible = False
-                NewFunc.HideHud = True
+                HideHud = True
                 PlayEnterApartmentCamera(3000, True, True, CameraShake.Hand, 0.4F)
                 selectedApt.SetInteriorActive()
                 PP.Position = selectedApt.ApartmentInPos
@@ -434,7 +434,7 @@ Public Class BuildingClass
                 selectedApt.PlayApartmentEnterCutscene()
                 World.DestroyAllCameras()
                 World.RenderingCamera = Nothing
-                NewFunc.HideHud = False
+                HideHud = False
             End If
         Catch ex As Exception
             Logger.Log($"{ex.Message} {ex.StackTrace}")
@@ -454,151 +454,160 @@ Public Class BuildingClass
         End Select
     End Function
 
+    Private Sub SaveVehicle(selectedApt As ApartmentClass)
+        GrgMenu.Visible = False
+        HideHud = False
+        PlayEnterGarageCamera(7000, True, True, CameraShake.Hand, 0.4F)
+        FadeScreen(1)
+        HideHud = False
+        World.DestroyAllCameras()
+        World.RenderingCamera = Nothing
+        Select Case selectedApt.ApartmentType
+            Case eApartmentType.LowEnd
+                LowEndApartment.Apartment = selectedApt
+                LowEndApartment.SpawnDoor()
+            Case eApartmentType.MediumEnd
+                MediumEndApartment.Apartment = selectedApt
+                MediumEndApartment.SpawnDoor()
+            Case eApartmentType.None, eApartmentType.IPL
+                HighEndApartment.Building = Me
+        End Select
+        Select Case GarageType
+            Case eGarageType.TwoCarGarage
+                TwoCarGarage.Apartment = selectedApt
+                TwoCarGarage.Interior.SetInteriorActive
+
+                If PP.IsInVehicle Then
+                    'In Vehicle
+                    Dim currVeh = PP.CurrentVehicle
+                    Dim FromApartment = currVeh.GetInt(vehIdDecor)
+                    Dim UniqueID = currVeh.GetInt(vehUidDecor)
+
+                    PP.Task.WarpOutOfVehicle(PP.CurrentVehicle)
+
+                    Select Case FromApartment
+                        Case 0
+                                    'Nothing need to do for this step
+                        Case selectedApt.ID
+                            Dim ExistingFileToDelete As String = $"{grgXmlPath}{selectedApt.GarageFilePath}\{UniqueID}.xml"
+                            If File.Exists(ExistingFileToDelete) Then File.Delete(ExistingFileToDelete)
+                        Case Else
+                            Dim ExistingFileToDelete As String = $"{grgXmlPath}{Helper.apartments.Find(Function(x) x.ID = FromApartment).GarageFilePath}\{UniqueID}.xml"
+                            If File.Exists(ExistingFileToDelete) Then File.Delete(ExistingFileToDelete)
+                    End Select
+
+                    If currVeh.IsCurrentVehicleExistInList Then outVehicleList.Remove(currVeh)
+                    Dim uid As Integer = Guid.NewGuid.GetHashCode
+                    Dim newVeh As New VehicleData($"{grgXmlPath}{selectedApt.GarageFilePath}\{uid}.xml", New VehicleClass(currVeh, GetPlayer, selectedApt.ID, uid, GetAvailableIndex(selectedApt.Vehicles, GarageType)))
+                    newVeh.Save()
+                    PP.Position = TwoCarGarage.Elevator
+                    TwoCarGarage.LoadVehiclesSetPlayerPos(uid)
+                    currVeh.CurrentBlip.Remove()
+                    currVeh.Delete()
+                    PP.Task.LeaveVehicle()
+                Else
+                    'On Foot
+                    PP.Position = TwoCarGarage.GarageDoor
+                    TwoCarGarage.LoadVehicles()
+                End If
+
+                FadeScreen(0)
+            Case eGarageType.SixCarGarage
+                SixCarGarage.Apartment = selectedApt
+                SixCarGarage.Interior.SetInteriorActive
+
+                If PP.IsInVehicle Then
+                    'In Vehicle
+                    Dim currVeh = PP.CurrentVehicle
+                    Dim FromApartment = currVeh.GetInt(vehIdDecor)
+                    Dim UniqueID = currVeh.GetInt(vehUidDecor)
+
+                    PP.Task.WarpOutOfVehicle(PP.CurrentVehicle)
+
+                    Select Case FromApartment
+                        Case 0
+                                    'Nothing need to do for this step
+                        Case selectedApt.ID
+                            Dim ExistingFileToDelete As String = $"{grgXmlPath}{selectedApt.GarageFilePath}\{UniqueID}.xml"
+                            If File.Exists(ExistingFileToDelete) Then File.Delete(ExistingFileToDelete)
+                        Case Else
+                            Dim ExistingFileToDelete As String = $"{grgXmlPath}{Helper.apartments.Find(Function(x) x.ID = FromApartment).GarageFilePath}\{UniqueID}.xml"
+                            If File.Exists(ExistingFileToDelete) Then File.Delete(ExistingFileToDelete)
+                    End Select
+
+                    If currVeh.IsCurrentVehicleExistInList Then outVehicleList.Remove(currVeh)
+                    Dim uid As Integer = Guid.NewGuid.GetHashCode
+                    Dim newVeh As New VehicleData($"{grgXmlPath}{selectedApt.GarageFilePath}\{uid}.xml", New VehicleClass(currVeh, GetPlayer, selectedApt.ID, uid, GetAvailableIndex(selectedApt.Vehicles, GarageType)))
+                    newVeh.Save()
+                    PP.Position = SixCarGarage.Elevator
+                    SixCarGarage.LoadVehiclesSetPlayerPos(uid)
+                    currVeh.CurrentBlip.Remove()
+                    currVeh.Delete()
+                    PP.Task.LeaveVehicle()
+                Else
+                    'On Foot
+                    PP.Position = SixCarGarage.GarageDoorL
+                    SixCarGarage.LoadVehicles()
+                End If
+
+                FadeScreen(0)
+            Case eGarageType.TenCarGarage
+                TenCarGarage.Apartment = selectedApt
+                TenCarGarage.Interior.SetInteriorActive()
+
+                If PP.IsInVehicle Then
+                    'In Vehicle
+                    Dim currVeh = PP.CurrentVehicle
+                    Dim FromApartment = currVeh.GetInt(vehIdDecor)
+                    Dim UniqueID = currVeh.GetInt(vehUidDecor)
+
+                    PP.Task.WarpOutOfVehicle(PP.CurrentVehicle)
+
+                    Select Case FromApartment
+                        Case 0
+                                    'Nothing need to do for this step
+                        Case selectedApt.ID
+                            Dim ExistingFileToDelete As String = $"{grgXmlPath}{selectedApt.GarageFilePath}\{UniqueID}.xml"
+                            If File.Exists(ExistingFileToDelete) Then File.Delete(ExistingFileToDelete)
+                        Case Else
+                            Dim ExistingFileToDelete As String = $"{grgXmlPath}{Helper.apartments.Find(Function(x) x.ID = FromApartment).GarageFilePath}\{UniqueID}.xml"
+                            If File.Exists(ExistingFileToDelete) Then File.Delete(ExistingFileToDelete)
+                    End Select
+
+                    If currVeh.IsCurrentVehicleExistInList Then outVehicleList.Remove(currVeh)
+                    Dim uid As Integer = Guid.NewGuid.GetHashCode
+                    Dim newVeh As New VehicleData($"{grgXmlPath}{selectedApt.GarageFilePath}\{uid}.xml", New VehicleClass(currVeh, GetPlayer, selectedApt.ID, uid, GetAvailableIndex(selectedApt.Vehicles, GarageType)))
+                    newVeh.Save()
+                    PP.Position = TenCarGarage.Elevator
+                    TenCarGarage.LoadVehiclesSetPlayerPos(uid)
+                    currVeh.CurrentBlip.Remove()
+                    currVeh.Delete()
+                    PP.Task.LeaveVehicle()
+                Else
+                    'On Foot
+                    PP.Position = TenCarGarage.GarageDoorL
+                    TenCarGarage.LoadVehicles()
+                End If
+
+                FadeScreen(0)
+            Case eGarageType.TwentyCarGarage
+                TwentyCarGarage.SetInteriorActive()
+        End Select
+    End Sub
+
     Private Sub GrgMenu_OnItemSelect(sender As UIMenu, selectedItem As UIMenuItem, index As Integer) Handles GrgMenu.OnItemSelect
         Try
             Dim selectedApt As ApartmentClass = selectedItem.Tag
             If selectedApt.Owner = GetPlayer() Then
-                If Not selectedApt.Vehicles.Count = GetGarageVehicleCount() Then
-                    GrgMenu.Visible = False
-                    NewFunc.HideHud = False
-                    PlayEnterGarageCamera(5000, True, True, CameraShake.Hand, 0.4F)
-                    FadeScreen(1)
-                    World.DestroyAllCameras()
-                    World.RenderingCamera = Nothing
-                    Select Case selectedApt.ApartmentType
-                        Case eApartmentType.LowEnd
-                            LowEndApartment.Apartment = selectedApt
-                            LowEndApartment.SpawnDoor()
-                        Case eApartmentType.MediumEnd
-                            MediumEndApartment.Apartment = selectedApt
-                            MediumEndApartment.SpawnDoor()
-                        Case eApartmentType.None, eApartmentType.IPL
-                            HighEndApartment.Building = Me
-                    End Select
-                    Select Case GarageType
-                        Case eGarageType.TwoCarGarage
-                            TwoCarGarage.Apartment = selectedApt
-                            TwoCarGarage.Interior.SetInteriorActive
-
-                            If PP.IsInVehicle Then
-                                'In Vehicle
-                                Dim currVeh = PP.CurrentVehicle
-                                Dim FromApartment = currVeh.GetInt(vehIdDecor)
-                                Dim UniqueID = currVeh.GetInt(vehUidDecor)
-
-                                PP.Task.WarpOutOfVehicle(PP.CurrentVehicle)
-
-                                Select Case FromApartment
-                                    Case 0
-                                    'Nothing need to do for this step
-                                    Case selectedApt.ID
-                                        Dim ExistingFileToDelete As String = $"{grgXmlPath}{selectedApt.GarageFilePath}\{UniqueID}.xml"
-                                        If File.Exists(ExistingFileToDelete) Then File.Delete(ExistingFileToDelete)
-                                    Case Else
-                                        Dim ExistingFileToDelete As String = $"{grgXmlPath}{Helper.apartments.Find(Function(x) x.ID = FromApartment).GarageFilePath}\{UniqueID}.xml"
-                                        If File.Exists(ExistingFileToDelete) Then File.Delete(ExistingFileToDelete)
-                                End Select
-
-                                If currVeh.IsCurrentVehicleExistInList Then outVehicleList.Remove(currVeh)
-                                Dim uid As Integer = Guid.NewGuid.GetHashCode
-                                Dim newVeh As New VehicleData($"{grgXmlPath}{selectedApt.GarageFilePath}\{uid}.xml", New VehicleClass(currVeh, GetPlayer, selectedApt.ID, uid, GetAvailableIndex(selectedApt.Vehicles, GarageType)))
-                                newVeh.Save()
-                                PP.Position = TwoCarGarage.Elevator
-                                TwoCarGarage.LoadVehiclesSetPlayerPos(uid)
-                                currVeh.CurrentBlip.Remove()
-                                currVeh.Delete()
-                                PP.Task.LeaveVehicle()
-                            Else
-                                'On Foot
-                                PP.Position = TwoCarGarage.Elevator
-                                TwoCarGarage.LoadVehicles()
-                            End If
-
-                            FadeScreen(0)
-                        Case eGarageType.SixCarGarage
-                            SixCarGarage.Apartment = selectedApt
-                            SixCarGarage.Interior.SetInteriorActive
-
-                            If PP.IsInVehicle Then
-                                'In Vehicle
-                                Dim currVeh = PP.CurrentVehicle
-                                Dim FromApartment = currVeh.GetInt(vehIdDecor)
-                                Dim UniqueID = currVeh.GetInt(vehUidDecor)
-
-                                PP.Task.WarpOutOfVehicle(PP.CurrentVehicle)
-
-                                Select Case FromApartment
-                                    Case 0
-                                    'Nothing need to do for this step
-                                    Case selectedApt.ID
-                                        Dim ExistingFileToDelete As String = $"{grgXmlPath}{selectedApt.GarageFilePath}\{UniqueID}.xml"
-                                        If File.Exists(ExistingFileToDelete) Then File.Delete(ExistingFileToDelete)
-                                    Case Else
-                                        Dim ExistingFileToDelete As String = $"{grgXmlPath}{Helper.apartments.Find(Function(x) x.ID = FromApartment).GarageFilePath}\{UniqueID}.xml"
-                                        If File.Exists(ExistingFileToDelete) Then File.Delete(ExistingFileToDelete)
-                                End Select
-
-                                If currVeh.IsCurrentVehicleExistInList Then outVehicleList.Remove(currVeh)
-                                Dim uid As Integer = Guid.NewGuid.GetHashCode
-                                Dim newVeh As New VehicleData($"{grgXmlPath}{selectedApt.GarageFilePath}\{uid}.xml", New VehicleClass(currVeh, GetPlayer, selectedApt.ID, uid, GetAvailableIndex(selectedApt.Vehicles, GarageType)))
-                                newVeh.Save()
-                                PP.Position = SixCarGarage.Elevator
-                                SixCarGarage.LoadVehiclesSetPlayerPos(uid)
-                                currVeh.CurrentBlip.Remove()
-                                currVeh.Delete()
-                                PP.Task.LeaveVehicle()
-                            Else
-                                'On Foot
-                                PP.Position = SixCarGarage.Elevator
-                                SixCarGarage.LoadVehicles()
-                            End If
-
-                            FadeScreen(0)
-                        Case eGarageType.TenCarGarage
-                            TenCarGarage.Apartment = selectedApt
-                            TenCarGarage.Interior.SetInteriorActive()
-
-                            If PP.IsInVehicle Then
-                                'In Vehicle
-                                Dim currVeh = PP.CurrentVehicle
-                                Dim FromApartment = currVeh.GetInt(vehIdDecor)
-                                Dim UniqueID = currVeh.GetInt(vehUidDecor)
-
-                                PP.Task.WarpOutOfVehicle(PP.CurrentVehicle)
-
-                                Select Case FromApartment
-                                    Case 0
-                                    'Nothing need to do for this step
-                                    Case selectedApt.ID
-                                        Dim ExistingFileToDelete As String = $"{grgXmlPath}{selectedApt.GarageFilePath}\{UniqueID}.xml"
-                                        If File.Exists(ExistingFileToDelete) Then File.Delete(ExistingFileToDelete)
-                                    Case Else
-                                        Dim ExistingFileToDelete As String = $"{grgXmlPath}{Helper.apartments.Find(Function(x) x.ID = FromApartment).GarageFilePath}\{UniqueID}.xml"
-                                        If File.Exists(ExistingFileToDelete) Then File.Delete(ExistingFileToDelete)
-                                End Select
-
-                                If currVeh.IsCurrentVehicleExistInList Then outVehicleList.Remove(currVeh)
-                                Dim uid As Integer = Guid.NewGuid.GetHashCode
-                                Dim newVeh As New VehicleData($"{grgXmlPath}{selectedApt.GarageFilePath}\{uid}.xml", New VehicleClass(currVeh, GetPlayer, selectedApt.ID, uid, GetAvailableIndex(selectedApt.Vehicles, GarageType)))
-                                newVeh.Save()
-                                PP.Position = TenCarGarage.Elevator
-                                TenCarGarage.LoadVehiclesSetPlayerPos(uid)
-                                currVeh.CurrentBlip.Remove()
-                                currVeh.Delete()
-                                PP.Task.LeaveVehicle()
-                            Else
-                                'On Foot
-                                PP.Position = TenCarGarage.Elevator
-                                TenCarGarage.LoadVehicles()
-                            End If
-
-                            FadeScreen(0)
-                        Case eGarageType.TwentyCarGarage
-                            TwentyCarGarage.SetInteriorActive()
-                    End Select
+                If PP.IsInVehicle Then
+                    If Not selectedApt.Vehicles.Count = GetGarageVehicleCount() Then
+                        SaveVehicle(selectedApt)
+                    Else
+                        'Garage is full
+                        UI.ShowSubtitle(Game.GetGXTEntry("WEB_VEH_FULL"))
+                    End If
                 Else
-                    'Garage is full
-                    UI.ShowSubtitle(Game.GetGXTEntry("WEB_VEH_FULL"))
+                    SaveVehicle(selectedApt)
                 End If
             End If
         Catch ex As Exception
@@ -610,7 +619,7 @@ Public Class BuildingClass
         FadeScreen(1)
         World.DestroyAllCameras()
         World.RenderingCamera = Nothing
-        NewFunc.HideHud = False
+        HideHud = False
         FadeScreen(0)
     End Sub
 
@@ -649,7 +658,7 @@ Public Class BuildingClass
                         FadeScreen(1)
                         World.DestroyAllCameras()
                         World.RenderingCamera = Nothing
-                        NewFunc.HideHud = False
+                        HideHud = False
                         FadeScreen(0)
                     End If
                 End If
@@ -660,7 +669,7 @@ Public Class BuildingClass
     End Sub
 
     Public Sub PlayEnterApartmentCamera(duration As Integer, easePosition As Boolean, easeRotation As Boolean, camShake As CameraShake, amplitude As Single)
-        NewFunc.HideHud = True
+        HideHud = True
         Select Case FrontDoor
             Case eFrontDoor.DoubleDoors
                 Door1.UnlockDoor()
@@ -683,11 +692,11 @@ Public Class BuildingClass
             Case eFrontDoor.StandardDoor
                 Door1.LockDoor()
         End Select
-        NewFunc.HideHud = False
+        HideHud = False
     End Sub
 
     Public Sub PlayExitApartmentCamera(duration As Integer, easePosition As Boolean, easeRotation As Boolean, camShake As CameraShake, amplitude As Single)
-        NewFunc.HideHud = True
+        HideHud = True
         PP.Position = BuildingLobby.ToVector3
         PP.Heading = BuildingOutPos.W
         Select Case FrontDoor
@@ -714,12 +723,12 @@ Public Class BuildingClass
             Case eFrontDoor.StandardDoor
                 Door1.LockDoor()
         End Select
-        NewFunc.HideHud = False
+        HideHud = False
     End Sub
 
     Public Sub PlayEnterGarageCamera(duration As Integer, easePosition As Boolean, easeRotation As Boolean, camShake As CameraShake, amplitude As Single)
         If GarageDoor = eFrontDoor.StandardDoor Then
-            NewFunc.HideHud = True
+            HideHud = True
             Door3.UnlockDoor()
 
             If PP.IsInVehicle Then
@@ -730,15 +739,24 @@ Public Class BuildingClass
                 Dim interpCam As Camera = World.CreateCamera(EnterCamera4.Position, EnterCamera4.Rotation, EnterCamera4.FOV)
                 World.RenderingCamera = scriptCam
                 Script.Wait(3000)
-                PP.Task.DriveTo(PP.CurrentVehicle, GarageDoorPos.ToVector3, 3.0F, 5.0F)
+                Dim ts As New TaskSequence()
+                ts.AddTask.DriveTo(PP.CurrentVehicle, GarageInPos, 0.1F, 5.0F, DrivingStyle.Rushed)
+                ts.AddTask.DriveTo(PP.CurrentVehicle, GarageFootOutPos.ToVector3, 0.1F, 5.0F, DrivingStyle.Rushed)
+                ts.AddTask.DriveTo(PP.CurrentVehicle, GarageWaypoint.ToVector3, 0.1F, 5.0F, DrivingStyle.Rushed)
+                PP.Task.PerformSequence(ts)
                 scriptCam.InterpTo(interpCam, duration, easePosition, easeRotation)
                 World.RenderingCamera = interpCam
                 interpCam.Shake(camShake, amplitude)
                 Script.Wait(duration)
+                ts.Close()
+                ts.Dispose()
             Else
                 PP.Position = New Vector3(GarageInPos.X, GarageInPos.Y, GarageInPos.Z - 1.0F)
                 PP.Heading = GarageOutPos.W - 180.0F
-                PP.Task.GoTo(GarageDoorPos.ToVector3, False, duration)
+                Dim ts As New TaskSequence()
+                ts.AddTask.GoTo(GarageFootOutPos.ToVector3, False, duration)
+                ts.AddTask.GoTo(GarageWaypoint.ToVector3, False, duration)
+                PP.Task.PerformSequence(ts)
                 Dim scriptCam As Camera = World.CreateCamera(EnterCamera3.Position, EnterCamera3.Rotation, EnterCamera3.FOV)
                 Dim interpCam As Camera = World.CreateCamera(EnterCamera4.Position, EnterCamera4.Rotation, EnterCamera4.FOV)
                 World.RenderingCamera = scriptCam
@@ -746,22 +764,27 @@ Public Class BuildingClass
                 World.RenderingCamera = interpCam
                 interpCam.Shake(camShake, amplitude)
                 Script.Wait(duration)
+                ts.Close()
+                ts.Dispose()
             End If
 
             Door3.LockDoor()
-            NewFunc.HideHud = False
         End If
     End Sub
 
     Public Sub PlayExitGarageCamera(duration As Integer, easePosition As Boolean, easeRotation As Boolean, camShake As CameraShake, amplitude As Single)
         If GarageDoor = eFrontDoor.StandardDoor Then
-            NewFunc.HideHud = True
+            HideHud = True
             Door3.UnlockDoor()
 
             If PP.IsInVehicle Then
-                PP.CurrentVehicle.Position = GarageDoorPos.ToVector3
-                PP.CurrentVehicle.Heading = GarageDoorPos.W
-                PP.Task.DriveTo(PP.CurrentVehicle, GarageOutPos.ToVector3, 3.0F, 5.0F)
+                PP.CurrentVehicle.Position = GarageWaypoint.ToVector3
+                PP.CurrentVehicle.Heading = GarageWaypoint.W
+                Dim ts As New TaskSequence()
+                ts.AddTask.DriveTo(PP.CurrentVehicle, GarageFootOutPos.ToVector3, 0.1F, 5.0F, DrivingStyle.Rushed)
+                ts.AddTask.DriveTo(PP.CurrentVehicle, GarageInPos, 0.1F, 5.0F, DrivingStyle.Rushed)
+                ts.AddTask.DriveTo(PP.CurrentVehicle, GarageOutPos.ToVector3, 0.1F, 5.0F, DrivingStyle.Rushed)
+                PP.Task.PerformSequence(ts)
                 Dim scriptCam As Camera = World.CreateCamera(EnterCamera4.Position, EnterCamera4.Rotation, EnterCamera4.FOV)
                 Dim interpCam As Camera = World.CreateCamera(EnterCamera3.Position, EnterCamera3.Rotation, EnterCamera3.FOV)
                 World.RenderingCamera = scriptCam
@@ -770,27 +793,72 @@ Public Class BuildingClass
                 interpCam.Shake(camShake, amplitude)
                 FadeScreen(0)
                 Script.Wait(duration)
+                ts.Close()
+                ts.Dispose()
             Else
-                PP.Position = GarageFootOutPos.ToVector3
+                PP.Position = GarageInPos
                 PP.Heading = GarageFootOutPos.W
-                PP.Task.GoTo(GarageFootInPos.ToVector3, False, duration)
-                Dim scriptCam As Camera = World.CreateCamera(EnterCamera4.Position, EnterCamera4.Rotation, EnterCamera4.FOV)
-                Dim interpCam As Camera = World.CreateCamera(EnterCamera3.Position, EnterCamera3.Rotation, EnterCamera3.FOV)
-                World.RenderingCamera = scriptCam
-                scriptCam.InterpTo(interpCam, duration, easePosition, easeRotation)
-                World.RenderingCamera = interpCam
-                interpCam.Shake(camShake, amplitude)
                 FadeScreen(0)
-                Script.Wait(duration)
             End If
             World.DestroyAllCameras()
             World.RenderingCamera = Nothing
 
             Door3.LockDoor()
-            NewFunc.HideHud = False
+            HideHud = False
         End If
     End Sub
 
+    Public Sub PlayEnterElevatorCutScene(duration As Integer)
+        HideHud = True
+        Select Case GarageType
+            Case eGarageType.TwoCarGarage
+                Dim scriptCam As Camera = World.CreateCamera(New Vector3(176.5861F, -1007.405F, -98.99998F), New Vector3(3.541232F, 0.0000001069259F, -44.71983F), 50.0F)
+                World.RenderingCamera = scriptCam
+                PP.Position = TwoCarGarage.Elevator
+                PP.Heading = TwoCarGarage.ElevatorInside.W - 160.0F
+                PP.Task.GoTo(TwoCarGarage.ElevatorInside.ToVector3, False, duration)
+            Case eGarageType.SixCarGarage
+                Dim scriptCam As Camera = World.CreateCamera(New Vector3(204.9573F, -1001.148F, -98.99999F), New Vector3(1.120068F, 0.00000005337105F, -57.21745F), 50.0F)
+                World.RenderingCamera = scriptCam
+                PP.Position = SixCarGarage.Elevator
+                PP.Heading = SixCarGarage.ElevatorInside.W - 160.0F
+                PP.Task.GoTo(SixCarGarage.ElevatorInside.ToVector3, False, duration)
+            Case eGarageType.TenCarGarage
+                Dim scriptCam As Camera = World.CreateCamera(New Vector3(235.6371F, -1003.728F, -98.9999F), New Vector3(2.576892F, -0.00000005341485F, -110.4919F), 50.0F)
+                World.RenderingCamera = scriptCam
+                PP.Position = New Vector3(237.2018F, -1004.526F, -99.9999F)
+                PP.Heading = 270.0F
+                PP.Task.PlayAnimation("anim@apt_trans@elevator", "elev_1")
+            Case eGarageType.TwentyCarGarage
+        End Select
+        Script.Wait(duration)
+    End Sub
+
+    Public Sub PlayExitElevatorCutscene(duration As Integer)
+        HideHud = True
+        Select Case GarageType
+            Case eGarageType.TwoCarGarage
+                Dim scriptCam As Camera = World.CreateCamera(New Vector3(176.5861F, -1007.405F, -98.99998F), New Vector3(3.541232F, 0.0000001069259F, -44.71983F), 50.0F)
+                World.RenderingCamera = scriptCam
+                PP.Position = TwoCarGarage.ElevatorInside.ToVector3
+                PP.Heading = TwoCarGarage.ElevatorInside.W
+                PP.Task.GoTo(New Vector3(177.9277F, -1006.376F, -99.99992F), False, duration)
+            Case eGarageType.SixCarGarage
+                Dim scriptCam As Camera = World.CreateCamera(New Vector3(204.9573F, -1001.148F, -98.99999F), New Vector3(1.120068F, 0.00000005337105F, -57.21745F), 50.0F)
+                World.RenderingCamera = scriptCam
+                PP.Position = SixCarGarage.ElevatorInside.ToVector3
+                PP.Heading = SixCarGarage.ElevatorInside.W
+                PP.Task.GoTo(New Vector3(205.923F, -999.2991F, -100.0F), False, duration)
+            Case eGarageType.TenCarGarage
+                Dim scriptCam As Camera = World.CreateCamera(New Vector3(235.6371F, -1003.728F, -98.9999F), New Vector3(2.576892F, -0.00000005341485F, -110.4919F), 50.0F)
+                World.RenderingCamera = scriptCam
+                PP.Position = TenCarGarage.ElevatorInside.ToVector3
+                PP.Heading = TenCarGarage.ElevatorInside.W
+                PP.Task.GoTo(New Vector3(237.2018F, -1004.526F, -99.9999F), False, duration)
+            Case eGarageType.TwentyCarGarage
+        End Select
+        Script.Wait(duration)
+    End Sub
 End Class
 
 Public Enum eGarageType

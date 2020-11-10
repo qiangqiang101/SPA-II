@@ -13,6 +13,8 @@ Module Helper
 
     'Config
     Public config As ScriptSettings = ScriptSettings.Load("scripts\SPA II\modconfig.ini")
+    Public debugMode As Boolean = True
+    Public HideHud As Boolean = False
 
     'Path 
     Public grgXmlPath As String = ".\scripts\SPA II\Garages\"
@@ -119,13 +121,15 @@ Module Helper
     ''' In = 0, Out = 1
     ''' Duration is milliseconds
     ''' </summary>
-    Public Sub FadeScreen(inOut As Integer, Optional duration As Integer = 1000)
+    Public Sub FadeScreen(inOut As Integer, Optional duration As Integer = 1000, Optional _hidehud As Boolean = False)
+        If _hidehud Then HideHud = _hidehud
         If inOut = 1 Then
             Game.FadeScreenOut(duration)
         Else
             Game.FadeScreenIn(duration)
         End If
         Script.Wait(duration)
+        If _hidehud Then HideHud = Not _hidehud
     End Sub
 
     Public Sub PlayPropertyPurchase(aptName As String)
@@ -274,7 +278,7 @@ Module Helper
     End Sub
 
     Public Sub Debug()
-        Dim playerText As New UIResText($"Player Position: {PP.Position}     Rotation: {PP.Rotation}", Point.Empty, 0.3F, Color.White, GTA.Font.ChaletLondon, UIResText.Alignment.Left)
+        Dim playerText As New UIResText($"Player Position: {PP.Position}     Rotation: {PP.Rotation}     Heading: {PP.Heading}", Point.Empty, 0.3F, Color.White, GTA.Font.ChaletLondon, UIResText.Alignment.Left)
         Dim playerVehText As New UIResText($"Player Vehicle Position: {PP.LastVehicle.Position}     Rotation: {PP.LastVehicle.Rotation}", New Point(0, playerText.Position.Y + 20), 0.3F, Color.White, GTA.Font.ChaletLondon, UIResText.Alignment.Left)
         Dim camText As New UIResText($"Camera Position: {GameplayCamera.Position}     Rotation: {GameplayCamera.Rotation}     FOV: {GameplayCamera.FieldOfView}", New Point(0, playerVehText.Position.Y + 20), 0.3F, Color.White, GTA.Font.ChaletLondon, UIResText.Alignment.Left)
         Dim direction As New UIResText($"Up: Vector     Down: Quaternion     Left: CameraPRH     Right: Door", New Point(0, camText.Position.Y + 20), 0.3F, Color.White, GTA.Font.ChaletLondon, UIResText.Alignment.Left)
@@ -632,6 +636,43 @@ Module Helper
         NFunc.Call(Hash.SET_TEXT_CENTRE, True)
         NFunc.Call(Hash._ADD_TEXT_COMPONENT_STRING, text)
         NFunc.Call(Hash._DRAW_TEXT, pos.X, pos.Y)
+    End Sub
+
+    <Extension>
+    Public Sub SetAsGarage(apt As ApartmentClass)
+        With apt
+            .SavePos = Vector3.Zero
+            .ApartmentDoorPos = QuaternionZero()
+            .ApartmentInPos = Vector3.Zero
+            .ApartmentOutPos = Vector3.Zero
+            .WardrobePos = QuaternionZero()
+            .IPL = Nothing
+            .AptStyleCam = Nothing
+            .EnterCam = Nothing
+            .ExitCam = Nothing
+            .GarageElevatorPos = Vector3.Zero
+            .GarageMenuPos = Vector3.Zero
+            .ApartmentType = eApartmentType.Other
+            .Door = Nothing
+        End With
+    End Sub
+
+    <Extension>
+    Public Sub SetAsGarage(bld As BuildingClass)
+        With bld
+            .BuildingInPos = New Quaternion(.GarageInPos.X, .GarageInPos.Y, .GarageInPos.Z, 0F)
+            .BuildingOutPos = QuaternionZero()
+            .BuildingLobby = QuaternionZero()
+            .EnterCamera1 = Nothing
+            .EnterCamera2 = Nothing
+            .BuildingType = eBuildingType.Garage
+            .FrontDoor = eFrontDoor.NoDoor
+            .Door1 = Nothing
+            .Door2 = Nothing
+            .GarageDoor = eFrontDoor.NoDoor
+            .Door3 = Nothing
+            .GarageWaypoint = QuaternionZero()
+        End With
     End Sub
 
 End Module

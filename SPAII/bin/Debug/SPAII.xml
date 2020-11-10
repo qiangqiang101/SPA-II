@@ -26,7 +26,7 @@ SPAII
  a.k.a TeleportOutside in SPA
  </summary>
 </member>
-<member name="M:SPAII.Helper.FadeScreen(System.Int32,System.Int32)">
+<member name="M:SPAII.Helper.FadeScreen(System.Int32,System.Int32,System.Boolean)">
  <summary>
  In = 0, Out = 1
  Duration is milliseconds

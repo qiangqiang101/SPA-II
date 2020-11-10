@@ -15,6 +15,7 @@ Module TwoCarGarage
     'Coords
     Public Interior As New Vector3(173.1176F, -1003.27887F, -99)
     Public Elevator As New Vector3(179.1001, -1005.655, -99.9999)
+    Public ElevatorInside As New Quaternion(179.0661F, -1002.717F, -99.99992F, 179.181F)
     Public GarageDoor As New Vector3(172.9447, -1008.339, -99.9999)
     Public MenuActivator As New Vector3(178.9034F, -1007.407F, -99.99998F)
     Public Veh0Pos As New Quaternion(175.2132, -1004.104, -99, -178.4487)
@@ -69,14 +70,30 @@ Module TwoCarGarage
 
     Public Sub TwoCarGarageOnTick()
         'Enter Apartment from Garage Elevator
-        If GarageElevatorDistance() <= 2.0F Then
-            UI.ShowHelpMessage(Game.GetGXTEntry("MP_PROP_BUZZ1"))
-            If Game.IsControlJustReleased(0, Control.Context) Then
-                FadeScreen(1)
-                Apartment.SetInteriorActive()
-                Game.Player.Character.Position = Apartment.ApartmentInPos
-                Clear()
-                FadeScreen(0)
+        If Not Apartment.ApartmentType = eApartmentType.Other Then
+            If GarageElevatorDistance() <= 2.0F Then
+                UI.ShowHelpMessage(Game.GetGXTEntry("MP_PROP_BUZZ1"))
+                If Game.IsControlJustReleased(0, Control.Context) Then
+                    HideHud = True
+                    Apartment.Building.PlayEnterElevatorCutScene(5000)
+                    Apartment.SetInteriorActive()
+                    Game.Player.Character.Position = Apartment.ApartmentInPos
+                    Select Case Apartment.ApartmentType
+                        Case eApartmentType.LowEnd
+                            LowEndApartment.Apartment = Apartment
+                            LowEndApartment.SpawnDoor()
+                        Case eApartmentType.MediumEnd
+                            MediumEndApartment.Apartment = Apartment
+                            MediumEndApartment.SpawnDoor()
+                        Case eApartmentType.None, eApartmentType.IPL
+                            HighEndApartment.Building = Apartment.Building
+                    End Select
+                    Apartment.PlayApartmentEnterCutscene()
+                    Clear()
+                    World.DestroyAllCameras()
+                    World.RenderingCamera = Nothing
+                    HideHud = False
+                End If
             End If
         End If
 
@@ -86,7 +103,7 @@ Module TwoCarGarage
             If Game.IsControlJustReleased(0, Control.Context) Then
                 FadeScreen(1)
                 If Apartment.Building.GarageDoor = eFrontDoor.StandardDoor Then
-                    Apartment.Building.PlayExitGarageCamera(10000, True, True, CameraShake.Hand, 0.4F)
+                    Apartment.Building.PlayExitGarageCamera(5000, True, True, CameraShake.Hand, 0.4F)
                 Else
                     Game.Player.Character.Position = Apartment.Building.GarageOutPos.ToVector3
                     Game.Player.Character.Heading = Apartment.Building.GarageOutPos.W
@@ -105,8 +122,8 @@ Module TwoCarGarage
 
                 Dim newVeh As Vehicle
                 If Apartment.Building.GarageDoor = eFrontDoor.StandardDoor Then
-                    Game.Player.Character.Position = bd.GarageDoorPos.ToVector3
-                    newVeh = curVeh.CloneVehicle(bd.GarageDoorPos.ToVector3, bd.GarageDoorPos.W, False)
+                    Game.Player.Character.Position = bd.GarageWaypoint.ToVector3
+                    newVeh = curVeh.CloneVehicle(bd.GarageWaypoint.ToVector3, bd.GarageWaypoint.W, False)
                 Else
                     Game.Player.Character.Position = bd.GarageOutPos.ToVector3
                     newVeh = curVeh.CloneVehicle(bd.GarageOutPos.ToVector3, bd.GarageOutPos.W, False)
@@ -130,7 +147,7 @@ Module TwoCarGarage
                 End With
                 outVehicleList.Add(newVeh)
                 If Apartment.Building.GarageDoor = eFrontDoor.StandardDoor Then
-                    newVeh.Position = bd.GarageDoorPos.ToVector3
+                    newVeh.Position = bd.GarageWaypoint.ToVector3
                 Else
                     newVeh.Position = bd.GarageOutPos.ToVector3
                 End If
@@ -138,7 +155,7 @@ Module TwoCarGarage
                 newVeh.EngineRunning = True
                 Clear()
                 If Apartment.Building.GarageDoor = eFrontDoor.NoDoor Then FadeScreen(0)
-                Apartment.Building.PlayExitGarageCamera(5000, True, True, CameraShake.Hand, 0.4F)
+                Apartment.Building.PlayExitGarageCamera(7000, True, True, CameraShake.Hand, 0.4F)
             End If
         End If
 

@@ -50,7 +50,7 @@ Public Class SPA2
                                 FadeScreen(1)
                                 bd.BuyMenu.Visible = True
                                 World.RenderingCamera = World.CreateCamera(bd.CameraPos.Position, bd.CameraPos.Rotation, bd.CameraPos.FOV)
-                                NewFunc.HideHud = True
+                                HideHud = True
                                 FadeScreen(0)
                             End If
                         End If
@@ -62,19 +62,20 @@ Public Class SPA2
                             Select Case bd.BuildingType
                                 Case eBuildingType.Apartment
                                     UI.ShowHelpMessage(Game.GetGXTEntry("MP_PROP_BUZZ1"))
-                                Case eBuildingType.Garage
-                                    UI.ShowHelpMessage(Game.GetGXTEntry("MP_PROP_BUZZ1B"))
                                 Case eBuildingType.ClubHouse
                                     UI.ShowHelpMessage(Game.GetGXTEntry("MP_BUZZ_CLU"))
                                 Case eBuildingType.Office
                                     UI.ShowHelpMessage(Game.GetGXTEntry("MP_BUZZ_OFF"))
                             End Select
                             If Game.IsControlJustReleased(0, GameControl.Context) Then
-                                FadeScreen(1)
-                                bd.AptMenu.Visible = True
-                                World.RenderingCamera = World.CreateCamera(bd.CameraPos.Position, bd.CameraPos.Rotation, bd.CameraPos.FOV)
-                                NewFunc.HideHud = True
-                                FadeScreen(0)
+                                Select Case bd.BuildingType
+                                    Case eBuildingType.Apartment, eBuildingType.ClubHouse, eBuildingType.Office
+                                        FadeScreen(1)
+                                        bd.AptMenu.Visible = True
+                                        World.RenderingCamera = World.CreateCamera(bd.CameraPos.Position, bd.CameraPos.Rotation, bd.CameraPos.FOV)
+                                        HideHud = True
+                                        FadeScreen(0)
+                                End Select
                             End If
                         End If
                     End If
@@ -105,16 +106,18 @@ Public Class SPA2
                     If bd.EntranceDistance <= 300.0F Then bd.BuildingInPos.ToVector3.DrawMarker
                     If bd.GarageDistance <= 300.0F Then bd.GarageFootInPos.ToVector3.DrawMarker
 
-                    'Debug Circle
-                    If bd.EntranceDistance <= 1000.0F Then
-                        bd.BuildingLobby.ToVector3.DrawMarker(Color.LightPink, text:="Lobby")
-                        bd.BuildingOutPos.ToVector3.DrawMarker(Color.Red, text:="Out Pos")
-                    End If
-                    If bd.GarageDistance <= 1000.0F Then
-                        bd.GarageInPos.DrawMarker(Color.Orange, text:="Car in Pos")
-                        bd.GarageFootOutPos.ToVector3.DrawMarker(Color.Yellow, text:="Foot out Pos")
-                        bd.GarageOutPos.ToVector3.DrawMarker(Color.Green, text:="Car out Pos")
-                        bd.GarageDoorPos.ToVector3.DrawMarker(Color.Indigo, text:="Garage door Pos")
+                    If debugMode Then
+                        'Debug Circle
+                        If bd.EntranceDistance <= 1000.0F Then
+                            bd.BuildingLobby.ToVector3.DrawMarker(Color.LightPink, text:="Lobby")
+                            bd.BuildingOutPos.ToVector3.DrawMarker(Color.Red, text:="Out Pos")
+                        End If
+                        If bd.GarageDistance <= 1000.0F Then
+                            bd.GarageInPos.DrawMarker(Color.Orange, text:="Car in Pos")
+                            bd.GarageFootOutPos.ToVector3.DrawMarker(Color.Yellow, text:="Foot out Pos")
+                            bd.GarageOutPos.ToVector3.DrawMarker(Color.Green, text:="Car out Pos")
+                            bd.GarageWaypoint.ToVector3.DrawMarker(Color.Indigo, text:="Garage waypoint")
+                        End If
                     End If
                 Next
 
@@ -159,15 +162,19 @@ Public Class SPA2
             RequestAdditionalText("s_range", "SHR_EXIT_HELP")
 
             'debug only
-            Debug()
-            If Player.IsAiming Then
-                Dim prop = Player.GetTargetedEntity
-                If prop = Nothing Then
-                    debug3rdLine = "Nothing to show"
-                Else
-                    debug3rdLine = $"New Door({prop.Model.Hash}, New Vector3({prop.Position.X}F, {prop.Position.Y}F, {prop.Position.Z}F))"
+            If debugMode Then
+                Debug()
+                If Player.IsAiming Then
+                    Dim prop = Player.GetTargetedEntity
+                    If prop = Nothing Then
+                        debug3rdLine = "Nothing to show"
+                    Else
+                        debug3rdLine = $"New Door({prop.Model.Hash}, New Vector3({prop.Position.X}F, {prop.Position.Y}F, {prop.Position.Z}F))"
+                    End If
                 End If
             End If
+
+            If NewFunc.IsCheating("spadebug") Then debugMode = Not debugMode
         Catch ex As Exception
             Logger.Log($"{ex.Message} {ex.StackTrace}")
         End Try
@@ -190,43 +197,48 @@ Public Class SPA2
         TenCarGarage.Clear()
         LowEndApartment.Clear()
         MediumEndApartment.Clear()
+
+        World.RenderingCamera = Nothing
+        World.DestroyAllCameras()
     End Sub
 
     Private Sub SPA2_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
-        If Game.IsKeyPressed(Keys.Up) Then
-            If Game.Player.Character.IsInVehicle Then
-                Dim gpccvp = Game.Player.Character.CurrentVehicle.Position
-                Logger.Logg($"New Vector3({gpccvp.X}F, {gpccvp.Y}F, {gpccvp.Z}F)")
-            Else
-                Dim gpcp = Game.Player.Character.Position
-                Logger.Logg($"New Vector3({gpcp.X}F, {gpcp.Y}F, {gpcp.Z - 1.0F}F)")
+        If debugMode Then
+            If Game.IsKeyPressed(Keys.Up) Then
+                If Game.Player.Character.IsInVehicle Then
+                    Dim gpccvp = Game.Player.Character.CurrentVehicle.Position
+                    Logger.Logg($"New Vector3({gpccvp.X}F, {gpccvp.Y}F, {gpccvp.Z}F)")
+                Else
+                    Dim gpcp = Game.Player.Character.Position
+                    Logger.Logg($"New Vector3({gpcp.X}F, {gpcp.Y}F, {gpcp.Z - 1.0F}F)")
+                End If
+                UI.ShowSubtitle("Position copied")
             End If
-            UI.ShowSubtitle("Position copied")
-        End If
 
-        If Game.IsKeyPressed(Keys.Down) Then
-            If Game.Player.Character.IsInVehicle Then
-                Dim gpccvp = Game.Player.Character.CurrentVehicle.Position
-                Dim cvhead = Game.Player.Character.CurrentVehicle.Heading
-                Logger.Logg($"New Quaternion({gpccvp.X}F, {gpccvp.Y}F, {gpccvp.Z}F, {cvhead}F)")
-            Else
-                Dim gpcp = Game.Player.Character.Position
-                Dim head = Game.Player.Character.Heading
-                Logger.Logg($"New Quaternion({gpcp.X}F, {gpcp.Y}F, {gpcp.Z - 1.0F}F, {head}F)")
+            If Game.IsKeyPressed(Keys.Down) Then
+                If Game.Player.Character.IsInVehicle Then
+                    Dim gpccvp = Game.Player.Character.CurrentVehicle.Position
+                    Dim cvhead = Game.Player.Character.CurrentVehicle.Heading
+                    Logger.Logg($"New Quaternion({gpccvp.X}F, {gpccvp.Y}F, {gpccvp.Z}F, {cvhead}F)")
+                Else
+                    Dim gpcp = Game.Player.Character.Position
+                    Dim head = Game.Player.Character.Heading
+                    Logger.Logg($"New Quaternion({gpcp.X}F, {gpcp.Y}F, {gpcp.Z - 1.0F}F, {head}F)")
+                End If
+                UI.ShowSubtitle("Quaternion copied")
             End If
-            UI.ShowSubtitle("Quaternion copied")
-        End If
 
-        If Game.IsKeyPressed(Keys.Left) Then
-            Dim gpcp = Game.Player.Character.Position
-            Dim gpcr = GameplayCamera.Rotation
-            Logger.Logg($"New CameraPRH(New Vector3({gpcp.X}F, {gpcp.Y}F, {gpcp.Z}F), New Vector3({gpcr.X}F, {gpcr.Y}F, {gpcr.Z}F), 50.0F)")
-            UI.ShowSubtitle("Gameplay camera copied")
-        End If
+            If Game.IsKeyPressed(Keys.Left) Then
+                Dim gpcp = Game.Player.Character.Position
+                Dim gpcr = GameplayCamera.Rotation
+                Logger.Logg($"New CameraPRH(New Vector3({gpcp.X}F, {gpcp.Y}F, {gpcp.Z}F), New Vector3({gpcr.X}F, {gpcr.Y}F, {gpcr.Z}F), 50.0F)")
+                UI.ShowSubtitle("Gameplay camera copied")
+            End If
 
-        If Game.IsKeyPressed(Keys.Right) Then
-            Logger.Logg(debug3rdLine)
-            UI.ShowSubtitle("Prop captured")
+            If Game.IsKeyPressed(Keys.Right) Then
+                Logger.Logg(debug3rdLine)
+                UI.ShowSubtitle("Prop captured")
+            End If
         End If
     End Sub
 

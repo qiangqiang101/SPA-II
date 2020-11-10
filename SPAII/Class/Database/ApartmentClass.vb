@@ -199,36 +199,37 @@ Public Class ApartmentClass
             Select Case selectedItem.Tag
                 Case "Exit"
                     AptMenu.Visible = False
-                    NewFunc.HideHud = True
+                    HideHud = True
                     PlayApartmerntExitCutscene()
                     Building.PlayExitApartmentCamera(3000, True, True, CameraShake.Hand, 0.4F)
-                    NewFunc.HideHud = False
+                    HideHud = False
                 Case "Garage"
-                    FadeScreen(1)
                     AptMenu.Visible = False
+                    HideHud = True
+                    PlayApartmerntExitCutscene()
                     Select Case Building.GarageType
                         Case eGarageType.TwoCarGarage
                             TwoCarGarage.Apartment = Me
                             TwoCarGarage.Interior.SetInteriorActive
-                            PP.Position = TwoCarGarage.Elevator
                             TwoCarGarage.LoadVehicles()
                         Case eGarageType.SixCarGarage
                             SixCarGarage.Apartment = Me
                             SixCarGarage.Interior.SetInteriorActive
-                            PP.Position = SixCarGarage.Elevator
                             SixCarGarage.LoadVehicles()
                         Case eGarageType.TenCarGarage
                             TenCarGarage.Apartment = Me
                             TenCarGarage.Interior.SetInteriorActive()
-                            PP.Position = TenCarGarage.Elevator
                             TenCarGarage.LoadVehicles()
                         Case eGarageType.TwentyCarGarage
 
                     End Select
-                    FadeScreen(0)
+                    Building.PlayExitElevatorCutscene(5000)
+                    HideHud = False
+                    World.RenderingCamera = Nothing
+                    World.DestroyAllCameras()
                 Case "Style"
                     FadeScreen(1)
-                    NewFunc.HideHud = True
+                    HideHud = True
                     World.RenderingCamera = World.CreateCamera(AptStyleCam.Position, AptStyleCam.Rotation, AptStyleCam.FOV)
                     FadeScreen(0)
             End Select
@@ -423,7 +424,7 @@ Public Class ApartmentClass
         ChangeIPL(IPL, config.GetValue("IPL", Name, "apa_v_mp_h_01_a"))
         World.DestroyAllCameras()
         World.RenderingCamera = Nothing
-        NewFunc.HideHud = False
+        HideHud = False
         FadeScreen(0)
     End Sub
 
