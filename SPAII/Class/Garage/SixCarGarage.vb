@@ -103,8 +103,8 @@ Module SixCarGarage
 
     Public Sub SixCarGarageOnTick()
         'Enter Apartment from Garage Elevator
-        If Not Apartment.ApartmentType = eApartmentType.Other Then
-            If GarageElevatorDistance() <= 2.0F Then
+        If GarageElevatorDistance() <= 2.0F Then
+            If Not Apartment.ApartmentType = eApartmentType.Other Then
                 UI.ShowHelpMessage(Game.GetGXTEntry("MP_PROP_BUZZ1"))
                 If Game.IsControlJustReleased(0, Control.Context) Then
                     HideHud = True
@@ -132,6 +132,8 @@ Module SixCarGarage
 
         'Exit Garage
         If GarageDoorLeftDistance() <= 2.0F Then
+            'Request GXT2 texts
+            RequestAdditionalText("s_range", "SHR_EXIT_HELP")
             UI.ShowHelpMessage(Game.GetGXTEntry("SHR_EXIT_HELP"))
             If Game.IsControlJustReleased(0, Control.Context) Then
                 FadeScreen(1)
@@ -146,6 +148,8 @@ Module SixCarGarage
             End If
         End If
         If GarageDoorRightDistance() <= 2.0F Then
+            'Request GXT2 texts
+            RequestAdditionalText("s_range", "SHR_EXIT_HELP")
             UI.ShowHelpMessage(Game.GetGXTEntry("SHR_EXIT_HELP"))
             If Game.IsControlJustReleased(0, Control.Context) Then
                 FadeScreen(1)

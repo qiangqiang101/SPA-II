@@ -5,6 +5,7 @@ Imports System.Windows.Forms
 Imports GTA
 Imports GTA.Math
 Imports GTA.Native
+Imports iFruitAddon2
 Imports Metadata
 Imports GameControl = GTA.Control
 Imports NFunc = GTA.Native.Function
@@ -19,6 +20,7 @@ Public Class SPA2
         Decor.Lock()
 
         LoadBuildings()
+        LoadContacts()
     End Sub
 
     Private Sub SPA2_Tick(sender As Object, e As EventArgs) Handles Me.Tick
@@ -130,6 +132,8 @@ Public Class SPA2
 
                         'Open Exit Apartment Menu
                         If apt.ExitDistance <= 2.0F Then
+                            'Request GXT2 texts
+                            RequestAdditionalText("s_range", "SHR_EXIT_HELP")
                             If Not MenuPool.IsAnyMenuOpen Then
                                 UI.ShowHelpMessage(Game.GetGXTEntry("SHR_EXIT_HELP"))
                                 If Game.IsControlJustReleased(0, GameControl.Context) Then
@@ -156,10 +160,10 @@ Public Class SPA2
                 End If
 
                 MenuPool.ProcessMenus()
+                iFruit.Update()
             End If
 
-            'Request GXT2 texts
-            RequestAdditionalText("s_range", "SHR_EXIT_HELP")
+
 
             'debug only
             If debugMode Then
@@ -191,6 +195,8 @@ Public Class SPA2
             vehicle.CurrentBlip.Remove()
             vehicle.Delete()
         Next
+
+        iFruit.Contacts.Remove(MechanicContact)
 
         TwoCarGarage.Clear()
         SixCarGarage.Clear()
@@ -238,6 +244,11 @@ Public Class SPA2
             If Game.IsKeyPressed(Keys.Right) Then
                 Logger.Logg(debug3rdLine)
                 UI.ShowSubtitle("Prop captured")
+            End If
+
+            If Game.IsKeyPressed(Keys.Delete) Then
+                Dim st = Game.GetUserInput("MPCT_10_", 65535)
+                UI.ShowSubtitle(Game.GetGXTEntry(st))
             End If
         End If
     End Sub

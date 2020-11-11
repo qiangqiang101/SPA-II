@@ -1,0 +1,15 @@
+E:\Users\Bartholomew\Documents\GitHub\SPA-II\SPAII\bin\Release\SPAII.dll
+E:\Users\Bartholomew\Documents\GitHub\SPA-II\SPAII\bin\Release\SPAII.pdb
+E:\Users\Bartholomew\Documents\GitHub\SPA-II\SPAII\bin\Release\SPAII.xml
+E:\Users\Bartholomew\Documents\GitHub\SPA-II\SPAII\bin\Release\iFruitAddon2.dll
+E:\Users\Bartholomew\Documents\GitHub\SPA-II\SPAII\bin\Release\INMNativeUI.dll
+E:\Users\Bartholomew\Documents\GitHub\SPA-II\SPAII\bin\Release\Metadata.dll
+E:\Users\Bartholomew\Documents\GitHub\SPA-II\SPAII\bin\Release\ScriptHookVDotNet2.dll
+E:\Users\Bartholomew\Documents\GitHub\SPA-II\SPAII\bin\Release\INMNativeUI.pdb
+E:\Users\Bartholomew\Documents\GitHub\SPA-II\SPAII\bin\Release\Metadata.pdb
+E:\Users\Bartholomew\Documents\GitHub\SPA-II\SPAII\bin\Release\ScriptHookVDotNet2.xml
+E:\Users\Bartholomew\Documents\GitHub\SPA-II\SPAII\obj\Release\SPAII.Resources.resources
+E:\Users\Bartholomew\Documents\GitHub\SPA-II\SPAII\obj\Release\SPAII.vbproj.GenerateResource.Cache
+E:\Users\Bartholomew\Documents\GitHub\SPA-II\SPAII\obj\Release\SPAII.dll
+E:\Users\Bartholomew\Documents\GitHub\SPA-II\SPAII\obj\Release\SPAII.xml
+E:\Users\Bartholomew\Documents\GitHub\SPA-II\SPAII\obj\Release\SPAII.pdb

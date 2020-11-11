@@ -1,4 +1,5 @@
 ﻿Imports System.Drawing
+Imports System.Media
 Imports System.Runtime.CompilerServices
 Imports System.Text.RegularExpressions
 Imports GTA
@@ -13,7 +14,7 @@ Module Helper
 
     'Config
     Public config As ScriptSettings = ScriptSettings.Load("scripts\SPA II\modconfig.ini")
-    Public debugMode As Boolean = True
+    Public debugMode As Boolean = False
     Public HideHud As Boolean = False
 
     'Path 
@@ -47,6 +48,13 @@ Module Helper
 
     'Prop
     Public ForSaleSign As String = "prop_forsale_dyn_01"
+
+    'Speech
+    Public OnTheClock As New Speech("mechanic_on_the_clock_some_wheels.wav")
+    Public YouNeedSomething As New Speech("mechanic_u_need_something_huh.wav")
+    Public ICantGetYourRide As New Speech("mechanic_cant_get_your_ride.wav")
+    Public IllGetBackToWork As New Speech("mechanic_get_back_to_work_then.wav")
+    Public IllBeThere As New Speech("mechanic_get_there_as_soon_as_i_can.wav")
 
     <Extension>
     Public Function Make(vehicle As Vehicle) As String
@@ -327,7 +335,7 @@ Module Helper
         Return Nothing
     End Function
 
-    Public Function IsGarageVehicleAlreadyExistInWorldMap(aid As Integer, uid As Integer)
+    Public Function IsGarageVehicleAlreadyExistInWorldMap(aid As Integer, uid As Integer) As Boolean
         Return outVehicleList.Where(Function(x) x.GetInt(vehIdDecor) = aid AndAlso x.GetInt(vehUidDecor) = uid).Count >= 1
     End Function
 
@@ -711,6 +719,199 @@ Module Helper
             .ApartmentType = eApartmentType.MediumEnd
             .Door = MediumEndApartment.Door
         End With
+    End Sub
+
+    <Extension>
+    Public Function GetParkingSpotByZone(pp As Vector3) As List(Of Vector5)
+        Dim zone = NFunc.Call(Of String)(Hash.GET_NAME_OF_ZONE, pp.X, pp.Y, pp.Z)
+        Select Case zone
+            Case "DOWNT", "VINE"
+                Return DOWNT
+            Case "GALLI", "CHIL"
+                Return CHIL
+            Case "DESRT", "GREATC"
+                Return DESRT
+            Case "CMSW", "PALCOV"
+                Return CMSW
+            Case "PBOX"
+                Return PBOX
+            Case "SKID"
+                Return SKID
+            Case "TEXTI"
+                Return TEXTI
+            Case "LEGSQU"
+                Return LEGSQU
+            Case "CANNY"
+                Return CANNY
+            Case "DTVINE"
+                Return DTVINE
+            Case "EAST_V"
+                Return EAST_V
+            Case "MIRR"
+                Return MIRR
+            Case "WVINE"
+                Return WVINE
+            Case "ALTA"
+                Return ALTA
+            Case "HAWICK"
+                Return HAWICK
+            Case "RICHM"
+                Return RICHM
+            Case "golf"
+                Return golf
+            Case "ROCKF"
+                Return ROCKF
+            Case "CCREAK"
+                Return CCREAK
+            Case "RGLEN"
+                Return RGLEN
+            Case "OBSERV"
+                Return OBSERV
+            Case "DAVIS"
+                Return DAVIS
+            Case "STRAW"
+                Return STRAW
+            Case "CHAMH"
+                Return CHAMH
+            Case "RANCHO"
+                Return RANCHO
+            Case "BANNING"
+                Return BANNING
+            Case "ELYSIAN"
+                Return ELYSIAN
+            Case "TERMINA"
+                Return TERMINA
+            Case "ZP_ORT"
+                Return ZP_ORT
+            Case "LMESA"
+                Return LMESA
+            Case "CYPRE"
+                Return CYPRE
+            Case "EBURO"
+                Return EBURO
+            Case "MURRI"
+                Return MURRI
+            Case "VESP"
+                Return VESP
+            Case "BEACH"
+                Return BEACH
+            Case "VCANA"
+                Return VCANA
+            Case "DELSOL"
+                Return DELSOL
+            Case "DELBE"
+                Return DELBE
+            Case "DELPE"
+                Return DELPE
+            Case "LOSPUER"
+                Return LOSPUER
+            Case "STAD"
+                Return STAD
+            Case "KOREAT"
+                Return KOREAT
+            Case "AIRP"
+                Return AIRP
+            Case "MORN"
+                Return MORN
+            Case "PBLUFF"
+                Return PBLUFF
+            Case "BHAMCA"
+                Return BHAMCA
+            Case "CHU"
+                Return CHU
+            Case "TONGVAH"
+                Return TONGVAH
+            Case "TONGVAV"
+                Return TONGVAV
+            Case "TATAMO"
+                Return TATAMO
+            Case "PALHIGH"
+                Return PALHIGH
+            Case "NOOSE"
+                Return NOOSE
+            Case "MOVIE"
+                Return MOVIE
+            Case "SanAnd"
+                Return SanAnd
+            Case "ALAMO"
+                Return ALAMO
+            Case "JAIL"
+                Return JAIL
+            Case "RTRAK"
+                Return RTRAK
+            Case "SANCHIA"
+                Return SANCHIA
+            Case "WINDF"
+                Return WINDF
+            Case "PALMPOW"
+                Return PALMPOW
+            Case "HUMLAB"
+                Return HUMLAB
+            Case "ZQ_UAR"
+                Return ZQ_UAR
+            Case "PALETO"
+                Return PALETO
+            Case "PALFOR"
+                Return PALFOR
+            Case "PROCOB"
+                Return PROCOB
+            Case "HARMO"
+                Return HARMO
+            Case "SANDY"
+                Return SANDY
+            Case "ZANCUDO"
+                Return ZANCUDO
+            Case "SLAB"
+                Return SLAB
+            Case "NCHU"
+                Return NCHU
+            Case "GRAPES"
+                Return GRAPES
+            Case "MTGORDO"
+                Return MTGORDO
+            Case "MTCHIL"
+                Return MTCHIL
+            Case "GALFISH"
+                Return GALFISH
+            Case "LAGO"
+                Return LAGO
+            Case "ARMYB"
+                Return ARMYB
+            Case "BURTON"
+                Return BURTON
+            Case Else
+                Return New List(Of Vector5)
+        End Select
+    End Function
+
+    <Extension>
+    Public Function GetNearestParkingSpot(pos As Vector3) As Vector5
+        Dim result = pos.GetParkingSpotByZone.OrderBy(Function(x) System.Math.Abs(x.Vector3.DistanceToSquared(pos)))
+        If result.Count <> 0 Then
+            Return result.FirstOrDefault
+        Else
+            Return Vector5.Zero
+        End If
+    End Function
+
+    <Extension>
+    Public Function ToQuaternion(v5 As Vector5) As Quaternion
+        Return New Quaternion(v5.Vector3.X, v5.Vector3.Y, v5.Vector3.Z, v5.Vector2.ToHeading)
+    End Function
+
+    <Extension>
+    Public Function IsPositionOccupied(pos As Vector3, range As Single) As Boolean
+        Return Native.Function.Call(Of Boolean)(Hash.IS_POSITION_OCCUPIED, pos.X, pos.Y, pos.Z, range, False, True, False, False, False, 0, False)
+    End Function
+
+    <Extension>
+    Public Sub Play(speech As Speech)
+        Using stream As New WaveStream(IO.File.OpenRead($"{soundPath}{speech.Wav}"))
+            stream.Volume = config.GetValue(Of Integer)("SOUND", "Volume", 100)
+            Using player As New SoundPlayer(stream)
+                player.Play()
+            End Using
+        End Using
     End Sub
 
 End Module

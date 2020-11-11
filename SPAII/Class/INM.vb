@@ -55,4 +55,30 @@ Namespace INM
 
     End Class
 
+    Public Class Speech
+
+        Public Wav As String
+
+        Public Sub New(wav As String)
+            Me.Wav = wav
+        End Sub
+
+    End Class
+
+    Public Class Vector5
+
+        Public Vector3 As Vector3
+        Public Vector2 As Vector2
+
+        Public Sub New(v3 As Vector3, v2 As Vector2)
+            Vector3 = v3
+            Vector2 = v2
+        End Sub
+
+        Public Shared Function Zero() As Vector5
+            Return New Vector5(Vector3.Zero, Vector2.Zero)
+        End Function
+
+    End Class
+
 End Namespace
