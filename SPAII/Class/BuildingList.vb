@@ -1190,20 +1190,8 @@ Module BuildingList
                 .Name = "MP_PROP_14"
                 .Description = "MP_PROP_14DES"
                 .Price = 150000
-                .SavePos = MediumEndApartment.SavePos
-                .ApartmentDoorPos = MediumEndApartment.DoorPos
-                .ApartmentInPos = MediumEndApartment.InPos
-                .ApartmentOutPos = MediumEndApartment.OutPos
-                .WardrobePos = MediumEndApartment.WardrobePos
                 .GarageFilePath = "0115_bay_city_ave_45"
-                .IPL = Nothing
-                .AptStyleCam = Nothing
-                .EnterCam = MediumEndApartment.EnterCam
-                .ExitCam = MediumEndApartment.ExitCam
-                .GarageElevatorPos = Vector3.Zero
-                .GarageMenuPos = Vector3.Zero
-                .ApartmentType = eApartmentType.MediumEnd
-                .Door = MediumEndApartment.Door
+                .SetAsMediumApartment
             End With
             Dim _0115BayCityAve As New BuildingClass()
             With _0115BayCityAve
@@ -1237,20 +1225,8 @@ Module BuildingList
                 .Name = "MP_PROP_16"
                 .Description = "MP_PROP_16DES"
                 .Price = 134000
-                .SavePos = MediumEndApartment.SavePos
-                .ApartmentDoorPos = MediumEndApartment.DoorPos
-                .ApartmentInPos = MediumEndApartment.InPos
-                .ApartmentOutPos = MediumEndApartment.OutPos
-                .WardrobePos = MediumEndApartment.WardrobePos
                 .GarageFilePath = "dream_tower_15"
-                .IPL = Nothing
-                .AptStyleCam = Nothing
-                .EnterCam = MediumEndApartment.EnterCam
-                .ExitCam = MediumEndApartment.ExitCam
-                .GarageElevatorPos = Vector3.Zero
-                .GarageMenuPos = Vector3.Zero
-                .ApartmentType = eApartmentType.MediumEnd
-                .Door = MediumEndApartment.Door
+                .SetAsMediumApartment
             End With
             Dim dreamTower As New BuildingClass()
             With dreamTower
@@ -1284,20 +1260,8 @@ Module BuildingList
                 .Name = "MP_PROP_72"
                 .Description = "MP_PROP_72DES"
                 .Price = 175000
-                .SavePos = MediumEndApartment.SavePos
-                .ApartmentDoorPos = MediumEndApartment.DoorPos
-                .ApartmentInPos = MediumEndApartment.InPos
-                .ApartmentOutPos = MediumEndApartment.OutPos
-                .WardrobePos = MediumEndApartment.WardrobePos
                 .GarageFilePath = "4_hangman_ave"
-                .IPL = Nothing
-                .AptStyleCam = Nothing
-                .EnterCam = MediumEndApartment.EnterCam
-                .ExitCam = MediumEndApartment.ExitCam
-                .GarageElevatorPos = Vector3.Zero
-                .GarageMenuPos = Vector3.Zero
-                .ApartmentType = eApartmentType.MediumEnd
-                .Door = MediumEndApartment.Door
+                .SetAsMediumApartment
             End With
             Dim _4HangmanAve As New BuildingClass()
             With _4HangmanAve
@@ -1331,20 +1295,8 @@ Module BuildingList
                 .Name = "MP_PROP_10"
                 .Description = "MP_PROP_10DES"
                 .Price = 126000
-                .SavePos = MediumEndApartment.SavePos
-                .ApartmentDoorPos = MediumEndApartment.DoorPos
-                .ApartmentInPos = MediumEndApartment.InPos
-                .ApartmentOutPos = MediumEndApartment.OutPos
-                .WardrobePos = MediumEndApartment.WardrobePos
                 .GarageFilePath = "0604_las_lagunas_blvd_4"
-                .IPL = Nothing
-                .AptStyleCam = Nothing
-                .EnterCam = MediumEndApartment.EnterCam
-                .ExitCam = MediumEndApartment.ExitCam
-                .GarageElevatorPos = Vector3.Zero
-                .GarageMenuPos = Vector3.Zero
-                .ApartmentType = eApartmentType.MediumEnd
-                .Door = MediumEndApartment.Door
+                .SetAsMediumApartment
             End With
             Dim _0604LasLagunasBlvd As New BuildingClass()
             With _0604LasLagunasBlvd
@@ -1378,20 +1330,8 @@ Module BuildingList
                 .Name = "MP_PROP_11"
                 .Description = "MP_PROP_11DES"
                 .Price = 146000
-                .SavePos = MediumEndApartment.SavePos
-                .ApartmentDoorPos = MediumEndApartment.DoorPos
-                .ApartmentInPos = MediumEndApartment.InPos
-                .ApartmentOutPos = MediumEndApartment.OutPos
-                .WardrobePos = MediumEndApartment.WardrobePos
                 .GarageFilePath = "0184_milton_rd_13"
-                .IPL = Nothing
-                .AptStyleCam = Nothing
-                .EnterCam = MediumEndApartment.EnterCam
-                .ExitCam = MediumEndApartment.ExitCam
-                .GarageElevatorPos = Vector3.Zero
-                .GarageMenuPos = Vector3.Zero
-                .ApartmentType = eApartmentType.MediumEnd
-                .Door = MediumEndApartment.Door
+                .SetAsMediumApartment
             End With
             Dim _0184MiltonRd As New BuildingClass()
             With _0184MiltonRd
@@ -1425,20 +1365,8 @@ Module BuildingList
                 .Name = "MP_PROP_8"
                 .Description = "MP_PROP_8DES"
                 .Price = 130000
-                .SavePos = MediumEndApartment.SavePos
-                .ApartmentDoorPos = MediumEndApartment.DoorPos
-                .ApartmentInPos = MediumEndApartment.InPos
-                .ApartmentOutPos = MediumEndApartment.OutPos
-                .WardrobePos = MediumEndApartment.WardrobePos
                 .GarageFilePath = "1162_power_street_3"
-                .IPL = Nothing
-                .AptStyleCam = Nothing
-                .EnterCam = MediumEndApartment.EnterCam
-                .ExitCam = MediumEndApartment.ExitCam
-                .GarageElevatorPos = Vector3.Zero
-                .GarageMenuPos = Vector3.Zero
-                .ApartmentType = eApartmentType.MediumEnd
-                .Door = MediumEndApartment.Door
+                .SetAsMediumApartment
             End With
             Dim _1162PowerSt As New BuildingClass()
             With _1162PowerSt
@@ -1472,20 +1400,8 @@ Module BuildingList
                 .Name = "MP_PROP_75"
                 .Description = "MP_PROP_75DES"
                 .Price = 165000
-                .SavePos = MediumEndApartment.SavePos
-                .ApartmentDoorPos = MediumEndApartment.DoorPos
-                .ApartmentInPos = MediumEndApartment.InPos
-                .ApartmentOutPos = MediumEndApartment.OutPos
-                .WardrobePos = MediumEndApartment.WardrobePos
                 .GarageFilePath = "4401_procopio_dr"
-                .IPL = Nothing
-                .AptStyleCam = Nothing
-                .EnterCam = MediumEndApartment.EnterCam
-                .ExitCam = MediumEndApartment.ExitCam
-                .GarageElevatorPos = Vector3.Zero
-                .GarageMenuPos = Vector3.Zero
-                .ApartmentType = eApartmentType.MediumEnd
-                .Door = MediumEndApartment.Door
+                .SetAsMediumApartment
             End With
             Dim _4401ProcopioDr As New BuildingClass()
             With _4401ProcopioDr
@@ -1519,20 +1435,8 @@ Module BuildingList
                 .Name = "MP_PROP_74"
                 .Description = "MP_PROP_74DES"
                 .Price = 155000
-                .SavePos = MediumEndApartment.SavePos
-                .ApartmentDoorPos = MediumEndApartment.DoorPos
-                .ApartmentInPos = MediumEndApartment.InPos
-                .ApartmentOutPos = MediumEndApartment.OutPos
-                .WardrobePos = MediumEndApartment.WardrobePos
                 .GarageFilePath = "4584_procopio_dr"
-                .IPL = Nothing
-                .AptStyleCam = Nothing
-                .EnterCam = MediumEndApartment.EnterCam
-                .ExitCam = MediumEndApartment.ExitCam
-                .GarageElevatorPos = Vector3.Zero
-                .GarageMenuPos = Vector3.Zero
-                .ApartmentType = eApartmentType.MediumEnd
-                .Door = MediumEndApartment.Door
+                .SetAsMediumApartment
             End With
             Dim _4584ProcopioDr As New BuildingClass()
             With _4584ProcopioDr
@@ -1566,20 +1470,8 @@ Module BuildingList
                 .Name = "MP_PROP_13"
                 .Description = "MP_PROP_13DES"
                 .Price = 141000
-                .SavePos = MediumEndApartment.SavePos
-                .ApartmentDoorPos = MediumEndApartment.DoorPos
-                .ApartmentInPos = MediumEndApartment.InPos
-                .ApartmentOutPos = MediumEndApartment.OutPos
-                .WardrobePos = MediumEndApartment.WardrobePos
                 .GarageFilePath = "0504_s_mo_milton_dr"
-                .IPL = Nothing
-                .AptStyleCam = Nothing
-                .EnterCam = MediumEndApartment.EnterCam
-                .ExitCam = MediumEndApartment.ExitCam
-                .GarageElevatorPos = Vector3.Zero
-                .GarageMenuPos = Vector3.Zero
-                .ApartmentType = eApartmentType.MediumEnd
-                .Door = MediumEndApartment.Door
+                .SetAsMediumApartment
             End With
             Dim _0504SMoMiltonDr As New BuildingClass()
             With _0504SMoMiltonDr
@@ -1613,20 +1505,8 @@ Module BuildingList
                 .Name = "MP_PROP_15"
                 .Description = "MP_PROP_15DES"
                 .Price = 137000
-                .SavePos = MediumEndApartment.SavePos
-                .ApartmentDoorPos = MediumEndApartment.DoorPos
-                .ApartmentInPos = MediumEndApartment.InPos
-                .ApartmentOutPos = MediumEndApartment.OutPos
-                .WardrobePos = MediumEndApartment.WardrobePos
                 .GarageFilePath = "0325_south_rockford_dr"
-                .IPL = Nothing
-                .AptStyleCam = Nothing
-                .EnterCam = MediumEndApartment.EnterCam
-                .ExitCam = MediumEndApartment.ExitCam
-                .GarageElevatorPos = Vector3.Zero
-                .GarageMenuPos = Vector3.Zero
-                .ApartmentType = eApartmentType.MediumEnd
-                .Door = MediumEndApartment.Door
+                .SetAsMediumApartment
             End With
             Dim _0325SouthRockfordDr As New BuildingClass()
             With _0325SouthRockfordDr
@@ -1660,20 +1540,8 @@ Module BuildingList
                 .Name = "MP_PROP_9"
                 .Description = "MP_PROP_9DES"
                 .Price = 128000
-                .SavePos = MediumEndApartment.SavePos
-                .ApartmentDoorPos = MediumEndApartment.DoorPos
-                .ApartmentInPos = MediumEndApartment.InPos
-                .ApartmentOutPos = MediumEndApartment.OutPos
-                .WardrobePos = MediumEndApartment.WardrobePos
                 .GarageFilePath = "0605_spanish_ave_1"
-                .IPL = Nothing
-                .AptStyleCam = Nothing
-                .EnterCam = MediumEndApartment.EnterCam
-                .ExitCam = MediumEndApartment.ExitCam
-                .GarageElevatorPos = Vector3.Zero
-                .GarageMenuPos = Vector3.Zero
-                .ApartmentType = eApartmentType.MediumEnd
-                .Door = MediumEndApartment.Door
+                .SetAsMediumApartment
             End With
             Dim _0605SpanishAve As New BuildingClass()
             With _0605SpanishAve
@@ -1707,20 +1575,8 @@ Module BuildingList
                 .Name = "MP_PROP_73"
                 .Description = "MP_PROP_73DES"
                 .Price = 143000
-                .SavePos = MediumEndApartment.SavePos
-                .ApartmentDoorPos = MediumEndApartment.DoorPos
-                .ApartmentInPos = MediumEndApartment.InPos
-                .ApartmentOutPos = MediumEndApartment.OutPos
-                .WardrobePos = MediumEndApartment.WardrobePos
                 .GarageFilePath = "12_sustancia_rd"
-                .IPL = Nothing
-                .AptStyleCam = Nothing
-                .EnterCam = MediumEndApartment.EnterCam
-                .ExitCam = MediumEndApartment.ExitCam
-                .GarageElevatorPos = Vector3.Zero
-                .GarageMenuPos = Vector3.Zero
-                .ApartmentType = eApartmentType.MediumEnd
-                .Door = MediumEndApartment.Door
+                .SetAsMediumApartment
             End With
             Dim _12SustanciaRd As New BuildingClass()
             With _12SustanciaRd
@@ -1754,20 +1610,8 @@ Module BuildingList
                 .Name = "MP_PROP_12"
                 .Description = "MP_PROP_12DES"
                 .Price = 125000
-                .SavePos = MediumEndApartment.SavePos
-                .ApartmentDoorPos = MediumEndApartment.DoorPos
-                .ApartmentInPos = MediumEndApartment.InPos
-                .ApartmentOutPos = MediumEndApartment.OutPos
-                .WardrobePos = MediumEndApartment.WardrobePos
                 .GarageFilePath = "the_royale_12"
-                .IPL = Nothing
-                .AptStyleCam = Nothing
-                .EnterCam = MediumEndApartment.EnterCam
-                .ExitCam = MediumEndApartment.ExitCam
-                .GarageElevatorPos = Vector3.Zero
-                .GarageMenuPos = Vector3.Zero
-                .ApartmentType = eApartmentType.MediumEnd
-                .Door = MediumEndApartment.Door
+                .SetAsMediumApartment
             End With
             Dim theRoyale As New BuildingClass()
             With theRoyale
@@ -1803,20 +1647,8 @@ Module BuildingList
                 .Name = "MP_PROP_23"
                 .Description = "MP_PROP_23DES"
                 .Price = 93000
-                .SavePos = LowEndApartment.SavePos
-                .ApartmentDoorPos = LowEndApartment.DoorPos
-                .ApartmentInPos = LowEndApartment.InPos
-                .ApartmentOutPos = LowEndApartment.OutPos
-                .WardrobePos = LowEndApartment.WardrobePos
                 .GarageFilePath = "1115_blvd_del_perro_18"
-                .IPL = Nothing
-                .AptStyleCam = Nothing
-                .EnterCam = LowEndApartment.EnterCam
-                .ExitCam = LowEndApartment.ExitCam
-                .GarageElevatorPos = Vector3.Zero
-                .GarageMenuPos = Vector3.Zero
-                .ApartmentType = eApartmentType.LowEnd
-                .Door = LowEndApartment.Door
+                .SetAsLowEndApartment
             End With
             Dim _1115BlvdDelPerro As New BuildingClass()
             With _1115BlvdDelPerro
@@ -1850,20 +1682,8 @@ Module BuildingList
                 .Name = "MP_PROP_18"
                 .Description = "MP_PROP_18DES"
                 .Price = 99000
-                .SavePos = LowEndApartment.SavePos
-                .ApartmentDoorPos = LowEndApartment.DoorPos
-                .ApartmentInPos = LowEndApartment.InPos
-                .ApartmentOutPos = LowEndApartment.OutPos
-                .WardrobePos = LowEndApartment.WardrobePos
                 .GarageFilePath = "1561_san_vitas_st_2"
-                .IPL = Nothing
-                .AptStyleCam = Nothing
-                .EnterCam = LowEndApartment.EnterCam
-                .ExitCam = LowEndApartment.ExitCam
-                .GarageElevatorPos = Vector3.Zero
-                .GarageMenuPos = Vector3.Zero
-                .ApartmentType = eApartmentType.LowEnd
-                .Door = LowEndApartment.Door
+                .SetAsLowEndApartment
             End With
             Dim _1561SanVitasSt As New BuildingClass()
             With _1561SanVitasSt
@@ -1897,20 +1717,8 @@ Module BuildingList
                 .Name = "MP_PROP_22"
                 .Description = "MP_PROP_22DES"
                 .Price = 105000
-                .SavePos = LowEndApartment.SavePos
-                .ApartmentDoorPos = LowEndApartment.DoorPos
-                .ApartmentInPos = LowEndApartment.InPos
-                .ApartmentOutPos = LowEndApartment.OutPos
-                .WardrobePos = LowEndApartment.WardrobePos
                 .GarageFilePath = "1237_prosperity_st_21"
-                .IPL = Nothing
-                .AptStyleCam = Nothing
-                .EnterCam = LowEndApartment.EnterCam
-                .ExitCam = LowEndApartment.ExitCam
-                .GarageElevatorPos = Vector3.Zero
-                .GarageMenuPos = Vector3.Zero
-                .ApartmentType = eApartmentType.LowEnd
-                .Door = LowEndApartment.Door
+                .SetAsLowEndApartment
             End With
             Dim _1237ProsperitySt As New BuildingClass()
             With _1237ProsperitySt
@@ -1944,20 +1752,8 @@ Module BuildingList
                 .Name = "MP_PROP_21"
                 .Description = "MP_PROP_21DES"
                 .Price = 112000
-                .SavePos = LowEndApartment.SavePos
-                .ApartmentDoorPos = LowEndApartment.DoorPos
-                .ApartmentInPos = LowEndApartment.InPos
-                .ApartmentOutPos = LowEndApartment.OutPos
-                .WardrobePos = LowEndApartment.WardrobePos
                 .GarageFilePath = "0069_cougar_ave_19"
-                .IPL = Nothing
-                .AptStyleCam = Nothing
-                .EnterCam = LowEndApartment.EnterCam
-                .ExitCam = LowEndApartment.ExitCam
-                .GarageElevatorPos = Vector3.Zero
-                .GarageMenuPos = Vector3.Zero
-                .ApartmentType = eApartmentType.LowEnd
-                .Door = LowEndApartment.Door
+                .SetAsLowEndApartment
             End With
             Dim _0069CougarAve As New BuildingClass()
             With _0069CougarAve
@@ -1991,20 +1787,8 @@ Module BuildingList
                 .Name = "MP_PROP_17"
                 .Description = "MP_PROP_17DES"
                 .Price = 115000
-                .SavePos = LowEndApartment.SavePos
-                .ApartmentDoorPos = LowEndApartment.DoorPos
-                .ApartmentInPos = LowEndApartment.InPos
-                .ApartmentOutPos = LowEndApartment.OutPos
-                .WardrobePos = LowEndApartment.WardrobePos
                 .GarageFilePath = "2143_las_lagunas_blvd_9"
-                .IPL = Nothing
-                .AptStyleCam = Nothing
-                .EnterCam = LowEndApartment.EnterCam
-                .ExitCam = LowEndApartment.ExitCam
-                .GarageElevatorPos = Vector3.Zero
-                .GarageMenuPos = Vector3.Zero
-                .ApartmentType = eApartmentType.LowEnd
-                .Door = LowEndApartment.Door
+                .SetAsLowEndApartment
             End With
             Dim _2143LasLagunasBlvd As New BuildingClass()
             With _2143LasLagunasBlvd
@@ -2038,20 +1822,8 @@ Module BuildingList
                 .Name = "MP_PROP_78"
                 .Description = "MP_PROP_78DES"
                 .Price = 118000
-                .SavePos = LowEndApartment.SavePos
-                .ApartmentDoorPos = LowEndApartment.DoorPos
-                .ApartmentInPos = LowEndApartment.InPos
-                .ApartmentOutPos = LowEndApartment.OutPos
-                .WardrobePos = LowEndApartment.WardrobePos
                 .GarageFilePath = "1893_grapeseed_ave"
-                .IPL = Nothing
-                .AptStyleCam = Nothing
-                .EnterCam = LowEndApartment.EnterCam
-                .ExitCam = LowEndApartment.ExitCam
-                .GarageElevatorPos = Vector3.Zero
-                .GarageMenuPos = Vector3.Zero
-                .ApartmentType = eApartmentType.LowEnd
-                .Door = LowEndApartment.Door
+                .SetAsLowEndApartment
             End With
             Dim _1893GrapeseedAve As New BuildingClass()
             With _1893GrapeseedAve
@@ -2085,20 +1857,8 @@ Module BuildingList
                 .Name = "MP_PROP_76"
                 .Description = "MP_PROP_76DES"
                 .Price = 121000
-                .SavePos = LowEndApartment.SavePos
-                .ApartmentDoorPos = LowEndApartment.DoorPos
-                .ApartmentInPos = LowEndApartment.InPos
-                .ApartmentOutPos = LowEndApartment.OutPos
-                .WardrobePos = LowEndApartment.WardrobePos
                 .GarageFilePath = "0232_poleto_blvd"
-                .IPL = Nothing
-                .AptStyleCam = Nothing
-                .EnterCam = LowEndApartment.EnterCam
-                .ExitCam = LowEndApartment.ExitCam
-                .GarageElevatorPos = Vector3.Zero
-                .GarageMenuPos = Vector3.Zero
-                .ApartmentType = eApartmentType.LowEnd
-                .Door = LowEndApartment.Door
+                .SetAsLowEndApartment
             End With
             Dim _0232PaletoBlvd As New BuildingClass()
             With _0232PaletoBlvd
@@ -2132,20 +1892,8 @@ Module BuildingList
                 .Name = "MP_PROP_19"
                 .Description = "MP_PROP_19DES"
                 .Price = 80000
-                .SavePos = LowEndApartment.SavePos
-                .ApartmentDoorPos = LowEndApartment.DoorPos
-                .ApartmentInPos = LowEndApartment.InPos
-                .ApartmentOutPos = LowEndApartment.OutPos
-                .WardrobePos = LowEndApartment.WardrobePos
                 .GarageFilePath = "0112_s_rockford_dr_13"
-                .IPL = Nothing
-                .AptStyleCam = Nothing
-                .EnterCam = LowEndApartment.EnterCam
-                .ExitCam = LowEndApartment.ExitCam
-                .GarageElevatorPos = Vector3.Zero
-                .GarageMenuPos = Vector3.Zero
-                .ApartmentType = eApartmentType.LowEnd
-                .Door = LowEndApartment.Door
+                .SetAsLowEndApartment
             End With
             Dim _0112SRockfordDr As New BuildingClass()
             With _0112SRockfordDr
@@ -2179,20 +1927,8 @@ Module BuildingList
                 .Name = "MP_PROP_20"
                 .Description = "MP_PROP_20DES"
                 .Price = 87000
-                .SavePos = LowEndApartment.SavePos
-                .ApartmentDoorPos = LowEndApartment.DoorPos
-                .ApartmentInPos = LowEndApartment.InPos
-                .ApartmentOutPos = LowEndApartment.OutPos
-                .WardrobePos = LowEndApartment.WardrobePos
                 .GarageFilePath = "2057_vespucci_blvd"
-                .IPL = Nothing
-                .AptStyleCam = Nothing
-                .EnterCam = LowEndApartment.EnterCam
-                .ExitCam = LowEndApartment.ExitCam
-                .GarageElevatorPos = Vector3.Zero
-                .GarageMenuPos = Vector3.Zero
-                .ApartmentType = eApartmentType.LowEnd
-                .Door = LowEndApartment.Door
+                .SetAsLowEndApartment
             End With
             Dim _2057VespucciBlvd As New BuildingClass()
             With _2057VespucciBlvd
@@ -2226,20 +1962,8 @@ Module BuildingList
                 .Name = "MP_PROP_77"
                 .Description = "MP_PROP_77DES"
                 .Price = 121000
-                .SavePos = LowEndApartment.SavePos
-                .ApartmentDoorPos = LowEndApartment.DoorPos
-                .ApartmentInPos = LowEndApartment.InPos
-                .ApartmentOutPos = LowEndApartment.OutPos
-                .WardrobePos = LowEndApartment.WardrobePos
                 .GarageFilePath = "140_zancudo_ave"
-                .IPL = Nothing
-                .AptStyleCam = Nothing
-                .EnterCam = LowEndApartment.EnterCam
-                .ExitCam = LowEndApartment.ExitCam
-                .GarageElevatorPos = Vector3.Zero
-                .GarageMenuPos = Vector3.Zero
-                .ApartmentType = eApartmentType.LowEnd
-                .Door = LowEndApartment.Door
+                .SetAsLowEndApartment
             End With
             Dim _140ZancudoAve As New BuildingClass()
             With _140ZancudoAve
@@ -2437,8 +2161,489 @@ Module BuildingList
                 .Apartments = New List(Of ApartmentClass) From {_0552RoyLowensteinBlvdGrg}
             End With
             If Not buildings.Contains(_0552RoyLowensteinBlvd) Then buildings.Add(_0552RoyLowensteinBlvd)
+
+            'Unit 14 Popular St
+            Dim unit14PopularStGrg As New ApartmentClass()
+            With unit14PopularStGrg
+                .ID = 25
+                .Name = "MP_PROP_25"
+                .Description = "MP_PROP_25DES"
+                .Price = 75000
+                .GarageFilePath = "unit_14_popular_st"
+                .SetAsGarage
+            End With
+            Dim unit14PopularSt As New BuildingClass()
+            With unit14PopularSt
+                .Name = "Unit 14 Popular St"
+                .GarageInPos = New Vector3(891.5384F, -887.0665F, 26.52908F)
+                .GarageFootInPos = New Quaternion(894.9512F, -889.4141F, 26.1727F, 271.3639F)
+                .GarageOutPos = New Quaternion(886.0638F, -887.0806F, 26.10556F, 90.14727F)
+                .CameraPos = New CameraPRH(New Vector3(873.2957F, -893.0588F, 27.51537F), New Vector3(6.024229F, -0.0000001073143F, -81.14212F), 50.0F)
+                .GarageType = eGarageType.SixCarGarage
+                .SaleSign = New EntityVector(ForSaleSign, New Quaternion(884.0314F, -893.7715F, 25.32593F, -179.999F))
+                .SetAsGarage
+                .Apartments = New List(Of ApartmentClass) From {unit14PopularStGrg}
+            End With
+            If Not buildings.Contains(unit14PopularSt) Then buildings.Add(unit14PopularSt)
+
+            '1905 Davis Ave (Mosley)
+            Dim _1905DavisAveGrg As New ApartmentClass()
+            With _1905DavisAveGrg
+                .ID = 59
+                .Name = "MP_PROP_59"
+                .Description = "MP_PROP_59DES"
+                .Price = 75000
+                .GarageFilePath = "1905_davis_ave"
+                .SetAsGarage
+            End With
+            Dim _1905DavisAve As New BuildingClass()
+            With _1905DavisAve
+                .Name = "1905 Davis Ave"
+                .GarageInPos = New Vector3(-8.48543F, -1643.772F, 28.81939F)
+                .GarageFootInPos = New Quaternion(-8.424758F, -1647.976F, 28.32063F, 148.2428F)
+                .GarageOutPos = New Quaternion(-8.484629F, -1643.771F, 28.82254F, 319.3011F)
+                .CameraPos = New CameraPRH(New Vector3(-11.85002F, -1623.71F, 36.17014F), New Vector3(-14.35073F, -0.0000003304771F, 172.4813F), 50.0F)
+                .GarageType = eGarageType.SixCarGarage
+                .SaleSign = New EntityVector(ForSaleSign, New Quaternion(-13.8995F, -1644.27F, 27.83043F, -39.99995F))
+                .SetAsGarage
+                .Apartments = New List(Of ApartmentClass) From {_1905DavisAveGrg}
+            End With
+            If Not buildings.Contains(_1905DavisAve) Then buildings.Add(_1905DavisAve)
+
+            '0432 Davis Ave
+            Dim _0432DavisAveGrg As New ApartmentClass()
+            With _0432DavisAveGrg
+                .ID = 33
+                .Name = "MP_PROP_33"
+                .Description = "MP_PROP_33DESS"
+                .Price = 72500
+                .GarageFilePath = "0432_davis_ave"
+                .SetAsGarage
+            End With
+            Dim _0432DavisAve As New BuildingClass()
+            With _0432DavisAve
+                .Name = "0432 Davis Ave"
+                .GarageInPos = New Vector3(476.298F, -1543.223F, 28.85667F)
+                .GarageFootInPos = New Quaternion(472.2641F, -1543.804F, 28.28262F, 130.8779F)
+                .GarageOutPos = New Quaternion(476.3152F, -1543.203F, 28.85421F, 319.036F)
+                .CameraPos = New CameraPRH(New Vector3(480.868F, -1532.121F, 35.70432F), New Vector3(-11.52449F, -0.0000004356702F, 156.4929F), 50.0F)
+                .GarageType = eGarageType.SixCarGarage
+                .SaleSign = New EntityVector(ForSaleSign, New Quaternion(471.0892F, -1543.831F, 27.78261F, -39.99994F))
+                .SetAsGarage
+                .Apartments = New List(Of ApartmentClass) From {_0432DavisAveGrg}
+            End With
+            If Not buildings.Contains(_0432DavisAve) Then buildings.Add(_0432DavisAve)
+
+            'Unit 1 Olympic Fwy
+            Dim unit1OlympicFwyGrg As New ApartmentClass()
+            With unit1OlympicFwyGrg
+                .ID = 28
+                .Name = "MP_PROP_28"
+                .Description = "MP_PROP_28DES"
+                .Price = 70000
+                .GarageFilePath = "unit_1_olympic_fwy"
+                .SetAsGarage
+            End With
+            Dim unit1OlympicFwy As New BuildingClass()
+            With unit1OlympicFwy
+                .Name = "Unit 1 Olympic Fwy"
+                .GarageInPos = New Vector3(846.7375F, -1161.708F, 24.6348F)
+                .GarageFootInPos = New Quaternion(844.5089F, -1164.21F, 24.26785F, 185.3277F)
+                .GarageOutPos = New Quaternion(846.4857F, -1158.326F, 24.64739F, 4.161697F)
+                .CameraPos = New CameraPRH(New Vector3(853.9076F, -1145.599F, 30.36782F), New Vector3(-7.591683F, -0.0000002153308F, 158.1503F), 50.0F)
+                .GarageType = eGarageType.SixCarGarage
+                .SaleSign = New EntityVector(ForSaleSign, New Quaternion(857.97F, -1162.654F, 24.10904F, 0F))
+                .SetAsGarage
+                .Apartments = New List(Of ApartmentClass) From {unit1OlympicFwyGrg}
+            End With
+            If Not buildings.Contains(unit1OlympicFwy) Then buildings.Add(unit1OlympicFwy)
+
+            '4531 Dry Dock St
+            Dim _4531DryDockStGrg As New ApartmentClass()
+            With _4531DryDockStGrg
+                .ID = 61
+                .Name = "MP_PROP_61"
+                .Description = "MP_PROP_61DES"
+                .Price = 67500
+                .GarageFilePath = "4531_dry_dock_st"
+                .SetAsGarage
+            End With
+            Dim _4531DryDockSt As New BuildingClass()
+            With _4531DryDockSt
+                .Name = "4531 Dry Dock St"
+                .GarageInPos = New Vector3(870.3314F, -2236.932F, 29.94405F)
+                .GarageFootInPos = New Quaternion(873.3058F, -2233.314F, 29.54612F, 353.5019F)
+                .GarageOutPos = New Quaternion(870.3288F, -2236.936F, 29.94228F, 175.8903F)
+                .CameraPos = New CameraPRH(New Vector3(857.2173F, -2248.946F, 36.59518F), New Vector3(-6.390676F, -0.000000214778F, -38.95956F), 50.0F)
+                .GarageType = eGarageType.SixCarGarage
+                .SaleSign = New EntityVector(ForSaleSign, New Quaternion(867.7078F, -2232.023F, 29.03291F, -3.999995F))
+                .SetAsGarage
+                .Apartments = New List(Of ApartmentClass) From {_4531DryDockStGrg}
+            End With
+            If Not buildings.Contains(_4531DryDockSt) Then buildings.Add(_4531DryDockSt)
+
+            '8754 Route 68
+            Dim _8754Route68Grg As New ApartmentClass()
+            With _8754Route68Grg
+                .ID = 57
+                .Name = "MP_PROP_57"
+                .Description = "MP_PROP_57DES"
+                .Price = 65000
+                .GarageFilePath = "8754_route_68"
+                .SetAsGarage
+            End With
+            Dim _8754Route68 As New BuildingClass()
+            With _8754Route68
+                .Name = "8754 Route 68"
+                .GarageInPos = New Vector3(-1132.307F, 2697.996F, 18.1674F)
+                .GarageFootInPos = New Quaternion(-1128.216F, 2697.274F, 17.80042F, 317.0885F)
+                .GarageOutPos = New Quaternion(-1133.526F, 2695.237F, 18.16751F, 153.9402F)
+                .CameraPos = New CameraPRH(New Vector3(-1141.256F, 2700.476F, 24.60046F), New Vector3(-25.61423F, 0F, -105.734F), 50.0F)
+                .GarageType = eGarageType.SixCarGarage
+                .SaleSign = New EntityVector(ForSaleSign, New Quaternion(-1126.797F, 2697.011F, 17.32007F, 132.9994F))
+                .SetAsGarage
+                .Apartments = New List(Of ApartmentClass) From {_8754Route68Grg}
+            End With
+            If Not buildings.Contains(_8754Route68) Then buildings.Add(_8754Route68)
+
+            '870 Route 68 Approach
+            Dim _870Route68ApproachGrg As New ApartmentClass()
+            With _870Route68ApproachGrg
+                .ID = 51
+                .Name = "MP_PROP_51"
+                .Description = "MP_PROP_51DES"
+                .Price = 62500
+                .GarageFilePath = "870_route_68_approach"
+                .SetAsGarage
+            End With
+            Dim _870Route68Approach As New BuildingClass()
+            With _870Route68Approach
+                .Name = "870 Route 68 Approach"
+                .GarageInPos = New Vector3(189.8203F, 2787.067F, 45.13134F)
+                .GarageFootInPos = New Quaternion(186.1491F, 2789.476F, 44.52374F, 101.3071F)
+                .GarageOutPos = New Quaternion(191.7271F, 2787.343F, 45.13935F, 278.3973F)
+                .CameraPos = New CameraPRH(New Vector3(198.9475F, 2777.995F, 50.11591F), New Vector3(-13.59969F, -0.000000439201F, 62.03204F), 50.0F)
+                .GarageType = eGarageType.SixCarGarage
+                .SaleSign = New EntityVector(ForSaleSign, New Quaternion(187.0706F, 2781.539F, 44.40519F, -82.99966F))
+                .SetAsGarage
+                .Apartments = New List(Of ApartmentClass) From {_870Route68ApproachGrg}
+            End With
+            If Not buildings.Contains(_870Route68Approach) Then buildings.Add(_870Route68Approach)
 #End Region
 
+#Region "Low End Garage"
+            '0897 Mirror Park Blvd
+            Dim _0897MirrorParkBlvdGrg As New ApartmentClass()
+            With _0897MirrorParkBlvdGrg
+                .ID = 66
+                .Name = "MP_PROP_66"
+                .Description = "MP_PROP_66DES"
+                .Price = 35000
+                .GarageFilePath = "0897_mirror_park_blvd"
+                .SetAsGarage
+            End With
+            Dim _0897MirrorParkBlvd As New BuildingClass()
+            With _0897MirrorParkBlvd
+                .Name = "0897 Mirror Park Blvd"
+                .GarageInPos = New Vector3(902.0117F, -144.1108F, 76.12101F)
+                .GarageFootInPos = New Quaternion(897.6833F, -145.4282F, 75.69653F, 154.2389F)
+                .GarageOutPos = New Quaternion(903.8691F, -141.0755F, 76.04897F, 327.2885F)
+                .CameraPos = New CameraPRH(New Vector3(903.6054F, -131.4019F, 79.95404F), New Vector3(-9.344264F, -0.0000002163138F, 167.8957F), 50.0F)
+                .GarageType = eGarageType.TwoCarGarage
+                .SaleSign = New EntityVector(ForSaleSign, New Quaternion(907.9774F, -148.0605F, 75.26352F, -31.99996F))
+                .SetAsGarage
+                .Apartments = New List(Of ApartmentClass) From {_0897MirrorParkBlvdGrg}
+            End With
+            If Not buildings.Contains(_0897MirrorParkBlvd) Then buildings.Add(_0897MirrorParkBlvd)
+
+            'Garage Innocence Blvd
+            Dim garageInnocenceBlvdGrg As New ApartmentClass()
+            With garageInnocenceBlvdGrg
+                .ID = 64
+                .Name = "MP_PROP_64"
+                .Description = "MP_PROP_64DES"
+                .Price = 34000
+                .GarageFilePath = "garage_innocence_blvd"
+                .SetAsGarage
+            End With
+            Dim garageInnocenceBlvd As New BuildingClass()
+            With garageInnocenceBlvd
+                .Name = "Garage Innocence Blvd"
+                .GarageInPos = New Vector3(-339.1225F, -1468.557F, 30.09063F)
+                .GarageFootInPos = New Quaternion(-342.0703F, -1466.63F, 29.61144F, 82.56173F)
+                .GarageOutPos = New Quaternion(-337.2308F, -1467.467F, 30.062F, 300.2791F)
+                .CameraPos = New CameraPRH(New Vector3(-333.1241F, -1460.864F, 31.57706F), New Vector3(-3.687999F, 0F, 122.8462F), 50.0F)
+                .GarageType = eGarageType.TwoCarGarage
+                .SaleSign = New EntityVector(ForSaleSign, New Quaternion(-342.8009F, -1470.744F, 29.3594F, 90.00014F))
+                .SetAsGarage
+                .Apartments = New List(Of ApartmentClass) From {garageInnocenceBlvdGrg}
+            End With
+            If Not buildings.Contains(garageInnocenceBlvd) Then buildings.Add(garageInnocenceBlvd)
+
+            '634 Blvd Del Perro
+            Dim _634BlvdDelPerroGrg As New ApartmentClass()
+            With _634BlvdDelPerroGrg
+                .ID = 65
+                .Name = "MP_PROP_65"
+                .Description = "MP_PROP_65DES"
+                .Price = 33500
+                .GarageFilePath = "634_blvd_del_perro"
+                .SetAsGarage
+            End With
+            Dim _634BlvdDelPerro As New BuildingClass()
+            With _634BlvdDelPerro
+                .Name = "634 Blvd Del Perro"
+                .GarageInPos = New Vector3(-1243.404F, -256.8076F, 38.53205F)
+                .GarageFootInPos = New Quaternion(-1243.795F, -260.2426F, 37.94628F, 212.0998F)
+                .GarageOutPos = New Quaternion(-1243.391F, -256.8199F, 38.52877F, 29.32852F)
+                .CameraPos = New CameraPRH(New Vector3(-1238.922F, -248.5173F, 39.9842F), New Vector3(-5.98613F, 0.0000001073068F, 171.664F), 50.0F)
+                .GarageType = eGarageType.TwoCarGarage
+                .SaleSign = New EntityVector(ForSaleSign, New Quaternion(-1236.848F, -257.6521F, 37.70773F, 27.99997F))
+                .SetAsGarage
+                .Apartments = New List(Of ApartmentClass) From {_634BlvdDelPerroGrg}
+            End With
+            If Not buildings.Contains(_634BlvdDelPerro) Then buildings.Add(_634BlvdDelPerro)
+
+            '1920 Senora Way
+            Dim _1920SenoraWayGrg As New ApartmentClass()
+            With _1920SenoraWayGrg
+                .ID = 48
+                .Name = "MP_PROP_48"
+                .Description = "MP_PROP_48DES"
+                .Price = 32000
+                .GarageFilePath = "1920_senora_way"
+                .SetAsGarage
+            End With
+            Dim _1920SenoraWay As New BuildingClass()
+            With _1920SenoraWay
+                .Name = "1920 Senora Way"
+                .GarageInPos = New Vector3(2465.267F, 1589.419F, 32.22708F)
+                .GarageFootInPos = New Quaternion(2461.664F, 1592.056F, 31.72033F, 86.26544F)
+                .GarageOutPos = New Quaternion(2467.958F, 1589.436F, 32.22805F, 270.5249F)
+                .CameraPos = New CameraPRH(New Vector3(2473.335F, 1593.019F, 36.72024F), New Vector3(-13.72779F, 0F, 116.5936F), 50.0F)
+                .GarageType = eGarageType.TwoCarGarage
+                .SaleSign = New EntityVector(ForSaleSign, New Quaternion(2463.053F, 1575.235F, 31.72031F, -89.99971F))
+                .SetAsGarage
+                .Apartments = New List(Of ApartmentClass) From {_1920SenoraWayGrg}
+            End With
+            If Not buildings.Contains(_1920SenoraWay) Then buildings.Add(_1920SenoraWay)
+
+            '12 Little Bighorn Ave
+            Dim _12LittleBighornAveGrg As New ApartmentClass()
+            With _12LittleBighornAveGrg
+                .ID = 30
+                .Name = "MP_PROP_30"
+                .Description = "MP_PROP_30DES"
+                .Price = 32000
+                .GarageFilePath = "12_little_bighorn_ave"
+                .SetAsGarage
+            End With
+            Dim _12LittleBighornAve As New BuildingClass()
+            With _12LittleBighornAve
+                .Name = "12 Little Bighorn Ave"
+                .GarageInPos = New Vector3(571.9946F, -1567.412F, 28.12461F)
+                .GarageFootInPos = New Quaternion(568.3764F, -1568.161F, 27.70673F, 144.2536F)
+                .GarageOutPos = New Quaternion(572.0132F, -1567.437F, 28.1225F, 322.0987F)
+                .CameraPos = New CameraPRH(New Vector3(584.3989F, -1566.764F, 31.58759F), New Vector3(-0.9105989F, 0F, 99.46441F), 50.0F)
+                .GarageType = eGarageType.TwoCarGarage
+                .SaleSign = New EntityVector(ForSaleSign, New Quaternion(574.5749F, -1574.473F, 27.25462F, -39.99994F))
+                .SetAsGarage
+                .Apartments = New List(Of ApartmentClass) From {_12LittleBighornAveGrg}
+            End With
+            If Not buildings.Contains(_12LittleBighornAve) Then buildings.Add(_12LittleBighornAve)
+
+            '2000 Great Ocean Highway
+            Dim _2000GreatOceanHighwayGrg As New ApartmentClass()
+            With _2000GreatOceanHighwayGrg
+                .ID = 49
+                .Name = "MP_PROP_49"
+                .Description = "MP_PROP_49DES"
+                .Price = 31500
+                .GarageFilePath = "2000_great_ocean_highway"
+                .SetAsGarage
+            End With
+            Dim _2000GreatOceanHighway As New BuildingClass()
+            With _2000GreatOceanHighway
+                .Name = "2000 Great Ocean Highway"
+                .GarageInPos = New Vector3(-2205.383F, 4247.596F, 47.16852F)
+                .GarageFootInPos = New Quaternion(-2201.966F, 4245.997F, 47.21652F, 222.9427F)
+                .GarageOutPos = New Quaternion(-2206.067F, 4248.496F, 47.0708F, 38.02222F)
+                .CameraPos = New CameraPRH(New Vector3(-2202.008F, 4252.098F, 48.62151F), New Vector3(-6.047786F, 0F, 170.3865F), 50.0F)
+                .GarageType = eGarageType.TwoCarGarage
+                .SaleSign = New EntityVector(ForSaleSign, New Quaternion(-2198.185F, 4241.743F, 46.74387F, -52.99977F))
+                .SetAsGarage
+                .Apartments = New List(Of ApartmentClass) From {_2000GreatOceanHighwayGrg}
+            End With
+            If Not buildings.Contains(_2000GreatOceanHighway) Then buildings.Add(_2000GreatOceanHighway)
+
+            '0754 Roy Lowenstein Blvd
+            Dim _0754RoyLowensteinBlvdGrg As New ApartmentClass()
+            With _0754RoyLowensteinBlvdGrg
+                .ID = 29
+                .Name = "MP_PROP_29"
+                .Description = "MP_PROP_29DES"
+                .Price = 29500
+                .GarageFilePath = "0754_roy_lowenstein_blvd"
+                .SetAsGarage
+            End With
+            Dim _0754RoyLowensteinBlvd As New BuildingClass()
+            With _0754RoyLowensteinBlvd
+                .Name = "0754 Roy Lowenstein Blvd"
+                .GarageInPos = New Vector3(526.0058F, -1601.133F, 28.46635F)
+                .GarageFootInPos = New Quaternion(526.5675F, -1604.765F, 28.28086F, 225.3262F)
+                .GarageOutPos = New Quaternion(522.8401F, -1598.508F, 28.5394F, 50.95364F)
+                .CameraPos = New CameraPRH(New Vector3(519.4299F, -1591.378F, 30.28123F), New Vector3(-0.887373F, 0F, -162.4248F), 50.0F)
+                .GarageType = eGarageType.TwoCarGarage
+                .SaleSign = New EntityVector(ForSaleSign, New Quaternion(528.0397F, -1595.592F, 28.31367F, -129.9995F))
+                .SetAsGarage
+                .Apartments = New List(Of ApartmentClass) From {_0754RoyLowensteinBlvdGrg}
+            End With
+            If Not buildings.Contains(_0754RoyLowensteinBlvd) Then buildings.Add(_0754RoyLowensteinBlvd)
+
+            '197 Route 68
+            Dim _197Route68Grg As New ApartmentClass()
+            With _197Route68Grg
+                .ID = 50
+                .Name = "MP_PROP_50"
+                .Description = "MP_PROP_50DES"
+                .Price = 29000
+                .GarageFilePath = "197_route_68"
+                .SetAsGarage
+            End With
+            Dim _197Route68 As New BuildingClass()
+            With _197Route68
+                .Name = "197 Route 68"
+                .GarageInPos = New Vector3(217.4353F, 2605.42F, 45.25777F)
+                .GarageFootInPos = New Quaternion(214.814F, 2601.883F, 44.76661F, 190.3705F)
+                .GarageOutPos = New Quaternion(215.8009F, 2612.181F, 46.02485F, 13.67587F)
+                .CameraPos = New CameraPRH(New Vector3(227.1874F, 2609.118F, 47.72932F), New Vector3(-9.736497F, 0F, 146.4485F), 50.0F)
+                .GarageType = eGarageType.TwoCarGarage
+                .SaleSign = New EntityVector(ForSaleSign, New Quaternion(221.7026F, 2603.319F, 44.76562F, -74.99998F))
+                .SetAsGarage
+                .Apartments = New List(Of ApartmentClass) From {_197Route68Grg}
+            End With
+            If Not buildings.Contains(_197Route68) Then buildings.Add(_197Route68)
+
+            '1200 Route 68
+            Dim _1200Route68Grg As New ApartmentClass()
+            With _1200Route68Grg
+                .ID = 52
+                .Name = "MP_PROP_52"
+                .Description = "MP_PROP_52DES"
+                .Price = 28000
+                .GarageFilePath = "1200_route_68"
+                .SetAsGarage
+            End With
+            Dim _1200Route68 As New BuildingClass()
+            With _1200Route68
+                .Name = "1200 Route 68"
+                .GarageInPos = New Vector3(639.0682F, 2775.177F, 41.45542F)
+                .GarageFootInPos = New Quaternion(636.8033F, 2771.903F, 41.02551F, 183.2547F)
+                .GarageOutPos = New Quaternion(638.9866F, 2776.138F, 41.45025F, 4.862041F)
+                .CameraPos = New CameraPRH(New Vector3(647.4941F, 2782.823F, 42.97698F), New Vector3(-1.512628F, 0.00000005337945F, 140.1862F), 50.0F)
+                .GarageType = eGarageType.TwoCarGarage
+                .SaleSign = New EntityVector(ForSaleSign, New Quaternion(643.6212F, 2768.321F, 41.03106F, -84.99956F))
+                .SetAsGarage
+                .Apartments = New List(Of ApartmentClass) From {_1200Route68Grg}
+            End With
+            If Not buildings.Contains(_1200Route68) Then buildings.Add(_1200Route68)
+
+            '1932 Grapeseed Ave
+            Dim _1932GrapeseedAveGrg As New ApartmentClass()
+            With _1932GrapeseedAveGrg
+                .ID = 46
+                .Name = "MP_PROP_46"
+                .Description = "MP_PROP_46DES"
+                .Price = 27500
+                .GarageFilePath = "1932_grapeseed_ave"
+                .SetAsGarage
+            End With
+            Dim _1932GrapeseedAve As New BuildingClass()
+            With _1932GrapeseedAve
+                .Name = "1932 Grapeseed Ave"
+                .GarageInPos = New Vector3(2553.352F, 4671.453F, 33.41243F)
+                .GarageFootInPos = New Quaternion(2556.039F, 4669.699F, 33.02306F, 204.3953F)
+                .GarageOutPos = New Quaternion(2552.85F, 4674.056F, 33.4055F, 14.16828F)
+                .CameraPos = New CameraPRH(New Vector3(2557.245F, 4681.927F, 36.7206F), New Vector3(-2.313836F, 0F, 172.4284F), 50.0F)
+                .GarageType = eGarageType.TwoCarGarage
+                .SaleSign = New EntityVector(ForSaleSign, New Quaternion(2552.022F, 4667.074F, 33.07679F, 23.99998F))
+                .SetAsGarage
+                .Apartments = New List(Of ApartmentClass) From {_1932GrapeseedAveGrg}
+            End With
+            If Not buildings.Contains(_1932GrapeseedAve) Then buildings.Add(_1932GrapeseedAve)
+
+            '142 Paleto Blvd
+            Dim _142PaletoBlvdGrg As New ApartmentClass()
+            With _142PaletoBlvdGrg
+                .ID = 44
+                .Name = "MP_PROP_44"
+                .Description = "MP_PROP_44DES"
+                .Price = 26500
+                .GarageFilePath = "142_paleto_blvd"
+                .SetAsGarage
+            End With
+            Dim _142PaletoBlvd As New BuildingClass()
+            With _142PaletoBlvd
+                .Name = "142 Paleto Blvd"
+                .GarageInPos = New Vector3(-70.95732F, 6428.574F, 30.90923F)
+                .GarageFootInPos = New Quaternion(-70.34654F, 6425.183F, 30.43957F, 226.7256F)
+                .GarageOutPos = New Quaternion(-74.37551F, 6432.063F, 30.91171F, 44.36166F)
+                .CameraPos = New CameraPRH(New Vector3(-82.28493F, 6428.63F, 32.48981F), New Vector3(-3.841596F, -0.000000106962F, -111.7737F), 50.0F)
+                .GarageType = eGarageType.TwoCarGarage
+                .SaleSign = New EntityVector(ForSaleSign, New Quaternion(-65.19231F, 6429.667F, 30.48753F, 45.0001F))
+                .SetAsGarage
+                .Apartments = New List(Of ApartmentClass) From {_142PaletoBlvdGrg}
+            End With
+            If Not buildings.Contains(_142PaletoBlvd) Then buildings.Add(_142PaletoBlvd)
+
+            '1 Strawberry Ave
+            Dim _1StrawberryAveGrg As New ApartmentClass()
+            With _1StrawberryAveGrg
+                .ID = 45
+                .Name = "MP_PROP_45"
+                .Description = "MP_PROP_45DES"
+                .Price = 26000
+                .GarageFilePath = "1_strawberry_ave"
+                .SetAsGarage
+            End With
+            Dim _1StrawberryAve As New BuildingClass()
+            With _1StrawberryAve
+                .Name = "1 Strawberry Ave"
+                .GarageInPos = New Vector3(-244.5432F, 6237.894F, 30.95915F)
+                .GarageFootInPos = New Quaternion(-249.1341F, 6237.605F, 30.48927F, 49.08922F)
+                .GarageOutPos = New Quaternion(-244.0274F, 6237.39F, 30.96051F, 225.6707F)
+                .CameraPos = New CameraPRH(New Vector3(-230.2499F, 6238.382F, 35.09702F), New Vector3(-13.30046F, 0F, 83.58285F), 50.0F)
+                .GarageType = eGarageType.TwoCarGarage
+                .SaleSign = New EntityVector(ForSaleSign, New Quaternion(-252.8173F, 6234.568F, 29.98922F, 45.99993F))
+                .SetAsGarage
+                .Apartments = New List(Of ApartmentClass) From {_1StrawberryAveGrg}
+            End With
+            If Not buildings.Contains(_1StrawberryAve) Then buildings.Add(_1StrawberryAve)
+
+            'Unit 124 Popular St
+            Dim unit124PopularStGrg As New ApartmentClass()
+            With unit124PopularStGrg
+                .ID = 31
+                .Name = "MP_PROP_31"
+                .Description = "MP_PROP_31DES"
+                .Price = 25000
+                .GarageFilePath = "unit_124_popular_st"
+                .SetAsGarage
+            End With
+            Dim unit124PopularSt As New BuildingClass()
+            With unit124PopularSt
+                .Name = "Unit 124 Popular St"
+                .GarageInPos = New Vector3(724.9442F, -1193.347F, 23.74906F)
+                .GarageFootInPos = New Quaternion(726.8602F, -1190.521F, 23.27741F, 357.0051F)
+                .GarageOutPos = New Quaternion(724.9452F, -1193.348F, 23.74912F, 179.4612F)
+                .CameraPos = New CameraPRH(New Vector3(731.8636F, -1198.792F, 25.27797F), New Vector3(-6.987858F, 0.0000002150407F, 32.88501F), 50.0F)
+                .GarageType = eGarageType.TwoCarGarage
+                .SaleSign = New EntityVector(ForSaleSign, New Quaternion(723.0068F, -1189.81F, 23.28133F, 0F))
+                .SetAsGarage
+                .Apartments = New List(Of ApartmentClass) From {unit124PopularStGrg}
+            End With
+            If Not buildings.Contains(unit124PopularSt) Then buildings.Add(unit124PopularSt)
+#End Region
             For Each bd In buildings
                 bd.Load()
             Next

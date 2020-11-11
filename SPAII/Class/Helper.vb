@@ -675,4 +675,42 @@ Module Helper
         End With
     End Sub
 
+    <Extension>
+    Public Sub SetAsLowEndApartment(apt As ApartmentClass)
+        With apt
+            .SavePos = LowEndApartment.SavePos
+            .ApartmentDoorPos = LowEndApartment.DoorPos
+            .ApartmentInPos = LowEndApartment.InPos
+            .ApartmentOutPos = LowEndApartment.OutPos
+            .WardrobePos = LowEndApartment.WardrobePos
+            .IPL = Nothing
+            .AptStyleCam = Nothing
+            .EnterCam = LowEndApartment.EnterCam
+            .ExitCam = LowEndApartment.ExitCam
+            .GarageElevatorPos = Vector3.Zero
+            .GarageMenuPos = Vector3.Zero
+            .ApartmentType = eApartmentType.LowEnd
+            .Door = LowEndApartment.Door
+        End With
+    End Sub
+
+    <Extension>
+    Public Sub SetAsMediumApartment(apt As ApartmentClass)
+        With apt
+            .SavePos = MediumEndApartment.SavePos
+            .ApartmentDoorPos = MediumEndApartment.DoorPos
+            .ApartmentInPos = MediumEndApartment.InPos
+            .ApartmentOutPos = MediumEndApartment.OutPos
+            .WardrobePos = MediumEndApartment.WardrobePos
+            .IPL = Nothing
+            .AptStyleCam = Nothing
+            .EnterCam = MediumEndApartment.EnterCam
+            .ExitCam = MediumEndApartment.ExitCam
+            .GarageElevatorPos = Vector3.Zero
+            .GarageMenuPos = Vector3.Zero
+            .ApartmentType = eApartmentType.MediumEnd
+            .Door = MediumEndApartment.Door
+        End With
+    End Sub
+
 End Module
