@@ -914,4 +914,71 @@ Module Helper
         End Using
     End Sub
 
+    Public Sub Sleep(apt As ApartmentClass)
+        NFunc.Call(Hash.SET_CURRENT_PED_VEHICLE_WEAPON, PP, WeaponHash.Unarmed, True)
+        Dim ts As New TaskSequence
+        ts.AddTask.SlideTo(apt.SavePos, PP.Heading)
+        ts.AddTask.PlayAnimation("anim@mp_bedmid@left_var_02", "f_getin_l_bighouse")
+        ts.AddTask.PlayAnimation("anim@mp_bedmid@left_var_02", "f_sleep_l_loop_bighouse")
+        PP.Task.PerformSequence(ts)
+        NFunc.Call(Hash.FORCE_PED_MOTION_STATE, PP, 1063765679, False, 0, False)
+        ts.Close()
+        ts.Dispose()
+    End Sub
+
+    Public Function GetClothingName(player As Integer, pedVar As ePedVariation, propVar As ePropVariation, drawID As Integer, txdID As Integer) As String
+        Dim result As String = Nothing
+        Select Case pedVar
+            Case ePedVariation.Accessories '8
+                result = $"SPEC_P{player}_{drawID}_{txdID}"
+            Case ePedVariation.AuxiliaryTorso '11
+                result = $"JBIB_P{player}_{drawID}_{txdID}"
+            Case ePedVariation.Props '9
+                Select Case propVar
+                    Case ePropVariation.Earrings
+                        result = $"PROPS_P{player}_EA{drawID}_{txdID}"
+                    Case ePropVariation.Glasses
+                        result = $"PROPS_P{player}_E{drawID}_{txdID}"
+                    Case ePropVariation.Helmet
+                        If drawID = 16 Then drawID = drawID + 3
+                        result = $"PROPS_P{player}_H{drawID}_{txdID}"
+                End Select
+            Case ePedVariation.Beard '1
+                Select Case propVar
+                    Case ePropVariation.Earrings
+                        result = $"PROPS_P{player}_EA{drawID}_{txdID}"
+                    Case ePropVariation.Glasses
+                        result = $"PROPS_P{player}_E{drawID}_{txdID}"
+                    Case ePropVariation.Helmet
+                        If drawID = 16 Then drawID = drawID + 3
+                        result = $"PROPS_P{player}_H{drawID}_{txdID}"
+                End Select
+            Case ePedVariation.Eyes '7
+
+            Case ePedVariation.Face '0
+                Select Case propVar
+                    Case ePropVariation.Earrings
+                        result = $"PROPS_P{player}_EA{drawID}_{txdID}"
+                    Case ePropVariation.Glasses
+                        result = $"PROPS_P{player}_E{drawID}_{txdID}"
+                    Case ePropVariation.Helmet
+                        If drawID = 16 Then drawID = drawID + 3
+                        result = $"PROPS_P{player}_H{drawID}_{txdID}"
+                End Select
+            Case ePedVariation.Feet '6
+                result = $"FEET_P{player}_{drawID}_{txdID}"
+            Case ePedVariation.Hair '2
+
+            Case ePedVariation.Hands '5
+
+            Case ePedVariation.Legs '4
+                result = $"LEGS_P{player}_{drawID}_{txdID}"
+            Case ePedVariation.Textures '10
+
+            Case ePedVariation.Torso '3
+                result = $"TORSO_P{player}_{drawID}_{txdID}"
+        End Select
+        Return result
+    End Function
+
 End Module

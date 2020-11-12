@@ -13,3 +13,4 @@ E:\Users\Bartholomew\Documents\GitHub\SPA-II\SPAII\obj\Release\SPAII.vbproj.Gene
 E:\Users\Bartholomew\Documents\GitHub\SPA-II\SPAII\obj\Release\SPAII.dll
 E:\Users\Bartholomew\Documents\GitHub\SPA-II\SPAII\obj\Release\SPAII.xml
 E:\Users\Bartholomew\Documents\GitHub\SPA-II\SPAII\obj\Release\SPAII.pdb
+E:\Users\Bartholomew\Documents\GitHub\SPA-II\SPAII\obj\Release\SPAII.vbprojResolveAssemblyReference.cache

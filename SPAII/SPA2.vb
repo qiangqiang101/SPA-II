@@ -145,6 +145,9 @@ Public Class SPA2
                         'Get into bed
                         If apt.SaveDistance <= 2.0F Then
                             UI.ShowHelpMessage(Game.GetGXTEntry("SA_BED_IN"))
+                            If Game.IsControlJustReleased(0, GameControl.Context) Then
+                                Sleep(apt)
+                            End If
                             'todo
                         End If
                     End If
