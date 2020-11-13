@@ -366,57 +366,86 @@ Public Class BuildingClass
         With BuildingBlip
             .Color = BlipColor.White
             .IsShortRange = True
-            If Apartments.Count = 0 Then
-                Select Case BuildingType
-                    Case eBuildingType.Apartment
-                        .Sprite = BlipSprite.SafehouseForSale
-                        .Name = Game.GetGXTEntry("MP_PROP_SALE1") 'Apartment For Sale
-                    Case eBuildingType.Office
-                        .Sprite = BlipSprite.OfficeForSale
-                        .Name = Game.GetGXTEntry("MP_PROP_SALE2") 'Office For Sale
-                    Case eBuildingType.ClubHouse, eBuildingType.NightClub, eBuildingType.Bunker
-                        .Sprite = BlipSprite.BusinessForSale
-                        .Name = Game.GetGXTEntry("BLIP_373") 'Property For Sale
-                    Case eBuildingType.Garage
-                        .Sprite = BlipSprite.GarageForSale
-                        .Name = Game.GetGXTEntry("MP_PROP_SALE0") 'Garage For Sale
-                    Case eBuildingType.Hangar
-                        .Sprite = BlipSprite.HangarForSale
-                        .Name = Game.GetGXTEntry("BLIP_372") 'Hangar For Sale
-                    Case eBuildingType.Warehouse
-                        .Sprite = BlipSprite.WarehouseForSale
-                        .Name = Game.GetGXTEntry("BLIP_474") 'Warehouse For Sale
-                End Select
+            If IsVacant() Then
+                If Not debugMode Then
+                    Select Case BuildingType
+                        Case eBuildingType.Apartment
+                            .Sprite = BlipSprite.SafehouseForSale
+                            .Name = Game.GetGXTEntry("MP_PROP_SALE1") 'Apartment For Sale
+                        Case eBuildingType.Office
+                            .Sprite = BlipSprite.OfficeForSale
+                            .Name = Game.GetGXTEntry("MP_PROP_SALE2") 'Office For Sale
+                        Case eBuildingType.ClubHouse, eBuildingType.NightClub, eBuildingType.Bunker
+                            .Sprite = BlipSprite.BusinessForSale
+                            .Name = Game.GetGXTEntry("BLIP_373") 'Property For Sale
+                        Case eBuildingType.Garage
+                            .Sprite = BlipSprite.GarageForSale
+                            .Name = Game.GetGXTEntry("MP_PROP_SALE0") 'Garage For Sale
+                        Case eBuildingType.Hangar
+                            .Sprite = BlipSprite.HangarForSale
+                            .Name = Game.GetGXTEntry("BLIP_372") 'Hangar For Sale
+                        Case eBuildingType.Warehouse
+                            .Sprite = BlipSprite.WarehouseForSale
+                            .Name = Game.GetGXTEntry("BLIP_474") 'Warehouse For Sale
+                    End Select
+                Else
+                    Select Case BuildingType
+                        Case eBuildingType.Apartment
+                            .Sprite = BlipSprite.Safehouse
+                        Case eBuildingType.Office
+                            .Sprite = BlipSprite.Office
+                        Case eBuildingType.ClubHouse
+                            .Sprite = BlipSprite.BikerClubhouse
+                        Case eBuildingType.Garage
+                            .Sprite = BlipSprite.Garage
+                        Case eBuildingType.Hangar
+                            .Sprite = BlipSprite.GTAOHangar
+                        Case eBuildingType.NightClub
+                            .Sprite = BlipSprite.NightclubProperty
+                        Case eBuildingType.Warehouse
+                            .Sprite = BlipSprite.Warehouse
+                        Case eBuildingType.Bunker
+                            .Sprite = BlipSprite.Bunker
+                    End Select
+                    .Name = Name
+                End If
             Else
                 Select Case BuildingType
                     Case eBuildingType.Apartment
                         .Sprite = BlipSprite.Safehouse
+                        .Name = Game.GetGXTEntry("CELL_2630")
                     Case eBuildingType.Office
                         .Sprite = BlipSprite.Office
+                        .Name = Game.GetGXTEntry("BLIP_475")
                     Case eBuildingType.ClubHouse
                         .Sprite = BlipSprite.BikerClubhouse
+                        .Name = Game.GetGXTEntry("PM_SPAWN_CLUBH")
                     Case eBuildingType.Garage
                         .Sprite = BlipSprite.Garage
+                        .Name = Game.GetGXTEntry("BLIP_357")
                     Case eBuildingType.Hangar
                         .Sprite = BlipSprite.GTAOHangar
+                        .Name = Game.GetGXTEntry("BLIP_359")
                     Case eBuildingType.NightClub
                         .Sprite = BlipSprite.NightclubProperty
+                        .Name = Game.GetGXTEntry("CELL_CLUB")
                     Case eBuildingType.Warehouse
                         .Sprite = BlipSprite.Warehouse
+                        .Name = Game.GetGXTEntry("BLIP_473")
                     Case eBuildingType.Bunker
                         .Sprite = BlipSprite.Bunker
+                        .Name = Game.GetGXTEntry("BLIP_557")
                 End Select
-                .Name = Name
             End If
         End With
 
-        If Apartments.Count <> 0 AndAlso Not BuildingType = eBuildingType.Garage Then
+        If Not IsVacant() AndAlso Not BuildingType = eBuildingType.Garage Then
             GarageBlip = World.CreateBlip(GarageInPos)
             With GarageBlip
                 .Color = BlipColor.White
                 .IsShortRange = True
                 .Sprite = BlipSprite.Garage
-                .Name = $"{Name} Garage"
+                .Name = Game.GetGXTEntry("BLIP_357")
             End With
         End If
     End Sub
