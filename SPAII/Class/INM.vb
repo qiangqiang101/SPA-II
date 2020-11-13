@@ -169,6 +169,70 @@ Namespace INM
 
     End Class
 
+    Public Class ClothingSet
+
+        Class CS
+
+            Public ComponentID As Integer
+            Public DrawableID As Integer
+            Public TextureID As Integer
+            Public PaletteID As Integer
+
+            Public Sub New(cid As Integer, did As Integer, tid As Integer, Optional pid As Integer = 2)
+                ComponentID = cid
+                DrawableID = did
+                TextureID = tid
+                PaletteID = pid
+            End Sub
+
+            Public Sub New()
+                ComponentID = -1
+                DrawableID = -1
+                TextureID = -1
+                PaletteID = -1
+            End Sub
+
+        End Class
+
+        Public Name As String
+        Public LocalizedName As String
+        Public Type As eClothingType
+        Public Set1, Set2, Set3, Set4, Set5, Set6, Set7, Set8, Set9, Set10 As CS
+
+        Public Sub New(name As String, local As String, s1 As CS, s2 As CS, s3 As CS, s4 As CS, s5 As CS, s6 As CS, s7 As CS)
+            Me.Name = name
+            LocalizedName = local
+            Me.Type = eClothingType.FullSuit
+            Set1 = s1
+            Set2 = s2
+            Set3 = s3
+            Set4 = s4
+            Set5 = s5
+            Set6 = s6
+            Set7 = s7
+            Set8 = Nothing
+            Set9 = Nothing
+            Set10 = Nothing
+        End Sub
+
+        Public Sub New(name As String, local As String, s1 As CS, s2 As CS, s3 As CS, s4 As CS, s5 As CS, s6 As CS, s7 As CS, s8 As CS, s9 As CS, s10 As CS)
+            Me.Name = name
+            LocalizedName = local
+            Me.Type = eClothingType.Outfit
+            Set1 = s1
+            Set2 = s2
+            Set3 = s3
+            Set4 = s4
+            Set5 = s5
+            Set6 = s6
+            Set7 = s7
+            Set8 = s8
+            Set9 = s9
+            Set10 = s10
+        End Sub
+
+    End Class
+
     Public Enum eClothingType
         None = -1
         CapBackward
