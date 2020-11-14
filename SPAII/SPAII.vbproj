@@ -96,7 +96,10 @@
     <Compile Include="Class\Logger.vb" />
     <Compile Include="Class\INMNative.vb" />
     <Compile Include="Class\Garage\Mechanic.vb" />
-    <Compile Include="Class\Wardrobe.vb" />
+    <Compile Include="Class\Wardrobe\Wardrobe.vb" />
+    <Compile Include="Class\Wardrobe\WardrobeList1.vb" />
+    <Compile Include="Class\Wardrobe\WardrobeList2.vb" />
+    <Compile Include="Class\Wardrobe\WardrobeMemory.vb" />
     <Compile Include="Class\WaveStream.vb" />
     <Compile Include="SPA2.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />

@@ -8,6 +8,7 @@ Imports GTA.Native
 Imports INMNativeUI
 Imports Metadata
 Imports SPAII.INM
+Imports SPAII.INM.ClothingSet
 Imports NFunc = GTA.Native.Function
 
 Module Helper
@@ -42,6 +43,9 @@ Module Helper
     'Menu
     Public MenuPool As New MenuPool
     Public MenuBanner As New UIResRectangle(Point.Empty, New Size(0, 0), Color.FromArgb(0, 0, 0, 0))
+    Public MichaelBanner As New Sprite("shopui_title_graphics_michael", "shopui_title_graphics_michael", Nothing, Nothing)
+    Public FranklinBanner As New Sprite("shopui_title_graphics_franklin", "shopui_title_graphics_franklin", Nothing, Nothing)
+    Public TrevorBanner As New Sprite("shopui_title_graphics_trevor", "shopui_title_graphics_trevor", Nothing, Nothing)
 
     'Coords
     Public TwentyCarGarage As New Vector3(0, 0, 0)
@@ -926,59 +930,36 @@ Module Helper
         ts.Dispose()
     End Sub
 
-    Public Function GetClothingName(player As Integer, pedVar As ePedVariation, propVar As ePropVariation, drawID As Integer, txdID As Integer) As String
-        Dim result As String = Nothing
-        Select Case pedVar
-            Case ePedVariation.Accessories '8
-                result = $"SPEC_P{player}_{drawID}_{txdID}"
-            Case ePedVariation.AuxiliaryTorso '11
-                result = $"JBIB_P{player}_{drawID}_{txdID}"
-            Case ePedVariation.Props '9
-                Select Case propVar
-                    Case ePropVariation.Earrings
-                        result = $"PROPS_P{player}_EA{drawID}_{txdID}"
-                    Case ePropVariation.Glasses
-                        result = $"PROPS_P{player}_E{drawID}_{txdID}"
-                    Case ePropVariation.Helmet
-                        If drawID = 16 Then drawID = drawID + 3
-                        result = $"PROPS_P{player}_H{drawID}_{txdID}"
-                End Select
-            Case ePedVariation.Beard '1
-                Select Case propVar
-                    Case ePropVariation.Earrings
-                        result = $"PROPS_P{player}_EA{drawID}_{txdID}"
-                    Case ePropVariation.Glasses
-                        result = $"PROPS_P{player}_E{drawID}_{txdID}"
-                    Case ePropVariation.Helmet
-                        If drawID = 16 Then drawID = drawID + 3
-                        result = $"PROPS_P{player}_H{drawID}_{txdID}"
-                End Select
-            Case ePedVariation.Eyes '7
-
-            Case ePedVariation.Face '0
-                Select Case propVar
-                    Case ePropVariation.Earrings
-                        result = $"PROPS_P{player}_EA{drawID}_{txdID}"
-                    Case ePropVariation.Glasses
-                        result = $"PROPS_P{player}_E{drawID}_{txdID}"
-                    Case ePropVariation.Helmet
-                        If drawID = 16 Then drawID = drawID + 3
-                        result = $"PROPS_P{player}_H{drawID}_{txdID}"
-                End Select
-            Case ePedVariation.Feet '6
-                result = $"FEET_P{player}_{drawID}_{txdID}"
-            Case ePedVariation.Hair '2
-
-            Case ePedVariation.Hands '5
-
-            Case ePedVariation.Legs '4
-                result = $"LEGS_P{player}_{drawID}_{txdID}"
-            Case ePedVariation.Textures '10
-
-            Case ePedVariation.Torso '3
-                result = $"TORSO_P{player}_{drawID}_{txdID}"
-        End Select
-        Return result
+    <Extension>
+    Public Function GetClothes(ped As Ped, com As ePedVariation) As CS
+        Return New CS(CInt(com), NFunc.Call(Of Integer)(Hash.GET_PED_DRAWABLE_VARIATION, ped, com), NFunc.Call(Of Integer)(Hash.GET_PED_TEXTURE_VARIATION, ped, com), NFunc.Call(Of Integer)(Hash.GET_PED_PALETTE_VARIATION, ped, com))
     End Function
+
+    <Extension>
+    Public Function GetProps(ped As Ped, com As ePropVariation) As CS
+        Return New CS(CInt(com), NFunc.Call(Of Integer)(Hash.GET_PED_PROP_INDEX, ped, com), NFunc.Call(Of Integer)(Hash.GET_PED_PROP_TEXTURE_INDEX, ped, com), 0)
+    End Function
+
+    <Extension>
+    Public Sub SetProp(ped As Ped, com As Integer, draw As Integer, txd As Integer)
+        If draw = -1 Then NFunc.Call(Hash.CLEAR_PED_PROP, ped, com)
+        NFunc.Call(Hash.SET_PED_PROP_INDEX, ped, com, draw, txd, 0)
+    End Sub
+
+    <Extension>
+    Public Sub SetProp(ped As Ped, cs As CS)
+        If cs.DrawableID = -1 Then NFunc.Call(Hash.CLEAR_PED_PROP, ped, cs.ComponentID)
+        NFunc.Call(Hash.SET_PED_PROP_INDEX, ped, cs.ComponentID, cs.DrawableID, cs.TextureID, cs.PaletteID)
+    End Sub
+
+    <Extension>
+    Public Sub SetClothes(ped As Ped, com As Integer, draw As Integer, txd As Integer)
+        NFunc.Call(Hash.SET_PED_COMPONENT_VARIATION, ped, com, draw, txd, 2)
+    End Sub
+
+    <Extension>
+    Public Sub SetClothes(ped As Ped, cs As CS)
+        NFunc.Call(Hash.SET_PED_COMPONENT_VARIATION, ped, cs.ComponentID, cs.DrawableID, cs.TextureID, cs.PaletteID)
+    End Sub
 
 End Module

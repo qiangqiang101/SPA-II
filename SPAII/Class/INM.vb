@@ -163,8 +163,25 @@ Namespace INM
         End Sub
 
         Public Function GetLocalizedName() As String
-            Dim result As String = Game.GetGXTEntry(Name)
+            Dim result As String = Nothing
+            If Name = "" Then
+                result = LocalizedName
+            Else
+                result = Game.GetGXTEntry(Name)
+            End If
             If result = "NULL" Then Return LocalizedName Else Return result
+        End Function
+
+        Public Function CS1() As ClothingSet.CS
+            Return New ClothingSet.CS(ComponentID, DrawableID, TextureID, PaletteID)
+        End Function
+
+        Public Function CS2() As ClothingSet.CS
+            Return New ClothingSet.CS(ComponentID2, DrawableID2, TextureID2, PaletteID2)
+        End Function
+
+        Public Function CS3() As ClothingSet.CS
+            Return New ClothingSet.CS(ComponentID3, DrawableID3, TextureID3, PaletteID3)
         End Function
 
     End Class
@@ -230,6 +247,16 @@ Namespace INM
             Set9 = s9
             Set10 = s10
         End Sub
+
+        Public Function GetLocalizedName() As String
+            Dim result As String = Nothing
+            If Name = "" Then
+                result = LocalizedName
+            Else
+                result = Game.GetGXTEntry(Name)
+            End If
+            If result = "NULL" Then Return LocalizedName Else Return result
+        End Function
 
     End Class
 
