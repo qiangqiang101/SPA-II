@@ -214,7 +214,7 @@ Namespace INM
         Public Name As String
         Public LocalizedName As String
         Public Type As eClothingType
-        Public Set1, Set2, Set3, Set4, Set5, Set6, Set7, Set8, Set9, Set10 As CS
+        Public Set1, Set2, Set3, Set4, Set5, Set6, Set7, Set8, Set9, Set10, Set11 As CS
 
         Public Sub New(name As String, local As String, s1 As CS, s2 As CS, s3 As CS, s4 As CS, s5 As CS, s6 As CS, s7 As CS)
             Me.Name = name
@@ -246,6 +246,24 @@ Namespace INM
             Set8 = s8
             Set9 = s9
             Set10 = s10
+            Set11 = Nothing
+        End Sub
+
+        Public Sub New(name As String, local As String, s1 As CS, s2 As CS, s3 As CS, s4 As CS, s5 As CS, s6 As CS, s7 As CS, s8 As CS, s9 As CS, s10 As CS, s11 As CS)
+            Me.Name = name
+            LocalizedName = local
+            Me.Type = eClothingType.Outfit
+            Set1 = s1
+            Set2 = s2
+            Set3 = s3
+            Set4 = s4
+            Set5 = s5
+            Set6 = s6
+            Set7 = s7
+            Set8 = s8
+            Set9 = s9
+            Set10 = s10
+            Set11 = s11
         End Sub
 
         Public Function GetLocalizedName() As String

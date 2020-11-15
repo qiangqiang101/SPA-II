@@ -8,22 +8,22 @@ Public Class WardrobeMemory
     End Sub
 
     Public Sub New(ped As Ped)
-        Face = ped.GetClothes(INM.ePedVariation.Face)
-        Beard = ped.GetClothes(INM.ePedVariation.Beard)
-        Hair = ped.GetClothes(INM.ePedVariation.Hair)
-        Torso = ped.GetClothes(INM.ePedVariation.Torso)
-        Legs = ped.GetClothes(INM.ePedVariation.Legs)
-        Hands = ped.GetClothes(INM.ePedVariation.Hands)
-        Feet = ped.GetClothes(INM.ePedVariation.Feet)
-        Eyes = ped.GetClothes(INM.ePedVariation.Eyes)
-        Accessories = ped.GetClothes(INM.ePedVariation.Accessories)
-        Props = ped.GetClothes(INM.ePedVariation.Props)
-        Textures = ped.GetClothes(INM.ePedVariation.Textures)
-        AuxiliaryTorso = ped.GetClothes(INM.ePedVariation.AuxiliaryTorso)
+        Face = ped.GetClothes(ePedVariation.Face)
+        Beard = ped.GetClothes(ePedVariation.Beard)
+        Hair = ped.GetClothes(ePedVariation.Hair)
+        Torso = ped.GetClothes(ePedVariation.Torso)
+        Legs = ped.GetClothes(ePedVariation.Legs)
+        Hands = ped.GetClothes(ePedVariation.Hands)
+        Feet = ped.GetClothes(ePedVariation.Feet)
+        Eyes = ped.GetClothes(ePedVariation.Eyes)
+        Accessories = ped.GetClothes(ePedVariation.Accessories)
+        Props = ped.GetClothes(ePedVariation.Props)
+        Textures = ped.GetClothes(ePedVariation.Textures)
+        AuxiliaryTorso = ped.GetClothes(ePedVariation.AuxiliaryTorso)
 
-        Helmet = ped.GetProps(INM.ePropVariation.Helmet)
-        Glasses = ped.GetProps(INM.ePropVariation.Glasses)
-        Earrings = ped.GetProps(INM.ePropVariation.Earrings)
+        Helmet = ped.GetProps(ePropVariation.Helmet)
+        Glasses = ped.GetProps(ePropVariation.Glasses)
+        Earrings = ped.GetProps(ePropVariation.Earrings)
     End Sub
 
     Private _face As CS

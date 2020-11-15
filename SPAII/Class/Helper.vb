@@ -941,13 +941,13 @@ Module Helper
     End Function
 
     <Extension>
-    Public Sub SetProp(ped As Ped, com As Integer, draw As Integer, txd As Integer)
+    Public Sub SetProps(ped As Ped, com As Integer, draw As Integer, txd As Integer)
         If draw = -1 Then NFunc.Call(Hash.CLEAR_PED_PROP, ped, com)
         NFunc.Call(Hash.SET_PED_PROP_INDEX, ped, com, draw, txd, 0)
     End Sub
 
     <Extension>
-    Public Sub SetProp(ped As Ped, cs As CS)
+    Public Sub SetProps(ped As Ped, cs As CS)
         If cs.DrawableID = -1 Then NFunc.Call(Hash.CLEAR_PED_PROP, ped, cs.ComponentID)
         NFunc.Call(Hash.SET_PED_PROP_INDEX, ped, cs.ComponentID, cs.DrawableID, cs.TextureID, cs.PaletteID)
     End Sub
@@ -961,5 +961,9 @@ Module Helper
     Public Sub SetClothes(ped As Ped, cs As CS)
         NFunc.Call(Hash.SET_PED_COMPONENT_VARIATION, ped, cs.ComponentID, cs.DrawableID, cs.TextureID, cs.PaletteID)
     End Sub
+
+    Public Function GetControlInstructionalButton(control As Control) As String
+        Return NFunc.Call(Of String)(GET_CONTROL_INSTRUCTIONAL_BUTTON, 2, control, True)
+    End Function
 
 End Module

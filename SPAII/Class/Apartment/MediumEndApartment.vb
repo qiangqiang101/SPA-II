@@ -35,13 +35,20 @@ Module MediumEndApartment
     Public Sub MediumEndApartmentOnTick()
         'Using Wardrobe
         If WardrobeDistance() <= 2.0F Then
-            'todo
+            If Not MenuPool.IsAnyMenuOpen Then
+                UI.ShowHelpMessage(Game.GetGXTEntry("WARD_TRIG").Replace("~a~", "~INPUT_CONTEXT~"))
+                If Game.IsControlJustReleased(0, Control.Context) Then
+                    MakeCamera(PP, WardrobePos.ToVector3, WardrobePos.W)
+                End If
+            End If
         End If
 
         'Get into bed
         If SaveDistance() <= 2.0F Then
             UI.ShowHelpMessage(Game.GetGXTEntry("SA_BED_IN"))
-            'todo
+            If Game.IsControlJustReleased(0, Control.Context) Then
+                Sleep(Apartment)
+            End If
         End If
 
         'Open Exit Apartment Menu

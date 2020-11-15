@@ -21,6 +21,7 @@ Public Class SPA2
 
         LoadBuildings()
         LoadContacts()
+        LoadWardrobe()
     End Sub
 
     Private Sub SPA2_Tick(sender As Object, e As EventArgs) Handles Me.Tick
@@ -102,6 +103,8 @@ Public Class SPA2
                         TenCarGarageOnTick()
                         MediumEndApartmentOnTick()
                         LowEndApartmentOnTick()
+
+                        TV_Tick()
                     End If
 
                     'Draw circle
@@ -127,7 +130,12 @@ Public Class SPA2
                     If Not apt.ShareInterior Then
                         'Using Wardrobe
                         If apt.WardrobeDistance() <= 2.0F Then
-                            'todo
+                            If Not MenuPool.IsAnyMenuOpen Then
+                                UI.ShowHelpMessage(Game.GetGXTEntry("WARD_TRIG").Replace("~a~", "~INPUT_CONTEXT~"))
+                                If Game.IsControlJustReleased(0, GameControl.Context) Then
+                                    MakeCamera(PP, apt.WardrobePos.ToVector3, apt.WardrobePos.W)
+                                End If
+                            End If
                         End If
 
                         'Open Exit Apartment Menu
