@@ -4,7 +4,7 @@ Imports SPAII.INM
 
 Module MediumEndApartment
 
-    Public Apartment As ApartmentClass
+    Public Apartment As ApartmentClass = Nothing
 
     'Coords
     Public Interior As New Vector3(350.8938, -993.6076, -99.1961)
@@ -54,10 +54,7 @@ Module MediumEndApartment
         'Open Exit Apartment Menu
         If ExitDistance() <= 2.0F Then
             If Not MenuPool.IsAnyMenuOpen Then
-                UI.ShowHelpMessage(Game.GetGXTEntry("SHR_EXIT_HELP"))
-                If Game.IsControlJustReleased(0, Control.Context) Then
-                    Apartment.AptMenu.Visible = True
-                End If
+                If Apartment.AptMenu.Visible = False Then Apartment.AptMenu.Visible = True
             End If
         End If
     End Sub

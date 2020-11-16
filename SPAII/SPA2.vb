@@ -22,6 +22,10 @@ Public Class SPA2
         LoadBuildings()
         LoadContacts()
         LoadWardrobe()
+        TwoCarGarage.LoadGarageMenu()
+        SixCarGarage.LoadGarageMenu()
+        TenCarGarage.LoadGarageMenu()
+        EnableOnlineMap()
     End Sub
 
     Private Sub SPA2_Tick(sender As Object, e As EventArgs) Handles Me.Tick
@@ -32,12 +36,14 @@ Public Class SPA2
         LV = Game.Player.Character.LastVehicle
         PM = Game.Player.Money
         Player = Game.Player
+        PI = Game.Player.Character.Position.GetInterior
 
         Try
             If Not forSaleSignSpawned Then SpawnForSaleSignsAndLockDoors()
 
             If buildingsLoaded Then
-                For Each bd As BuildingClass In buildings
+                For i As Integer = 0 To buildings.Count - 1
+                    Dim bd As BuildingClass = buildings(i)
                     'Open Buy Menu
                     If bd.SaleSignDistance <= 3.0F Then
                         If Not MenuPool.IsAnyMenuOpen() Then
@@ -98,13 +104,12 @@ Public Class SPA2
                         'Hide Building Exteriors
                         bd.HideExterior()
 
-                        TwoCarGarageOnTick()
-                        SixCarGarageOnTick()
-                        TenCarGarageOnTick()
-                        MediumEndApartmentOnTick()
-                        LowEndApartmentOnTick()
+                        If Not TwoCarGarage.Apartment Is Nothing Then TwoCarGarageOnTick()
+                        If Not SixCarGarage.Apartment Is Nothing Then SixCarGarageOnTick()
+                        If Not TenCarGarage.Apartment Is Nothing Then TenCarGarageOnTick()
 
-                        TV_Tick()
+                        If Not MediumEndApartment.Apartment Is Nothing Then MediumEndApartmentOnTick()
+                        If Not LowEndApartment.Apartment Is Nothing Then LowEndApartmentOnTick()
                     End If
 
                     'Draw circle
@@ -126,40 +131,56 @@ Public Class SPA2
                     End If
                 Next
 
-                For Each apt As ApartmentClass In apartments
-                    If Not apt.ShareInterior Then
-                        'Using Wardrobe
-                        If apt.WardrobeDistance() <= 2.0F Then
-                            If Not MenuPool.IsAnyMenuOpen Then
-                                UI.ShowHelpMessage(Game.GetGXTEntry("WARD_TRIG").Replace("~a~", "~INPUT_CONTEXT~"))
-                                If Game.IsControlJustReleased(0, GameControl.Context) Then
-                                    MakeCamera(PP, apt.WardrobePos.ToVector3, apt.WardrobePos.W)
+                If IsInInterior() Then
+                    For i As Integer = 0 To apartments.Count - 1
+                        Dim apt As ApartmentClass = apartments(i)
+                        If Not apt.ShareInterior Then
+                            'Using Wardrobe
+                            If apt.WardrobeDistance() <= 2.0F Then
+                                If Not MenuPool.IsAnyMenuOpen Then
+                                    UI.ShowHelpMessage(Game.GetGXTEntry("WARD_TRIG").Replace("~a~", "~INPUT_CONTEXT~"))
+                                    If Game.IsControlJustReleased(0, GameControl.Context) Then
+                                        MakeCamera(PP, apt.WardrobePos.ToVector3, apt.WardrobePos.W)
+                                    End If
                                 End If
                             End If
-                        End If
 
-                        'Open Exit Apartment Menu
-                        If apt.ExitDistance <= 2.0F Then
-                            'Request GXT2 texts
-                            RequestAdditionalText("s_range", "SHR_EXIT_HELP")
-                            If Not MenuPool.IsAnyMenuOpen Then
-                                UI.ShowHelpMessage(Game.GetGXTEntry("SHR_EXIT_HELP"))
-                                If Game.IsControlJustReleased(0, GameControl.Context) Then
-                                    apt.AptMenu.Visible = True
+                            'Open Exit Apartment Menu
+                            If apt.ExitDistance <= 2.0F Then
+                                If Not MenuPool.IsAnyMenuOpen Then
+                                    If apt.AptMenu.Visible = False Then apt.AptMenu.Visible = True
                                 End If
                             End If
-                        End If
 
-                        'Get into bed
-                        If apt.SaveDistance <= 2.0F Then
-                            UI.ShowHelpMessage(Game.GetGXTEntry("SA_BED_IN"))
-                            If Game.IsControlJustReleased(0, GameControl.Context) Then
-                                Sleep(apt)
+                            'Get into bed
+                            If apt.SaveDistance <= 2.0F Then
+                                UI.ShowHelpMessage(Game.GetGXTEntry("SA_BED_IN"))
+                                If Game.IsControlJustReleased(0, GameControl.Context) Then
+                                    Sleep(apt)
+                                End If
+                                'todo
                             End If
-                            'todo
+
+                            If apt.InteriorID = PI Then
+                                PropOnTick()
+                            End If
+                        Else
+                            If apt.InteriorID = PI Then
+                                PropOnTick()
+                            End If
                         End If
+                    Next
+
+                    If apartments.Contains(TenCarGarage.Apartment) Then
+                        PropOnTick()
                     End If
-                Next
+                    If apartments.Contains(SixCarGarage.Apartment) Then
+                        PropOnTick()
+                    End If
+                    If apartments.Contains(TwoCarGarage.Apartment) Then
+                        PropOnTick()
+                    End If
+                End If
 
                 'Hide vehicle blip
                 If PP.LastVehicle.IsPersonalVehicle Then
@@ -173,8 +194,6 @@ Public Class SPA2
                 MenuPool.ProcessMenus()
                 iFruit.Update()
             End If
-
-
 
             'debug only
             If debugMode Then
@@ -214,6 +233,8 @@ Public Class SPA2
         TenCarGarage.Clear()
         LowEndApartment.Clear()
         MediumEndApartment.Clear()
+
+        If Not RadioEmitter = Nothing Then RadioEmitter.Delete()
 
         World.RenderingCamera = Nothing
         World.DestroyAllCameras()

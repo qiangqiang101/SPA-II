@@ -4,7 +4,7 @@ Imports SPAII.INM
 
 Module LowEndApartment
 
-    Public Apartment As ApartmentClass
+    Public Apartment As ApartmentClass = Nothing
 
     'Coords
     Public Interior As New Vector3(260.0521, -1004.1469, -99.0085)
@@ -35,22 +35,26 @@ Module LowEndApartment
     Public Sub LowEndApartmentOnTick()
         'Using Wardrobe
         If WardrobeDistance() <= 2.0F Then
-            'todo
+            If Not MenuPool.IsAnyMenuOpen Then
+                UI.ShowHelpMessage(Game.GetGXTEntry("WARD_TRIG").Replace("~a~", "~INPUT_CONTEXT~"))
+                If Game.IsControlJustReleased(0, Control.Context) Then
+                    MakeCamera(PP, WardrobePos.ToVector3, WardrobePos.W)
+                End If
+            End If
         End If
 
         'Get into bed
         If SaveDistance() <= 2.0F Then
             UI.ShowHelpMessage(Game.GetGXTEntry("SA_BED_IN"))
-            'todo
+            If Game.IsControlJustReleased(0, Control.Context) Then
+                Sleep(Apartment)
+            End If
         End If
 
         'Open Exit Apartment Menu
         If ExitDistance() <= 2.0F Then
             If Not MenuPool.IsAnyMenuOpen Then
-                UI.ShowHelpMessage(Game.GetGXTEntry("SHR_EXIT_HELP"))
-                If Game.IsControlJustReleased(0, Control.Context) Then
-                    Apartment.AptMenu.Visible = True
-                End If
+                If Apartment.AptMenu.Visible = False Then Apartment.AptMenu.Visible = True
             End If
         End If
     End Sub

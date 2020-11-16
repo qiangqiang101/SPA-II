@@ -545,7 +545,8 @@ Public Class BuildingClass
                     PP.Task.LeaveVehicle()
                 Else
                     'On Foot
-                    PP.Position = TwoCarGarage.GarageDoor
+                    PP.Position = TwoCarGarage.SpawnInPos.ToVector3
+                    PP.Heading = TwoCarGarage.SpawnInPos.W
                     TwoCarGarage.LoadVehicles()
                 End If
 
@@ -584,7 +585,8 @@ Public Class BuildingClass
                     PP.Task.LeaveVehicle()
                 Else
                     'On Foot
-                    PP.Position = SixCarGarage.GarageDoorL
+                    PP.Position = SixCarGarage.SpawnInPos.ToVector3
+                    PP.Heading = SixCarGarage.SpawnInPos.W
                     SixCarGarage.LoadVehicles()
                 End If
 
@@ -623,8 +625,8 @@ Public Class BuildingClass
                     PP.Task.LeaveVehicle()
                 Else
                     'On Foot
-                    PP.Position = TenCarGarage.GarageDoorL
-                    TenCarGarage.LoadVehicles()
+                    PP.Position = TenCarGarage.SpawnInPos.ToVector3
+                    PP.Heading = TenCarGarage.SpawnInPos.W
                 End If
 
                 FadeScreen(0)

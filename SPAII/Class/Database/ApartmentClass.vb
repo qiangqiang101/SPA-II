@@ -68,7 +68,7 @@ Public Class ApartmentClass
         End Select
     End Function
 
-    Public Function InteriorID()
+    Public Function InteriorID() As Integer
         Return NFunc.Call(Of Integer)(Hash.GET_INTERIOR_AT_COORDS, InteriorPos.X, InteriorPos.Y, InteriorPos.Z)
     End Function
 
@@ -203,6 +203,12 @@ Public Class ApartmentClass
                     PlayApartmerntExitCutscene()
                     Building.PlayExitApartmentCamera(3000, True, True, CameraShake.Hand, 0.4F)
                     HideHud = False
+                    Select Case ApartmentType
+                        Case eApartmentType.LowEnd
+                            LowEndApartment.Apartment = Nothing
+                        Case eApartmentType.MediumEnd
+                            MediumEndApartment.Apartment = Nothing
+                    End Select
                 Case "Garage"
                     AptMenu.Visible = False
                     HideHud = True
@@ -227,6 +233,12 @@ Public Class ApartmentClass
                     HideHud = False
                     World.RenderingCamera = Nothing
                     World.DestroyAllCameras()
+                    Select Case ApartmentType
+                        Case eApartmentType.LowEnd
+                            LowEndApartment.Apartment = Nothing
+                        Case eApartmentType.MediumEnd
+                            MediumEndApartment.Apartment = Nothing
+                    End Select
                 Case "Style"
                     FadeScreen(1)
                     HideHud = True

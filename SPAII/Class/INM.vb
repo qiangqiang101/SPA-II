@@ -333,4 +333,16 @@ Namespace INM
         Earrings
     End Enum
 
+    Public Class VehClassMenuItem
+
+        Public Index As Integer
+        Public VehClass As VehicleClass
+
+        Public Sub New(id As Integer, vc As VehicleClass)
+            Index = id
+            VehClass = vc
+        End Sub
+
+    End Class
+
 End Namespace

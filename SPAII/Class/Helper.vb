@@ -39,6 +39,7 @@ Module Helper
     Public LV As Vehicle
     Public PM As Integer
     Public Player As Player
+    Public PI As Integer
 
     'Menu
     Public MenuPool As New MenuPool
@@ -49,6 +50,7 @@ Module Helper
 
     'Coords
     Public TwentyCarGarage As New Vector3(0, 0, 0)
+    Public GarageMarkerIndicator As New Vector3(0F, 0F, 0F)
 
     'Prop
     Public ForSaleSign As String = "prop_forsale_dyn_01"
@@ -606,6 +608,13 @@ Module Helper
     End Sub
 
     <Extension>
+    Public Sub DrawMgmtMarker(pos As Vector3, Optional col As Color = Nothing, Optional size As Vector3 = Nothing)
+        If col = Nothing Then col = Color.DeepSkyBlue
+        If size = Nothing Then size = New Vector3(0.4F, 0.4F, 0.4F)
+        World.DrawMarker(MarkerType.ChevronUpx1, New Vector3(pos.X, pos.Y, pos.Z + 2.0F), Vector3.Zero, New Vector3(0F, 180.0F, 0F), size, Color.FromArgb(150, col))
+    End Sub
+
+    <Extension>
     Public Sub Draw3DText(pos As Vector3, text As String)
         Dim onScreen = pos.GetScreenCoordFromWorldCoord
         Dim camCoords = GameplayCamera.Position
@@ -905,7 +914,7 @@ Module Helper
 
     <Extension>
     Public Function IsPositionOccupied(pos As Vector3, range As Single) As Boolean
-        Return Native.Function.Call(Of Boolean)(Hash.IS_POSITION_OCCUPIED, pos.X, pos.Y, pos.Z, range, False, True, False, False, False, 0, False)
+        Return NFunc.Call(Of Boolean)(Hash.IS_POSITION_OCCUPIED, pos.X, pos.Y, pos.Z, range, False, True, False, False, False, 0, False)
     End Function
 
     <Extension>
@@ -965,5 +974,92 @@ Module Helper
     Public Function GetControlInstructionalButton(control As Control) As String
         Return NFunc.Call(Of String)(GET_CONTROL_INSTRUCTIONAL_BUTTON, 2, control, True)
     End Function
+
+    <Extension>
+    Public Function GetInterior(pos As Vector3) As Integer
+        Return NFunc.Call(Of Integer)(Hash.GET_INTERIOR_AT_COORDS, pos.X, pos.Y, pos.Z)
+    End Function
+
+    Public Function IsInInterior() As Boolean
+        Return NFunc.Call(Of Boolean)(Hash.IS_INTERIOR_SCENE)
+    End Function
+
+    Public Function EnableOnlineMap() As Boolean
+        Dim gotError As Boolean = False
+        Try
+            NFunc.Call(ON_ENTER_MP)
+        Catch ex As Exception
+            gotError = True
+        End Try
+        If Not gotError Then LoadMPDLCMapMissingObjects()
+        Return gotError
+    End Function
+
+    Public Sub LoadMPDLCMapMissingObjects()
+        Dim TID2 As Integer = NFunc.Call(Of Integer)(Hash.GET_INTERIOR_AT_COORDS, -1155.31005, -1518.5699, 10.6300001) 'Floyd Apartment
+        Dim MID As Integer = NFunc.Call(Of Integer)(Hash.GET_INTERIOR_AT_COORDS, -802.31097, 175.05599, 72.84459) 'Michael House
+        Dim FID1 As Integer = NFunc.Call(Of Integer)(Hash.GET_INTERIOR_AT_COORDS, -9.96562, -1438.54003, 31.101499) 'Franklin Aunt House
+        Dim FID2 As Integer = NFunc.Call(Of Integer)(Hash.GET_INTERIOR_AT_COORDS, 0.91675, 528.48498, 174.628005) 'Franklin House
+
+        Dim WODID As Integer = NFunc.Call(Of Integer)(Hash.GET_INTERIOR_AT_COORDS, -172.983001, 494.032989, 137.654006) '3655 Wild Oats
+        Dim NCAID1 As Integer = NFunc.Call(Of Integer)(Hash.GET_INTERIOR_AT_COORDS, 340.941009, 437.17999, 149.389999) '2044 North Conker
+        Dim NCAID2 As Integer = NFunc.Call(Of Integer)(Hash.GET_INTERIOR_AT_COORDS, 373.0230102, 416.1050109, 145.70100402) '2045 North Conker
+        Dim HCAID1 As Integer = NFunc.Call(Of Integer)(Hash.GET_INTERIOR_AT_COORDS, -676.1270141, 588.6119995, 145.16999816) '2862 Hillcrest Avenue
+        Dim HCAID2 As Integer = NFunc.Call(Of Integer)(Hash.GET_INTERIOR_AT_COORDS, -763.10699462, 615.90600585, 144.139999) '2868 Hillcrest Avenue
+        Dim HCAID3 As Integer = NFunc.Call(Of Integer)(Hash.GET_INTERIOR_AT_COORDS, -857.79797363, 682.56298828, 152.6529998) '2874 Hillcrest Avenue
+        Dim MRID As Integer = NFunc.Call(Of Integer)(Hash.GET_INTERIOR_AT_COORDS, -572.60998535, 653.13000488, 145.63000488) '2117 Milton Road
+        Dim WMDID As Integer = NFunc.Call(Of Integer)(Hash.GET_INTERIOR_AT_COORDS, 120.5, 549.952026367, 184.09700012207) '3677 Whispymound Drive
+        Dim MWTDID As Integer = NFunc.Call(Of Integer)(Hash.GET_INTERIOR_AT_COORDS, -1288, 440.74798583, 97.694602966) '2113 Mad Wayne Thunder Drive
+
+        NFunc.Call(ACTIVATE_INTERIOR_ENTITY_SET, FID1, "V_57_FranklinStuff")
+
+        NFunc.Call(ACTIVATE_INTERIOR_ENTITY_SET, TID2, "swap_clean_apt")
+        NFunc.Call(ACTIVATE_INTERIOR_ENTITY_SET, TID2, "layer_whiskey")
+        NFunc.Call(ACTIVATE_INTERIOR_ENTITY_SET, TID2, "layer_sextoys_a")
+        NFunc.Call(ACTIVATE_INTERIOR_ENTITY_SET, TID2, "swap_mrJam_A")
+        NFunc.Call(ACTIVATE_INTERIOR_ENTITY_SET, TID2, "swap_sofa_A")
+
+        NFunc.Call(ACTIVATE_INTERIOR_ENTITY_SET, MID, "V_Michael_bed_tidy")
+        NFunc.Call(ACTIVATE_INTERIOR_ENTITY_SET, MID, "V_Michael_L_Items")
+        NFunc.Call(ACTIVATE_INTERIOR_ENTITY_SET, MID, "V_Michael_S_Items")
+        NFunc.Call(ACTIVATE_INTERIOR_ENTITY_SET, MID, "V_Michael_D_Items")
+        NFunc.Call(ACTIVATE_INTERIOR_ENTITY_SET, MID, "V_Michael_M_Items")
+        NFunc.Call(ACTIVATE_INTERIOR_ENTITY_SET, MID, "Michael_premier")
+        NFunc.Call(ACTIVATE_INTERIOR_ENTITY_SET, MID, "V_Michael_plane_ticket")
+
+        'NFunc.Call(ACTIVATE_INTERIOR_ENTITY_SET, FID2, "showhome_only")
+        NFunc.Call(ACTIVATE_INTERIOR_ENTITY_SET, FID2, "franklin_settled")
+        NFunc.Call(ACTIVATE_INTERIOR_ENTITY_SET, FID2, "franklin_unpacking")
+        NFunc.Call(ACTIVATE_INTERIOR_ENTITY_SET, FID2, "bong_and_wine")
+        NFunc.Call(ACTIVATE_INTERIOR_ENTITY_SET, FID2, "progress_flyer")
+        NFunc.Call(ACTIVATE_INTERIOR_ENTITY_SET, FID2, "progress_tshirt")
+        NFunc.Call(ACTIVATE_INTERIOR_ENTITY_SET, FID2, "progress_tux")
+        NFunc.Call(ACTIVATE_INTERIOR_ENTITY_SET, FID2, "unlocked")
+
+        NFunc.Call(ACTIVATE_INTERIOR_ENTITY_SET, WODID, "Stilts_Kitchen_Window")
+        NFunc.Call(ACTIVATE_INTERIOR_ENTITY_SET, NCAID1, "Stilts_Kitchen_Window")
+        NFunc.Call(ACTIVATE_INTERIOR_ENTITY_SET, NCAID2, "Stilts_Kitchen_Window")
+        NFunc.Call(ACTIVATE_INTERIOR_ENTITY_SET, HCAID1, "Stilts_Kitchen_Window")
+        NFunc.Call(ACTIVATE_INTERIOR_ENTITY_SET, HCAID2, "Stilts_Kitchen_Window")
+        NFunc.Call(ACTIVATE_INTERIOR_ENTITY_SET, HCAID3, "Stilts_Kitchen_Window")
+        NFunc.Call(ACTIVATE_INTERIOR_ENTITY_SET, MRID, "Stilts_Kitchen_Window")
+        NFunc.Call(ACTIVATE_INTERIOR_ENTITY_SET, WMDID, "Stilts_Kitchen_Window")
+        NFunc.Call(ACTIVATE_INTERIOR_ENTITY_SET, MWTDID, "Stilts_Kitchen_Window")
+
+        NFunc.Call(Hash.REFRESH_INTERIOR, FID1)
+        NFunc.Call(Hash.REFRESH_INTERIOR, TID2)
+        NFunc.Call(Hash.REFRESH_INTERIOR, MID)
+        NFunc.Call(Hash.REFRESH_INTERIOR, FID2)
+
+        NFunc.Call(Hash.REFRESH_INTERIOR, WODID)
+        NFunc.Call(Hash.REFRESH_INTERIOR, NCAID1)
+        NFunc.Call(Hash.REFRESH_INTERIOR, NCAID2)
+        NFunc.Call(Hash.REFRESH_INTERIOR, HCAID1)
+        NFunc.Call(Hash.REFRESH_INTERIOR, HCAID2)
+        NFunc.Call(Hash.REFRESH_INTERIOR, HCAID3)
+        NFunc.Call(Hash.REFRESH_INTERIOR, MRID)
+        NFunc.Call(Hash.REFRESH_INTERIOR, WMDID)
+        NFunc.Call(Hash.REFRESH_INTERIOR, MWTDID)
+    End Sub
 
 End Module

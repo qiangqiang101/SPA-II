@@ -126,4 +126,5 @@ Module Mechanic
     Private Sub MechanicMenu_OnMenuClose(sender As UIMenu) Handles MechanicMenu.OnMenuClose
         IllGetBackToWork.Play
     End Sub
+
 End Module

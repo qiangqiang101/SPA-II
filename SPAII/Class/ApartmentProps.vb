@@ -3,70 +3,23 @@ Imports GTA.Native
 Imports NFunc = GTA.Native.Function
 Imports INMNativeUI
 Imports System.Runtime.CompilerServices
+Imports GTA.Math
 
 Module ApartmentProps
 
-    Public ClosestTelly As Prop = Nothing
+    Public ClosestProp As Prop = Nothing
+    Public ClosestPropList As New List(Of Model) From {1036195894, 777010715, -1073182005, 1653710254, 170618079, -897601557, -1546399138, -1223496606, -1820646534, 608950395, 2079380440, -627813781, 1729911864, -1999188639, -364924791, 2057223314}
 
+#Region "Telly"
     Public TVModels As New List(Of Model) From {1036195894, 777010715, -1073182005, 1653710254, 170618079, -897601557, -1546399138, -1223496606, -1820646534, 608950395}
-    Public TVOn As Boolean = False, IBOn As Boolean = False, SubtitleOn As Boolean = False, TVSound As Single = 0F, TVChannel As Integer = 0, rendertargetid, ex_rendertargetid As Integer, TVCamera As Camera
+    Public TVOn As Boolean = False, TIBOn As Boolean = False, SubtitleOn As Boolean = False, TVSound As Single = 0F, TVChannel As Integer = 0, rendertargetid, ex_rendertargetid As Integer, TVCamera As Camera
     Public TVChannelList As New List(Of Integer) From {0, 1}
     Public IBScaleform As New Scaleform("instructional_buttons")
 
-    Public Sub TV_Tick()
-        ClosestTelly = World.GetClosest(Of Prop)(Game.Player.Character.Position, World.GetNearbyProps(Game.Player.Character.Position, 3.0F).Where(Function(x) TVModels.Contains(x.Model)).ToArray)
-
-        If Not ClosestTelly = Nothing Then
-            If Not TVOn Then
-                UI.ShowHelpMessage(Game.GetGXTEntry("MPTV_GRGE"))
-                If Game.IsControlJustPressed(0, Control.Context) Then
-                    rendertargetid = ClosestTelly.TurnOnTV("tvscreen", TVChannel, TVSound)
-                    ex_rendertargetid = ClosestTelly.TurnOnTV("ex_tvscreen", TVChannel, TVSound)
-                    TVOn = True
-                    Script.Yield()
-                End If
-            Else
-                If Not IBOn Then UI.ShowHelpMessage(Game.GetGXTEntry("TV_HLP5"))
-                If Game.IsControlJustPressed(0, Control.Context) Then
-                    TurnOffTV("tvscreen")
-                    TurnOffTV("ex_tvscreen")
-                    TVOn = False
-                    IBOn = False
-                    Script.Yield()
-                ElseIf Game.IsControlJustPressed(0, Control.ScriptRUp) AndAlso IBOn = False Then
-                    IBOn = True
-                    Script.Yield()
-                End If
-            End If
-            If IBOn Then
-                If Game.IsControlJustPressed(0, Control.ScriptLeftAxisX) Then
-                    Select Case TVChannel
-                        Case 0
-                            TVChannel = 1
-                        Case 1
-                            TVChannel = 0
-                    End Select
-                    NFunc.Call(Hash.SET_TV_CHANNEL, TVChannel)
-                    Script.Yield()
-                ElseIf Game.IsControlJustPressed(0, Control.ScriptRUp) AndAlso IBOn = True Then
-                    IBOn = False
-                    Script.Yield()
-                End If
-            End If
-        End If
-
-        If TVOn Then
-            RenderTV(rendertargetid)
-            RenderTV(ex_rendertargetid)
-        End If
-        If IBOn Then DrawTVControlInstructionalButtons()
-        If ClosestTelly = Nothing Then IBOn = False
-    End Sub
-
-    Private Sub DrawTVControlInstructionalButtons()
-        'IBScaleform.CallFunction("CLEAR_ALL")
+    Public Sub DrawTVControlInstructionalButtons()
+        IBScaleform.CallFunction("CLEAR_ALL")
         'IBScaleform.CallFunction("TOGGLE_MOUSE_BUTTONS", 0)
-        'IBScaleform.CallFunction("CREATE_CONTAINER")
+        IBScaleform.CallFunction("CREATE_CONTAINER")
         IBScaleform.CallFunction("SET_DATA_SLOT", 0, GetControlInstructionalButton(Control.ScriptLeftAxisX), Game.GetGXTEntry("HUD_INPUT75"))
         IBScaleform.CallFunction("SET_DATA_SLOT", 1, GetControlInstructionalButton(Control.ScriptRUp), Game.GetGXTEntry("HUD_INPUT69"))
         IBScaleform.CallFunction("SET_DATA_SLOT", 2, GetControlInstructionalButton(Control.Context), Game.GetGXTEntry("HUD_INPUT82"))
@@ -100,5 +53,152 @@ Module ApartmentProps
         NFunc.Call(Hash.DRAW_TV_CHANNEL, 0.5, 0.5, 1.0, 1.0, 0.0, 255, 255, 255, 255)
         NFunc.Call(Hash.SET_TEXT_RENDER_ID, NFunc.Call(Of Integer)(Hash.GET_DEFAULT_SCRIPT_RENDERTARGET_RENDER_ID))
     End Sub
+#End Region
+
+#Region "Radio"
+    Public RadioModels As New List(Of Model) From {2079380440, -627813781, 1729911864, -1999188639, -364924791, 2057223314}
+    Public RadioOn As Boolean = False, RadioChannel As Integer = 0 ', RIBOn As Boolean = False
+    Public RadioEmitter As Prop = Nothing
+
+    Public Function GetPlayerRadioStation() As Integer
+        Return NFunc.Call(Of Integer)(Hash.GET_PLAYER_RADIO_STATION_INDEX)
+    End Function
+
+    Public Sub TurnOnRadio(radio As Prop, Optional emitter As String = "SE_DLC_APT_Yacht_Bar")
+        If RadioEmitter = Nothing Then
+            RadioEmitter = CreateRadioPropNoOffset("prop_boombox_01", radio.Position, False)
+        Else
+            RadioEmitter.Position = radio.Position
+        End If
+        UpdateRadio(RadioChannel)
+        NFunc.Call(Hash.SET_STATIC_EMITTER_ENABLED, emitter, True)
+        NFunc.Call(&HE0CD610D5EB6C85, emitter, RadioEmitter)
+    End Sub
+
+    Public Sub TurnOffRadio(Optional emitter As String = "SE_DLC_APT_Yacht_Bar")
+        NFunc.Call(Hash.SET_STATIC_EMITTER_ENABLED, emitter, False)
+    End Sub
+
+    Public Sub UpdateRadio(station As RadioStation, Optional emitter As String = "SE_DLC_APT_Yacht_Bar")
+        If station = 22 Then station = 0
+        If station = 256 Then station = 0
+        RadioChannel = station
+        Dim stationName As String = NFunc.Call(Of String)(Hash.GET_RADIO_STATION_NAME, station)
+        NFunc.Call(Hash.SET_EMITTER_RADIO_STATION, emitter, stationName)
+    End Sub
+
+    Public Sub DrawRadioControlInstructionalButtons()
+        IBScaleform.CallFunction("CLEAR_ALL")
+        'IBScaleform.CallFunction("TOGGLE_MOUSE_BUTTONS", 0)
+        IBScaleform.CallFunction("CREATE_CONTAINER")
+        IBScaleform.CallFunction("SET_DATA_SLOT", 0, GetControlInstructionalButton(Control.ScriptRUp), Game.GetGXTEntry("HUD_INPUT80")) 'Select Station
+        IBScaleform.CallFunction("SET_DATA_SLOT", 1, GetControlInstructionalButton(Control.Context), Game.GetGXTEntry("HUD_INPUT82")) 'Turn Off
+        IBScaleform.CallFunction("DRAW_INSTRUCTIONAL_BUTTONS", -1)
+        IBScaleform.Render2D()
+    End Sub
+
+    Public Function CreateRadioPropNoOffset(model As Model, position As Vector3, dynamic As Boolean) As Prop
+        Dim newProp As New Prop(NFunc.Call(Of Integer)(Hash.CREATE_OBJECT_NO_OFFSET, model.Hash, position.X, position.Y, position.Z, True, True, dynamic))
+        With newProp
+            .IsInvincible = True
+            .FreezePosition = True
+            .HasCollision = False
+            .IsVisible = False
+        End With
+        Return newProp
+    End Function
+
+#End Region
+
+    Public Sub PropOnTick()
+        ClosestProp = World.GetClosest(Of Prop)(Game.Player.Character.Position, World.GetNearbyProps(Game.Player.Character.Position, 10.0F).Where(Function(x) ClosestPropList.Contains(x.Model)).ToArray)
+
+        If ClosestProp.IsPropTelly Then
+            If ClosestProp.Position.DistanceToSquared(Game.Player.Character.Position) <= 4.0F Then
+                If Not TVOn Then
+                    UI.ShowHelpMessage(Game.GetGXTEntry("MPTV_GRGE"))
+                    If Game.IsControlJustPressed(0, Control.Context) Then
+                        rendertargetid = ClosestProp.TurnOnTV("tvscreen", TVChannel, TVSound)
+                        ex_rendertargetid = ClosestProp.TurnOnTV("ex_tvscreen", TVChannel, TVSound)
+                        TVOn = True
+                        Script.Yield()
+                    End If
+                Else
+                    If Not TIBOn Then UI.ShowHelpMessage(Game.GetGXTEntry("TV_HLP5"))
+                    If Game.IsControlJustPressed(0, Control.Context) Then
+                        TurnOffTV("tvscreen")
+                        TurnOffTV("ex_tvscreen")
+                        TVOn = False
+                        TIBOn = False
+                        Script.Yield()
+                    ElseIf Game.IsControlJustPressed(0, Control.ScriptRUp) AndAlso TIBOn = False Then
+                        TIBOn = True
+                        Script.Yield()
+                    End If
+                End If
+                If TIBOn Then
+                    If Game.IsControlJustPressed(0, Control.ScriptLeftAxisX) Then
+                        Select Case TVChannel
+                            Case 0
+                                TVChannel = 1
+                            Case 1
+                                TVChannel = 0
+                        End Select
+                        NFunc.Call(Hash.SET_TV_CHANNEL, TVChannel)
+                        Script.Yield()
+                    ElseIf Game.IsControlJustPressed(0, Control.ScriptRUp) AndAlso TIBOn = True Then
+                        TIBOn = False
+                        Script.Yield()
+                    End If
+                End If
+            Else
+                If TIBOn Then TIBOn = False
+            End If
+        End If
+
+        If TVOn Then
+            RenderTV(rendertargetid)
+            RenderTV(ex_rendertargetid)
+        End If
+        If TIBOn Then DrawTVControlInstructionalButtons()
+        If ClosestProp = Nothing Then TIBOn = False
+
+        If ClosestProp.IsPropRadio Then
+            If Not RadioEmitter = Nothing Then RadioEmitter.Position = ClosestProp.Position
+
+            If ClosestProp.Position.DistanceToSquared(PP.Position) <= 2.0F Then
+                If Not RadioOn Then
+                    UI.ShowHelpMessage(Game.GetGXTEntry("MPRD_CTXT"))
+                    If Game.IsControlJustPressed(0, Control.Context) Then
+                        TurnOnRadio(ClosestProp)
+                        UpdateRadio(RadioChannel)
+                        RadioOn = True
+                        Script.Yield()
+                    End If
+                Else
+                    DrawRadioControlInstructionalButtons()
+                    If Game.IsControlJustPressed(0, Control.ScriptRUp) Then
+                        UpdateRadio(RadioChannel + 1)
+                        Script.Yield()
+                    ElseIf Game.IsControlJustPressed(0, Control.Context) Then
+                        TurnOffRadio()
+                        UpdateRadio(255)
+                        RadioOn = False
+                        Script.Yield()
+                    End If
+                End If
+            End If
+        End If
+    End Sub
+
+    <Extension>
+    Public Function IsPropRadio(prop As Prop) As Boolean
+        If prop = Nothing Then Return False Else Return RadioModels.Contains(prop.Model)
+    End Function
+
+    <Extension>
+    Public Function IsPropTelly(prop As Prop) As Boolean
+        If prop = Nothing Then Return False Else Return TVModels.Contains(prop.Model)
+    End Function
 
 End Module
