@@ -996,70 +996,34 @@ Module Helper
     End Function
 
     Public Sub LoadMPDLCMapMissingObjects()
-        Dim TID2 As Integer = NFunc.Call(Of Integer)(Hash.GET_INTERIOR_AT_COORDS, -1155.31005, -1518.5699, 10.6300001) 'Floyd Apartment
-        Dim MID As Integer = NFunc.Call(Of Integer)(Hash.GET_INTERIOR_AT_COORDS, -802.31097, 175.05599, 72.84459) 'Michael House
-        Dim FID1 As Integer = NFunc.Call(Of Integer)(Hash.GET_INTERIOR_AT_COORDS, -9.96562, -1438.54003, 31.101499) 'Franklin Aunt House
-        Dim FID2 As Integer = NFunc.Call(Of Integer)(Hash.GET_INTERIOR_AT_COORDS, 0.91675, 528.48498, 174.628005) 'Franklin House
+        ActivateInteriorEntitySet(New Vector3(-1155.31005, -1518.5699, 10.6300001), "swap_clean_apt", "layer_whiskey", "layer_sextoys_a", "swap_mrJam_A", "swap_sofa_A") 'Floyd Apartment
+        ActivateInteriorEntitySet(New Vector3(-802.31097, 175.05599, 72.84459), "V_Michael_bed_tidy", "V_Michael_L_Items", "V_Michael_S_Items", "V_Michael_D_Items", "V_Michael_M_Items", "Michael_premier", "V_Michael_plane_ticket") 'Michael House
+        ActivateInteriorEntitySet(New Vector3(-9.96562, -1438.54003, 31.101499), "V_57_FranklinStuff") 'Franklin Aunt House
+        ActivateInteriorEntitySet(New Vector3(0.91675, 528.48498, 174.628005), "franklin_settled", "franklin_unpacking", "bong_and_wine", "progress_flyer", "progress_tshirt", "progress_tux", "unlocked") 'Franklin House
 
-        Dim WODID As Integer = NFunc.Call(Of Integer)(Hash.GET_INTERIOR_AT_COORDS, -172.983001, 494.032989, 137.654006) '3655 Wild Oats
-        Dim NCAID1 As Integer = NFunc.Call(Of Integer)(Hash.GET_INTERIOR_AT_COORDS, 340.941009, 437.17999, 149.389999) '2044 North Conker
-        Dim NCAID2 As Integer = NFunc.Call(Of Integer)(Hash.GET_INTERIOR_AT_COORDS, 373.0230102, 416.1050109, 145.70100402) '2045 North Conker
-        Dim HCAID1 As Integer = NFunc.Call(Of Integer)(Hash.GET_INTERIOR_AT_COORDS, -676.1270141, 588.6119995, 145.16999816) '2862 Hillcrest Avenue
-        Dim HCAID2 As Integer = NFunc.Call(Of Integer)(Hash.GET_INTERIOR_AT_COORDS, -763.10699462, 615.90600585, 144.139999) '2868 Hillcrest Avenue
-        Dim HCAID3 As Integer = NFunc.Call(Of Integer)(Hash.GET_INTERIOR_AT_COORDS, -857.79797363, 682.56298828, 152.6529998) '2874 Hillcrest Avenue
-        Dim MRID As Integer = NFunc.Call(Of Integer)(Hash.GET_INTERIOR_AT_COORDS, -572.60998535, 653.13000488, 145.63000488) '2117 Milton Road
-        Dim WMDID As Integer = NFunc.Call(Of Integer)(Hash.GET_INTERIOR_AT_COORDS, 120.5, 549.952026367, 184.09700012207) '3677 Whispymound Drive
-        Dim MWTDID As Integer = NFunc.Call(Of Integer)(Hash.GET_INTERIOR_AT_COORDS, -1288, 440.74798583, 97.694602966) '2113 Mad Wayne Thunder Drive
-
-        NFunc.Call(ACTIVATE_INTERIOR_ENTITY_SET, FID1, "V_57_FranklinStuff")
-
-        NFunc.Call(ACTIVATE_INTERIOR_ENTITY_SET, TID2, "swap_clean_apt")
-        NFunc.Call(ACTIVATE_INTERIOR_ENTITY_SET, TID2, "layer_whiskey")
-        NFunc.Call(ACTIVATE_INTERIOR_ENTITY_SET, TID2, "layer_sextoys_a")
-        NFunc.Call(ACTIVATE_INTERIOR_ENTITY_SET, TID2, "swap_mrJam_A")
-        NFunc.Call(ACTIVATE_INTERIOR_ENTITY_SET, TID2, "swap_sofa_A")
-
-        NFunc.Call(ACTIVATE_INTERIOR_ENTITY_SET, MID, "V_Michael_bed_tidy")
-        NFunc.Call(ACTIVATE_INTERIOR_ENTITY_SET, MID, "V_Michael_L_Items")
-        NFunc.Call(ACTIVATE_INTERIOR_ENTITY_SET, MID, "V_Michael_S_Items")
-        NFunc.Call(ACTIVATE_INTERIOR_ENTITY_SET, MID, "V_Michael_D_Items")
-        NFunc.Call(ACTIVATE_INTERIOR_ENTITY_SET, MID, "V_Michael_M_Items")
-        NFunc.Call(ACTIVATE_INTERIOR_ENTITY_SET, MID, "Michael_premier")
-        NFunc.Call(ACTIVATE_INTERIOR_ENTITY_SET, MID, "V_Michael_plane_ticket")
-
-        'NFunc.Call(ACTIVATE_INTERIOR_ENTITY_SET, FID2, "showhome_only")
-        NFunc.Call(ACTIVATE_INTERIOR_ENTITY_SET, FID2, "franklin_settled")
-        NFunc.Call(ACTIVATE_INTERIOR_ENTITY_SET, FID2, "franklin_unpacking")
-        NFunc.Call(ACTIVATE_INTERIOR_ENTITY_SET, FID2, "bong_and_wine")
-        NFunc.Call(ACTIVATE_INTERIOR_ENTITY_SET, FID2, "progress_flyer")
-        NFunc.Call(ACTIVATE_INTERIOR_ENTITY_SET, FID2, "progress_tshirt")
-        NFunc.Call(ACTIVATE_INTERIOR_ENTITY_SET, FID2, "progress_tux")
-        NFunc.Call(ACTIVATE_INTERIOR_ENTITY_SET, FID2, "unlocked")
-
-        NFunc.Call(ACTIVATE_INTERIOR_ENTITY_SET, WODID, "Stilts_Kitchen_Window")
-        NFunc.Call(ACTIVATE_INTERIOR_ENTITY_SET, NCAID1, "Stilts_Kitchen_Window")
-        NFunc.Call(ACTIVATE_INTERIOR_ENTITY_SET, NCAID2, "Stilts_Kitchen_Window")
-        NFunc.Call(ACTIVATE_INTERIOR_ENTITY_SET, HCAID1, "Stilts_Kitchen_Window")
-        NFunc.Call(ACTIVATE_INTERIOR_ENTITY_SET, HCAID2, "Stilts_Kitchen_Window")
-        NFunc.Call(ACTIVATE_INTERIOR_ENTITY_SET, HCAID3, "Stilts_Kitchen_Window")
-        NFunc.Call(ACTIVATE_INTERIOR_ENTITY_SET, MRID, "Stilts_Kitchen_Window")
-        NFunc.Call(ACTIVATE_INTERIOR_ENTITY_SET, WMDID, "Stilts_Kitchen_Window")
-        NFunc.Call(ACTIVATE_INTERIOR_ENTITY_SET, MWTDID, "Stilts_Kitchen_Window")
-
-        NFunc.Call(Hash.REFRESH_INTERIOR, FID1)
-        NFunc.Call(Hash.REFRESH_INTERIOR, TID2)
-        NFunc.Call(Hash.REFRESH_INTERIOR, MID)
-        NFunc.Call(Hash.REFRESH_INTERIOR, FID2)
-
-        NFunc.Call(Hash.REFRESH_INTERIOR, WODID)
-        NFunc.Call(Hash.REFRESH_INTERIOR, NCAID1)
-        NFunc.Call(Hash.REFRESH_INTERIOR, NCAID2)
-        NFunc.Call(Hash.REFRESH_INTERIOR, HCAID1)
-        NFunc.Call(Hash.REFRESH_INTERIOR, HCAID2)
-        NFunc.Call(Hash.REFRESH_INTERIOR, HCAID3)
-        NFunc.Call(Hash.REFRESH_INTERIOR, MRID)
-        NFunc.Call(Hash.REFRESH_INTERIOR, WMDID)
-        NFunc.Call(Hash.REFRESH_INTERIOR, MWTDID)
+        'Stilts Apartment kitchen window
+        ActivateInteriorEntitySet(New Vector3(-172.983001, 494.032989, 137.654006), "Stilts_Kitchen_Window") '3655 Wild Oats
+        ActivateInteriorEntitySet(New Vector3(340.941009, 437.17999, 149.389999), "Stilts_Kitchen_Window") '2044 North Conker
+        ActivateInteriorEntitySet(New Vector3(373.0230102, 416.1050109, 145.70100402), "Stilts_Kitchen_Window") '2045 North Conker
+        ActivateInteriorEntitySet(New Vector3(-676.1270141, 588.6119995, 145.16999816), "Stilts_Kitchen_Window") '2862 Hillcrest Avenue
+        ActivateInteriorEntitySet(New Vector3(-763.10699462, 615.90600585, 144.139999), "Stilts_Kitchen_Window") '2868 Hillcrest Avenue
+        ActivateInteriorEntitySet(New Vector3(-857.79797363, 682.56298828, 152.6529998), "Stilts_Kitchen_Window") '2874 Hillcrest Avenue
+        ActivateInteriorEntitySet(New Vector3(-572.60998535, 653.13000488, 145.63000488), "Stilts_Kitchen_Window") '2117 Milton Road
+        ActivateInteriorEntitySet(New Vector3(120.5, 549.952026367, 184.09700012207), "Stilts_Kitchen_Window") '3677 Whispymound Drive
+        ActivateInteriorEntitySet(New Vector3(-1288, 440.74798583, 97.694602966), "Stilts_Kitchen_Window") '2113 Mad Wayne Thunder Drive
     End Sub
+
+    Public Sub ActivateInteriorEntitySet(pos As Vector3, ParamArray entities As String())
+        Dim id = NFunc.Call(Of Integer)(Hash.GET_INTERIOR_AT_COORDS, pos.X, pos.Y, pos.Z)
+        For Each entity In entities
+            NFunc.Call(ACTIVATE_INTERIOR_ENTITY_SET, id, entity)
+        Next
+        NFunc.Call(Hash.REFRESH_INTERIOR, id)
+    End Sub
+
+    <Extension>
+    Public Function GetClosestProp(pos As Vector3, radius As Single, model As String, persistence As Boolean) As Prop
+        Return Native.Function.Call(Of Prop)(Hash.GET_CLOSEST_OBJECT_OF_TYPE, pos.X, pos.Y, pos.Z, radius, GetHashKey(model), persistence, False, True)
+    End Function
 
 End Module

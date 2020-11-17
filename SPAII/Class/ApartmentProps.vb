@@ -8,10 +8,10 @@ Imports GTA.Math
 Module ApartmentProps
 
     Public ClosestProp As Prop = Nothing
-    Public ClosestPropList As New List(Of Model) From {1036195894, 777010715, -1073182005, 1653710254, 170618079, -897601557, -1546399138, -1223496606, -1820646534, 608950395, 2079380440, -627813781, 1729911864, -1999188639, -364924791, 2057223314}
+    Public ClosestPropList As New List(Of Model) From {"prop_tv_flat_01", "hei_heist_str_avunitl_03", "apa_mp_h_str_avunitm_03", "apa_mp_h_str_avunits_01", "apa_mp_h_str_avunits_04", "prop_tv_03", "apa_mp_h_str_avunitm_01", "apa_mp_h_str_avunitl_01_b", "apa_mp_h_str_avunitl_04", "ex_prop_ex_tv_flat_01", "v_res_mm_audio", "prop_mp3_dock", "prop_boombox_01", "prop_tapeplayer_01", "v_res_fh_speakerdock", "prop_radio_01"}
 
 #Region "Telly"
-    Public TVModels As New List(Of Model) From {1036195894, 777010715, -1073182005, 1653710254, 170618079, -897601557, -1546399138, -1223496606, -1820646534, 608950395}
+    Public TVModels As New List(Of Model) From {"prop_tv_flat_01", "hei_heist_str_avunitl_03", "apa_mp_h_str_avunitm_03", "apa_mp_h_str_avunits_01", "apa_mp_h_str_avunits_04", "prop_tv_03", "apa_mp_h_str_avunitm_01", "apa_mp_h_str_avunitl_01_b", "apa_mp_h_str_avunitl_04", "ex_prop_ex_tv_flat_01"}
     Public TVOn As Boolean = False, TIBOn As Boolean = False, SubtitleOn As Boolean = False, TVSound As Single = 0F, TVChannel As Integer = 0, rendertargetid, ex_rendertargetid As Integer, TVCamera As Camera
     Public TVChannelList As New List(Of Integer) From {0, 1}
     Public IBScaleform As New Scaleform("instructional_buttons")
@@ -56,8 +56,8 @@ Module ApartmentProps
 #End Region
 
 #Region "Radio"
-    Public RadioModels As New List(Of Model) From {2079380440, -627813781, 1729911864, -1999188639, -364924791, 2057223314}
-    Public RadioOn As Boolean = False, RadioChannel As Integer = 0 ', RIBOn As Boolean = False
+    Public RadioModels As New List(Of Model) From {"v_res_mm_audio", "prop_mp3_dock", "prop_boombox_01", "prop_tapeplayer_01", "v_res_fh_speakerdock", "prop_radio_01"}
+    Public RadioOn As Boolean = False, RadioChannel As Integer = 0
     Public RadioEmitter As Prop = Nothing
 
     Public Function GetPlayerRadioStation() As Integer
@@ -65,6 +65,7 @@ Module ApartmentProps
     End Function
 
     Public Sub TurnOnRadio(radio As Prop, Optional emitter As String = "SE_DLC_APT_Yacht_Bar")
+        RadioChannel = GetPlayerRadioStation()
         If RadioEmitter = Nothing Then
             RadioEmitter = CreateRadioPropNoOffset("prop_boombox_01", radio.Position, False)
         Else
@@ -91,7 +92,7 @@ Module ApartmentProps
         IBScaleform.CallFunction("CLEAR_ALL")
         'IBScaleform.CallFunction("TOGGLE_MOUSE_BUTTONS", 0)
         IBScaleform.CallFunction("CREATE_CONTAINER")
-        IBScaleform.CallFunction("SET_DATA_SLOT", 0, GetControlInstructionalButton(Control.ScriptRUp), Game.GetGXTEntry("HUD_INPUT80")) 'Select Station
+        IBScaleform.CallFunction("SET_DATA_SLOT", 0, GetControlInstructionalButton(Control.ScriptRUp), $"{Game.GetGXTEntry("HUD_INPUT80")} ({Game.GetGXTEntry(NFunc.Call(Of String)(Hash.GET_RADIO_STATION_NAME, RadioChannel))})") 'Select Station
         IBScaleform.CallFunction("SET_DATA_SLOT", 1, GetControlInstructionalButton(Control.Context), Game.GetGXTEntry("HUD_INPUT82")) 'Turn Off
         IBScaleform.CallFunction("DRAW_INSTRUCTIONAL_BUTTONS", -1)
         IBScaleform.Render2D()
@@ -111,7 +112,7 @@ Module ApartmentProps
 #End Region
 
     Public Sub PropOnTick()
-        ClosestProp = World.GetClosest(Of Prop)(Game.Player.Character.Position, World.GetNearbyProps(Game.Player.Character.Position, 10.0F).Where(Function(x) ClosestPropList.Contains(x.Model)).ToArray)
+        ClosestProp = World.GetClosest(Of Prop)(Game.Player.Character.Position, World.GetNearbyProps(Game.Player.Character.Position, 20.0F).Where(Function(x) ClosestPropList.Contains(x.Model)).ToArray)
 
         If ClosestProp.IsPropTelly Then
             If ClosestProp.Position.DistanceToSquared(Game.Player.Character.Position) <= 4.0F Then

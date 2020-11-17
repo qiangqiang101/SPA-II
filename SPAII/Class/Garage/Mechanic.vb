@@ -92,7 +92,6 @@ Module Mechanic
         Dim nearestParkingSpot = PP.Position.GetNearestParkingSpot
         Dim distance = nearestParkingSpot.Vector3.DistanceTo(PP.Position)
         If distance >= 50.0F Then
-            UI.ShowHelpMessage(distance)
             ICantGetYourRide.Play
         Else
             If nearestParkingSpot.Vector3.IsPositionOccupied(5.0F) Then
