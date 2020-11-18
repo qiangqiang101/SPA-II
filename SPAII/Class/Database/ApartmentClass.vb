@@ -186,7 +186,7 @@ Public Class ApartmentClass
             NFunc.Call(Hash.SET_INTERIOR_ACTIVE, intID, True)
             NFunc.Call(Hash.DISABLE_INTERIOR, intID, False)
 
-            If ApartmentType = eApartmentType.IPL Then
+            If ApartmentType = eApartmentType.IPL Or ApartmentType = eApartmentType.IPLwoStyle Then
                 NFunc.Call(Hash.REQUEST_IPL, IPL)
             End If
         Catch ex As Exception
@@ -469,6 +469,7 @@ Public Enum eApartmentType
     LowEnd
     IPL
     Other
+    IPLwoStyle
 End Enum
 
 Public Enum eOwner

@@ -1180,6 +1180,54 @@ Module BuildingList
                 .Apartments = New List(Of ApartmentClass) From {_3655WildOatsDrApt}
             End With
             If Not buildings.Contains(_3655WildOatsDr) Then buildings.Add(_3655WildOatsDr)
+
+            '2866 Hillcrest Avenue
+            Dim _2866HillcrestAveApt As New ApartmentClass()
+            With _2866HillcrestAveApt
+                .ID = 90
+                .Name = "MP_PROP_90"
+                .Description = "MP_PROP_90DES"
+                .Price = 525000
+                .SavePos = New Vector3(-742.2864F, 578.0889F, 141.486F)
+                .ApartmentDoorPos = New Quaternion(-739.8436F, 596.499F, 145.2602F, 154.217F)
+                .ApartmentInPos = New Vector3(-741.9156F, 593.0171F, 145.2681F)
+                .ApartmentOutPos = New Vector3(-740.9392F, 594.4683F, 145.2681F)
+                .WardrobePos = New Quaternion(-743.3365F, 582.6597F, 141.4606F, 153.7199F)
+                .GarageFilePath = "2866_hillcrest_ave"
+                .IPL = "apa_stilt_ch2_09c_int"
+                .AptStyleCam = Nothing
+                .EnterCam = New CameraPRH(New Vector3(-743.3584F, 592.2357F, 146.2648F), New Vector3(0.07784759F, 3.335056E-9F, -48.11464F), 50.0F)
+                .ExitCam = New CameraPRH(New Vector3(-740.7731F, 596.9028F, 146.2602F), New Vector3(1.720683F, 0F, 173.0168F), 50.0F)
+                .GarageElevatorPos = Vector3.Zero
+                .GarageMenuPos = Vector3.Zero
+                .ApartmentType = eApartmentType.IPLwoStyle
+                .Door = New Door(-658026477, New Vector3(-740.2452F, 594.4656F, 146.4097F))
+            End With
+            Dim _2866HillcrestAve As New BuildingClass()
+            With _2866HillcrestAve
+                .Name = "2866 Hillcrest Avenue"
+                .BuildingInPos = New Quaternion(-733.7261F, 594.4695F, 141.181F, 152.2239F)
+                .BuildingOutPos = New Quaternion(-732.5177F, 594.8102F, 140.7785F, 333.7552F)
+                .BuildingLobby = New Quaternion(-733.6882F, 592.3795F, 141.526F, 331.2541F)
+                .GarageInPos = New Vector3(-742.4548F, 602.8987F, 141.5136F)
+                .GarageFootInPos = New Quaternion(-747.2038F, 602.7795F, 141.4891F, 160.8378F)
+                .GarageOutPos = New Quaternion(-742.4548F, 602.8987F, 141.5136F, 331.7553F)
+                .CameraPos = New CameraPRH(New Vector3(-727.5137F, 611.7052F, 148.4601F), New Vector3(-13.84566F, -0.0000008793234F, 135.3469F), 50.0F)
+                .EnterCamera1 = New CameraPRH(New Vector3(-727.5137F, 611.7052F, 148.4601F), New Vector3(-13.84566F, -0.0000008793234F, 135.3469F), 50.0F)
+                .EnterCamera2 = New CameraPRH(New Vector3(-731.674F, 606.7108F, 145.4601F), New Vector3(-7.196094F, 0F, 139.4674F), 50.0F)
+                .GarageType = eGarageType.SixCarGarage
+                .BuildingType = eBuildingType.Apartment
+                .SaleSign = New EntityVector(ForSaleSign, New Quaternion(-731.0602F, 593.8268F, 140.768F, 161.0006F))
+                .FrontDoor = eFrontDoor.StandardDoor
+                .Door1 = New Door(-1278729253, New Vector3(-733.8267F, 593.679F, 142.7272F))
+                .Door2 = Nothing
+                .GarageDoor = eFrontDoor.NoDoor
+                .Door3 = Nothing
+                .GarageWaypoint = QuaternionZero()
+                .HideObjects = {"apa_ch2_09c_hs13", "apa_ch2_09c_hs13_details", "apa_CH2_09c_House11_LOD", "ch2_09c_Emissive_13_LOD", "ch2_09c_Emissive_13"}
+                .Apartments = New List(Of ApartmentClass) From {_2866HillcrestAveApt}
+            End With
+            If Not buildings.Contains(_2866HillcrestAve) Then buildings.Add(_2866HillcrestAve)
 #End Region
 
 #Region "Medium End Apartments"

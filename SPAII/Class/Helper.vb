@@ -1011,6 +1011,9 @@ Module Helper
         ActivateInteriorEntitySet(New Vector3(-572.60998535, 653.13000488, 145.63000488), "Stilts_Kitchen_Window") '2117 Milton Road
         ActivateInteriorEntitySet(New Vector3(120.5, 549.952026367, 184.09700012207), "Stilts_Kitchen_Window") '3677 Whispymound Drive
         ActivateInteriorEntitySet(New Vector3(-1288, 440.74798583, 97.694602966), "Stilts_Kitchen_Window") '2113 Mad Wayne Thunder Drive
+
+        'RequestIPL("apa_stilt_ch2_09c_int")
+        'SetInteriorActive(New Vector3(-742.4105F, 582.563F, 142.181F))
     End Sub
 
     Public Sub ActivateInteriorEntitySet(pos As Vector3, ParamArray entities As String())
@@ -1023,7 +1026,11 @@ Module Helper
 
     <Extension>
     Public Function GetClosestProp(pos As Vector3, radius As Single, model As String, persistence As Boolean) As Prop
-        Return Native.Function.Call(Of Prop)(Hash.GET_CLOSEST_OBJECT_OF_TYPE, pos.X, pos.Y, pos.Z, radius, GetHashKey(model), persistence, False, True)
+        Return NFunc.Call(Of Prop)(Hash.GET_CLOSEST_OBJECT_OF_TYPE, pos.X, pos.Y, pos.Z, radius, GetHashKey(model), persistence, False, True)
     End Function
+
+    Public Sub RequestIPL(ipl As String)
+        NFunc.Call(Hash.REQUEST_IPL, ipl)
+    End Sub
 
 End Module

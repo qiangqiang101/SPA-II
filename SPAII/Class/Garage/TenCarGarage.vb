@@ -199,8 +199,8 @@ Public Module TenCarGarage
                 End If
             End If
 
-                'Enter Apartment from Garage Elevator
-                If GarageElevatorDistance() <= 2.0F Then
+            'Enter Apartment from Garage Elevator
+            If GarageElevatorDistance() <= 2.0F Then
                 If Not Apartment.ApartmentType = eApartmentType.Other Then
                     UI.ShowHelpMessage(Game.GetGXTEntry("MP_PROP_BUZZ1"))
                     If Game.IsControlJustReleased(0, Control.Context) Then
@@ -215,7 +215,7 @@ Public Module TenCarGarage
                             Case eApartmentType.MediumEnd
                                 MediumEndApartment.Apartment = Apartment
                                 MediumEndApartment.SpawnDoor()
-                            Case eApartmentType.None, eApartmentType.IPL
+                            Case eApartmentType.None, eApartmentType.IPL, eApartmentType.IPLwoStyle
                                 HighEndApartment.Building = Apartment.Building
                         End Select
                         Apartment.PlayApartmentEnterCutscene()

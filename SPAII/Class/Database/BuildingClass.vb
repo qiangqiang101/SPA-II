@@ -466,7 +466,7 @@ Public Class BuildingClass
                     Case eApartmentType.MediumEnd
                         MediumEndApartment.Apartment = selectedApt
                         MediumEndApartment.SpawnDoor()
-                    Case eApartmentType.None, eApartmentType.IPL
+                    Case eApartmentType.None, eApartmentType.IPL, eApartmentType.IPLwoStyle
                         HighEndApartment.Building = Me
                 End Select
                 selectedApt.PlayApartmentEnterCutscene()
@@ -507,7 +507,7 @@ Public Class BuildingClass
             Case eApartmentType.MediumEnd
                 MediumEndApartment.Apartment = selectedApt
                 MediumEndApartment.SpawnDoor()
-            Case eApartmentType.None, eApartmentType.IPL
+            Case eApartmentType.None, eApartmentType.IPL, eApartmentType.IPLwoStyle
                 HighEndApartment.Building = Me
         End Select
         Select Case GarageType

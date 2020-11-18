@@ -133,7 +133,7 @@ Module TwoCarGarage
                             Case eApartmentType.MediumEnd
                                 MediumEndApartment.Apartment = Apartment
                                 MediumEndApartment.SpawnDoor()
-                            Case eApartmentType.None, eApartmentType.IPL
+                            Case eApartmentType.None, eApartmentType.IPL, eApartmentType.IPLwoStyle
                                 HighEndApartment.Building = Apartment.Building
                         End Select
                         Apartment.PlayApartmentEnterCutscene()
