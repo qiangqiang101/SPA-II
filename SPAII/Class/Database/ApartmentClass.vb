@@ -88,6 +88,14 @@ Public Class ApartmentClass
         Return list
     End Function
 
+    Public Function VehiclesContain(veh As Vehicle) As Boolean
+        Dim got As Boolean = False
+        For Each vc In Vehicles()
+            If veh.GetInt(vehIdDecor) = vc.ApartmentID AndAlso veh.GetInt(vehUidDecor) = vc.UniqueID Then got = True
+        Next
+        Return got
+    End Function
+
     Public Sub New()
 
     End Sub

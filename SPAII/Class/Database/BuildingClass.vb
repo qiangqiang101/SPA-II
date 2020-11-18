@@ -627,6 +627,7 @@ Public Class BuildingClass
                     'On Foot
                     PP.Position = TenCarGarage.SpawnInPos.ToVector3
                     PP.Heading = TenCarGarage.SpawnInPos.W
+                    TenCarGarage.LoadVehicles()
                 End If
 
                 FadeScreen(0)
@@ -643,8 +644,12 @@ Public Class BuildingClass
                     If Not selectedApt.Vehicles.Count = GetGarageVehicleCount() Then
                         SaveVehicle(selectedApt)
                     Else
-                        'Garage is full
-                        UI.ShowSubtitle(Game.GetGXTEntry("WEB_VEH_FULL"))
+                        If selectedApt.VehiclesContain(Game.Player.Character.LastVehicle) Then
+                            SaveVehicle(selectedApt)
+                        Else
+                            'Garage is full
+                            UI.ShowSubtitle(Game.GetGXTEntry("WEB_VEH_FULL"))
+                        End If
                     End If
                 Else
                     SaveVehicle(selectedApt)
