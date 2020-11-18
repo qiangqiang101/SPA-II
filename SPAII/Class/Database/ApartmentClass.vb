@@ -441,25 +441,34 @@ Public Class ApartmentClass
     End Sub
 
     Public Sub PlayApartmentEnterCutscene()
-        Door.UnlockDoor()
-        World.RenderingCamera = World.CreateCamera(EnterCam.Position, EnterCam.Rotation, EnterCam.FOV)
-        Game.Player.Character.Position = ApartmentDoorPos.ToVector3
-        Game.Player.Character.Heading = ApartmentDoorPos.W
-        Game.Player.Character.Task.GoTo(ApartmentInPos, True, 6000)
-        Script.Wait(6000)
-        Door.LockDoor()
-        World.DestroyAllCameras()
-        World.RenderingCamera = Nothing
+        Try
+            HideHud = True
+            Door.UnlockDoor()
+            World.RenderingCamera = World.CreateCamera(EnterCam.Position, EnterCam.Rotation, EnterCam.FOV)
+            Game.Player.Character.Position = ApartmentDoorPos.ToVector3
+            Game.Player.Character.Heading = ApartmentDoorPos.W
+            Game.Player.Character.Task.GoTo(ApartmentInPos, True, 6000)
+            Script.Wait(6000)
+            Door.LockDoor()
+            World.DestroyAllCameras()
+            World.RenderingCamera = Nothing
+        Catch ex As Exception
+            Logger.Log($"{ex.Message} {ex.StackTrace}")
+        End Try
     End Sub
 
     Public Sub PlayApartmerntExitCutscene()
-        Door.UnlockDoor()
-        World.RenderingCamera = World.CreateCamera(ExitCam.Position, ExitCam.Rotation, ExitCam.FOV)
-        Game.Player.Character.Position = ApartmentInPos
-        Game.Player.Character.Heading = ApartmentDoorPos.W - 180.0F
-        Game.Player.Character.Task.GoTo(ApartmentDoorPos.ToVector3, True, 3500)
-        Script.Wait(3500)
-        Door.LockDoor()
+        Try
+            Door.UnlockDoor()
+            World.RenderingCamera = World.CreateCamera(ExitCam.Position, ExitCam.Rotation, ExitCam.FOV)
+            Game.Player.Character.Position = ApartmentInPos
+            Game.Player.Character.Heading = ApartmentDoorPos.W - 180.0F
+            Game.Player.Character.Task.GoTo(ApartmentDoorPos.ToVector3, True, 3500)
+            Script.Wait(3500)
+            Door.LockDoor()
+        Catch ex As Exception
+            Logger.Log($"{ex.Message} {ex.StackTrace}")
+        End Try
     End Sub
 End Class
 

@@ -128,6 +128,17 @@ Public Class SPA2
                             bd.GarageOutPos.ToVector3.DrawMarker(Color.Green, text:="Car out Pos")
                             bd.GarageWaypoint.ToVector3.DrawMarker(Color.Indigo, text:="Garage waypoint")
                         End If
+
+                        For a As Integer = 0 To bd.Apartments.Count - 1
+                            Dim apt As ApartmentClass = bd.Apartments(a)
+                            If apt.ExitDistance <= 3000.0F Then
+                                apt.ApartmentDoorPos.ToVector3.DrawMarker(Color.Red, text:=$"Door Pos {apt.FriendlyName}")
+                                apt.ApartmentInPos.DrawMarker(Color.Green, text:=$"Teleport in Pos {apt.FriendlyName}")
+                                apt.ApartmentOutPos.DrawMarker(Color.Blue, text:=$"Exit Pos {apt.FriendlyName}")
+                                apt.WardrobePos.ToVector3.DrawMarker(Color.Purple, text:=$"Wardrobe Pos {apt.FriendlyName}")
+                                apt.SavePos.DrawMarker(Color.Pink, text:=$"Save Pos {apt.FriendlyName}")
+                            End If
+                        Next
                     End If
                 Next
 

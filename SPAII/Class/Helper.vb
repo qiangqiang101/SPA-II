@@ -492,58 +492,58 @@ Module Helper
         Select Case ipl
             Case "apa_v_mp_h_01_a" 'Modern
                 door = New Door(-658026477, New Vector3(-782.4497F, 317.5156F, 217.7876F))
-            Case "apa_v_mp_h_01_b"
-                door = New Door(-658026477, New Vector3(-782.4497F, 317.5156F, 188.0627F))
             Case "apa_v_mp_h_01_c"
+                door = New Door(-658026477, New Vector3(-782.4497F, 317.5156F, 188.0627F))
+            Case "apa_v_mp_h_01_b"
                 door = New Door(-658026477, New Vector3(-778.5566F, 340.2328F, 196.8354F))
 
             Case "apa_v_mp_h_02_a" 'Moody
                 door = New Door(103339342, New Vector3(-782.4496F, 317.5228F, 217.7876F))
-            Case "apa_v_mp_h_02_b"
-                door = New Door(103339342, New Vector3(-782.4496F, 317.5228F, 188.0627F))
             Case "apa_v_mp_h_02_c"
+                door = New Door(103339342, New Vector3(-782.4496F, 317.5228F, 188.0627F))
+            Case "apa_v_mp_h_02_b"
                 door = New Door(103339342, New Vector3(-778.5568F, 340.2256F, 196.8354F))
 
             Case "apa_v_mp_h_03_a" 'Vibrant
                 door = New Door(1398355146, New Vector3(-782.4496F, 317.5228F, 217.7876F))
-            Case "apa_v_mp_h_03_b"
-                door = New Door(1398355146, New Vector3(-782.4496F, 317.5228F, 188.0627F))
             Case "apa_v_mp_h_03_c"
+                door = New Door(1398355146, New Vector3(-782.4496F, 317.5228F, 188.0627F))
+            Case "apa_v_mp_h_03_b"
                 door = New Door(1398355146, New Vector3(-778.5568F, 340.2256F, 196.8354F))
 
             Case "apa_v_mp_h_04_a" 'Sharp
                 door = New Door(103339342, New Vector3(-782.4495F, 317.5152F, 217.7884F))
-            Case "apa_v_mp_h_04_b"
-                door = New Door(103339342, New Vector3(-782.4495F, 317.5152F, 188.0634F))
             Case "apa_v_mp_h_04_c"
+                door = New Door(103339342, New Vector3(-782.4495F, 317.5152F, 188.0634F))
+            Case "apa_v_mp_h_04_b"
                 door = New Door(103339342, New Vector3(-778.5568F, 340.2332F, 196.8362F))
 
             Case "apa_v_mp_h_05_a" 'Monochrome
                 door = New Door(-711771128, New Vector3(-782.4497F, 317.5156F, 217.7876F))
-            Case "apa_v_mp_h_05_b"
-                door = New Door(-711771128, New Vector3(-782.4497F, 317.5156F, 188.0627F))
             Case "apa_v_mp_h_05_c"
+                door = New Door(-711771128, New Vector3(-782.4497F, 317.5156F, 188.0627F))
+            Case "apa_v_mp_h_05_b"
                 door = New Door(-711771128, New Vector3(-778.5566F, 340.2328F, 196.8354F))
 
             Case "apa_v_mp_h_06_a" 'Seductive
                 door = New Door(103339342, New Vector3(-782.4496F, 317.5228F, 217.7876F))
-            Case "apa_v_mp_h_06_b"
-                door = New Door(103339342, New Vector3(-782.4496F, 317.5228F, 188.0627F))
             Case "apa_v_mp_h_06_c"
+                door = New Door(103339342, New Vector3(-782.4496F, 317.5228F, 188.0627F))
+            Case "apa_v_mp_h_06_b"
                 door = New Door(103339342, New Vector3(-778.5568F, 340.2256F, 196.8354F))
 
             Case "apa_v_mp_h_07_a" 'Regal
                 door = New Door(1398355146, New Vector3(-782.4496F, 317.5228F, 217.7876F))
-            Case "apa_v_mp_h_07_b"
-                door = New Door(1398355146, New Vector3(-782.4496F, 317.5228F, 188.0627F))
             Case "apa_v_mp_h_07_c"
+                door = New Door(1398355146, New Vector3(-782.4496F, 317.5228F, 188.0627F))
+            Case "apa_v_mp_h_07_b"
                 door = New Door(1398355146, New Vector3(-778.5568F, 340.2256F, 196.8354F))
 
             Case "apa_v_mp_h_08_a" 'Aqua
                 door = New Door(103339342, New Vector3(-782.4495F, 317.5152F, 217.7884F))
-            Case "apa_v_mp_h_08_b"
-                door = New Door(103339342, New Vector3(-782.4495F, 317.5152F, 188.0634F))
             Case "apa_v_mp_h_08_c"
+                door = New Door(103339342, New Vector3(-782.4495F, 317.5152F, 188.0634F))
+            Case "apa_v_mp_h_08_b"
                 door = New Door(103339342, New Vector3(-778.5568F, 340.2332F, 196.8362F))
         End Select
 
