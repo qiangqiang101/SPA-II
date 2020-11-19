@@ -12,9 +12,9 @@ Module LowEndApartment
     Public DoorPos As New Quaternion(264.9383F, -1003.388F, -100.0086F, 0F)
     Public InPos As New Vector3(265.0363F, -999.6489F, -100.0086F)
     Public OutPos As New Vector3(265.0587F, -1000.946F, -100.0087F)
-    Public WardrobePos As New Quaternion(260.0521, -1004.1469, -99.0085, 359.818)
-    Public EnterCam As New CameraPRH(New Vector3(263.8463F, -999.1443F, -99.00864F), New Vector3(-2.109026F, 0F, -153.4576F), 50.0F)
-    Public ExitCam As New CameraPRH(New Vector3(266.5735F, -1004.03F, -99.00564F), New Vector3(-3.908313F, 0F, 30.38097F), 50.0F)
+    Public WardrobePos As New Quaternion(260.1203F, -1004.165F, -100.0086F, 0.1981915F)
+    Public EnterCam As New CameraPRH(New Vector3(266.1936F, -999.7531F, -98.26804F), New Vector3(-4.893726F, -0.0000006426729F, 150.1184F), 50.0F)
+    Public ExitCam As New CameraPRH(New Vector3(266.5379F, -1003.075F, -98.32577F), New Vector3(-3.240182F, -0.00000331367F, 43.73997F), 50.0F)
     Public Door As New Door("v_ilev_mp_low_frontdoor".GetHashKey, New Vector3(264.483F, -1001.621F, -100.0F))
     Public DoorRot As New Vector3(0F, 0F, 180.0F)
 

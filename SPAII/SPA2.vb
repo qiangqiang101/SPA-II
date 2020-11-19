@@ -25,6 +25,7 @@ Public Class SPA2
         TwoCarGarage.LoadGarageMenu()
         SixCarGarage.LoadGarageMenu()
         TenCarGarage.LoadGarageMenu()
+        LoadDebugMenu()
         EnableOnlineMap()
     End Sub
 
@@ -113,85 +114,36 @@ Public Class SPA2
                     End If
 
                     'Draw circle
-                    If bd.EntranceDistance <= 300.0F Then bd.BuildingInPos.ToVector3.DrawMarker
-                    If bd.GarageDistance <= 300.0F Then bd.GarageFootInPos.ToVector3.DrawMarker
+                    If bd.EntranceDistance <= 300.0F AndAlso Not bd.BuildingInPos = QuaternionZero() AndAlso Not bd.BuildingType = eBuildingType.Garage Then bd.BuildingInPos.ToVector3.DrawMarker
+                    If bd.GarageDistance <= 300.0F AndAlso Not bd.GarageFootInPos = QuaternionZero() Then bd.GarageFootInPos.ToVector3.DrawMarker
 
                     If debugMode Then
                         'Debug Circle
                         If bd.EntranceDistance <= 1000.0F Then
-                            bd.BuildingLobby.ToVector3.DrawMarker(Color.LightPink, text:="Lobby")
-                            bd.BuildingOutPos.ToVector3.DrawMarker(Color.Red, text:="Out Pos")
+                            If Not bd.BuildingLobby = QuaternionZero() Then bd.BuildingLobby.ToVector3.DrawMarker(Color.LightPink, text:="Lobby")
+                            If Not bd.BuildingOutPos = QuaternionZero() Then bd.BuildingOutPos.ToVector3.DrawMarker(Color.Red, text:="Out Pos")
                         End If
                         If bd.GarageDistance <= 1000.0F Then
-                            bd.GarageInPos.DrawMarker(Color.Orange, text:="Car in Pos")
-                            bd.GarageFootOutPos.ToVector3.DrawMarker(Color.Yellow, text:="Foot out Pos")
-                            bd.GarageOutPos.ToVector3.DrawMarker(Color.Green, text:="Car out Pos")
-                            bd.GarageWaypoint.ToVector3.DrawMarker(Color.Indigo, text:="Garage waypoint")
+                            If Not bd.GarageInPos = Vector3.Zero Then bd.GarageInPos.DrawMarker(Color.Orange, text:="Car in Pos")
+                            If Not bd.GarageFootOutPos = QuaternionZero() Then bd.GarageFootOutPos.ToVector3.DrawMarker(Color.Yellow, text:="Foot out Pos")
+                            If Not bd.GarageOutPos = QuaternionZero() Then bd.GarageOutPos.ToVector3.DrawMarker(Color.Green, text:="Car out Pos")
+                            If Not bd.GarageWaypoint = QuaternionZero() Then bd.GarageWaypoint.ToVector3.DrawMarker(Color.Indigo, text:="Garage waypoint")
                         End If
 
                         For a As Integer = 0 To bd.Apartments.Count - 1
                             Dim apt As ApartmentClass = bd.Apartments(a)
                             If apt.ExitDistance <= 3000.0F Then
-                                apt.ApartmentDoorPos.ToVector3.DrawMarker(Color.Red, text:=$"Door Pos {apt.FriendlyName}")
-                                apt.ApartmentInPos.DrawMarker(Color.Green, text:=$"Teleport in Pos {apt.FriendlyName}")
-                                apt.ApartmentOutPos.DrawMarker(Color.Blue, text:=$"Exit Pos {apt.FriendlyName}")
-                                apt.WardrobePos.ToVector3.DrawMarker(Color.Purple, text:=$"Wardrobe Pos {apt.FriendlyName}")
-                                apt.SavePos.DrawMarker(Color.Pink, text:=$"Save Pos {apt.FriendlyName}")
+                                If Not apt.ApartmentDoorPos = QuaternionZero() Then apt.ApartmentDoorPos.ToVector3.DrawMarker(Color.Red, text:=$"Door Pos {apt.FriendlyName}")
+                                If Not apt.ApartmentInPos = Vector3.Zero Then apt.ApartmentInPos.DrawMarker(Color.Green, text:=$"Teleport in Pos {apt.FriendlyName}")
+                                If Not apt.ApartmentOutPos = Vector3.Zero Then apt.ApartmentOutPos.DrawMarker(Color.Blue, text:=$"Exit Pos {apt.FriendlyName}")
+                                If Not apt.WardrobePos = QuaternionZero() Then apt.WardrobePos.ToVector3.DrawMarker(Color.Purple, text:=$"Wardrobe Pos {apt.FriendlyName}")
+                                If Not apt.SavePos = Vector3.Zero Then apt.SavePos.DrawMarker(Color.Pink, text:=$"Save Pos {apt.FriendlyName}")
                             End If
                         Next
                     End If
                 Next
 
-                If IsInInterior() Then
-                    For i As Integer = 0 To apartments.Count - 1
-                        Dim apt As ApartmentClass = apartments(i)
-                        If Not apt.ShareInterior Then
-                            'Using Wardrobe
-                            If apt.WardrobeDistance() <= 2.0F Then
-                                If Not MenuPool.IsAnyMenuOpen Then
-                                    UI.ShowHelpMessage(Game.GetGXTEntry("WARD_TRIG").Replace("~a~", "~INPUT_CONTEXT~"))
-                                    If Game.IsControlJustReleased(0, GameControl.Context) Then
-                                        MakeCamera(PP, apt.WardrobePos.ToVector3, apt.WardrobePos.W)
-                                    End If
-                                End If
-                            End If
-
-                            'Open Exit Apartment Menu
-                            If apt.ExitDistance <= 2.0F Then
-                                If Not MenuPool.IsAnyMenuOpen Then
-                                    If apt.AptMenu.Visible = False Then apt.AptMenu.Visible = True
-                                End If
-                            End If
-
-                            'Get into bed
-                            If apt.SaveDistance <= 2.0F Then
-                                UI.ShowHelpMessage(Game.GetGXTEntry("SA_BED_IN"))
-                                If Game.IsControlJustReleased(0, GameControl.Context) Then
-                                    Sleep(apt)
-                                End If
-                                'todo
-                            End If
-
-                            If apt.InteriorID = PI Then
-                                PropOnTick()
-                            End If
-                        Else
-                            If apt.InteriorID = PI Then
-                                PropOnTick()
-                            End If
-                        End If
-                    Next
-
-                    If apartments.Contains(TenCarGarage.Apartment) Then
-                        PropOnTick()
-                    End If
-                    If apartments.Contains(SixCarGarage.Apartment) Then
-                        PropOnTick()
-                    End If
-                    If apartments.Contains(TwoCarGarage.Apartment) Then
-                        PropOnTick()
-                    End If
-                End If
+                HighEndApartmentOnTick()
 
                 'Hide vehicle blip
                 If PP.LastVehicle.IsPersonalVehicle Then
@@ -278,10 +230,11 @@ Public Class SPA2
             End If
 
             If Game.IsKeyPressed(Keys.Left) Then
-                Dim gpcp = Game.Player.Character.Position
-                Dim gpcr = GameplayCamera.Rotation
-                Logger.Logg($"New CameraPRH(New Vector3({gpcp.X}F, {gpcp.Y}F, {gpcp.Z}F), New Vector3({gpcr.X}F, {gpcr.Y}F, {gpcr.Z}F), 50.0F)")
-                UI.ShowSubtitle("Gameplay camera copied")
+                If DebugCamera.IsEnabled Then
+                    Dim cam = DebugCamera.Camera
+                    Logger.Logg($"New CameraPRH(New Vector3({cam.Position.X}F, {cam.Position.Y}F, {cam.Position.Z}F), New Vector3({cam.Rotation.X}F, {cam.Rotation.Y}F, {cam.Rotation.Z}F), {cam.FieldOfView}F)")
+                    UI.ShowSubtitle("Gameplay camera copied")
+                End If
             End If
 
             If Game.IsKeyPressed(Keys.Right) Then
@@ -290,8 +243,11 @@ Public Class SPA2
             End If
 
             If Game.IsKeyPressed(Keys.Delete) Then
-                Dim st = Game.GetUserInput("MPCT_10_", 65535)
-                UI.ShowSubtitle(Game.GetGXTEntry(st))
+                DebugCamera.Toggle()
+            End If
+
+            If Game.IsKeyPressed(Keys.End) Then
+                DebugMenu.Visible = True
             End If
         End If
     End Sub

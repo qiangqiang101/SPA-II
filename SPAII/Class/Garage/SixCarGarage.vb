@@ -1,4 +1,5 @@
 ﻿Imports System.Drawing
+Imports System.Runtime.CompilerServices
 Imports GTA
 Imports GTA.Math
 Imports INMNativeUI
@@ -144,8 +145,36 @@ Module SixCarGarage
         Return Game.Player.Character.Position.DistanceToSquared(GarageDoorR)
     End Function
 
+    Public StatScaleform0 As New Scaleform("MP_CAR_STATS_01")
+    Public StatScaleform1 As New Scaleform("MP_CAR_STATS_02")
+    Public StatScaleform2 As New Scaleform("MP_CAR_STATS_03")
+    Public StatScaleform3 As New Scaleform("MP_CAR_STATS_04")
+    Public StatScaleform4 As New Scaleform("MP_CAR_STATS_05")
+    Public StatScaleform5 As New Scaleform("MP_CAR_STATS_06")
+
+    <Extension>
+    Public Sub DrawMPCarStats(sf As Scaleform, veh As Vehicle, Optional scale As Vector3 = Nothing)
+        If scale = Nothing Then scale = New Vector3(6.0F, 3.5F, 1.0F)
+        If veh.IsOnScreen AndAlso veh.Position.DistanceToSquared(PP.Position) <= 100.0F Then
+            sf.CallFunction("SET_VEHICLE_INFOR_AND_STATS", veh.FriendlyName, Game.GetGXTEntry("MP_PROP_CAR0"), "MPCarHUD", veh.Make, Game.GetGXTEntry("FMMC_VEHST_0"), Game.GetGXTEntry("FMMC_VEHST_1"),
+                                   Game.GetGXTEntry("FMMC_VEHST_2"), Game.GetGXTEntry("FMMC_VEHST_3"), veh.TopSpeed * 100.0F, veh.MaxBraking * 100.0F, veh.Acceleration * 100.0F, veh.MaxTraction * 100.0F)
+            sf.Render3D(New Vector3(veh.Position.X, veh.Position.Y, veh.Position.Z + 3.0F), GameplayCamera.Rotation, scale)
+        End If
+    End Sub
+
     Public Sub SixCarGarageOnTick()
         If PI = SixCarGarage.Interior.GetInterior Then
+            If Vehicles.Count <> 0 Then
+                If Game.IsControlPressed(0, Control.MultiplayerInfo) Then
+                    If Vehicle0 <> Nothing Then StatScaleform0.DrawMPCarStats(Vehicle0)
+                    If Vehicle1 <> Nothing Then StatScaleform1.DrawMPCarStats(Vehicle1)
+                    If Vehicle2 <> Nothing Then StatScaleform2.DrawMPCarStats(Vehicle2)
+                    If Vehicle3 <> Nothing Then StatScaleform3.DrawMPCarStats(Vehicle3)
+                    If Vehicle4 <> Nothing Then StatScaleform4.DrawMPCarStats(Vehicle4)
+                    If Vehicle5 <> Nothing Then StatScaleform5.DrawMPCarStats(Vehicle5)
+                End If
+            End If
+
             'Vehicle Management
             If MenuDistance() <= 2.0F Then
                 If Not MenuPool.IsAnyMenuOpen Then

@@ -168,7 +168,7 @@ Module Wardrobe
             Camera = World.CreateCamera(ped.Position + ped.ForwardVector * 5, GameplayCamera.Rotation, 30.0F)
             Camera.PointAt(ped)
             World.RenderingCamera = Camera
-            ped.Task.StartScenario("PROP_HUMAN_STAND_IMPATIENT", position, heading)
+            ped.Task.StartScenario("PROP_HUMAN_STAND_IMPATIENT")
             HideHud = True
             Select Case GetPlayer()
                 Case eOwner.Michael
@@ -911,6 +911,7 @@ Module Wardrobe
         World.RenderingCamera = Nothing
         World.DestroyAllCameras()
         PP.Task.ClearAll()
+        HideHud = False
 
         PP.SetClothes(Memory.Accessories)
         PP.SetClothes(Memory.AuxiliaryTorso)

@@ -273,6 +273,7 @@ Module Helper
                 .ToggleExtra(14, vehClass.Extra14)
                 .ToggleExtra(15, vehClass.Extra15)
                 .RoofState = vehClass.RoofState
+                .DirtLevel = 0F
                 If IsNitroModInstalled() Then .SetInt(nitroModDecor, vehClass.HasNitro)
                 .IsPersistent = True
                 .SetInt(vehIdDecor, aptID)
@@ -292,13 +293,16 @@ Module Helper
     End Sub
 
     Public Sub Debug()
-        Dim playerText As New UIResText($"Player Position: {PP.Position}     Rotation: {PP.Rotation}     Heading: {PP.Heading}", Point.Empty, 0.3F, Color.White, GTA.Font.ChaletLondon, UIResText.Alignment.Left)
-        Dim playerVehText As New UIResText($"Player Vehicle Position: {PP.LastVehicle.Position}     Rotation: {PP.LastVehicle.Rotation}", New Point(0, playerText.Position.Y + 20), 0.3F, Color.White, GTA.Font.ChaletLondon, UIResText.Alignment.Left)
-        Dim camText As New UIResText($"Camera Position: {GameplayCamera.Position}     Rotation: {GameplayCamera.Rotation}     FOV: {GameplayCamera.FieldOfView}", New Point(0, playerVehText.Position.Y + 20), 0.3F, Color.White, GTA.Font.ChaletLondon, UIResText.Alignment.Left)
-        Dim direction As New UIResText($"Up: Vector     Down: Quaternion     Left: CameraPRH     Right: Door", New Point(0, camText.Position.Y + 20), 0.3F, Color.White, GTA.Font.ChaletLondon, UIResText.Alignment.Left)
+        Dim playerText As New UIResText($"Player Position: {PP.Position}     Rotation: {PP.Rotation}     Heading: {PP.Heading}     |     Vehicle Position: {PP.LastVehicle.Position}     Rotation: {PP.LastVehicle.Rotation}     Heading: {PP.LastVehicle.Heading}", Point.Empty, 0.3F, Color.White, GTA.Font.ChaletLondon, UIResText.Alignment.Left)
+        Dim camText As UIResText
+        If DebugCamera.IsEnabled Then
+            camText = New UIResText($"Camera Position: {DebugCamera.Camera.Position}     Rotation: {DebugCamera.Camera.Rotation}     FOV: {DebugCamera.Camera.FieldOfView}", New Point(0, playerText.Position.Y + 20), 0.3F, Color.White, GTA.Font.ChaletLondon, UIResText.Alignment.Left)
+        Else
+            camText = New UIResText($"Camera Position: {GameplayCamera.Position}     Rotation: {GameplayCamera.Rotation}     FOV: {GameplayCamera.FieldOfView}", New Point(0, playerText.Position.Y + 20), 0.3F, Color.White, GTA.Font.ChaletLondon, UIResText.Alignment.Left)
+        End If
+        Dim direction As New UIResText($"Up: Vector     Down: Quaternion     Left: CameraPRH     Right: Door     Delete: Debug Camera     End: Debug Menu", New Point(0, camText.Position.Y + 20), 0.3F, Color.White, GTA.Font.ChaletLondon, UIResText.Alignment.Left)
         Dim forthLine As New UIResText(debug3rdLine, New Point(0, direction.Position.Y + 20), 0.3F, Color.White, GTA.Font.ChaletLondon, UIResText.Alignment.Left)
         playerText.Draw()
-        playerVehText.Draw()
         camText.Draw()
         direction.Draw()
         forthLine.Draw()
@@ -438,6 +442,7 @@ Module Helper
             .ToggleExtra(14, source.IsExtraOn(14))
             .ToggleExtra(15, source.IsExtraOn(15))
             .RoofState = source.RoofState
+            .DirtLevel = source.DirtLevel
             If IsNitroModInstalled() Then .SetInt(nitroModDecor, source.GetInt(nitroModDecor))
             .IsPersistent = True
             .SetInt(vehIdDecor, source.GetInt(vehIdDecor))
@@ -1032,5 +1037,14 @@ Module Helper
     Public Sub RequestIPL(ipl As String)
         NFunc.Call(Hash.REQUEST_IPL, ipl)
     End Sub
+
+    <Extension>
+    Public Function TopSpeed(veh As Vehicle) As Single
+        Return NFunc.Call(Of Single)(GET_VEHICLE_ESTIMATED_MAX_SPEED, veh.Model.GetHashCode)
+    End Function
+
+    Public Function Acceleration(veh As Vehicle) As Single
+        Return NFunc.Call(Of Single)(Hash.GET_VEHICLE_ACCELERATION, veh)
+    End Function
 
 End Module

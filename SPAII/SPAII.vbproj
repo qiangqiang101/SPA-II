@@ -84,6 +84,8 @@
     <Compile Include="Class\Apartment\MediumEndApartment.vb" />
     <Compile Include="Class\Database\BuildingList.vb" />
     <Compile Include="Class\CarGens.vb" />
+    <Compile Include="Class\Debug\DebugCamera.vb" />
+    <Compile Include="Class\Debug\DebugHelper.vb" />
     <Compile Include="Class\Garage\SixCarGarage.vb" />
     <Compile Include="Class\Garage\TenCarGarage.vb" />
     <Compile Include="Class\Garage\TwoCarGarage.vb" />

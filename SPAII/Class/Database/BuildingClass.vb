@@ -453,7 +453,7 @@ Public Class BuildingClass
     Private Sub AptMenu_OnItemSelect(sender As UIMenu, selectedItem As UIMenuItem, index As Integer) Handles AptMenu.OnItemSelect
         Try
             Dim selectedApt As ApartmentClass = selectedItem.Tag
-            If selectedApt.Owner = GetPlayer() Then
+            If debugMode Then
                 AptMenu.Visible = False
                 HideHud = True
                 PlayEnterApartmentCamera(3000, True, True, CameraShake.Hand, 0.4F)
@@ -473,6 +473,28 @@ Public Class BuildingClass
                 World.DestroyAllCameras()
                 World.RenderingCamera = Nothing
                 HideHud = False
+            Else
+                If selectedApt.Owner = GetPlayer() Then
+                    AptMenu.Visible = False
+                    HideHud = True
+                    PlayEnterApartmentCamera(3000, True, True, CameraShake.Hand, 0.4F)
+                    selectedApt.SetInteriorActive()
+                    PP.Position = selectedApt.ApartmentInPos
+                    Select Case selectedApt.ApartmentType
+                        Case eApartmentType.LowEnd
+                            LowEndApartment.Apartment = selectedApt
+                            LowEndApartment.SpawnDoor()
+                        Case eApartmentType.MediumEnd
+                            MediumEndApartment.Apartment = selectedApt
+                            MediumEndApartment.SpawnDoor()
+                        Case eApartmentType.None, eApartmentType.IPL, eApartmentType.IPLwoStyle
+                            HighEndApartment.Building = Me
+                    End Select
+                    selectedApt.PlayApartmentEnterCutscene()
+                    World.DestroyAllCameras()
+                    World.RenderingCamera = Nothing
+                    HideHud = False
+                End If
             End If
         Catch ex As Exception
             Logger.Log($"{ex.Message} {ex.StackTrace}")

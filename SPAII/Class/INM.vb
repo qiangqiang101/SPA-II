@@ -1,6 +1,7 @@
 ﻿Imports GTA
 Imports GTA.Math
 Imports GTA.Native
+Imports Metadata
 Imports NFunc = GTA.Native.Function
 
 Namespace INM
@@ -342,6 +343,22 @@ Namespace INM
             Index = id
             VehClass = vc
         End Sub
+
+    End Class
+
+    Public Class VehDeliveryMenuItem
+
+        Public VehClass As VehicleClass
+        Public IsAlreadyExistInWorldMap As Boolean
+
+        Public Sub New(vc As VehicleClass, isExist As Boolean)
+            VehClass = vc
+            IsAlreadyExistInWorldMap = isExist
+        End Sub
+
+        Public Function Vehicle() As Vehicle
+            Return outVehicleList.Find(Function(x) x.GetInt(vehIdDecor) = VehClass.ApartmentID AndAlso x.GetInt(vehUidDecor) = VehClass.UniqueID)
+        End Function
 
     End Class
 

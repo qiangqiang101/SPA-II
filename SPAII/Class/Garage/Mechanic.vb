@@ -1,14 +1,15 @@
 ﻿Imports System.Drawing
 Imports GTA
+Imports GTA.Math
 Imports iFruitAddon2
 Imports INMNativeUI
+Imports SPAII.INM
 
 Module Mechanic
 
     Public iFruit As CustomiFruit
     Public WithEvents MechanicContact As iFruitContact
     Public WithEvents MechanicMenu, AptMenu As UIMenu
-
 
     Public Sub LoadContacts()
         iFruit = New CustomiFruit
@@ -55,7 +56,8 @@ Module Mechanic
 
         With AptMenu
             For Each veh As VehicleClass In apt.Vehicles
-                Dim item As New UIMenuItem($"{veh.Make} {veh.Name} ({veh.PlateNumber})", Game.GetGXTEntry("MPCT_PERVEHC")) With {.Tag = veh, .Enabled = Not IsGarageVehicleAlreadyExistInWorldMap(apt.ID, veh.UniqueID)}
+                Dim temp As New VehDeliveryMenuItem(veh, IsGarageVehicleAlreadyExistInWorldMap(apt.ID, veh.UniqueID))
+                Dim item As New UIMenuItem($"{veh.Make} {veh.Name} ({veh.PlateNumber})", Game.GetGXTEntry("MPCT_PERVEHC")) With {.Tag = temp}
                 .AddItem(item)
                 MechanicMenu.BindMenuToItem(AptMenu, item)
             Next
@@ -87,7 +89,9 @@ Module Mechanic
     End Sub
 
     Private Sub AptMenu_OnItemSelect(sender As UIMenu, selectedItem As UIMenuItem, index As Integer) Handles AptMenu.OnItemSelect
-        Dim veh As VehicleClass = selectedItem.Tag
+        Dim temp As VehDeliveryMenuItem = selectedItem.Tag
+        Dim veh As VehicleClass = temp.VehClass
+        Dim exist = temp.IsAlreadyExistInWorldMap
 
         Dim nearestParkingSpot = PP.Position.GetNearestParkingSpot
         Dim distance = nearestParkingSpot.Vector3.DistanceTo(PP.Position)
@@ -95,28 +99,35 @@ Module Mechanic
             ICantGetYourRide.Play
         Else
             If nearestParkingSpot.Vector3.IsPositionOccupied(5.0F) Then
-                World.GetClosestVehicle(nearestParkingSpot.Vector3, 5.0F).Delete()
+                Dim cv As Vehicle = World.GetClosestVehicle(nearestParkingSpot.Vector3, 5.0F)
+                If Not cv = Nothing Then If Not cv.IsPersistent Then cv.Delete()
             End If
 
-            Dim newVeh As Vehicle = CreateGarageVehicle(veh, nearestParkingSpot.ToQuaternion, veh.ApartmentID)
-            With newVeh
-                .AddBlip()
-                .CurrentBlip.Sprite = BlipSprite.PersonalVehicleCar
-                Select Case GetPlayer()
-                    Case eOwner.Michael
-                        .CurrentBlip.Color = BlipColor.Michael
-                    Case eOwner.Franklin
-                        .CurrentBlip.Color = BlipColor.Franklin
-                    Case eOwner.Trevor
-                        .CurrentBlip.Color = BlipColor.Trevor
-                    Case eOwner.Others
-                        .CurrentBlip.Color = BlipColor.Yellow
-                End Select
-                .CurrentBlip.IsShortRange = True
-                .CurrentBlip.Name = $"{newVeh.Make} {newVeh.FriendlyName}"
-                .PlaceOnGround()
-            End With
-            outVehicleList.Add(newVeh)
+            If exist Then
+                temp.Vehicle.Position = nearestParkingSpot.Vector3
+                temp.Vehicle.Heading = nearestParkingSpot.ToQuaternion.W
+            Else
+                Dim newVeh As Vehicle = CreateGarageVehicle(veh, nearestParkingSpot.ToQuaternion, veh.ApartmentID)
+                With newVeh
+                    .AddBlip()
+                    .CurrentBlip.Sprite = BlipSprite.PersonalVehicleCar
+                    Select Case GetPlayer()
+                        Case eOwner.Michael
+                            .CurrentBlip.Color = BlipColor.Michael
+                        Case eOwner.Franklin
+                            .CurrentBlip.Color = BlipColor.Franklin
+                        Case eOwner.Trevor
+                            .CurrentBlip.Color = BlipColor.Trevor
+                        Case eOwner.Others
+                            .CurrentBlip.Color = BlipColor.Yellow
+                    End Select
+                    .CurrentBlip.IsShortRange = True
+                    .CurrentBlip.Name = $"{newVeh.Make} {newVeh.FriendlyName}"
+                    .PlaceOnGround()
+                End With
+                outVehicleList.Add(newVeh)
+            End If
+
             IllBeThere.Play
         End If
         sender.Visible = False
