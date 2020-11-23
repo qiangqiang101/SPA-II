@@ -105,12 +105,18 @@ Public Class SPA2
                         'Hide Building Exteriors
                         bd.HideExterior()
 
-                        If Not TwoCarGarage.Apartment Is Nothing Then TwoCarGarageOnTick()
-                        If Not SixCarGarage.Apartment Is Nothing Then SixCarGarageOnTick()
-                        If Not TenCarGarage.Apartment Is Nothing Then TenCarGarageOnTick()
+                        If TwoCarGarage.Apartment IsNot Nothing Then TwoCarGarageOnTick()
+                        If SixCarGarage.Apartment IsNot Nothing Then SixCarGarageOnTick()
+                        If TenCarGarage.Apartment IsNot Nothing Then TenCarGarageOnTick()
 
-                        If Not MediumEndApartment.Apartment Is Nothing Then MediumEndApartmentOnTick()
-                        If Not LowEndApartment.Apartment Is Nothing Then LowEndApartmentOnTick()
+                        If MediumEndApartment.Apartment IsNot Nothing Then MediumEndApartmentOnTick()
+                        If LowEndApartment.Apartment IsNot Nothing Then LowEndApartmentOnTick()
+
+                        Game.DisableControlThisFrame(0, GameControl.CharacterWheel)
+                        Game.DisableControlThisFrame(0, GameControl.SelectCharacterFranklin)
+                        Game.DisableControlThisFrame(0, GameControl.SelectCharacterMichael)
+                        Game.DisableControlThisFrame(0, GameControl.SelectCharacterTrevor)
+                        Game.DisableControlThisFrame(0, GameControl.SelectCharacterMultiplayer)
                     End If
 
                     'Draw circle
@@ -143,7 +149,7 @@ Public Class SPA2
                     End If
                 Next
 
-                HighEndApartmentOnTick()
+                If HighEndApartment.Building IsNot Nothing Then HighEndApartmentOnTick()
 
                 'Hide vehicle blip
                 If PP.LastVehicle.IsPersonalVehicle Then

@@ -62,6 +62,18 @@ Module Helper
     Public IllGetBackToWork As New Speech("mechanic_get_back_to_work_then.wav")
     Public IllBeThere As New Speech("mechanic_get_there_as_soon_as_i_can.wav")
 
+    'Scaleform
+    Public StatScaleform0 As New Scaleform("MP_CAR_STATS_01")
+    Public StatScaleform1 As New Scaleform("MP_CAR_STATS_02")
+    Public StatScaleform2 As New Scaleform("MP_CAR_STATS_03")
+    Public StatScaleform3 As New Scaleform("MP_CAR_STATS_04")
+    Public StatScaleform4 As New Scaleform("MP_CAR_STATS_05")
+    Public StatScaleform5 As New Scaleform("MP_CAR_STATS_06")
+    Public StatScaleform6 As New Scaleform("MP_CAR_STATS_07")
+    Public StatScaleform7 As New Scaleform("MP_CAR_STATS_08")
+    Public StatScaleform8 As New Scaleform("MP_CAR_STATS_09")
+    Public StatScaleform9 As New Scaleform("MP_CAR_STATS_10")
+
     <Extension>
     Public Function Make(vehicle As Vehicle) As String
         Return Game.GetGXTEntry(NFunc.Call(Of String)(_GET_MAKE_NAME_FROM_VEHICLE_MODEL, vehicle.Model.Hash))
@@ -1016,9 +1028,6 @@ Module Helper
         ActivateInteriorEntitySet(New Vector3(-572.60998535, 653.13000488, 145.63000488), "Stilts_Kitchen_Window") '2117 Milton Road
         ActivateInteriorEntitySet(New Vector3(120.5, 549.952026367, 184.09700012207), "Stilts_Kitchen_Window") '3677 Whispymound Drive
         ActivateInteriorEntitySet(New Vector3(-1288, 440.74798583, 97.694602966), "Stilts_Kitchen_Window") '2113 Mad Wayne Thunder Drive
-
-        'RequestIPL("apa_stilt_ch2_09c_int")
-        'SetInteriorActive(New Vector3(-742.4105F, 582.563F, 142.181F))
     End Sub
 
     Public Sub ActivateInteriorEntitySet(pos As Vector3, ParamArray entities As String())
@@ -1046,5 +1055,15 @@ Module Helper
     Public Function Acceleration(veh As Vehicle) As Single
         Return NFunc.Call(Of Single)(Hash.GET_VEHICLE_ACCELERATION, veh)
     End Function
+
+    <Extension>
+    Public Sub DrawMPCarStats(sf As Scaleform, veh As Vehicle, Optional scale As Vector3 = Nothing)
+        If scale = Nothing Then scale = New Vector3(6.0F, 3.5F, 1.0F)
+        If veh.IsOnScreen AndAlso veh.Position.DistanceToSquared(PP.Position) <= 100.0F Then
+            sf.CallFunction("SET_VEHICLE_INFOR_AND_STATS", veh.FriendlyName, Game.GetGXTEntry("MP_PROP_CAR0"), "MPCarHUD", veh.Make, Game.GetGXTEntry("FMMC_VEHST_0"), Game.GetGXTEntry("FMMC_VEHST_1"),
+                                   Game.GetGXTEntry("FMMC_VEHST_2"), Game.GetGXTEntry("FMMC_VEHST_3"), veh.TopSpeed * 100.0F, veh.MaxBraking * 100.0F, veh.Acceleration * 100.0F, veh.MaxTraction * 100.0F)
+            sf.Render3D(New Vector3(veh.Position.X, veh.Position.Y, veh.Position.Z + 3.0F), GameplayCamera.Rotation, scale)
+        End If
+    End Sub
 
 End Module

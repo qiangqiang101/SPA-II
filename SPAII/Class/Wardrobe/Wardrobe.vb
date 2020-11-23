@@ -285,11 +285,12 @@ Module Wardrobe
                 .AddItem(giSuits)
                 .AddItem(giGlasses)
                 .AddItem(iHoodies)
+                .AddItem(iJackets)
                 .AddItem(giCasualJackets)
                 .AddItem(iPants)
                 .AddItem(iPoloShirt)
                 .AddItem(iShoes)
-                .AddItem(iOpenShirts)
+                '.AddItem(iOpenShirts)
                 .AddItem(iShirts)
                 .AddItem(iShorts)
                 .AddItem(iTShirt)
@@ -432,6 +433,7 @@ Module Wardrobe
                 .AddItem(giGlasses)
                 .AddItem(iHats)
                 .AddItem(iHoodies)
+                .AddItem(iJackets)
                 .AddItem(giCasualJackets)
                 .AddItem(iPants)
                 .AddItem(iPoloShirt)
@@ -544,40 +546,40 @@ Module Wardrobe
                     Case eClothingType.CapBackward, eClothingType.CapForward, eClothingType.Earrings, eClothingType.Glasses, eClothingType.Hat, eClothingType.SportShades, eClothingType.StreetShades
                         Select Case ci.ComponentID
                             Case 0
-                                If Memory.Helmet Is ci.CS1 Then item.SetRightBadge(UIMenuItem.BadgeStyle.Tick)
+                                If Memory.Helmet Is ci.CS1 Then item.SetRightBadge(UIMenuItem.BadgeStyle.Clothes)
                             Case 1
-                                If Memory.Glasses Is ci.CS1 Then item.SetRightBadge(UIMenuItem.BadgeStyle.Tick)
+                                If Memory.Glasses Is ci.CS1 Then item.SetRightBadge(UIMenuItem.BadgeStyle.Clothes)
                             Case 2
-                                If Memory.Earrings Is ci.CS1 Then item.SetRightBadge(UIMenuItem.BadgeStyle.Tick)
+                                If Memory.Earrings Is ci.CS1 Then item.SetRightBadge(UIMenuItem.BadgeStyle.Clothes)
                         End Select
                     Case eClothingType.CasualJacket, eClothingType.CasualTShirt, eClothingType.Chain, eClothingType.Hoodie, eClothingType.Jacket, eClothingType.Pants, eClothingType.Polo,
                          eClothingType.Shirt, eClothingType.Shoes, eClothingType.Shorts, eClothingType.SuitJacket, eClothingType.SuitJacketButtoned, eClothingType.SuitPants, eClothingType.SuitTie,
                          eClothingType.SuitVest, eClothingType.TankTop, eClothingType.Top, eClothingType.TShirt, eClothingType.Vest
                         Select Case ci.ComponentID
                             Case 0
-                                If Memory.Face Is ci.CS1 Then item.SetRightBadge(UIMenuItem.BadgeStyle.Tick)
+                                If Memory.Face Is ci.CS1 Then item.SetRightBadge(UIMenuItem.BadgeStyle.Clothes)
                             Case 1
-                                If Memory.Beard Is ci.CS1 Then item.SetRightBadge(UIMenuItem.BadgeStyle.Tick)
+                                If Memory.Beard Is ci.CS1 Then item.SetRightBadge(UIMenuItem.BadgeStyle.Clothes)
                             Case 2
-                                If Memory.Hair Is ci.CS1 Then item.SetRightBadge(UIMenuItem.BadgeStyle.Tick)
+                                If Memory.Hair Is ci.CS1 Then item.SetRightBadge(UIMenuItem.BadgeStyle.Clothes)
                             Case 3
-                                If Memory.Torso Is ci.CS1 Then item.SetRightBadge(UIMenuItem.BadgeStyle.Tick)
+                                If Memory.Torso Is ci.CS1 Then item.SetRightBadge(UIMenuItem.BadgeStyle.Clothes)
                             Case 4
-                                If Memory.Legs Is ci.CS1 Then item.SetRightBadge(UIMenuItem.BadgeStyle.Tick)
+                                If Memory.Legs Is ci.CS1 Then item.SetRightBadge(UIMenuItem.BadgeStyle.Clothes)
                             Case 5
-                                If Memory.Hands Is ci.CS1 Then item.SetRightBadge(UIMenuItem.BadgeStyle.Tick)
+                                If Memory.Hands Is ci.CS1 Then item.SetRightBadge(UIMenuItem.BadgeStyle.Clothes)
                             Case 6
-                                If Memory.Feet Is ci.CS1 Then item.SetRightBadge(UIMenuItem.BadgeStyle.Tick)
+                                If Memory.Feet Is ci.CS1 Then item.SetRightBadge(UIMenuItem.BadgeStyle.Clothes)
                             Case 7
-                                If Memory.Eyes Is ci.CS1 Then item.SetRightBadge(UIMenuItem.BadgeStyle.Tick)
+                                If Memory.Eyes Is ci.CS1 Then item.SetRightBadge(UIMenuItem.BadgeStyle.Clothes)
                             Case 8
-                                If Memory.Accessories Is ci.CS1 Then item.SetRightBadge(UIMenuItem.BadgeStyle.Tick)
+                                If Memory.Accessories Is ci.CS1 Then item.SetRightBadge(UIMenuItem.BadgeStyle.Clothes)
                             Case 9
-                                If Memory.Props Is ci.CS1 Then item.SetRightBadge(UIMenuItem.BadgeStyle.Tick)
+                                If Memory.Props Is ci.CS1 Then item.SetRightBadge(UIMenuItem.BadgeStyle.Clothes)
                             Case 10
-                                If Memory.Textures Is ci.CS1 Then item.SetRightBadge(UIMenuItem.BadgeStyle.Tick)
+                                If Memory.Textures Is ci.CS1 Then item.SetRightBadge(UIMenuItem.BadgeStyle.Clothes)
                             Case 11
-                                If Memory.AuxiliaryTorso Is ci.CS1 Then item.SetRightBadge(UIMenuItem.BadgeStyle.Tick)
+                                If Memory.AuxiliaryTorso Is ci.CS1 Then item.SetRightBadge(UIMenuItem.BadgeStyle.Clothes)
                         End Select
                 End Select
             Next
@@ -706,7 +708,7 @@ Module Wardrobe
             item.SetRightBadge(UIMenuItem.BadgeStyle.None)
         Next
 
-        selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Tick)
+        selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Clothes)
     End Sub
 
     Private Sub SingleClothing_OnIndexChange(sender As UIMenu, index As Integer) Handles mCapsBackwardF.OnIndexChange, mCapsForwardF.OnIndexChange, mCapsForwardT.OnIndexChange,

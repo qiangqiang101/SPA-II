@@ -547,7 +547,7 @@ Public Class BuildingClass
 
                     Select Case FromApartment
                         Case 0
-                                    'Nothing need to do for this step
+                            'Nothing need to do for this step
                         Case selectedApt.ID
                             Dim ExistingFileToDelete As String = $"{grgXmlPath}{selectedApt.GarageFilePath}\{UniqueID}.xml"
                             If File.Exists(ExistingFileToDelete) Then File.Delete(ExistingFileToDelete)
@@ -700,7 +700,7 @@ Public Class BuildingClass
                         apt.UpdateApartmentOwner()
                         BuyMenu.Visible = False
                         FadeScreen(1)
-                        Player.Money = (PM - apt.Price)
+                        If Not GetPlayer() = eOwner.Others Then Player.Money = (PM - apt.Price)
                         BuildingBlip.Remove()
                         If Not GarageBlip Is Nothing Then GarageBlip.Remove()
                         RefreshBuyMenu()
