@@ -95,7 +95,11 @@ Public Class SPA2
                         If Not MenuPool.IsAnyMenuOpen Then
                             UI.ShowHelpMessage(Game.GetGXTEntry("MP_PROP_BUZZ1B"))
                             If Game.IsControlJustReleased(0, GameControl.Context) Then
+                                FadeScreen(1)
                                 bd.GrgMenu.Visible = True
+                                World.RenderingCamera = World.CreateCamera(bd.CameraPos.Position, bd.CameraPos.Rotation, bd.CameraPos.FOV)
+                                HideHud = True
+                                FadeScreen(0)
                             End If
                         End If
                     End If

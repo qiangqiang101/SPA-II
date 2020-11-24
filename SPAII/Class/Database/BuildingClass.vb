@@ -58,9 +58,18 @@ Public Class BuildingClass
     Public Sub Load()
         config = ScriptSettings.Load("scripts\SPA II\modconfig.ini")
 
+        If Not IsVacant() AndAlso Not BuildingType = eBuildingType.Garage Then
+            GarageBlip = World.CreateBlip(GarageInPos)
+            With GarageBlip
+                .IsShortRange = True
+                .Sprite = BlipSprite.Garage
+                .Name = Game.GetGXTEntry("BLIP_357")
+                .Color = GetBlipColor
+            End With
+        End If
+
         BuildingBlip = World.CreateBlip(BuildingInPos.ToVector3)
         With BuildingBlip
-            .Color = BlipColor.White
             .IsShortRange = True
             If IsVacant() Then
                 If Not debugMode Then
@@ -105,6 +114,7 @@ Public Class BuildingClass
                     End Select
                     .Name = Name
                 End If
+                .Color = BlipColor.White
             Else
                 Select Case BuildingType
                     Case eBuildingType.Apartment
@@ -132,18 +142,9 @@ Public Class BuildingClass
                         .Sprite = BlipSprite.Bunker
                         .Name = Game.GetGXTEntry("BLIP_557")
                 End Select
+                .Color = GetBlipColor
             End If
         End With
-
-        If Not IsVacant() AndAlso Not BuildingType = eBuildingType.Garage Then
-            GarageBlip = World.CreateBlip(GarageInPos)
-            With GarageBlip
-                .Color = BlipColor.White
-                .IsShortRange = True
-                .Sprite = BlipSprite.Garage
-                .Name = Game.GetGXTEntry("BLIP_357")
-            End With
-        End If
 
         BuyMenu = New UIMenu("", Game.GetGXTEntry("MP_PROP_GEN0"), New Point(0, -107))
         BuyMenu.SetBannerType(MenuBanner)
@@ -364,7 +365,6 @@ Public Class BuildingClass
     Private Sub RefreshBlips()
         BuildingBlip = World.CreateBlip(BuildingInPos.ToVector3)
         With BuildingBlip
-            .Color = BlipColor.White
             .IsShortRange = True
             If IsVacant() Then
                 If Not debugMode Then
@@ -409,6 +409,7 @@ Public Class BuildingClass
                     End Select
                     .Name = Name
                 End If
+                .Color = BlipColor.White
             Else
                 Select Case BuildingType
                     Case eBuildingType.Apartment
@@ -436,16 +437,17 @@ Public Class BuildingClass
                         .Sprite = BlipSprite.Bunker
                         .Name = Game.GetGXTEntry("BLIP_557")
                 End Select
+                .Color = GetBlipColor
             End If
         End With
 
         If Not IsVacant() AndAlso Not BuildingType = eBuildingType.Garage Then
             GarageBlip = World.CreateBlip(GarageInPos)
             With GarageBlip
-                .Color = BlipColor.White
                 .IsShortRange = True
                 .Sprite = BlipSprite.Garage
                 .Name = Game.GetGXTEntry("BLIP_357")
+                .Color = GetBlipColor
             End With
         End If
     End Sub
@@ -564,7 +566,7 @@ Public Class BuildingClass
                     TwoCarGarage.LoadVehiclesSetPlayerPos(uid)
                     currVeh.CurrentBlip.Remove()
                     currVeh.Delete()
-                    PP.Task.LeaveVehicle()
+                    PP.Task.LeaveVehicle(LeaveVehicleFlags.None)
                 Else
                     'On Foot
                     PP.Position = TwoCarGarage.SpawnInPos.ToVector3
@@ -604,7 +606,7 @@ Public Class BuildingClass
                     SixCarGarage.LoadVehiclesSetPlayerPos(uid)
                     currVeh.CurrentBlip.Remove()
                     currVeh.Delete()
-                    PP.Task.LeaveVehicle()
+                    PP.Task.LeaveVehicle(LeaveVehicleFlags.None)
                 Else
                     'On Foot
                     PP.Position = SixCarGarage.SpawnInPos.ToVector3
@@ -644,7 +646,7 @@ Public Class BuildingClass
                     TenCarGarage.LoadVehiclesSetPlayerPos(uid)
                     currVeh.CurrentBlip.Remove()
                     currVeh.Delete()
-                    PP.Task.LeaveVehicle()
+                    PP.Task.LeaveVehicle(LeaveVehicleFlags.None)
                 Else
                     'On Foot
                     PP.Position = TenCarGarage.SpawnInPos.ToVector3
@@ -664,9 +666,15 @@ Public Class BuildingClass
             If selectedApt.Owner = GetPlayer() Then
                 If PP.IsInVehicle Then
                     If Not selectedApt.Vehicles.Count = GetGarageVehicleCount() Then
+                        World.RenderingCamera = Nothing
+                        World.DestroyAllCameras()
+                        HideHud = False
                         SaveVehicle(selectedApt)
                     Else
                         If selectedApt.VehiclesContain(Game.Player.Character.LastVehicle) Then
+                            World.RenderingCamera = Nothing
+                            World.DestroyAllCameras()
+                            HideHud = False
                             SaveVehicle(selectedApt)
                         Else
                             'Garage is full
@@ -674,6 +682,9 @@ Public Class BuildingClass
                         End If
                     End If
                 Else
+                    World.RenderingCamera = Nothing
+                    World.DestroyAllCameras()
+                    HideHud = False
                     SaveVehicle(selectedApt)
                 End If
             End If
@@ -925,6 +936,12 @@ Public Class BuildingClass
             Case eGarageType.TwentyCarGarage
         End Select
         Script.Wait(duration)
+    End Sub
+
+    Private Sub GrgMenu_OnMenuClose(sender As UIMenu) Handles GrgMenu.OnMenuClose
+        World.RenderingCamera = Nothing
+        World.DestroyAllCameras()
+        HideHud = False
     End Sub
 End Class
 

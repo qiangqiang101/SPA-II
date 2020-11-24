@@ -39,6 +39,7 @@ Public Class ApartmentClass
     Public WithEvents StyleMenu As UIMenu
 
     Public Function Owner() As eOwner
+        config = ScriptSettings.Load("scripts\SPA II\modconfig.ini")
         Return config.GetValue(Of eOwner)("BUILDING", Name, eOwner.Nobody)
     End Function
 

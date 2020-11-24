@@ -945,15 +945,15 @@ Module Helper
     End Sub
 
     Public Sub Sleep(apt As ApartmentClass)
-        NFunc.Call(Hash.SET_CURRENT_PED_VEHICLE_WEAPON, PP, WeaponHash.Unarmed, True)
-        Dim ts As New TaskSequence
-        ts.AddTask.SlideTo(apt.SavePos, PP.Heading)
-        ts.AddTask.PlayAnimation("anim@mp_bedmid@left_var_02", "f_getin_l_bighouse")
-        ts.AddTask.PlayAnimation("anim@mp_bedmid@left_var_02", "f_sleep_l_loop_bighouse")
-        PP.Task.PerformSequence(ts)
-        NFunc.Call(Hash.FORCE_PED_MOTION_STATE, PP, 1063765679, False, 0, False)
-        ts.Close()
-        ts.Dispose()
+        'NFunc.Call(Hash.SET_CURRENT_PED_VEHICLE_WEAPON, PP, WeaponHash.Unarmed, True)
+        'Dim ts As New TaskSequence
+        'ts.AddTask.SlideTo(apt.SavePos, PP.Heading)
+        'ts.AddTask.PlayAnimation("anim@mp_bedmid@left_var_02", "f_getin_l_bighouse")
+        'ts.AddTask.PlayAnimation("anim@mp_bedmid@left_var_02", "f_sleep_l_loop_bighouse")
+        'PP.Task.PerformSequence(ts)
+        'NFunc.Call(Hash.FORCE_PED_MOTION_STATE, PP, 1063765679, False, 0, False)
+        'ts.Close()
+        'ts.Dispose()
     End Sub
 
     <Extension>
@@ -1065,5 +1065,51 @@ Module Helper
             sf.Render3D(New Vector3(veh.Position.X, veh.Position.Y, veh.Position.Z + 3.0F), GameplayCamera.Rotation, scale)
         End If
     End Sub
+
+    <Extension>
+    Public Function GetBlipColor(bd As BuildingClass) As BlipColor
+        config = ScriptSettings.Load("scripts\SPA II\modconfig.ini")
+
+        If bd.Apartments.Count = 1 Then
+            Select Case bd.Apartments.FirstOrDefault.Owner
+                Case eOwner.Michael
+                    Return BlipColor.Michael
+                Case eOwner.Franklin
+                    Return BlipColor.Franklin
+                Case eOwner.Trevor
+                    Return BlipColor.Trevor
+                Case eOwner.Others
+                    Return BlipColor.Yellow
+            End Select
+        Else
+            Dim mc = bd.GetOwnerCount(eOwner.Michael)
+            Dim fc = bd.GetOwnerCount(eOwner.Franklin)
+            Dim tc = bd.GetOwnerCount(eOwner.Trevor)
+            Dim fmc = bd.GetOwnerCount(eOwner.Others)
+            Dim counts As Integer() = {mc, fc, tc, fmc}
+            Dim max = counts.Max
+            Select Case max
+                Case mc
+                    Return BlipColor.Michael
+                Case fc
+                    Return BlipColor.Franklin
+                Case tc
+                    Return BlipColor.Trevor
+                Case fmc
+                    Return BlipColor.Yellow
+            End Select
+        End If
+        Return BlipColor.White
+    End Function
+
+    <Extension>
+    Public Function GetOwnerCount(bd As BuildingClass, ow As eOwner) As Integer
+        Return (From o In bd.Apartments Where o.Owner = ow).Count
+    End Function
+
+    <Extension>
+    Public Function TruncateString(str As String, len As Integer) As String
+        If len > str.Length Then Return str Else Return str.Substring(0, len)
+    End Function
 
 End Module

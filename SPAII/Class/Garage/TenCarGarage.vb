@@ -83,7 +83,7 @@ Public Module TenCarGarage
             Dim remove As New UIMenuItem(Game.GetGXTEntry("ITEM_REM")) With {.Tag = "Remove"}
             .AddItem(remove)
             MgmtMenu.BindMenuToItem(MgmtOptMenu, remove)
-            Dim plate As New UIMenuItem(Game.GetGXTEntry("IE_MOD_OBJ2")) With {.Tag = "Plate"}
+            Dim plate As New UIMenuItem(Game.GetGXTEntry("CMOD_MOD_PLA")) With {.Tag = "Plate"}
             .AddItem(plate) 'Change Plate
             MgmtMenu.BindMenuToItem(MgmtOptMenu, plate)
             .RefreshIndex()
@@ -128,40 +128,50 @@ Public Module TenCarGarage
         End With
     End Sub
 
-    Public Sub RefreshMoveMenu(Optional itemDesc As String = "MP_MAN_VEH3AC")
+    Public Sub RefreshMoveMenu(Optional itemDesc As String = "MP_MAN_VEH3")
         MgmtMoveMenu.MenuItems.Clear()
 
         With MgmtMoveMenu
             Dim veh1 As VehicleClass = Apartment.Vehicles.Find(Function(x) x.Index = 0)
-            Dim item1 As New UIMenuItem(If(veh1 Is Nothing, Game.GetGXTEntry("MP_MAN_VEH_S"), $"{veh1.Make} {veh1.Name} ({veh1.PlateNumber})"), Game.GetGXTEntry(itemDesc)) With {.Tag = New VehClassMenuItem(0, veh1), .Enabled = If(veh1 Is Nothing, False, True)}
+            Dim item1 As New UIMenuItem(If(veh1 Is Nothing, Game.GetGXTEntry("MP_MAN_VEH_S"), $"{veh1.Make} {veh1.Name} ({veh1.PlateNumber})"), Game.GetGXTEntry(itemDesc)) With {.Tag = New VehClassMenuItem(0, If(veh1 Is Nothing, Nothing, veh1))}
             .AddItem(item1)
+            MgmtOptMenu.BindMenuToItem(MgmtMoveMenu, item1)
             Dim veh2 As VehicleClass = Apartment.Vehicles.Find(Function(x) x.Index = 1)
-            Dim item2 As New UIMenuItem(If(veh2 Is Nothing, Game.GetGXTEntry("MP_MAN_VEH_S"), $"{veh2.Make} {veh2.Name} ({veh2.PlateNumber})"), Game.GetGXTEntry(itemDesc)) With {.Tag = New VehClassMenuItem(1, veh2), .Enabled = If(veh2 Is Nothing, False, True)}
+            Dim item2 As New UIMenuItem(If(veh2 Is Nothing, Game.GetGXTEntry("MP_MAN_VEH_S"), $"{veh2.Make} {veh2.Name} ({veh2.PlateNumber})"), Game.GetGXTEntry(itemDesc)) With {.Tag = New VehClassMenuItem(1, If(veh2 Is Nothing, Nothing, veh2))}
             .AddItem(item2)
+            MgmtOptMenu.BindMenuToItem(MgmtMoveMenu, item2)
             Dim veh3 As VehicleClass = Apartment.Vehicles.Find(Function(x) x.Index = 2)
-            Dim item3 As New UIMenuItem(If(veh3 Is Nothing, Game.GetGXTEntry("MP_MAN_VEH_S"), $"{veh3.Make} {veh3.Name} ({veh3.PlateNumber})"), Game.GetGXTEntry(itemDesc)) With {.Tag = New VehClassMenuItem(2, veh3), .Enabled = If(veh3 Is Nothing, False, True)}
+            Dim item3 As New UIMenuItem(If(veh3 Is Nothing, Game.GetGXTEntry("MP_MAN_VEH_S"), $"{veh3.Make} {veh3.Name} ({veh3.PlateNumber})"), Game.GetGXTEntry(itemDesc)) With {.Tag = New VehClassMenuItem(2, If(veh3 Is Nothing, Nothing, veh3))}
             .AddItem(item3)
+            MgmtOptMenu.BindMenuToItem(MgmtMoveMenu, item3)
             Dim veh4 As VehicleClass = Apartment.Vehicles.Find(Function(x) x.Index = 3)
-            Dim item4 As New UIMenuItem(If(veh4 Is Nothing, Game.GetGXTEntry("MP_MAN_VEH_S"), $"{veh4.Make} {veh4.Name} ({veh4.PlateNumber})"), Game.GetGXTEntry(itemDesc)) With {.Tag = New VehClassMenuItem(3, veh4), .Enabled = If(veh4 Is Nothing, False, True)}
+            Dim item4 As New UIMenuItem(If(veh4 Is Nothing, Game.GetGXTEntry("MP_MAN_VEH_S"), $"{veh4.Make} {veh4.Name} ({veh4.PlateNumber})"), Game.GetGXTEntry(itemDesc)) With {.Tag = New VehClassMenuItem(3, If(veh4 Is Nothing, Nothing, veh4))}
             .AddItem(item4)
+            MgmtOptMenu.BindMenuToItem(MgmtMoveMenu, item4)
             Dim veh5 As VehicleClass = Apartment.Vehicles.Find(Function(x) x.Index = 4)
-            Dim item5 As New UIMenuItem(If(veh5 Is Nothing, Game.GetGXTEntry("MP_MAN_VEH_S"), $"{veh5.Make} {veh5.Name} ({veh5.PlateNumber})"), Game.GetGXTEntry(itemDesc)) With {.Tag = New VehClassMenuItem(4, veh5), .Enabled = If(veh5 Is Nothing, False, True)}
+            Dim item5 As New UIMenuItem(If(veh5 Is Nothing, Game.GetGXTEntry("MP_MAN_VEH_S"), $"{veh5.Make} {veh5.Name} ({veh5.PlateNumber})"), Game.GetGXTEntry(itemDesc)) With {.Tag = New VehClassMenuItem(4, If(veh5 Is Nothing, Nothing, veh5))}
             .AddItem(item5)
+            MgmtOptMenu.BindMenuToItem(MgmtMoveMenu, item5)
             Dim veh6 As VehicleClass = Apartment.Vehicles.Find(Function(x) x.Index = 5)
-            Dim item6 As New UIMenuItem(If(veh6 Is Nothing, Game.GetGXTEntry("MP_MAN_VEH_S"), $"{veh6.Make} {veh6.Name} ({veh6.PlateNumber})"), Game.GetGXTEntry(itemDesc)) With {.Tag = New VehClassMenuItem(5, veh6), .Enabled = If(veh6 Is Nothing, False, True)}
+            Dim item6 As New UIMenuItem(If(veh6 Is Nothing, Game.GetGXTEntry("MP_MAN_VEH_S"), $"{veh6.Make} {veh6.Name} ({veh6.PlateNumber})"), Game.GetGXTEntry(itemDesc)) With {.Tag = New VehClassMenuItem(5, If(veh6 Is Nothing, Nothing, veh6))}
             .AddItem(item6)
+            MgmtOptMenu.BindMenuToItem(MgmtMoveMenu, item6)
             Dim veh7 As VehicleClass = Apartment.Vehicles.Find(Function(x) x.Index = 6)
-            Dim item7 As New UIMenuItem(If(veh7 Is Nothing, Game.GetGXTEntry("MP_MAN_VEH_S"), $"{veh7.Make} {veh7.Name} ({veh7.PlateNumber})"), Game.GetGXTEntry(itemDesc)) With {.Tag = New VehClassMenuItem(6, veh7), .Enabled = If(veh7 Is Nothing, False, True)}
+            Dim item7 As New UIMenuItem(If(veh7 Is Nothing, Game.GetGXTEntry("MP_MAN_VEH_S"), $"{veh7.Make} {veh7.Name} ({veh7.PlateNumber})"), Game.GetGXTEntry(itemDesc)) With {.Tag = New VehClassMenuItem(6, If(veh7 Is Nothing, Nothing, veh7))}
             .AddItem(item7)
+            MgmtOptMenu.BindMenuToItem(MgmtMoveMenu, item7)
             Dim veh8 As VehicleClass = Apartment.Vehicles.Find(Function(x) x.Index = 7)
-            Dim item8 As New UIMenuItem(If(veh8 Is Nothing, Game.GetGXTEntry("MP_MAN_VEH_S"), $"{veh8.Make} {veh8.Name} ({veh8.PlateNumber})"), Game.GetGXTEntry(itemDesc)) With {.Tag = New VehClassMenuItem(7, veh8), .Enabled = If(veh8 Is Nothing, False, True)}
+            Dim item8 As New UIMenuItem(If(veh8 Is Nothing, Game.GetGXTEntry("MP_MAN_VEH_S"), $"{veh8.Make} {veh8.Name} ({veh8.PlateNumber})"), Game.GetGXTEntry(itemDesc)) With {.Tag = New VehClassMenuItem(7, If(veh8 Is Nothing, Nothing, veh8))}
             .AddItem(item8)
+            MgmtOptMenu.BindMenuToItem(MgmtMoveMenu, item8)
             Dim veh9 As VehicleClass = Apartment.Vehicles.Find(Function(x) x.Index = 8)
-            Dim item9 As New UIMenuItem(If(veh9 Is Nothing, Game.GetGXTEntry("MP_MAN_VEH_S"), $"{veh9.Make} {veh9.Name} ({veh9.PlateNumber})"), Game.GetGXTEntry(itemDesc)) With {.Tag = New VehClassMenuItem(8, veh9), .Enabled = If(veh9 Is Nothing, False, True)}
+            Dim item9 As New UIMenuItem(If(veh9 Is Nothing, Game.GetGXTEntry("MP_MAN_VEH_S"), $"{veh9.Make} {veh9.Name} ({veh9.PlateNumber})"), Game.GetGXTEntry(itemDesc)) With {.Tag = New VehClassMenuItem(8, If(veh9 Is Nothing, Nothing, veh9))}
             .AddItem(item9)
+            MgmtOptMenu.BindMenuToItem(MgmtMoveMenu, item9)
             Dim veh10 As VehicleClass = Apartment.Vehicles.Find(Function(x) x.Index = 9)
-            Dim item10 As New UIMenuItem(If(veh10 Is Nothing, Game.GetGXTEntry("MP_MAN_VEH_S"), $"{veh10.Make} {veh10.Name} ({veh10.PlateNumber})"), Game.GetGXTEntry(itemDesc)) With {.Tag = New VehClassMenuItem(9, veh10), .Enabled = If(veh10 Is Nothing, False, True)}
+            Dim item10 As New UIMenuItem(If(veh10 Is Nothing, Game.GetGXTEntry("MP_MAN_VEH_S"), $"{veh10.Make} {veh10.Name} ({veh10.PlateNumber})"), Game.GetGXTEntry(itemDesc)) With {.Tag = New VehClassMenuItem(9, If(veh10 Is Nothing, Nothing, veh10))}
             .AddItem(item10)
+            MgmtOptMenu.BindMenuToItem(MgmtMoveMenu, item10)
             .RefreshIndex()
         End With
     End Sub
@@ -442,6 +452,7 @@ Public Module TenCarGarage
     Private Sub MgmtMenu_OnMenuClose(sender As UIMenu) Handles MgmtMenu.OnMenuClose
         World.DestroyAllCameras()
         World.RenderingCamera = Nothing
+        HideHud = False
     End Sub
 
     Private Sub MgmtOptMenu_OnItemSelect(sender As UIMenu, selectedItem As UIMenuItem, index As Integer) Handles MgmtOptMenu.OnItemSelect
@@ -461,7 +472,17 @@ Public Module TenCarGarage
                         sender.GoBack()
                     End If
                 Case "Plate"
-
+                    Dim plateText As String = Game.GetUserInput(WindowTitle.FMMC_KEY_TIP8, MgmtSelVeh.VehClass.PlateNumber, 8)
+                    If plateText <> "" Then
+                        Dim vc As VehicleClass = MgmtSelVeh.VehClass
+                        Dim vd As New VehicleData($"{grgXmlPath}{Apartment.GarageFilePath}\{vc.UniqueID}.xml", vc)
+                        vd.PlateNumber = plateText.ToUpper.TruncateString(8)
+                        vd.Save()
+                        LoadVehicles()
+                        MgmtSelVeh = Nothing
+                        RefreshMgmtMenu()
+                        sender.GoBack()
+                    End If
             End Select
         Else
             sender.GoBack()
@@ -469,27 +490,37 @@ Public Module TenCarGarage
     End Sub
 
     Private Sub MgmtMoveMenu_OnItemSelect(sender As UIMenu, selectedItem As UIMenuItem, index As Integer) Handles MgmtMoveMenu.OnItemSelect
-        If MgmtSelVeh IsNot Nothing Then
-            Dim selectedVeh As VehClassMenuItem = selectedItem.Tag
-            Dim vehToMove As VehClassMenuItem = MgmtSelVeh
+        Try
+            If MgmtSelVeh IsNot Nothing Then
+                Dim selectedVeh As VehClassMenuItem = selectedItem.Tag
+                Dim vehToMove As VehClassMenuItem = MgmtSelVeh
 
-            Dim svc = selectedVeh.VehClass
-            Dim lvc = MgmtSelVeh.VehClass
+                If selectedVeh.VehClass Is Nothing Then
+                    Dim lvc = MgmtSelVeh.VehClass
+                    Dim lvd As New VehicleData($"{grgXmlPath}{Apartment.GarageFilePath}\{lvc.UniqueID}.xml", lvc)
+                    lvd.Index = selectedVeh.Index
+                    lvd.Save()
+                Else
+                    Dim svc = selectedVeh.VehClass
+                    Dim lvc = MgmtSelVeh.VehClass
 
-            svc.Index = MgmtSelVeh.VehClass.Index
-            lvc.Index = selectedVeh.VehClass.Index
+                    Dim svd As New VehicleData($"{grgXmlPath}{Apartment.GarageFilePath}\{svc.UniqueID}.xml", svc)
+                    svd.Index = MgmtSelVeh.VehClass.Index
+                    svd.Save()
+                    Dim lvd As New VehicleData($"{grgXmlPath}{Apartment.GarageFilePath}\{lvc.UniqueID}.xml", lvc)
+                    lvd.Index = selectedVeh.VehClass.Index
+                    lvd.Save()
+                End If
 
-            Dim svd As New VehicleData($"{grgXmlPath}{Apartment.GarageFilePath}\{svc.UniqueID}.xml", svc)
-            svd.Save()
-            Dim lvd As New VehicleData($"{grgXmlPath}{Apartment.GarageFilePath}\{lvc.UniqueID}.xml", lvc)
-            lvd.Save()
-
-            LoadVehicles()
-            MgmtSelVeh = Nothing
-            RefreshMgmtMenu()
-            MgmtMenu.Visible = True
-            sender.Visible = False
-        End If
+                LoadVehicles()
+                MgmtSelVeh = Nothing
+                RefreshMgmtMenu()
+                MgmtMenu.Visible = True
+                sender.Visible = False
+            End If
+        Catch ex As Exception
+            Logger.Log($"{ex.Message} {ex.StackTrace}")
+        End Try
     End Sub
 
     Public Sub Clear()
