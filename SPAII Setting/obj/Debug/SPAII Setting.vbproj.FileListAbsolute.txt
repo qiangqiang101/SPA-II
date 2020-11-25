@@ -1,0 +1,11 @@
+E:\Users\Bartholomew\Documents\GitHub\SPA-II\SPAII Setting\bin\Debug\SPAII Setting.exe.config
+E:\Users\Bartholomew\Documents\GitHub\SPA-II\SPAII Setting\bin\Debug\SPAII Setting.exe
+E:\Users\Bartholomew\Documents\GitHub\SPA-II\SPAII Setting\bin\Debug\SPAII Setting.pdb
+E:\Users\Bartholomew\Documents\GitHub\SPA-II\SPAII Setting\bin\Debug\SPAII Setting.xml
+E:\Users\Bartholomew\Documents\GitHub\SPA-II\SPAII Setting\obj\Debug\SPAII_Setting.frmSPA.resources
+E:\Users\Bartholomew\Documents\GitHub\SPA-II\SPAII Setting\obj\Debug\SPAII_Setting.Resources.resources
+E:\Users\Bartholomew\Documents\GitHub\SPA-II\SPAII Setting\obj\Debug\SPAII Setting.vbproj.GenerateResource.Cache
+E:\Users\Bartholomew\Documents\GitHub\SPA-II\SPAII Setting\obj\Debug\SPAII Setting.exe
+E:\Users\Bartholomew\Documents\GitHub\SPA-II\SPAII Setting\obj\Debug\SPAII Setting.xml
+E:\Users\Bartholomew\Documents\GitHub\SPA-II\SPAII Setting\obj\Debug\SPAII Setting.pdb
+E:\Users\Bartholomew\Documents\GitHub\SPA-II\SPAII Setting\obj\Debug\SPAII Setting.vbprojResolveAssemblyReference.cache

@@ -27,6 +27,8 @@ Public Class SPA2
         TenCarGarage.LoadGarageMenu()
         LoadDebugMenu()
         EnableOnlineMap()
+
+        Game.Globals(GetGlobalValue).SetInt(1)
     End Sub
 
     Private Sub SPA2_Tick(sender As Object, e As EventArgs) Handles Me.Tick
@@ -47,7 +49,7 @@ Public Class SPA2
                     Dim bd As BuildingClass = buildings(i)
                     'Open Buy Menu
                     If bd.SaleSignDistance <= 3.0F Then
-                        If Not MenuPool.IsAnyMenuOpen() Then
+                        If Not MenuPool.IsAnyMenuOpen() AndAlso Not PP.IsInVehicle Then
                             Select Case bd.BuildingType
                                 Case eBuildingType.Apartment, eBuildingType.ClubHouse
                                     UI.ShowHelpMessage(Game.GetGXTEntry("MP_PROP_PUR0"))
@@ -68,7 +70,7 @@ Public Class SPA2
 
                     'Open Apartment Menu
                     If bd.EntranceDistance <= 2.0F Then
-                        If Not MenuPool.IsAnyMenuOpen() Then
+                        If Not MenuPool.IsAnyMenuOpen() AndAlso Not PP.IsInVehicle Then
                             Select Case bd.BuildingType
                                 Case eBuildingType.Apartment
                                     UI.ShowHelpMessage(Game.GetGXTEntry("MP_PROP_BUZZ1"))
@@ -155,6 +157,12 @@ Public Class SPA2
 
                 If HighEndApartment.Building IsNot Nothing Then HighEndApartmentOnTick()
 
+                'Run Telly & Radio Script
+                Select Case PI
+                    Case TenCarGarage.Interior.GetInterior, SixCarGarage.Interior.GetInterior, TwoCarGarage.Interior.GetInterior, LowEndApartment.Interior.GetInterior, MediumEndApartment.Interior.GetInterior
+                        PropOnTick()
+                End Select
+
                 'Hide vehicle blip
                 If PP.LastVehicle.IsPersonalVehicle Then
                     If PP.IsInVehicle() Then
@@ -200,6 +208,7 @@ Public Class SPA2
         Next
 
         iFruit.Contacts.Remove(MechanicContact)
+        iFruit.Contacts.Remove(InsuranceContact)
 
         TwoCarGarage.Clear()
         SixCarGarage.Clear()

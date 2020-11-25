@@ -35,25 +35,9 @@ Module HighEndApartment
                         'todo
                     End If
 
-                    If apt.InteriorID = PI Then
-                        PropOnTick()
-                    End If
-                Else
-                    If apt.InteriorID = PI Then
-                        PropOnTick()
-                    End If
+                    If apt.InteriorID = PI Then PropOnTick()
                 End If
             Next
-
-            If apartments.Contains(TenCarGarage.Apartment) Then
-                PropOnTick()
-            End If
-            If apartments.Contains(SixCarGarage.Apartment) Then
-                PropOnTick()
-            End If
-            If apartments.Contains(TwoCarGarage.Apartment) Then
-                PropOnTick()
-            End If
         End If
     End Sub
 

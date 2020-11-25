@@ -193,7 +193,7 @@ Public Structure VehicleData
         Extra14 = vehicle.Extra14
         Extra15 = vehicle.Extra15
         RoofState = vehicle.RoofState
-        Livery1 = vehicle.Livery
+        Livery1 = vehicle.Livery1
         HasNitro = vehicle.HasNitro
         ApartmentID = vehicle.ApartmentID
         UniqueID = vehicle.UniqueID
