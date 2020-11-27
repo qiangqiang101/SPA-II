@@ -2363,7 +2363,7 @@ Module BuildingList
                 With _0432DavisAveGrg
                     .ID = 33
                     .Name = "MP_PROP_33"
-                    .Description = "MP_PROP_33DESS"
+                    .Description = "MP_PROP_33DES"
                     .Price = 72500
                     .GarageFilePath = "0432_davis_ave"
                     .SetAsGarage

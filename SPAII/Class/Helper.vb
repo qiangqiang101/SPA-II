@@ -301,14 +301,14 @@ Module Helper
     End Sub
 
     Public Sub Debug()
-        Dim playerText As New UIResText($"Player Position: {PP.Position}     Rotation: {PP.Rotation}     Heading: {PP.Heading}     |     Vehicle Position: {PP.LastVehicle.Position}     Rotation: {PP.LastVehicle.Rotation}     Heading: {PP.LastVehicle.Heading}", Point.Empty, 0.3F, Color.White, GTA.Font.ChaletLondon, UIResText.Alignment.Left)
+        Dim playerText As New UIResText($"Player Position: {PP.Position}  Rotation: {PP.Rotation}  Heading: {PP.Heading.ToString("N")}  |  Vehicle Position: {PP.LastVehicle.Position}  Rotation: {PP.LastVehicle.Rotation}  Heading: {PP.LastVehicle.Heading.ToString("N")}", Point.Empty, 0.3F, Color.White, GTA.Font.ChaletLondon, UIResText.Alignment.Left)
         Dim camText As UIResText
         If DebugCamera.IsEnabled Then
-            camText = New UIResText($"Camera Position: {DebugCamera.Camera.Position}     Rotation: {DebugCamera.Camera.Rotation}     FOV: {DebugCamera.Camera.FieldOfView}", New Point(0, playerText.Position.Y + 20), 0.3F, Color.White, GTA.Font.ChaletLondon, UIResText.Alignment.Left)
+            camText = New UIResText($"Camera Position: {DebugCamera.Camera.Position}  Rotation: {DebugCamera.Camera.Rotation}  FOV: {DebugCamera.Camera.FieldOfView}", New Point(0, playerText.Position.Y + 20), 0.3F, Color.White, GTA.Font.ChaletLondon, UIResText.Alignment.Left)
         Else
-            camText = New UIResText($"Camera Position: {GameplayCamera.Position}     Rotation: {GameplayCamera.Rotation}     FOV: {GameplayCamera.FieldOfView}", New Point(0, playerText.Position.Y + 20), 0.3F, Color.White, GTA.Font.ChaletLondon, UIResText.Alignment.Left)
+            camText = New UIResText($"Camera Position: {GameplayCamera.Position}  Rotation: {GameplayCamera.Rotation}  FOV: {GameplayCamera.FieldOfView}", New Point(0, playerText.Position.Y + 20), 0.3F, Color.White, GTA.Font.ChaletLondon, UIResText.Alignment.Left)
         End If
-        Dim direction As New UIResText($"Up: Vector     Down: Quaternion     Left: CameraPRH     Right: Door     Delete: Debug Camera     End: Debug Menu", New Point(0, camText.Position.Y + 20), 0.3F, Color.White, GTA.Font.ChaletLondon, UIResText.Alignment.Left)
+        Dim direction As New UIResText($"↑: Vector  ↓: Quaternion  ←: CameraPRH  →: Door  Del: Debug Camera  End: Debug Menu  |  2 Car Garage: {If(TwoCarGarage.Apartment Is Nothing, False, True)}     6 Car Garage: {If(SixCarGarage.Apartment Is Nothing, False, True)}     10 Car Garage: {If(TenCarGarage.Apartment Is Nothing, False, True)}     Low Apt: {If(LowEndApartment.Apartment Is Nothing, False, True)}     Medium Apt: {If(MediumEndApartment.Apartment Is Nothing, False, True)}     High Apt: {If(HighEndApartment.Building Is Nothing, False, True)}", New Point(0, camText.Position.Y + 20), 0.3F, Color.White, GTA.Font.ChaletLondon, UIResText.Alignment.Left)
         Dim forthLine As New UIResText(debug3rdLine, New Point(0, direction.Position.Y + 20), 0.3F, Color.White, GTA.Font.ChaletLondon, UIResText.Alignment.Left)
         playerText.Draw()
         camText.Draw()

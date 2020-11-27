@@ -217,6 +217,8 @@ Public Class ApartmentClass
                             LowEndApartment.Apartment = Nothing
                         Case eApartmentType.MediumEnd
                             MediumEndApartment.Apartment = Nothing
+                        Case eApartmentType.IPL, eApartmentType.IPLwoStyle, eApartmentType.None
+                            HighEndApartment.Building = Nothing
                     End Select
                 Case "Garage"
                     AptMenu.Visible = False
@@ -247,6 +249,8 @@ Public Class ApartmentClass
                             LowEndApartment.Apartment = Nothing
                         Case eApartmentType.MediumEnd
                             MediumEndApartment.Apartment = Nothing
+                        Case eApartmentType.None, eApartmentType.IPL, eApartmentType.IPLwoStyle
+                            HighEndApartment.Building = Nothing
                     End Select
                 Case "Style"
                     FadeScreen(1)

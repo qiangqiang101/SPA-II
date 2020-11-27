@@ -327,10 +327,14 @@ Public Class BuildingClass
     End Function
 
     Public Function SaleSignDistance() As Single
-        If SaleSignProp <> Nothing Then
-            Return Game.Player.Character.Position.DistanceToSquared(SaleSignProp.Position - SaleSignProp.RightVector)
-        Else
+        If EntranceDistance() <= 300.0F Then
             Return Game.Player.Character.Position.DistanceToSquared(SaleSign.Position.ToVector3)
+        Else
+            If SaleSignProp <> Nothing Then
+                Return Game.Player.Character.Position.DistanceToSquared(SaleSignProp.Position - SaleSignProp.RightVector)
+            Else
+                Return Game.Player.Character.Position.DistanceToSquared(SaleSign.Position.ToVector3)
+            End If
         End If
     End Function
 
@@ -363,6 +367,16 @@ Public Class BuildingClass
     End Sub
 
     Private Sub RefreshBlips()
+        If Not IsVacant() AndAlso Not BuildingType = eBuildingType.Garage Then
+            GarageBlip = World.CreateBlip(GarageInPos)
+            With GarageBlip
+                .IsShortRange = True
+                .Sprite = BlipSprite.Garage
+                .Name = Game.GetGXTEntry("BLIP_357")
+                .Color = GetBlipColor
+            End With
+        End If
+
         BuildingBlip = World.CreateBlip(BuildingInPos.ToVector3)
         With BuildingBlip
             .IsShortRange = True
@@ -440,16 +454,6 @@ Public Class BuildingClass
                 .Color = GetBlipColor
             End If
         End With
-
-        If Not IsVacant() AndAlso Not BuildingType = eBuildingType.Garage Then
-            GarageBlip = World.CreateBlip(GarageInPos)
-            With GarageBlip
-                .IsShortRange = True
-                .Sprite = BlipSprite.Garage
-                .Name = Game.GetGXTEntry("BLIP_357")
-                .Color = GetBlipColor
-            End With
-        End If
     End Sub
 
     Private Sub AptMenu_OnItemSelect(sender As UIMenu, selectedItem As UIMenuItem, index As Integer) Handles AptMenu.OnItemSelect
@@ -524,16 +528,16 @@ Public Class BuildingClass
         HideHud = False
         World.DestroyAllCameras()
         World.RenderingCamera = Nothing
-        Select Case selectedApt.ApartmentType
-            Case eApartmentType.LowEnd
-                LowEndApartment.Apartment = selectedApt
-                LowEndApartment.SpawnDoor()
-            Case eApartmentType.MediumEnd
-                MediumEndApartment.Apartment = selectedApt
-                MediumEndApartment.SpawnDoor()
-            Case eApartmentType.None, eApartmentType.IPL, eApartmentType.IPLwoStyle
-                HighEndApartment.Building = Me
-        End Select
+        'Select Case selectedApt.ApartmentType
+        '    Case eApartmentType.LowEnd
+        '        LowEndApartment.Apartment = selectedApt
+        '        LowEndApartment.SpawnDoor()
+        '    Case eApartmentType.MediumEnd
+        '        MediumEndApartment.Apartment = selectedApt
+        '        MediumEndApartment.SpawnDoor()
+        '    Case eApartmentType.None, eApartmentType.IPL, eApartmentType.IPLwoStyle
+        '        HighEndApartment.Building = Me
+        'End Select
         Select Case GarageType
             Case eGarageType.TwoCarGarage
                 TwoCarGarage.Apartment = selectedApt
@@ -566,6 +570,7 @@ Public Class BuildingClass
                     TwoCarGarage.LoadVehiclesSetPlayerPos(uid)
                     currVeh.CurrentBlip.Remove()
                     currVeh.Delete()
+                    Script.Wait(1000)
                     PP.Task.LeaveVehicle(LeaveVehicleFlags.None)
                 Else
                     'On Foot
@@ -606,6 +611,7 @@ Public Class BuildingClass
                     SixCarGarage.LoadVehiclesSetPlayerPos(uid)
                     currVeh.CurrentBlip.Remove()
                     currVeh.Delete()
+                    Script.Wait(1000)
                     PP.Task.LeaveVehicle(LeaveVehicleFlags.None)
                 Else
                     'On Foot
@@ -646,6 +652,7 @@ Public Class BuildingClass
                     TenCarGarage.LoadVehiclesSetPlayerPos(uid)
                     currVeh.CurrentBlip.Remove()
                     currVeh.Delete()
+                    Script.Wait(1000)
                     PP.Task.LeaveVehicle(LeaveVehicleFlags.None)
                 Else
                     'On Foot

@@ -47,6 +47,7 @@ Public Class SPA2
             If buildingsLoaded Then
                 For i As Integer = 0 To buildings.Count - 1
                     Dim bd As BuildingClass = buildings(i)
+
                     'Open Buy Menu
                     If bd.SaleSignDistance <= 3.0F Then
                         If Not MenuPool.IsAnyMenuOpen() AndAlso Not PP.IsInVehicle Then
@@ -166,9 +167,9 @@ Public Class SPA2
                 'Hide vehicle blip
                 If PP.LastVehicle.IsPersonalVehicle Then
                     If PP.IsInVehicle() Then
-                        PP.LastVehicle.CurrentBlip.Alpha = 0
+                        If PP.LastVehicle.CurrentBlip.Alpha = 255 Then PP.LastVehicle.CurrentBlip.Alpha = 0
                     Else
-                        PP.LastVehicle.CurrentBlip.Alpha = 255
+                        If PP.LastVehicle.CurrentBlip.Alpha = 0 Then PP.LastVehicle.CurrentBlip.Alpha = 255
                     End If
                 End If
 
