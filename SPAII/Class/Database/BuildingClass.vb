@@ -235,10 +235,14 @@ Public Class BuildingClass
     End Sub
 
     Public Sub SpawnForSaleSigns()
-        SaleSignProp = World.CreateProp(SaleSign.Model, SaleSign.Position.ToVector3, New Vector3(0F, 0F, SaleSign.Position.W), True, False)
-        With SaleSignProp
-            .IsPersistent = True
-        End With
+        Try
+            SaleSignProp = World.CreateProp(SaleSign.Model, SaleSign.Position.ToVector3, New Vector3(0F, 0F, SaleSign.Position.W), True, False)
+            With SaleSignProp
+                .IsPersistent = True
+            End With
+        Catch ex As Exception
+            SpawnForSaleSigns()
+        End Try
     End Sub
 
     Public Sub RefreshBuyMenu()
@@ -528,16 +532,6 @@ Public Class BuildingClass
         HideHud = False
         World.DestroyAllCameras()
         World.RenderingCamera = Nothing
-        'Select Case selectedApt.ApartmentType
-        '    Case eApartmentType.LowEnd
-        '        LowEndApartment.Apartment = selectedApt
-        '        LowEndApartment.SpawnDoor()
-        '    Case eApartmentType.MediumEnd
-        '        MediumEndApartment.Apartment = selectedApt
-        '        MediumEndApartment.SpawnDoor()
-        '    Case eApartmentType.None, eApartmentType.IPL, eApartmentType.IPLwoStyle
-        '        HighEndApartment.Building = Me
-        'End Select
         Select Case GarageType
             Case eGarageType.TwoCarGarage
                 TwoCarGarage.Apartment = selectedApt
