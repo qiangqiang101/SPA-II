@@ -19,6 +19,8 @@ Namespace INM
         Public ON_ENTER_MP As Hash = Hash._LOAD_MP_DLC_MAPS
         Public ACTIVATE_INTERIOR_ENTITY_SET As Hash = Hash._ENABLE_INTERIOR_PROP
         Public GET_VEHICLE_ESTIMATED_MAX_SPEED As Hash = Hash._GET_VEHICLE_MAX_SPEED
+        Public ANIMPOSTFX_PLAY As Hash = Hash._START_SCREEN_EFFECT
+        Public ANIMPOSTFX_STOP As Hash = Hash._STOP_SCREEN_EFFECT
 
     End Module
 

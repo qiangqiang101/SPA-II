@@ -362,4 +362,21 @@ Namespace INM
 
     End Class
 
+    Public Class PropMemory
+
+        Public Position As Vector3
+        Public Rotation As Vector3
+
+        Public Sub New(prop As Prop)
+            Position = prop.Position
+            Rotation = prop.Rotation
+        End Sub
+
+        Public Sub New(pos As Vector3, rot As Vector3)
+            Position = pos
+            Rotation = rot
+        End Sub
+
+    End Class
+
 End Namespace

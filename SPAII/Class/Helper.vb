@@ -132,8 +132,8 @@ Module Helper
     End Function
 
     <Extension>
-    Public Sub UpdateApartmentOwner(ByRef apt As ApartmentClass)
-        config.SetValue(Of eOwner)("BUILDING", apt.Name, GetPlayer)
+    Public Sub UpdateApartmentOwner(apt As ApartmentClass, Optional tradeIn As Boolean = False)
+        config.SetValue(Of eOwner)("BUILDING", apt.Name, If(tradeIn, eOwner.Nobody, GetPlayer()))
         config.Save()
 
         config = ScriptSettings.Load("scripts\SPA II\modconfig.ini")
@@ -1177,5 +1177,189 @@ Module Helper
                 Return GlobalValue.b1_0_2060_0
         End Select
     End Function
+
+    <Extension>
+    Public Function GetProperBlipSprite(model As Model) As BlipSprite
+        Select Case True
+            Case model = "akula"
+                Return BlipSprite.Akula
+            Case model = "alphaz1"
+                Return BlipSprite.AlphaZ1
+            Case model = "apc"
+                Return BlipSprite.APC
+            Case model = "boxville5"
+                Return BlipSprite.ArmoredBoxville
+            Case model = "stockade3", model = "stockade"
+                Return BlipSprite.ArmoredTruck
+            Case model = "avenger"
+                Return BlipSprite.Avenger
+            Case model = "strikeforce"
+                Return BlipSprite.B11StrikeForce
+            Case model = "barrage"
+                Return BlipSprite.Barrage
+            Case model = "blimp"
+                Return BlipSprite.Blimp
+            Case model = "blimp2", model = "blimp3"
+                Return BlipSprite.Blimp2
+            Case model = "bombushka"
+                Return BlipSprite.Bombushka
+            Case model = "bruiser", model = "bruiser2", model = "bruiser3"
+                Return BlipSprite.Bruiser
+            Case model = "brutus", model = "brutus2", model = "brutus3"
+                Return BlipSprite.Brutus
+            Case model = "bus", model = "airbus"
+                Return BlipSprite.Bus
+            Case model = "taxi"
+                Return BlipSprite.Cab
+            Case model = "caracara"
+                Return BlipSprite.Caracara
+            Case model = "cargobob", model = "cargobob2", model = "cargobob3", model = "cargobob4"
+                Return BlipSprite.Cargobob
+            Case model = "cerberus", model = "cerberus2", model = "cerberus3"
+                Return BlipSprite.Cerberus
+            Case model = "chernobog"
+                Return BlipSprite.Chernobog
+            Case model = "deathbike", model = "deathbike2", model = "deathbike3"
+                Return BlipSprite.Deathbike
+            Case model = "deluxo"
+                Return BlipSprite.Deluxo
+            Case model = "dinghy", model = "dinghy2", model = "dinghy3", model = "dinghy4"
+                Return BlipSprite.Dinghy
+            Case model = "dominator3"
+                Return BlipSprite.Dominator
+            Case model = "dune3"
+                Return BlipSprite.DuneFAV
+            Case model = "pbus2"
+                Return BlipSprite.FestivalBus
+            Case model = "insurgent", model = "insurgent2", model = "insurgent3"
+                Return BlipSprite.GunCar
+            Case model = "halftrack"
+                Return BlipSprite.HalfTrack
+            Case model = "havok"
+                Return BlipSprite.Havok
+            Case model = "howard"
+                Return BlipSprite.HowardNX25
+            Case model = "hunter"
+                Return BlipSprite.Hunter
+            Case model = "impaler", model = "impaler2", model = "impaler3", model = "impaler4"
+                Return BlipSprite.Impaler
+            Case model = "imperator", model = "imperator2", model = "imperator3"
+                Return BlipSprite.Imperator
+            Case model = "issi3", model = "issi4", model = "issi5", model = "issi6"
+                Return BlipSprite.Issi
+            Case model = "khanjali"
+                Return BlipSprite.Khanjali
+            Case model = "limo"
+                Return BlipSprite.Limo
+            Case model = "menacer"
+                Return BlipSprite.Menacer
+            Case model = "mogul"
+                Return BlipSprite.Mogul
+            Case model = "mule4"
+                Return BlipSprite.MuleCustom
+            Case model = "oppressor"
+                Return BlipSprite.Oppressor
+            Case model = "oppressor2"
+                Return BlipSprite.OppressorMkII
+            Case model = "nokota"
+                Return BlipSprite.P45Nokota
+            Case model = "phantom2"
+                Return BlipSprite.PhantomWedge
+            Case model = "pounder2"
+                Return BlipSprite.PounderCustom
+            Case model = "pyro"
+                Return BlipSprite.Pyro
+            Case model = "dune4", model = "dune5"
+                Return BlipSprite.RampBuggy
+            Case model = "riot2"
+                Return BlipSprite.RCV
+            Case model = "rcbandito"
+                Return BlipSprite.RCVehicle
+            Case model = "voltic2"
+                Return BlipSprite.RocketVoltic
+            Case model = "rogue"
+                Return BlipSprite.Rogue
+            Case model = "ruiner2"
+                Return BlipSprite.Ruiner2000
+            Case model = "monster", model = "monster2", model = "monster3"
+                Return BlipSprite.Sasquatch
+            Case model = "scarab", model = "scarab2", model = "scarab3"
+                Return BlipSprite.Scarab
+            Case model = "scramjet"
+                Return BlipSprite.Scramjet
+            Case model = "seabreeze"
+                Return BlipSprite.Seabreeze
+            Case model = "seashark", model = "seashark2", model = "seashark3"
+                Return BlipSprite.Seashark
+            Case model = "seasparrow"
+                Return BlipSprite.SeaSparrow
+            Case model = "slamvan4", model = "slamvan5", model = "slamvan6"
+                Return BlipSprite.Slamvam
+            Case model = "speedo4"
+                Return BlipSprite.SpeedoCustom
+            Case model = "starling"
+                Return BlipSprite.Starling
+            Case model = "stromberg"
+                Return BlipSprite.Stromberg
+            Case model = "submersible"
+                Return BlipSprite.Sub
+            Case model = "rhino"
+                Return BlipSprite.Tank
+            Case model = "technical2"
+                Return BlipSprite.TechnicalAqua
+            Case model = "terbyte"
+                Return BlipSprite.Terrorbyte
+            Case model = "thruster"
+                Return BlipSprite.Thruster
+            Case model = "towtruck"
+                Return BlipSprite.TowTruck
+            Case model = "towtruck2"
+                Return BlipSprite.TowTruck2
+            Case model = "tula"
+                Return BlipSprite.Tula
+            Case model = "limo2"
+                Return BlipSprite.TurretedLimo
+            Case model = "microlight"
+                Return BlipSprite.Ultralight
+            Case model = "molotok"
+                Return BlipSprite.V65Molotok
+            Case model = "volatol"
+                Return BlipSprite.Volatol
+            Case model = "wastelander"
+                Return BlipSprite.Wastelander
+            Case model = "tampa3"
+                Return BlipSprite.WeaponizedTampa
+            Case model = "trailersmall2"
+                Return BlipSprite.WeaponizedTrailer
+            Case model = "zr380", model = "zr3802", model = "zr3803"
+                Return BlipSprite.ZR380
+
+            Case model.IsBike
+                Return BlipSprite.PersonalVehicleBike
+            Case model.IsBoat
+                Return BlipSprite.Boat
+            Case model.IsHelicopter
+                Return BlipSprite.Helicopter
+            Case model.IsPlane
+                Return BlipSprite.Plane
+            Case model.IsQuadbike
+                Return BlipSprite.QuadBike
+            Case model.IsCargobob
+                Return BlipSprite.Cargobob
+
+            Case Else
+                Return BlipSprite.PersonalVehicleCar
+        End Select
+    End Function
+
+    Public Sub StartScreenFx(fxName As String, duration As Integer, looped As Boolean, stopAfterDuration As Boolean)
+        NFunc.Call(ANIMPOSTFX_PLAY, fxName, duration, looped)
+        Script.Wait(duration)
+        If stopAfterDuration Then StopScreenFx(fxName)
+    End Sub
+
+    Public Sub StopScreenFx(fxName As String)
+        NFunc.Call(ANIMPOSTFX_STOP, fxName)
+    End Sub
 
 End Module

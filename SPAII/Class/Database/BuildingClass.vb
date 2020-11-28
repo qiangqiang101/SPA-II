@@ -370,7 +370,7 @@ Public Class BuildingClass
         End If
     End Sub
 
-    Private Sub RefreshBlips()
+    Public Sub RefreshBlips()
         If Not IsVacant() AndAlso Not BuildingType = eBuildingType.Garage Then
             GarageBlip = World.CreateBlip(GarageInPos)
             With GarageBlip
@@ -720,20 +720,8 @@ Public Class BuildingClass
                                 RefreshBuyMenu()
                                 RefreshAptMenu()
                                 RefreshGrgMenu()
-                                'UpdateMechanicMenu
                                 FadeScreen(0)
                                 PlayPropertyPurchase(apt.Name)
-                                Select Case GetPlayer()
-                                    Case eOwner.Michael
-                                        selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Michael)
-                                    Case eOwner.Franklin
-                                        selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Franklin)
-                                    Case eOwner.Trevor
-                                        selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Trevor)
-                                    Case Else
-                                        selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Heart)
-                                End Select
-                                selectedItem.SetRightLabel(Nothing)
                                 RefreshBlips()
                                 Script.Wait(2000)
                                 FadeScreen(1)
@@ -741,40 +729,28 @@ Public Class BuildingClass
                                 World.RenderingCamera = Nothing
                                 HideHud = False
                                 FadeScreen(0)
+                            Else
+                                UI.ShowSubtitle(Game.GetGXTEntry("MP_REP_PROP_4"))
                             End If
                         Case Else
                             apt.UpdateApartmentOwner()
-                                BuyMenu.Visible = False
-                                FadeScreen(1)
-                                Player.Money = (PM - apt.Price)
-                                BuildingBlip.Remove()
-                                If Not GarageBlip Is Nothing Then GarageBlip.Remove()
-                                RefreshBuyMenu()
-                                RefreshAptMenu()
-                                RefreshGrgMenu()
-                                'UpdateMechanicMenu
-                                FadeScreen(0)
-                                PlayPropertyPurchase(apt.Name)
-                                Select Case GetPlayer()
-                                    Case eOwner.Michael
-                                        selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Michael)
-                                    Case eOwner.Franklin
-                                        selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Franklin)
-                                    Case eOwner.Trevor
-                                        selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Trevor)
-                                    Case Else
-                                        selectedItem.SetRightBadge(UIMenuItem.BadgeStyle.Heart)
-                                End Select
-                                selectedItem.SetRightLabel(Nothing)
-                                RefreshBlips()
-                                Script.Wait(2000)
-                                FadeScreen(1)
-                                World.DestroyAllCameras()
-                                World.RenderingCamera = Nothing
-                                HideHud = False
+                            BuyMenu.Visible = False
+                            FadeScreen(1)
+                            BuildingBlip.Remove()
+                            If Not GarageBlip Is Nothing Then GarageBlip.Remove()
+                            RefreshBuyMenu()
+                            RefreshAptMenu()
+                            RefreshGrgMenu()
+                            FadeScreen(0)
+                            PlayPropertyPurchase(apt.Name)
+                            RefreshBlips()
+                            Script.Wait(2000)
+                            FadeScreen(1)
+                            World.DestroyAllCameras()
+                            World.RenderingCamera = Nothing
+                            HideHud = False
                             FadeScreen(0)
                     End Select
-
                 End If
             Next
         Catch ex As Exception

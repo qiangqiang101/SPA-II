@@ -341,6 +341,7 @@ Public Module TenCarGarage
                 Else
                     Game.Player.Character.Position = Apartment.Building.GarageOutPos.ToVector3
                     Game.Player.Character.Heading = Apartment.Building.GarageOutPos.W
+                    Script.Wait(1000)
                     FadeScreen(0)
                 End If
                 Clear()
@@ -353,6 +354,7 @@ Public Module TenCarGarage
                 Else
                     Game.Player.Character.Position = Apartment.Building.GarageOutPos.ToVector3
                     Game.Player.Character.Heading = Apartment.Building.GarageOutPos.W
+                    Script.Wait(1000)
                     FadeScreen(0)
                 End If
                 Clear()
@@ -376,7 +378,7 @@ Public Module TenCarGarage
                     End If
                     With newVeh
                         .AddBlip()
-                        .CurrentBlip.Sprite = BlipSprite.PersonalVehicleCar
+                        .CurrentBlip.Sprite = newVeh.Model.GetProperBlipSprite
                         Select Case GetPlayer()
                             Case eOwner.Michael
                                 .CurrentBlip.Color = BlipColor.Michael
@@ -400,6 +402,7 @@ Public Module TenCarGarage
                     newVeh.SetPlayerIntoVehicle
                     newVeh.EngineRunning = True
                     Clear()
+                    Script.Wait(1000)
                     If Apartment.Building.GarageDoor = eFrontDoor.NoDoor Then FadeScreen(0)
                     Apartment.Building.PlayExitGarageCamera(7000, True, True, CameraShake.Hand, 0.4F)
                     Apartment = Nothing
