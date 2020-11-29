@@ -282,6 +282,7 @@ Module SixCarGarage
                 If Apartment.Building.GarageDoor = eFrontDoor.StandardDoor Then
                     Apartment.Building.PlayExitGarageCamera(5000, True, True, CameraShake.Hand, 0.4F)
                 Else
+                    Audio.PlaySoundAt(PP, "GARAGE_DOOR_SCRIPTED_CLOSE")
                     Game.Player.Character.Position = Apartment.Building.GarageOutPos.ToVector3
                     Game.Player.Character.Heading = Apartment.Building.GarageOutPos.W
                     Script.Wait(1000)
@@ -295,6 +296,7 @@ Module SixCarGarage
                 If Apartment.Building.GarageDoor = eFrontDoor.StandardDoor Then
                     Apartment.Building.PlayExitGarageCamera(5000, True, True, CameraShake.Hand, 0.4F)
                 Else
+                    Audio.PlaySoundAt(PP, "GARAGE_DOOR_SCRIPTED_CLOSE")
                     Game.Player.Character.Position = Apartment.Building.GarageOutPos.ToVector3
                     Game.Player.Character.Heading = Apartment.Building.GarageOutPos.W
                     Script.Wait(1000)
@@ -308,6 +310,8 @@ Module SixCarGarage
             If Game.Player.Character.IsInVehicle Then
                 If Vehicles.Contains(Game.Player.Character.CurrentVehicle) AndAlso Game.Player.Character.CurrentVehicle.Speed >= 0.5 Then
                     FadeScreen(1)
+
+                    Audio.PlaySoundAt(PP, "GARAGE_DOOR_SCRIPTED_CLOSE")
                     Dim curVeh As Vehicle = Vehicles.Find(Function(x) x.GetInt(vehUidDecor) = Game.Player.Character.CurrentVehicle.GetInt(vehUidDecor) AndAlso x.GetInt(vehIdDecor) = Apartment.ID)
                     Dim bd = Apartment.Building
 

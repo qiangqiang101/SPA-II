@@ -464,6 +464,7 @@ Public Class BuildingClass
         Try
             Dim selectedApt As ApartmentClass = selectedItem.Tag
             If debugMode Then
+                Audio.PlaySoundAt(PP, "DOOR_BUZZ", "MP_PLAYER_APARTMENT")
                 AptMenu.Visible = False
                 HideHud = True
                 PlayEnterApartmentCamera(3000, True, True, CameraShake.Hand, 0.4F)
@@ -485,6 +486,7 @@ Public Class BuildingClass
                 HideHud = False
             Else
                 If selectedApt.Owner = GetPlayer() Then
+                    Audio.PlaySoundAt(PP, "DOOR_BUZZ", "MP_PLAYER_APARTMENT")
                     AptMenu.Visible = False
                     HideHud = True
                     PlayEnterApartmentCamera(3000, True, True, CameraShake.Hand, 0.4F)
@@ -859,6 +861,8 @@ Public Class BuildingClass
             End If
 
             Door3.LockDoor()
+        Else
+            Audio.PlaySoundAt(PP, "GARAGE_DOOR_SCRIPTED_CLOSE")
         End If
     End Sub
 
