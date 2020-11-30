@@ -113,4 +113,20 @@ OutputAmendedINIFile:
         FileClose(NF)
 
     End Sub
+
+    Public Function ReadCfgValue(Of T)(ByVal key As String, ByVal file As String) As T
+        Dim lines As String() = IO.File.ReadAllLines(file)
+        Dim temp As String = Nothing
+        Dim value As String = Nothing
+
+        For Each l As String In lines
+            If l.StartsWith(key) Then
+                temp = l.Substring(key.Length + 1)
+                value = temp.Replace(Chr(34), "")
+                Exit For
+            End If
+        Next
+        Return Convert.ChangeType(value, GetType(T))
+    End Function
+
 End Module

@@ -95,6 +95,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="VehicleClass.vb" />
+    <Compile Include="VehicleData.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="frmSPA.resx">

@@ -191,6 +191,7 @@ Public Class SPA2
             End If
 
             If NewFunc.IsCheating("spadebug") Then debugMode = Not debugMode
+            If NewFunc.IsCheating("spadebugcam") Then DebugCamera.Toggle()
         Catch ex As Exception
             Logger.Log($"{ex.Message} {ex.StackTrace}")
         End Try

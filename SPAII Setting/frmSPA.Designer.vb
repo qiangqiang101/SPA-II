@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmSPA
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class frmSPA
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.gbApt = New System.Windows.Forms.GroupBox()
         Me.Label4 = New System.Windows.Forms.Label()
@@ -104,11 +104,18 @@ Partial Class frmSPA
         Me.tbVolume = New System.Windows.Forms.TrackBar()
         Me.btnSave = New System.Windows.Forms.Button()
         Me.btnClose = New System.Windows.Forms.Button()
+        Me.tcTab = New System.Windows.Forms.TabControl()
+        Me.tpSettings = New System.Windows.Forms.TabPage()
+        Me.tpAptToggle = New System.Windows.Forms.TabPage()
+        Me.tpTransferVeh = New System.Windows.Forms.TabPage()
         Me.gbApt.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.gbGarage.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         CType(Me.tbVolume, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.tcTab.SuspendLayout()
+        Me.tpSettings.SuspendLayout()
+        Me.tpAptToggle.SuspendLayout()
         Me.SuspendLayout()
         '
         'gbApt
@@ -157,7 +164,7 @@ Partial Class frmSPA
         Me.gbApt.Controls.Add(Me.cbDPHS)
         Me.gbApt.Controls.Add(Me.cb4IWY)
         Me.gbApt.Controls.Add(Me.cb3AST)
-        Me.gbApt.Location = New System.Drawing.Point(12, 12)
+        Me.gbApt.Location = New System.Drawing.Point(6, 6)
         Me.gbApt.Name = "gbApt"
         Me.gbApt.Size = New System.Drawing.Size(867, 296)
         Me.gbApt.TabIndex = 0
@@ -976,9 +983,10 @@ Partial Class frmSPA
         Me.PictureBox1.BackColor = System.Drawing.Color.Black
         Me.PictureBox1.BackgroundImage = Global.SPAII_Setting.My.Resources.Resources.logo
         Me.PictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.PictureBox1.Location = New System.Drawing.Point(885, 12)
+        Me.PictureBox1.Dock = System.Windows.Forms.DockStyle.Right
+        Me.PictureBox1.Location = New System.Drawing.Point(904, 0)
         Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(287, 592)
+        Me.PictureBox1.Size = New System.Drawing.Size(250, 636)
         Me.PictureBox1.TabIndex = 1
         Me.PictureBox1.TabStop = False
         '
@@ -1014,7 +1022,7 @@ Partial Class frmSPA
         Me.gbGarage.Controls.Add(Me.cbU1OF)
         Me.gbGarage.Controls.Add(Me.cb8754RT68)
         Me.gbGarage.Controls.Add(Me.cb4531DST)
-        Me.gbGarage.Location = New System.Drawing.Point(12, 314)
+        Me.gbGarage.Location = New System.Drawing.Point(6, 308)
         Me.gbGarage.Name = "gbGarage"
         Me.gbGarage.Size = New System.Drawing.Size(867, 237)
         Me.gbGarage.TabIndex = 1
@@ -1025,12 +1033,12 @@ Partial Class frmSPA
         '
         Me.GroupBox3.Controls.Add(Me.Label6)
         Me.GroupBox3.Controls.Add(Me.tbVolume)
-        Me.GroupBox3.Location = New System.Drawing.Point(12, 557)
+        Me.GroupBox3.Location = New System.Drawing.Point(6, 6)
         Me.GroupBox3.Name = "GroupBox3"
         Me.GroupBox3.Size = New System.Drawing.Size(361, 47)
         Me.GroupBox3.TabIndex = 2
         Me.GroupBox3.TabStop = False
-        Me.GroupBox3.Text = "Other"
+        Me.GroupBox3.Text = "Sound"
         '
         'Label6
         '
@@ -1044,6 +1052,7 @@ Partial Class frmSPA
         'tbVolume
         '
         Me.tbVolume.AutoSize = False
+        Me.tbVolume.BackColor = System.Drawing.SystemColors.Window
         Me.tbVolume.Location = New System.Drawing.Point(100, 22)
         Me.tbVolume.Maximum = 100
         Me.tbVolume.Name = "tbVolume"
@@ -1053,7 +1062,8 @@ Partial Class frmSPA
         '
         'btnSave
         '
-        Me.btnSave.Location = New System.Drawing.Point(713, 579)
+        Me.btnSave.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnSave.Location = New System.Drawing.Point(727, 599)
         Me.btnSave.Name = "btnSave"
         Me.btnSave.Size = New System.Drawing.Size(80, 25)
         Me.btnSave.TabIndex = 3
@@ -1062,12 +1072,60 @@ Partial Class frmSPA
         '
         'btnClose
         '
-        Me.btnClose.Location = New System.Drawing.Point(799, 579)
+        Me.btnClose.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnClose.Location = New System.Drawing.Point(813, 599)
         Me.btnClose.Name = "btnClose"
         Me.btnClose.Size = New System.Drawing.Size(80, 25)
         Me.btnClose.TabIndex = 4
         Me.btnClose.Text = "Close"
         Me.btnClose.UseVisualStyleBackColor = True
+        '
+        'tcTab
+        '
+        Me.tcTab.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.tcTab.Controls.Add(Me.tpSettings)
+        Me.tcTab.Controls.Add(Me.tpAptToggle)
+        Me.tcTab.Controls.Add(Me.tpTransferVeh)
+        Me.tcTab.Location = New System.Drawing.Point(12, 12)
+        Me.tcTab.Name = "tcTab"
+        Me.tcTab.SelectedIndex = 0
+        Me.tcTab.Size = New System.Drawing.Size(886, 581)
+        Me.tcTab.TabIndex = 5
+        '
+        'tpSettings
+        '
+        Me.tpSettings.Controls.Add(Me.GroupBox3)
+        Me.tpSettings.Location = New System.Drawing.Point(4, 24)
+        Me.tpSettings.Name = "tpSettings"
+        Me.tpSettings.Padding = New System.Windows.Forms.Padding(3)
+        Me.tpSettings.Size = New System.Drawing.Size(878, 553)
+        Me.tpSettings.TabIndex = 1
+        Me.tpSettings.Text = "Settings"
+        Me.tpSettings.UseVisualStyleBackColor = True
+        '
+        'tpAptToggle
+        '
+        Me.tpAptToggle.Controls.Add(Me.gbApt)
+        Me.tpAptToggle.Controls.Add(Me.gbGarage)
+        Me.tpAptToggle.Location = New System.Drawing.Point(4, 24)
+        Me.tpAptToggle.Name = "tpAptToggle"
+        Me.tpAptToggle.Padding = New System.Windows.Forms.Padding(3)
+        Me.tpAptToggle.Size = New System.Drawing.Size(878, 553)
+        Me.tpAptToggle.TabIndex = 0
+        Me.tpAptToggle.Text = "Apartment Toggle"
+        Me.tpAptToggle.UseVisualStyleBackColor = True
+        '
+        'tpTransferVeh
+        '
+        Me.tpTransferVeh.Location = New System.Drawing.Point(4, 24)
+        Me.tpTransferVeh.Name = "tpTransferVeh"
+        Me.tpTransferVeh.Padding = New System.Windows.Forms.Padding(3)
+        Me.tpTransferVeh.Size = New System.Drawing.Size(878, 553)
+        Me.tpTransferVeh.TabIndex = 2
+        Me.tpTransferVeh.Text = "Transfer Vehicles"
+        Me.tpTransferVeh.UseVisualStyleBackColor = True
         '
         'frmSPA
         '
@@ -1075,13 +1133,11 @@ Partial Class frmSPA
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.ClientSize = New System.Drawing.Size(1184, 616)
+        Me.ClientSize = New System.Drawing.Size(1154, 636)
+        Me.Controls.Add(Me.tcTab)
         Me.Controls.Add(Me.btnClose)
         Me.Controls.Add(Me.btnSave)
-        Me.Controls.Add(Me.GroupBox3)
-        Me.Controls.Add(Me.gbGarage)
         Me.Controls.Add(Me.PictureBox1)
-        Me.Controls.Add(Me.gbApt)
         Me.DoubleBuffered = True
         Me.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
@@ -1097,6 +1153,9 @@ Partial Class frmSPA
         Me.GroupBox3.ResumeLayout(False)
         Me.GroupBox3.PerformLayout()
         CType(Me.tbVolume, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.tcTab.ResumeLayout(False)
+        Me.tpSettings.ResumeLayout(False)
+        Me.tpAptToggle.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -1183,4 +1242,8 @@ Partial Class frmSPA
     Friend WithEvents tbVolume As TrackBar
     Friend WithEvents btnSave As Button
     Friend WithEvents btnClose As Button
+    Friend WithEvents tcTab As TabControl
+    Friend WithEvents tpSettings As TabPage
+    Friend WithEvents tpAptToggle As TabPage
+    Friend WithEvents tpTransferVeh As TabPage
 End Class

@@ -912,7 +912,7 @@ Module Wardrobe
     Private Sub Main_OnMenuClose(sender As UIMenu) Handles gmFranklin.OnMenuClose, gmMichael.OnMenuClose, gmTrevor.OnMenuClose, gmFMM.OnMenuClose, gmFMF.OnMenuClose
         World.RenderingCamera = Nothing
         World.DestroyAllCameras()
-        PP.Task.ClearAll()
+        PP.Task.ClearAllImmediately()
         HideHud = False
 
         PP.SetClothes(Memory.Accessories)
