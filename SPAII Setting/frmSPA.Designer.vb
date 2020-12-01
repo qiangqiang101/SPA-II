@@ -108,6 +108,27 @@ Partial Class frmSPA
         Me.tpSettings = New System.Windows.Forms.TabPage()
         Me.tpAptToggle = New System.Windows.Forms.TabPage()
         Me.tpTransferVeh = New System.Windows.Forms.TabPage()
+        Me.cmbSPA1 = New System.Windows.Forms.ComboBox()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.lvSPA1 = New System.Windows.Forms.ListView()
+        Me.chName = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.chFIle = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.Label11 = New System.Windows.Forms.Label()
+        Me.lvSPA2 = New System.Windows.Forms.ListView()
+        Me.ColumnHeader1 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.ColumnHeader2 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.cmbSPA2 = New System.Windows.Forms.ComboBox()
+        Me.Label12 = New System.Windows.Forms.Label()
+        Me.txtSPA1 = New System.Windows.Forms.TextBox()
+        Me.Label13 = New System.Windows.Forms.Label()
+        Me.Label14 = New System.Windows.Forms.Label()
+        Me.txtSPA2 = New System.Windows.Forms.TextBox()
+        Me.btnTransfer = New System.Windows.Forms.Button()
+        Me.GroupBox4 = New System.Windows.Forms.GroupBox()
+        Me.cbOnlineMap = New System.Windows.Forms.CheckBox()
         Me.gbApt.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.gbGarage.SuspendLayout()
@@ -116,6 +137,10 @@ Partial Class frmSPA
         Me.tcTab.SuspendLayout()
         Me.tpSettings.SuspendLayout()
         Me.tpAptToggle.SuspendLayout()
+        Me.tpTransferVeh.SuspendLayout()
+        Me.GroupBox1.SuspendLayout()
+        Me.GroupBox2.SuspendLayout()
+        Me.GroupBox4.SuspendLayout()
         Me.SuspendLayout()
         '
         'gbApt
@@ -166,7 +191,7 @@ Partial Class frmSPA
         Me.gbApt.Controls.Add(Me.cb3AST)
         Me.gbApt.Location = New System.Drawing.Point(6, 6)
         Me.gbApt.Name = "gbApt"
-        Me.gbApt.Size = New System.Drawing.Size(867, 296)
+        Me.gbApt.Size = New System.Drawing.Size(784, 296)
         Me.gbApt.TabIndex = 0
         Me.gbApt.TabStop = False
         Me.gbApt.Text = "Apartment Toggle On/Off"
@@ -175,7 +200,7 @@ Partial Class frmSPA
         '
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(686, 23)
+        Me.Label4.Location = New System.Drawing.Point(626, 23)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(124, 15)
         Me.Label4.TabIndex = 43
@@ -185,7 +210,7 @@ Partial Class frmSPA
         '
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(336, 23)
+        Me.Label3.Location = New System.Drawing.Point(321, 23)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(147, 15)
         Me.Label3.TabIndex = 42
@@ -214,7 +239,7 @@ Partial Class frmSPA
         'cb2057VPCB
         '
         Me.cb2057VPCB.AutoSize = True
-        Me.cb2057VPCB.Location = New System.Drawing.Point(689, 247)
+        Me.cb2057VPCB.Location = New System.Drawing.Point(629, 247)
         Me.cb2057VPCB.Name = "cb2057VPCB"
         Me.cb2057VPCB.Size = New System.Drawing.Size(155, 19)
         Me.cb2057VPCB.TabIndex = 38
@@ -225,7 +250,7 @@ Partial Class frmSPA
         'cb0112SRFD
         '
         Me.cb0112SRFD.AutoSize = True
-        Me.cb0112SRFD.Location = New System.Drawing.Point(689, 222)
+        Me.cb0112SRFD.Location = New System.Drawing.Point(629, 222)
         Me.cb0112SRFD.Name = "cb0112SRFD"
         Me.cb0112SRFD.Size = New System.Drawing.Size(140, 19)
         Me.cb0112SRFD.TabIndex = 37
@@ -236,7 +261,7 @@ Partial Class frmSPA
         'cb0232PLTB
         '
         Me.cb0232PLTB.AutoSize = True
-        Me.cb0232PLTB.Location = New System.Drawing.Point(689, 197)
+        Me.cb0232PLTB.Location = New System.Drawing.Point(629, 197)
         Me.cb0232PLTB.Name = "cb0232PLTB"
         Me.cb0232PLTB.Size = New System.Drawing.Size(142, 19)
         Me.cb0232PLTB.TabIndex = 36
@@ -247,7 +272,7 @@ Partial Class frmSPA
         'cb1893GSAV
         '
         Me.cb1893GSAV.AutoSize = True
-        Me.cb1893GSAV.Location = New System.Drawing.Point(689, 172)
+        Me.cb1893GSAV.Location = New System.Drawing.Point(629, 172)
         Me.cb1893GSAV.Name = "cb1893GSAV"
         Me.cb1893GSAV.Size = New System.Drawing.Size(151, 19)
         Me.cb1893GSAV.TabIndex = 35
@@ -258,18 +283,18 @@ Partial Class frmSPA
         'cb2143LLBL
         '
         Me.cb2143LLBL.AutoSize = True
-        Me.cb2143LLBL.Location = New System.Drawing.Point(689, 147)
+        Me.cb2143LLBL.Location = New System.Drawing.Point(629, 147)
         Me.cb2143LLBL.Name = "cb2143LLBL"
-        Me.cb2143LLBL.Size = New System.Drawing.Size(173, 19)
+        Me.cb2143LLBL.Size = New System.Drawing.Size(143, 19)
         Me.cb2143LLBL.TabIndex = 34
         Me.cb2143LLBL.Tag = "2143LLBL"
-        Me.cb2143LLBL.Text = "2143 Las Lagunas Boulevard"
+        Me.cb2143LLBL.Text = "2143 Las Lagunas Blvd"
         Me.cb2143LLBL.UseVisualStyleBackColor = True
         '
         'cb0069CGAV
         '
         Me.cb0069CGAV.AutoSize = True
-        Me.cb0069CGAV.Location = New System.Drawing.Point(689, 122)
+        Me.cb0069CGAV.Location = New System.Drawing.Point(629, 122)
         Me.cb0069CGAV.Name = "cb0069CGAV"
         Me.cb0069CGAV.Size = New System.Drawing.Size(135, 19)
         Me.cb0069CGAV.TabIndex = 33
@@ -280,7 +305,7 @@ Partial Class frmSPA
         'cb1237PPRS
         '
         Me.cb1237PPRS.AutoSize = True
-        Me.cb1237PPRS.Location = New System.Drawing.Point(689, 97)
+        Me.cb1237PPRS.Location = New System.Drawing.Point(629, 97)
         Me.cb1237PPRS.Name = "cb1237PPRS"
         Me.cb1237PPRS.Size = New System.Drawing.Size(139, 19)
         Me.cb1237PPRS.TabIndex = 32
@@ -291,7 +316,7 @@ Partial Class frmSPA
         'cb1561SVTS
         '
         Me.cb1561SVTS.AutoSize = True
-        Me.cb1561SVTS.Location = New System.Drawing.Point(689, 72)
+        Me.cb1561SVTS.Location = New System.Drawing.Point(629, 72)
         Me.cb1561SVTS.Name = "cb1561SVTS"
         Me.cb1561SVTS.Size = New System.Drawing.Size(133, 19)
         Me.cb1561SVTS.TabIndex = 31
@@ -302,7 +327,7 @@ Partial Class frmSPA
         'cb1115BDPR
         '
         Me.cb1115BDPR.AutoSize = True
-        Me.cb1115BDPR.Location = New System.Drawing.Point(689, 47)
+        Me.cb1115BDPR.Location = New System.Drawing.Point(629, 47)
         Me.cb1115BDPR.Name = "cb1115BDPR"
         Me.cb1115BDPR.Size = New System.Drawing.Size(127, 19)
         Me.cb1115BDPR.TabIndex = 30
@@ -313,7 +338,7 @@ Partial Class frmSPA
         'cb140ZCDA
         '
         Me.cb140ZCDA.AutoSize = True
-        Me.cb140ZCDA.Location = New System.Drawing.Point(689, 272)
+        Me.cb140ZCDA.Location = New System.Drawing.Point(629, 272)
         Me.cb140ZCDA.Name = "cb140ZCDA"
         Me.cb140ZCDA.Size = New System.Drawing.Size(137, 19)
         Me.cb140ZCDA.TabIndex = 39
@@ -324,7 +349,7 @@ Partial Class frmSPA
         'cb0504SMMD
         '
         Me.cb0504SMMD.AutoSize = True
-        Me.cb0504SMMD.Location = New System.Drawing.Point(518, 72)
+        Me.cb0504SMMD.Location = New System.Drawing.Point(473, 72)
         Me.cb0504SMMD.Name = "cb0504SMMD"
         Me.cb0504SMMD.Size = New System.Drawing.Size(148, 19)
         Me.cb0504SMMD.TabIndex = 25
@@ -335,7 +360,7 @@ Partial Class frmSPA
         'cb4584PPDR
         '
         Me.cb4584PPDR.AutoSize = True
-        Me.cb4584PPDR.Location = New System.Drawing.Point(518, 47)
+        Me.cb4584PPDR.Location = New System.Drawing.Point(473, 47)
         Me.cb4584PPDR.Name = "cb4584PPDR"
         Me.cb4584PPDR.Size = New System.Drawing.Size(131, 19)
         Me.cb4584PPDR.TabIndex = 24
@@ -346,7 +371,7 @@ Partial Class frmSPA
         'cb4401PPDR
         '
         Me.cb4401PPDR.AutoSize = True
-        Me.cb4401PPDR.Location = New System.Drawing.Point(339, 197)
+        Me.cb4401PPDR.Location = New System.Drawing.Point(324, 197)
         Me.cb4401PPDR.Name = "cb4401PPDR"
         Me.cb4401PPDR.Size = New System.Drawing.Size(131, 19)
         Me.cb4401PPDR.TabIndex = 23
@@ -357,7 +382,7 @@ Partial Class frmSPA
         'cb1162PWST
         '
         Me.cb1162PWST.AutoSize = True
-        Me.cb1162PWST.Location = New System.Drawing.Point(339, 172)
+        Me.cb1162PWST.Location = New System.Drawing.Point(324, 172)
         Me.cb1162PWST.Name = "cb1162PWST"
         Me.cb1162PWST.Size = New System.Drawing.Size(119, 19)
         Me.cb1162PWST.TabIndex = 22
@@ -368,7 +393,7 @@ Partial Class frmSPA
         'cb0184MTRD
         '
         Me.cb0184MTRD.AutoSize = True
-        Me.cb0184MTRD.Location = New System.Drawing.Point(339, 147)
+        Me.cb0184MTRD.Location = New System.Drawing.Point(324, 147)
         Me.cb0184MTRD.Name = "cb0184MTRD"
         Me.cb0184MTRD.Size = New System.Drawing.Size(118, 19)
         Me.cb0184MTRD.TabIndex = 21
@@ -379,18 +404,18 @@ Partial Class frmSPA
         'cb0604LLBL
         '
         Me.cb0604LLBL.AutoSize = True
-        Me.cb0604LLBL.Location = New System.Drawing.Point(339, 122)
+        Me.cb0604LLBL.Location = New System.Drawing.Point(324, 122)
         Me.cb0604LLBL.Name = "cb0604LLBL"
-        Me.cb0604LLBL.Size = New System.Drawing.Size(173, 19)
+        Me.cb0604LLBL.Size = New System.Drawing.Size(143, 19)
         Me.cb0604LLBL.TabIndex = 20
         Me.cb0604LLBL.Tag = "0604LLBL"
-        Me.cb0604LLBL.Text = "0604 Las Lagunas Boulevard"
+        Me.cb0604LLBL.Text = "0604 Las Lagunas Blvd"
         Me.cb0604LLBL.UseVisualStyleBackColor = True
         '
         'cb4HMDR
         '
         Me.cb4HMDR.AutoSize = True
-        Me.cb4HMDR.Location = New System.Drawing.Point(339, 97)
+        Me.cb4HMDR.Location = New System.Drawing.Point(324, 97)
         Me.cb4HMDR.Name = "cb4HMDR"
         Me.cb4HMDR.Size = New System.Drawing.Size(131, 19)
         Me.cb4HMDR.TabIndex = 19
@@ -401,7 +426,7 @@ Partial Class frmSPA
         'cbDMTR
         '
         Me.cbDMTR.AutoSize = True
-        Me.cbDMTR.Location = New System.Drawing.Point(339, 72)
+        Me.cbDMTR.Location = New System.Drawing.Point(324, 72)
         Me.cbDMTR.Name = "cbDMTR"
         Me.cbDMTR.Size = New System.Drawing.Size(95, 19)
         Me.cbDMTR.TabIndex = 18
@@ -412,7 +437,7 @@ Partial Class frmSPA
         'cb0115BCAV
         '
         Me.cb0115BCAV.AutoSize = True
-        Me.cb0115BCAV.Location = New System.Drawing.Point(339, 47)
+        Me.cb0115BCAV.Location = New System.Drawing.Point(324, 47)
         Me.cb0115BCAV.Name = "cb0115BCAV"
         Me.cb0115BCAV.Size = New System.Drawing.Size(139, 19)
         Me.cb0115BCAV.TabIndex = 17
@@ -423,12 +448,12 @@ Partial Class frmSPA
         'cb0325SRFD
         '
         Me.cb0325SRFD.AutoSize = True
-        Me.cb0325SRFD.Location = New System.Drawing.Point(518, 97)
+        Me.cb0325SRFD.Location = New System.Drawing.Point(473, 97)
         Me.cb0325SRFD.Name = "cb0325SRFD"
-        Me.cb0325SRFD.Size = New System.Drawing.Size(165, 19)
+        Me.cb0325SRFD.Size = New System.Drawing.Size(150, 19)
         Me.cb0325SRFD.TabIndex = 26
         Me.cb0325SRFD.Tag = "0325SRFD"
-        Me.cb0325SRFD.Text = "0325 South Rockford Drive"
+        Me.cb0325SRFD.Text = "0325 South Rockford Dr"
         Me.cb0325SRFD.UseVisualStyleBackColor = True
         '
         'cb3677WMDR
@@ -480,10 +505,10 @@ Partial Class frmSPA
         Me.cb2113MWTD.AutoSize = True
         Me.cb2113MWTD.Location = New System.Drawing.Point(140, 147)
         Me.cb2113MWTD.Name = "cb2113MWTD"
-        Me.cb2113MWTD.Size = New System.Drawing.Size(193, 19)
+        Me.cb2113MWTD.Size = New System.Drawing.Size(178, 19)
         Me.cb2113MWTD.TabIndex = 11
         Me.cb2113MWTD.Tag = "2113MWTD"
-        Me.cb2113MWTD.Text = "2113 Mad Wayne Thunder Drive"
+        Me.cb2113MWTD.Text = "2113 Mad Wayne Thunder Dr"
         Me.cb2113MWTD.UseVisualStyleBackColor = True
         '
         'cb2874HCAV
@@ -544,7 +569,7 @@ Partial Class frmSPA
         'cbTRYL
         '
         Me.cbTRYL.AutoSize = True
-        Me.cbTRYL.Location = New System.Drawing.Point(518, 172)
+        Me.cbTRYL.Location = New System.Drawing.Point(473, 172)
         Me.cbTRYL.Name = "cbTRYL"
         Me.cbTRYL.Size = New System.Drawing.Size(83, 19)
         Me.cbTRYL.TabIndex = 29
@@ -555,7 +580,7 @@ Partial Class frmSPA
         'cb12STCR
         '
         Me.cb12STCR.AutoSize = True
-        Me.cb12STCR.Location = New System.Drawing.Point(518, 147)
+        Me.cb12STCR.Location = New System.Drawing.Point(473, 147)
         Me.cb12STCR.Name = "cb12STCR"
         Me.cb12STCR.Size = New System.Drawing.Size(121, 19)
         Me.cb12STCR.TabIndex = 28
@@ -566,7 +591,7 @@ Partial Class frmSPA
         'cb0605SNAV
         '
         Me.cb0605SNAV.AutoSize = True
-        Me.cb0605SNAV.Location = New System.Drawing.Point(518, 122)
+        Me.cb0605SNAV.Location = New System.Drawing.Point(473, 122)
         Me.cb0605SNAV.Name = "cb0605SNAV"
         Me.cb0605SNAV.Size = New System.Drawing.Size(137, 19)
         Me.cb0605SNAV.TabIndex = 27
@@ -984,9 +1009,9 @@ Partial Class frmSPA
         Me.PictureBox1.BackgroundImage = Global.SPAII_Setting.My.Resources.Resources.logo
         Me.PictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.PictureBox1.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PictureBox1.Location = New System.Drawing.Point(904, 0)
+        Me.PictureBox1.Location = New System.Drawing.Point(817, 0)
         Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(250, 636)
+        Me.PictureBox1.Size = New System.Drawing.Size(191, 631)
         Me.PictureBox1.TabIndex = 1
         Me.PictureBox1.TabStop = False
         '
@@ -1024,7 +1049,7 @@ Partial Class frmSPA
         Me.gbGarage.Controls.Add(Me.cb4531DST)
         Me.gbGarage.Location = New System.Drawing.Point(6, 308)
         Me.gbGarage.Name = "gbGarage"
-        Me.gbGarage.Size = New System.Drawing.Size(867, 237)
+        Me.gbGarage.Size = New System.Drawing.Size(784, 237)
         Me.gbGarage.TabIndex = 1
         Me.gbGarage.TabStop = False
         Me.gbGarage.Text = "Garage Toggle On/Off"
@@ -1063,7 +1088,7 @@ Partial Class frmSPA
         'btnSave
         '
         Me.btnSave.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnSave.Location = New System.Drawing.Point(727, 599)
+        Me.btnSave.Location = New System.Drawing.Point(645, 594)
         Me.btnSave.Name = "btnSave"
         Me.btnSave.Size = New System.Drawing.Size(80, 25)
         Me.btnSave.TabIndex = 3
@@ -1073,7 +1098,7 @@ Partial Class frmSPA
         'btnClose
         '
         Me.btnClose.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnClose.Location = New System.Drawing.Point(813, 599)
+        Me.btnClose.Location = New System.Drawing.Point(731, 594)
         Me.btnClose.Name = "btnClose"
         Me.btnClose.Size = New System.Drawing.Size(80, 25)
         Me.btnClose.TabIndex = 4
@@ -1091,16 +1116,17 @@ Partial Class frmSPA
         Me.tcTab.Location = New System.Drawing.Point(12, 12)
         Me.tcTab.Name = "tcTab"
         Me.tcTab.SelectedIndex = 0
-        Me.tcTab.Size = New System.Drawing.Size(886, 581)
+        Me.tcTab.Size = New System.Drawing.Size(803, 576)
         Me.tcTab.TabIndex = 5
         '
         'tpSettings
         '
+        Me.tpSettings.Controls.Add(Me.GroupBox4)
         Me.tpSettings.Controls.Add(Me.GroupBox3)
         Me.tpSettings.Location = New System.Drawing.Point(4, 24)
         Me.tpSettings.Name = "tpSettings"
         Me.tpSettings.Padding = New System.Windows.Forms.Padding(3)
-        Me.tpSettings.Size = New System.Drawing.Size(878, 553)
+        Me.tpSettings.Size = New System.Drawing.Size(795, 548)
         Me.tpSettings.TabIndex = 1
         Me.tpSettings.Text = "Settings"
         Me.tpSettings.UseVisualStyleBackColor = True
@@ -1112,20 +1138,225 @@ Partial Class frmSPA
         Me.tpAptToggle.Location = New System.Drawing.Point(4, 24)
         Me.tpAptToggle.Name = "tpAptToggle"
         Me.tpAptToggle.Padding = New System.Windows.Forms.Padding(3)
-        Me.tpAptToggle.Size = New System.Drawing.Size(878, 553)
+        Me.tpAptToggle.Size = New System.Drawing.Size(795, 548)
         Me.tpAptToggle.TabIndex = 0
         Me.tpAptToggle.Text = "Apartment Toggle"
         Me.tpAptToggle.UseVisualStyleBackColor = True
         '
         'tpTransferVeh
         '
+        Me.tpTransferVeh.Controls.Add(Me.btnTransfer)
+        Me.tpTransferVeh.Controls.Add(Me.GroupBox2)
+        Me.tpTransferVeh.Controls.Add(Me.GroupBox1)
         Me.tpTransferVeh.Location = New System.Drawing.Point(4, 24)
         Me.tpTransferVeh.Name = "tpTransferVeh"
         Me.tpTransferVeh.Padding = New System.Windows.Forms.Padding(3)
-        Me.tpTransferVeh.Size = New System.Drawing.Size(878, 553)
+        Me.tpTransferVeh.Size = New System.Drawing.Size(795, 548)
         Me.tpTransferVeh.TabIndex = 2
         Me.tpTransferVeh.Text = "Transfer Vehicles"
         Me.tpTransferVeh.UseVisualStyleBackColor = True
+        '
+        'cmbSPA1
+        '
+        Me.cmbSPA1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.cmbSPA1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbSPA1.FormattingEnabled = True
+        Me.cmbSPA1.Location = New System.Drawing.Point(77, 51)
+        Me.cmbSPA1.Name = "cmbSPA1"
+        Me.cmbSPA1.Size = New System.Drawing.Size(305, 23)
+        Me.cmbSPA1.TabIndex = 1
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Location = New System.Drawing.Point(6, 54)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(64, 15)
+        Me.Label9.TabIndex = 5
+        Me.Label9.Text = "Apartment"
+        '
+        'GroupBox1
+        '
+        Me.GroupBox1.Controls.Add(Me.Label13)
+        Me.GroupBox1.Controls.Add(Me.Label10)
+        Me.GroupBox1.Controls.Add(Me.lvSPA1)
+        Me.GroupBox1.Controls.Add(Me.txtSPA1)
+        Me.GroupBox1.Controls.Add(Me.cmbSPA1)
+        Me.GroupBox1.Controls.Add(Me.Label9)
+        Me.GroupBox1.Location = New System.Drawing.Point(6, 6)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.Size = New System.Drawing.Size(388, 310)
+        Me.GroupBox1.TabIndex = 0
+        Me.GroupBox1.TabStop = False
+        Me.GroupBox1.Text = "Single Player Apartment"
+        '
+        'lvSPA1
+        '
+        Me.lvSPA1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lvSPA1.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.chName, Me.chFIle})
+        Me.lvSPA1.FullRowSelect = True
+        Me.lvSPA1.GridLines = True
+        Me.lvSPA1.Location = New System.Drawing.Point(77, 80)
+        Me.lvSPA1.Name = "lvSPA1"
+        Me.lvSPA1.Size = New System.Drawing.Size(305, 222)
+        Me.lvSPA1.TabIndex = 2
+        Me.lvSPA1.UseCompatibleStateImageBehavior = False
+        Me.lvSPA1.View = System.Windows.Forms.View.Details
+        '
+        'chName
+        '
+        Me.chName.Text = "Name"
+        Me.chName.Width = 150
+        '
+        'chFIle
+        '
+        Me.chFIle.Text = "File"
+        Me.chFIle.Width = 150
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.Location = New System.Drawing.Point(6, 80)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(49, 15)
+        Me.Label10.TabIndex = 7
+        Me.Label10.Text = "Vehicles"
+        '
+        'GroupBox2
+        '
+        Me.GroupBox2.Controls.Add(Me.Label14)
+        Me.GroupBox2.Controls.Add(Me.Label11)
+        Me.GroupBox2.Controls.Add(Me.lvSPA2)
+        Me.GroupBox2.Controls.Add(Me.txtSPA2)
+        Me.GroupBox2.Controls.Add(Me.cmbSPA2)
+        Me.GroupBox2.Controls.Add(Me.Label12)
+        Me.GroupBox2.Location = New System.Drawing.Point(400, 6)
+        Me.GroupBox2.Name = "GroupBox2"
+        Me.GroupBox2.Size = New System.Drawing.Size(388, 310)
+        Me.GroupBox2.TabIndex = 1
+        Me.GroupBox2.TabStop = False
+        Me.GroupBox2.Text = "GTA Five: Apartment && Garage"
+        '
+        'Label11
+        '
+        Me.Label11.AutoSize = True
+        Me.Label11.Location = New System.Drawing.Point(6, 80)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(49, 15)
+        Me.Label11.TabIndex = 7
+        Me.Label11.Text = "Vehicles"
+        '
+        'lvSPA2
+        '
+        Me.lvSPA2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lvSPA2.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader1, Me.ColumnHeader2})
+        Me.lvSPA2.FullRowSelect = True
+        Me.lvSPA2.GridLines = True
+        Me.lvSPA2.Location = New System.Drawing.Point(77, 80)
+        Me.lvSPA2.Name = "lvSPA2"
+        Me.lvSPA2.Size = New System.Drawing.Size(305, 222)
+        Me.lvSPA2.TabIndex = 2
+        Me.lvSPA2.UseCompatibleStateImageBehavior = False
+        Me.lvSPA2.View = System.Windows.Forms.View.Details
+        '
+        'ColumnHeader1
+        '
+        Me.ColumnHeader1.Text = "Name"
+        Me.ColumnHeader1.Width = 150
+        '
+        'ColumnHeader2
+        '
+        Me.ColumnHeader2.Text = "File"
+        Me.ColumnHeader2.Width = 150
+        '
+        'cmbSPA2
+        '
+        Me.cmbSPA2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.cmbSPA2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbSPA2.FormattingEnabled = True
+        Me.cmbSPA2.Location = New System.Drawing.Point(77, 51)
+        Me.cmbSPA2.Name = "cmbSPA2"
+        Me.cmbSPA2.Size = New System.Drawing.Size(305, 23)
+        Me.cmbSPA2.TabIndex = 1
+        '
+        'Label12
+        '
+        Me.Label12.AutoSize = True
+        Me.Label12.Location = New System.Drawing.Point(6, 54)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(64, 15)
+        Me.Label12.TabIndex = 5
+        Me.Label12.Text = "Apartment"
+        '
+        'txtSPA1
+        '
+        Me.txtSPA1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.txtSPA1.Location = New System.Drawing.Point(77, 22)
+        Me.txtSPA1.Name = "txtSPA1"
+        Me.txtSPA1.Size = New System.Drawing.Size(305, 23)
+        Me.txtSPA1.TabIndex = 0
+        '
+        'Label13
+        '
+        Me.Label13.AutoSize = True
+        Me.Label13.Location = New System.Drawing.Point(6, 25)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(31, 15)
+        Me.Label13.TabIndex = 9
+        Me.Label13.Text = "Path"
+        '
+        'Label14
+        '
+        Me.Label14.AutoSize = True
+        Me.Label14.Location = New System.Drawing.Point(6, 25)
+        Me.Label14.Name = "Label14"
+        Me.Label14.Size = New System.Drawing.Size(31, 15)
+        Me.Label14.TabIndex = 11
+        Me.Label14.Text = "Path"
+        '
+        'txtSPA2
+        '
+        Me.txtSPA2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.txtSPA2.Location = New System.Drawing.Point(77, 22)
+        Me.txtSPA2.Name = "txtSPA2"
+        Me.txtSPA2.Size = New System.Drawing.Size(305, 23)
+        Me.txtSPA2.TabIndex = 0
+        '
+        'btnTransfer
+        '
+        Me.btnTransfer.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnTransfer.Location = New System.Drawing.Point(708, 322)
+        Me.btnTransfer.Name = "btnTransfer"
+        Me.btnTransfer.Size = New System.Drawing.Size(80, 25)
+        Me.btnTransfer.TabIndex = 2
+        Me.btnTransfer.Text = "Transfer"
+        Me.btnTransfer.UseVisualStyleBackColor = True
+        '
+        'GroupBox4
+        '
+        Me.GroupBox4.Controls.Add(Me.cbOnlineMap)
+        Me.GroupBox4.Location = New System.Drawing.Point(6, 59)
+        Me.GroupBox4.Name = "GroupBox4"
+        Me.GroupBox4.Size = New System.Drawing.Size(361, 47)
+        Me.GroupBox4.TabIndex = 3
+        Me.GroupBox4.TabStop = False
+        Me.GroupBox4.Text = "Setting"
+        '
+        'cbOnlineMap
+        '
+        Me.cbOnlineMap.AutoSize = True
+        Me.cbOnlineMap.Location = New System.Drawing.Point(6, 22)
+        Me.cbOnlineMap.Name = "cbOnlineMap"
+        Me.cbOnlineMap.Size = New System.Drawing.Size(126, 19)
+        Me.cbOnlineMap.TabIndex = 0
+        Me.cbOnlineMap.Text = "Enable Online Map"
+        Me.cbOnlineMap.UseVisualStyleBackColor = True
         '
         'frmSPA
         '
@@ -1133,7 +1364,7 @@ Partial Class frmSPA
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.ClientSize = New System.Drawing.Size(1154, 636)
+        Me.ClientSize = New System.Drawing.Size(1008, 631)
         Me.Controls.Add(Me.tcTab)
         Me.Controls.Add(Me.btnClose)
         Me.Controls.Add(Me.btnSave)
@@ -1156,6 +1387,13 @@ Partial Class frmSPA
         Me.tcTab.ResumeLayout(False)
         Me.tpSettings.ResumeLayout(False)
         Me.tpAptToggle.ResumeLayout(False)
+        Me.tpTransferVeh.ResumeLayout(False)
+        Me.GroupBox1.ResumeLayout(False)
+        Me.GroupBox1.PerformLayout()
+        Me.GroupBox2.ResumeLayout(False)
+        Me.GroupBox2.PerformLayout()
+        Me.GroupBox4.ResumeLayout(False)
+        Me.GroupBox4.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1246,4 +1484,25 @@ Partial Class frmSPA
     Friend WithEvents tpSettings As TabPage
     Friend WithEvents tpAptToggle As TabPage
     Friend WithEvents tpTransferVeh As TabPage
+    Friend WithEvents Label9 As Label
+    Friend WithEvents cmbSPA1 As ComboBox
+    Friend WithEvents GroupBox2 As GroupBox
+    Friend WithEvents Label11 As Label
+    Friend WithEvents lvSPA2 As ListView
+    Friend WithEvents ColumnHeader1 As ColumnHeader
+    Friend WithEvents ColumnHeader2 As ColumnHeader
+    Friend WithEvents cmbSPA2 As ComboBox
+    Friend WithEvents Label12 As Label
+    Friend WithEvents GroupBox1 As GroupBox
+    Friend WithEvents Label10 As Label
+    Friend WithEvents lvSPA1 As ListView
+    Friend WithEvents chName As ColumnHeader
+    Friend WithEvents chFIle As ColumnHeader
+    Friend WithEvents Label14 As Label
+    Friend WithEvents txtSPA2 As TextBox
+    Friend WithEvents Label13 As Label
+    Friend WithEvents txtSPA1 As TextBox
+    Friend WithEvents btnTransfer As Button
+    Friend WithEvents GroupBox4 As GroupBox
+    Friend WithEvents cbOnlineMap As CheckBox
 End Class

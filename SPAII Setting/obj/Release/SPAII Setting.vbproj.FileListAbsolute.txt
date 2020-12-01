@@ -2,10 +2,10 @@ E:\Users\Bartholomew\Documents\GitHub\SPA-II\SPAII Setting\bin\Release\SPAII Set
 E:\Users\Bartholomew\Documents\GitHub\SPA-II\SPAII Setting\bin\Release\SPAII Setting.exe
 E:\Users\Bartholomew\Documents\GitHub\SPA-II\SPAII Setting\bin\Release\SPAII Setting.pdb
 E:\Users\Bartholomew\Documents\GitHub\SPA-II\SPAII Setting\bin\Release\SPAII Setting.xml
-E:\Users\Bartholomew\Documents\GitHub\SPA-II\SPAII Setting\obj\Release\SPAII Setting.vbprojResolveAssemblyReference.cache
 E:\Users\Bartholomew\Documents\GitHub\SPA-II\SPAII Setting\obj\Release\SPAII_Setting.frmSPA.resources
 E:\Users\Bartholomew\Documents\GitHub\SPA-II\SPAII Setting\obj\Release\SPAII_Setting.Resources.resources
 E:\Users\Bartholomew\Documents\GitHub\SPA-II\SPAII Setting\obj\Release\SPAII Setting.vbproj.GenerateResource.Cache
 E:\Users\Bartholomew\Documents\GitHub\SPA-II\SPAII Setting\obj\Release\SPAII Setting.exe
 E:\Users\Bartholomew\Documents\GitHub\SPA-II\SPAII Setting\obj\Release\SPAII Setting.xml
 E:\Users\Bartholomew\Documents\GitHub\SPA-II\SPAII Setting\obj\Release\SPAII Setting.pdb
+E:\Users\Bartholomew\Documents\GitHub\SPA-II\SPAII Setting\obj\Release\SPAII Setting.vbprojResolveAssemblyReference.cache

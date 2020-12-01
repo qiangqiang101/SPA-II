@@ -998,13 +998,19 @@ Module Helper
     End Function
 
     Public Function EnableOnlineMap() As Boolean
+        config = ScriptSettings.Load("scripts\SPA II\modconfig.ini")
+
         Dim gotError As Boolean = False
-        Try
-            NFunc.Call(ON_ENTER_MP)
-        Catch ex As Exception
-            gotError = True
-        End Try
-        If Not gotError Then LoadMPDLCMapMissingObjects()
+
+        If config.GetValue(Of Boolean)("SETTING", "OnlineMap", True) Then
+            Try
+                NFunc.Call(ON_ENTER_MP)
+            Catch ex As Exception
+                gotError = True
+            End Try
+            If Not gotError Then LoadMPDLCMapMissingObjects()
+        End If
+
         Return gotError
     End Function
 
