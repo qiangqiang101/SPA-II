@@ -154,6 +154,17 @@ Public Class SPA2
                             End If
                         Next
                     End If
+
+                    'Hide Blips on Mission
+                    If config.GetValue(Of Boolean)("SETTING", "HideBlipsOnMission", True) Then
+                        If Game.MissionFlag Then
+                            If bd.BuildingBlip.Alpha = 255 Then bd.BuildingBlip.Alpha = 0
+                            If bd.GarageBlip <> Nothing Then If bd.GarageBlip.Alpha = 255 Then bd.GarageBlip.Alpha = 0
+                        Else
+                            If bd.BuildingBlip.Alpha = 0 Then bd.BuildingBlip.Alpha = 255
+                            If bd.GarageBlip <> Nothing Then If bd.GarageBlip.Alpha = 0 Then bd.GarageBlip.Alpha = 255
+                        End If
+                    End If
                 Next
 
                 If HighEndApartment.Building IsNot Nothing Then HighEndApartmentOnTick()

@@ -106,29 +106,34 @@ Partial Class frmSPA
         Me.btnClose = New System.Windows.Forms.Button()
         Me.tcTab = New System.Windows.Forms.TabControl()
         Me.tpSettings = New System.Windows.Forms.TabPage()
-        Me.tpAptToggle = New System.Windows.Forms.TabPage()
-        Me.tpTransferVeh = New System.Windows.Forms.TabPage()
-        Me.cmbSPA1 = New System.Windows.Forms.ComboBox()
-        Me.Label9 = New System.Windows.Forms.Label()
-        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.lvSPA1 = New System.Windows.Forms.ListView()
-        Me.chName = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.chFIle = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.Label10 = New System.Windows.Forms.Label()
-        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
-        Me.Label11 = New System.Windows.Forms.Label()
-        Me.lvSPA2 = New System.Windows.Forms.ListView()
-        Me.ColumnHeader1 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.ColumnHeader2 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.cmbSPA2 = New System.Windows.Forms.ComboBox()
-        Me.Label12 = New System.Windows.Forms.Label()
-        Me.txtSPA1 = New System.Windows.Forms.TextBox()
-        Me.Label13 = New System.Windows.Forms.Label()
-        Me.Label14 = New System.Windows.Forms.Label()
-        Me.txtSPA2 = New System.Windows.Forms.TextBox()
-        Me.btnTransfer = New System.Windows.Forms.Button()
         Me.GroupBox4 = New System.Windows.Forms.GroupBox()
         Me.cbOnlineMap = New System.Windows.Forms.CheckBox()
+        Me.tpAptToggle = New System.Windows.Forms.TabPage()
+        Me.tpTransferVeh = New System.Windows.Forms.TabPage()
+        Me.btnTransfer = New System.Windows.Forms.Button()
+        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.Label14 = New System.Windows.Forms.Label()
+        Me.Label11 = New System.Windows.Forms.Label()
+        Me.lvSPA2 = New System.Windows.Forms.ListView()
+        Me.chName2 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.chFile2 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.txtSPA2 = New System.Windows.Forms.TextBox()
+        Me.cmbSPA2 = New System.Windows.Forms.ComboBox()
+        Me.Label12 = New System.Windows.Forms.Label()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.Label13 = New System.Windows.Forms.Label()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.lvSPA1 = New System.Windows.Forms.ListView()
+        Me.chName1 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.chFIle1 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.txtSPA1 = New System.Windows.Forms.TextBox()
+        Me.cmbSPA1 = New System.Windows.Forms.ComboBox()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.chPlate1 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.chPlate2 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.btnBrowse1 = New System.Windows.Forms.Button()
+        Me.btnBrowse2 = New System.Windows.Forms.Button()
+        Me.cbMission = New System.Windows.Forms.CheckBox()
         Me.gbApt.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.gbGarage.SuspendLayout()
@@ -136,11 +141,11 @@ Partial Class frmSPA
         CType(Me.tbVolume, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tcTab.SuspendLayout()
         Me.tpSettings.SuspendLayout()
+        Me.GroupBox4.SuspendLayout()
         Me.tpAptToggle.SuspendLayout()
         Me.tpTransferVeh.SuspendLayout()
-        Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
-        Me.GroupBox4.SuspendLayout()
+        Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
         'gbApt
@@ -1061,7 +1066,7 @@ Partial Class frmSPA
         Me.GroupBox3.Location = New System.Drawing.Point(6, 6)
         Me.GroupBox3.Name = "GroupBox3"
         Me.GroupBox3.Size = New System.Drawing.Size(361, 47)
-        Me.GroupBox3.TabIndex = 2
+        Me.GroupBox3.TabIndex = 0
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "Sound"
         '
@@ -1082,7 +1087,7 @@ Partial Class frmSPA
         Me.tbVolume.Maximum = 100
         Me.tbVolume.Name = "tbVolume"
         Me.tbVolume.Size = New System.Drawing.Size(255, 17)
-        Me.tbVolume.TabIndex = 4
+        Me.tbVolume.TabIndex = 0
         Me.tbVolume.TickStyle = System.Windows.Forms.TickStyle.None
         '
         'btnSave
@@ -1131,6 +1136,27 @@ Partial Class frmSPA
         Me.tpSettings.Text = "Settings"
         Me.tpSettings.UseVisualStyleBackColor = True
         '
+        'GroupBox4
+        '
+        Me.GroupBox4.Controls.Add(Me.cbMission)
+        Me.GroupBox4.Controls.Add(Me.cbOnlineMap)
+        Me.GroupBox4.Location = New System.Drawing.Point(6, 59)
+        Me.GroupBox4.Name = "GroupBox4"
+        Me.GroupBox4.Size = New System.Drawing.Size(361, 70)
+        Me.GroupBox4.TabIndex = 1
+        Me.GroupBox4.TabStop = False
+        Me.GroupBox4.Text = "Setting"
+        '
+        'cbOnlineMap
+        '
+        Me.cbOnlineMap.AutoSize = True
+        Me.cbOnlineMap.Location = New System.Drawing.Point(6, 22)
+        Me.cbOnlineMap.Name = "cbOnlineMap"
+        Me.cbOnlineMap.Size = New System.Drawing.Size(126, 19)
+        Me.cbOnlineMap.TabIndex = 0
+        Me.cbOnlineMap.Text = "Enable Online Map"
+        Me.cbOnlineMap.UseVisualStyleBackColor = True
+        '
         'tpAptToggle
         '
         Me.tpAptToggle.Controls.Add(Me.gbApt)
@@ -1156,88 +1182,40 @@ Partial Class frmSPA
         Me.tpTransferVeh.Text = "Transfer Vehicles"
         Me.tpTransferVeh.UseVisualStyleBackColor = True
         '
-        'cmbSPA1
+        'btnTransfer
         '
-        Me.cmbSPA1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.cmbSPA1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbSPA1.FormattingEnabled = True
-        Me.cmbSPA1.Location = New System.Drawing.Point(77, 51)
-        Me.cmbSPA1.Name = "cmbSPA1"
-        Me.cmbSPA1.Size = New System.Drawing.Size(305, 23)
-        Me.cmbSPA1.TabIndex = 1
-        '
-        'Label9
-        '
-        Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(6, 54)
-        Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(64, 15)
-        Me.Label9.TabIndex = 5
-        Me.Label9.Text = "Apartment"
-        '
-        'GroupBox1
-        '
-        Me.GroupBox1.Controls.Add(Me.Label13)
-        Me.GroupBox1.Controls.Add(Me.Label10)
-        Me.GroupBox1.Controls.Add(Me.lvSPA1)
-        Me.GroupBox1.Controls.Add(Me.txtSPA1)
-        Me.GroupBox1.Controls.Add(Me.cmbSPA1)
-        Me.GroupBox1.Controls.Add(Me.Label9)
-        Me.GroupBox1.Location = New System.Drawing.Point(6, 6)
-        Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(388, 310)
-        Me.GroupBox1.TabIndex = 0
-        Me.GroupBox1.TabStop = False
-        Me.GroupBox1.Text = "Single Player Apartment"
-        '
-        'lvSPA1
-        '
-        Me.lvSPA1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.lvSPA1.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.chName, Me.chFIle})
-        Me.lvSPA1.FullRowSelect = True
-        Me.lvSPA1.GridLines = True
-        Me.lvSPA1.Location = New System.Drawing.Point(77, 80)
-        Me.lvSPA1.Name = "lvSPA1"
-        Me.lvSPA1.Size = New System.Drawing.Size(305, 222)
-        Me.lvSPA1.TabIndex = 2
-        Me.lvSPA1.UseCompatibleStateImageBehavior = False
-        Me.lvSPA1.View = System.Windows.Forms.View.Details
-        '
-        'chName
-        '
-        Me.chName.Text = "Name"
-        Me.chName.Width = 150
-        '
-        'chFIle
-        '
-        Me.chFIle.Text = "File"
-        Me.chFIle.Width = 150
-        '
-        'Label10
-        '
-        Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(6, 80)
-        Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(49, 15)
-        Me.Label10.TabIndex = 7
-        Me.Label10.Text = "Vehicles"
+        Me.btnTransfer.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnTransfer.Location = New System.Drawing.Point(709, 516)
+        Me.btnTransfer.Name = "btnTransfer"
+        Me.btnTransfer.Size = New System.Drawing.Size(80, 25)
+        Me.btnTransfer.TabIndex = 2
+        Me.btnTransfer.Text = "Transfer"
+        Me.btnTransfer.UseVisualStyleBackColor = True
         '
         'GroupBox2
         '
+        Me.GroupBox2.Controls.Add(Me.btnBrowse2)
         Me.GroupBox2.Controls.Add(Me.Label14)
         Me.GroupBox2.Controls.Add(Me.Label11)
         Me.GroupBox2.Controls.Add(Me.lvSPA2)
         Me.GroupBox2.Controls.Add(Me.txtSPA2)
         Me.GroupBox2.Controls.Add(Me.cmbSPA2)
         Me.GroupBox2.Controls.Add(Me.Label12)
-        Me.GroupBox2.Location = New System.Drawing.Point(400, 6)
+        Me.GroupBox2.Location = New System.Drawing.Point(6, 261)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(388, 310)
+        Me.GroupBox2.Size = New System.Drawing.Size(786, 249)
         Me.GroupBox2.TabIndex = 1
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "GTA Five: Apartment && Garage"
+        '
+        'Label14
+        '
+        Me.Label14.AutoSize = True
+        Me.Label14.Location = New System.Drawing.Point(6, 25)
+        Me.Label14.Name = "Label14"
+        Me.Label14.Size = New System.Drawing.Size(31, 15)
+        Me.Label14.TabIndex = 11
+        Me.Label14.Text = "Path"
         '
         'Label11
         '
@@ -1250,27 +1228,37 @@ Partial Class frmSPA
         '
         'lvSPA2
         '
-        Me.lvSPA2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.lvSPA2.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.lvSPA2.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader1, Me.ColumnHeader2})
+        Me.lvSPA2.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.chName2, Me.chPlate2, Me.chFile2})
         Me.lvSPA2.FullRowSelect = True
         Me.lvSPA2.GridLines = True
         Me.lvSPA2.Location = New System.Drawing.Point(77, 80)
         Me.lvSPA2.Name = "lvSPA2"
-        Me.lvSPA2.Size = New System.Drawing.Size(305, 222)
-        Me.lvSPA2.TabIndex = 2
+        Me.lvSPA2.Size = New System.Drawing.Size(703, 161)
+        Me.lvSPA2.TabIndex = 4
         Me.lvSPA2.UseCompatibleStateImageBehavior = False
         Me.lvSPA2.View = System.Windows.Forms.View.Details
         '
-        'ColumnHeader1
+        'chName2
         '
-        Me.ColumnHeader1.Text = "Name"
-        Me.ColumnHeader1.Width = 150
+        Me.chName2.Text = "Name"
+        Me.chName2.Width = 200
         '
-        'ColumnHeader2
+        'chFile2
         '
-        Me.ColumnHeader2.Text = "File"
-        Me.ColumnHeader2.Width = 150
+        Me.chFile2.Text = "File"
+        Me.chFile2.Width = 150
+        '
+        'txtSPA2
+        '
+        Me.txtSPA2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.txtSPA2.Location = New System.Drawing.Point(77, 22)
+        Me.txtSPA2.Name = "txtSPA2"
+        Me.txtSPA2.Size = New System.Drawing.Size(672, 23)
+        Me.txtSPA2.TabIndex = 0
         '
         'cmbSPA2
         '
@@ -1280,8 +1268,8 @@ Partial Class frmSPA
         Me.cmbSPA2.FormattingEnabled = True
         Me.cmbSPA2.Location = New System.Drawing.Point(77, 51)
         Me.cmbSPA2.Name = "cmbSPA2"
-        Me.cmbSPA2.Size = New System.Drawing.Size(305, 23)
-        Me.cmbSPA2.TabIndex = 1
+        Me.cmbSPA2.Size = New System.Drawing.Size(703, 23)
+        Me.cmbSPA2.TabIndex = 2
         '
         'Label12
         '
@@ -1292,14 +1280,21 @@ Partial Class frmSPA
         Me.Label12.TabIndex = 5
         Me.Label12.Text = "Apartment"
         '
-        'txtSPA1
+        'GroupBox1
         '
-        Me.txtSPA1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtSPA1.Location = New System.Drawing.Point(77, 22)
-        Me.txtSPA1.Name = "txtSPA1"
-        Me.txtSPA1.Size = New System.Drawing.Size(305, 23)
-        Me.txtSPA1.TabIndex = 0
+        Me.GroupBox1.Controls.Add(Me.btnBrowse1)
+        Me.GroupBox1.Controls.Add(Me.Label13)
+        Me.GroupBox1.Controls.Add(Me.Label10)
+        Me.GroupBox1.Controls.Add(Me.lvSPA1)
+        Me.GroupBox1.Controls.Add(Me.txtSPA1)
+        Me.GroupBox1.Controls.Add(Me.cmbSPA1)
+        Me.GroupBox1.Controls.Add(Me.Label9)
+        Me.GroupBox1.Location = New System.Drawing.Point(6, 6)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.Size = New System.Drawing.Size(786, 249)
+        Me.GroupBox1.TabIndex = 0
+        Me.GroupBox1.TabStop = False
+        Me.GroupBox1.Text = "Single Player Apartment"
         '
         'Label13
         '
@@ -1310,53 +1305,108 @@ Partial Class frmSPA
         Me.Label13.TabIndex = 9
         Me.Label13.Text = "Path"
         '
-        'Label14
+        'Label10
         '
-        Me.Label14.AutoSize = True
-        Me.Label14.Location = New System.Drawing.Point(6, 25)
-        Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(31, 15)
-        Me.Label14.TabIndex = 11
-        Me.Label14.Text = "Path"
+        Me.Label10.AutoSize = True
+        Me.Label10.Location = New System.Drawing.Point(6, 80)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(49, 15)
+        Me.Label10.TabIndex = 7
+        Me.Label10.Text = "Vehicles"
         '
-        'txtSPA2
+        'lvSPA1
         '
-        Me.txtSPA2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.lvSPA1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtSPA2.Location = New System.Drawing.Point(77, 22)
-        Me.txtSPA2.Name = "txtSPA2"
-        Me.txtSPA2.Size = New System.Drawing.Size(305, 23)
-        Me.txtSPA2.TabIndex = 0
+        Me.lvSPA1.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.chName1, Me.chPlate1, Me.chFIle1})
+        Me.lvSPA1.FullRowSelect = True
+        Me.lvSPA1.GridLines = True
+        Me.lvSPA1.Location = New System.Drawing.Point(77, 80)
+        Me.lvSPA1.Name = "lvSPA1"
+        Me.lvSPA1.Size = New System.Drawing.Size(703, 163)
+        Me.lvSPA1.TabIndex = 4
+        Me.lvSPA1.UseCompatibleStateImageBehavior = False
+        Me.lvSPA1.View = System.Windows.Forms.View.Details
         '
-        'btnTransfer
+        'chName1
         '
-        Me.btnTransfer.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnTransfer.Location = New System.Drawing.Point(708, 322)
-        Me.btnTransfer.Name = "btnTransfer"
-        Me.btnTransfer.Size = New System.Drawing.Size(80, 25)
-        Me.btnTransfer.TabIndex = 2
-        Me.btnTransfer.Text = "Transfer"
-        Me.btnTransfer.UseVisualStyleBackColor = True
+        Me.chName1.Text = "Name"
+        Me.chName1.Width = 200
         '
-        'GroupBox4
+        'chFIle1
         '
-        Me.GroupBox4.Controls.Add(Me.cbOnlineMap)
-        Me.GroupBox4.Location = New System.Drawing.Point(6, 59)
-        Me.GroupBox4.Name = "GroupBox4"
-        Me.GroupBox4.Size = New System.Drawing.Size(361, 47)
-        Me.GroupBox4.TabIndex = 3
-        Me.GroupBox4.TabStop = False
-        Me.GroupBox4.Text = "Setting"
+        Me.chFIle1.Text = "File"
+        Me.chFIle1.Width = 150
         '
-        'cbOnlineMap
+        'txtSPA1
         '
-        Me.cbOnlineMap.AutoSize = True
-        Me.cbOnlineMap.Location = New System.Drawing.Point(6, 22)
-        Me.cbOnlineMap.Name = "cbOnlineMap"
-        Me.cbOnlineMap.Size = New System.Drawing.Size(126, 19)
-        Me.cbOnlineMap.TabIndex = 0
-        Me.cbOnlineMap.Text = "Enable Online Map"
-        Me.cbOnlineMap.UseVisualStyleBackColor = True
+        Me.txtSPA1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.txtSPA1.Location = New System.Drawing.Point(77, 22)
+        Me.txtSPA1.Name = "txtSPA1"
+        Me.txtSPA1.Size = New System.Drawing.Size(672, 23)
+        Me.txtSPA1.TabIndex = 0
+        '
+        'cmbSPA1
+        '
+        Me.cmbSPA1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.cmbSPA1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbSPA1.FormattingEnabled = True
+        Me.cmbSPA1.Location = New System.Drawing.Point(77, 51)
+        Me.cmbSPA1.Name = "cmbSPA1"
+        Me.cmbSPA1.Size = New System.Drawing.Size(703, 23)
+        Me.cmbSPA1.TabIndex = 2
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Location = New System.Drawing.Point(6, 54)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(64, 15)
+        Me.Label9.TabIndex = 5
+        Me.Label9.Text = "Apartment"
+        '
+        'chPlate1
+        '
+        Me.chPlate1.Text = "Plate Number"
+        Me.chPlate1.Width = 100
+        '
+        'chPlate2
+        '
+        Me.chPlate2.Text = "Plate Number"
+        Me.chPlate2.Width = 100
+        '
+        'btnBrowse1
+        '
+        Me.btnBrowse1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnBrowse1.Location = New System.Drawing.Point(755, 22)
+        Me.btnBrowse1.Name = "btnBrowse1"
+        Me.btnBrowse1.Size = New System.Drawing.Size(25, 23)
+        Me.btnBrowse1.TabIndex = 1
+        Me.btnBrowse1.Text = "..."
+        Me.btnBrowse1.UseVisualStyleBackColor = True
+        '
+        'btnBrowse2
+        '
+        Me.btnBrowse2.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnBrowse2.Location = New System.Drawing.Point(755, 22)
+        Me.btnBrowse2.Name = "btnBrowse2"
+        Me.btnBrowse2.Size = New System.Drawing.Size(25, 23)
+        Me.btnBrowse2.TabIndex = 1
+        Me.btnBrowse2.Text = "..."
+        Me.btnBrowse2.UseVisualStyleBackColor = True
+        '
+        'cbMission
+        '
+        Me.cbMission.AutoSize = True
+        Me.cbMission.Location = New System.Drawing.Point(6, 47)
+        Me.cbMission.Name = "cbMission"
+        Me.cbMission.Size = New System.Drawing.Size(140, 19)
+        Me.cbMission.TabIndex = 1
+        Me.cbMission.Text = "Hide Blips on Mission"
+        Me.cbMission.UseVisualStyleBackColor = True
         '
         'frmSPA
         '
@@ -1386,14 +1436,14 @@ Partial Class frmSPA
         CType(Me.tbVolume, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tcTab.ResumeLayout(False)
         Me.tpSettings.ResumeLayout(False)
-        Me.tpAptToggle.ResumeLayout(False)
-        Me.tpTransferVeh.ResumeLayout(False)
-        Me.GroupBox1.ResumeLayout(False)
-        Me.GroupBox1.PerformLayout()
-        Me.GroupBox2.ResumeLayout(False)
-        Me.GroupBox2.PerformLayout()
         Me.GroupBox4.ResumeLayout(False)
         Me.GroupBox4.PerformLayout()
+        Me.tpAptToggle.ResumeLayout(False)
+        Me.tpTransferVeh.ResumeLayout(False)
+        Me.GroupBox2.ResumeLayout(False)
+        Me.GroupBox2.PerformLayout()
+        Me.GroupBox1.ResumeLayout(False)
+        Me.GroupBox1.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1489,15 +1539,15 @@ Partial Class frmSPA
     Friend WithEvents GroupBox2 As GroupBox
     Friend WithEvents Label11 As Label
     Friend WithEvents lvSPA2 As ListView
-    Friend WithEvents ColumnHeader1 As ColumnHeader
-    Friend WithEvents ColumnHeader2 As ColumnHeader
+    Friend WithEvents chName2 As ColumnHeader
+    Friend WithEvents chFile2 As ColumnHeader
     Friend WithEvents cmbSPA2 As ComboBox
     Friend WithEvents Label12 As Label
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents Label10 As Label
     Friend WithEvents lvSPA1 As ListView
-    Friend WithEvents chName As ColumnHeader
-    Friend WithEvents chFIle As ColumnHeader
+    Friend WithEvents chName1 As ColumnHeader
+    Friend WithEvents chFIle1 As ColumnHeader
     Friend WithEvents Label14 As Label
     Friend WithEvents txtSPA2 As TextBox
     Friend WithEvents Label13 As Label
@@ -1505,4 +1555,9 @@ Partial Class frmSPA
     Friend WithEvents btnTransfer As Button
     Friend WithEvents GroupBox4 As GroupBox
     Friend WithEvents cbOnlineMap As CheckBox
+    Friend WithEvents chPlate1 As ColumnHeader
+    Friend WithEvents chPlate2 As ColumnHeader
+    Friend WithEvents btnBrowse2 As Button
+    Friend WithEvents btnBrowse1 As Button
+    Friend WithEvents cbMission As CheckBox
 End Class
