@@ -89,6 +89,8 @@
         Try
             lvSPA1.Items.Clear()
             Dim selectedItem As String = $"{txtSPA1.Text}\{SPA1Property.Where(Function(x) x.Value = cmbSPA1.SelectedItem).FirstOrDefault.Key}"
+            If Not IO.Directory.Exists(selectedItem) Then IO.Directory.CreateDirectory(selectedItem)
+
             For Each file As String In IO.Directory.GetFiles(selectedItem, "*.cfg")
                 Dim item As New ListViewItem(ReadCfgValue(Of String)("VehicleName", file))
                 With item
@@ -107,6 +109,8 @@
         Try
             lvSPA2.Items.Clear()
             Dim selectedItem As String = $"{txtSPA2.Text}\{SPA2Property.Where(Function(x) x.Value(0) = cmbSPA2.SelectedItem).FirstOrDefault.Key}"
+            If Not IO.Directory.Exists(selectedItem) Then IO.Directory.CreateDirectory(selectedItem)
+
             For Each file As String In IO.Directory.GetFiles(selectedItem, "*.xml")
                 Dim vd As VehicleData = New VehicleData(file).Instance
                 Dim item As New ListViewItem($"{vd.Make} {vd.Name}")
