@@ -107,33 +107,51 @@ Partial Class frmSPA
         Me.tcTab = New System.Windows.Forms.TabControl()
         Me.tpSettings = New System.Windows.Forms.TabPage()
         Me.GroupBox4 = New System.Windows.Forms.GroupBox()
+        Me.cbMission = New System.Windows.Forms.CheckBox()
         Me.cbOnlineMap = New System.Windows.Forms.CheckBox()
         Me.tpAptToggle = New System.Windows.Forms.TabPage()
+        Me.tpProperties = New System.Windows.Forms.TabPage()
+        Me.gbPropEdit = New System.Windows.Forms.GroupBox()
+        Me.btnPropCancel = New System.Windows.Forms.Button()
+        Me.btnPropApply = New System.Windows.Forms.Button()
+        Me.Label18 = New System.Windows.Forms.Label()
+        Me.txtPropIntName = New System.Windows.Forms.TextBox()
+        Me.Label17 = New System.Windows.Forms.Label()
+        Me.txtPropName = New System.Windows.Forms.TextBox()
+        Me.cmbPropStyle = New System.Windows.Forms.ComboBox()
+        Me.Label16 = New System.Windows.Forms.Label()
+        Me.cmbPropOwner = New System.Windows.Forms.ComboBox()
+        Me.Label15 = New System.Windows.Forms.Label()
+        Me.lvBuilding = New System.Windows.Forms.ListView()
+        Me.chPropName = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.chPropIntName = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.chPropOwner = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.chPropStyle = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.tpTransferVeh = New System.Windows.Forms.TabPage()
         Me.btnTransfer = New System.Windows.Forms.Button()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.btnBrowse2 = New System.Windows.Forms.Button()
         Me.Label14 = New System.Windows.Forms.Label()
         Me.Label11 = New System.Windows.Forms.Label()
         Me.lvSPA2 = New System.Windows.Forms.ListView()
         Me.chName2 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.chPlate2 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.chFile2 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.txtSPA2 = New System.Windows.Forms.TextBox()
         Me.cmbSPA2 = New System.Windows.Forms.ComboBox()
         Me.Label12 = New System.Windows.Forms.Label()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.btnBrowse1 = New System.Windows.Forms.Button()
         Me.Label13 = New System.Windows.Forms.Label()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.lvSPA1 = New System.Windows.Forms.ListView()
         Me.chName1 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.chPlate1 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.chFIle1 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.txtSPA1 = New System.Windows.Forms.TextBox()
         Me.cmbSPA1 = New System.Windows.Forms.ComboBox()
         Me.Label9 = New System.Windows.Forms.Label()
-        Me.chPlate1 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.chPlate2 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.btnBrowse1 = New System.Windows.Forms.Button()
-        Me.btnBrowse2 = New System.Windows.Forms.Button()
-        Me.cbMission = New System.Windows.Forms.CheckBox()
+        Me.cbDebug = New System.Windows.Forms.CheckBox()
         Me.gbApt.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.gbGarage.SuspendLayout()
@@ -143,6 +161,8 @@ Partial Class frmSPA
         Me.tpSettings.SuspendLayout()
         Me.GroupBox4.SuspendLayout()
         Me.tpAptToggle.SuspendLayout()
+        Me.tpProperties.SuspendLayout()
+        Me.gbPropEdit.SuspendLayout()
         Me.tpTransferVeh.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -1117,6 +1137,7 @@ Partial Class frmSPA
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.tcTab.Controls.Add(Me.tpSettings)
         Me.tcTab.Controls.Add(Me.tpAptToggle)
+        Me.tcTab.Controls.Add(Me.tpProperties)
         Me.tcTab.Controls.Add(Me.tpTransferVeh)
         Me.tcTab.Location = New System.Drawing.Point(12, 12)
         Me.tcTab.Name = "tcTab"
@@ -1138,14 +1159,25 @@ Partial Class frmSPA
         '
         'GroupBox4
         '
+        Me.GroupBox4.Controls.Add(Me.cbDebug)
         Me.GroupBox4.Controls.Add(Me.cbMission)
         Me.GroupBox4.Controls.Add(Me.cbOnlineMap)
         Me.GroupBox4.Location = New System.Drawing.Point(6, 59)
         Me.GroupBox4.Name = "GroupBox4"
-        Me.GroupBox4.Size = New System.Drawing.Size(361, 70)
+        Me.GroupBox4.Size = New System.Drawing.Size(361, 94)
         Me.GroupBox4.TabIndex = 1
         Me.GroupBox4.TabStop = False
         Me.GroupBox4.Text = "Setting"
+        '
+        'cbMission
+        '
+        Me.cbMission.AutoSize = True
+        Me.cbMission.Location = New System.Drawing.Point(6, 47)
+        Me.cbMission.Name = "cbMission"
+        Me.cbMission.Size = New System.Drawing.Size(140, 19)
+        Me.cbMission.TabIndex = 1
+        Me.cbMission.Text = "Hide Blips on Mission"
+        Me.cbMission.UseVisualStyleBackColor = True
         '
         'cbOnlineMap
         '
@@ -1168,6 +1200,167 @@ Partial Class frmSPA
         Me.tpAptToggle.TabIndex = 0
         Me.tpAptToggle.Text = "Apartment Toggle"
         Me.tpAptToggle.UseVisualStyleBackColor = True
+        '
+        'tpProperties
+        '
+        Me.tpProperties.Controls.Add(Me.gbPropEdit)
+        Me.tpProperties.Controls.Add(Me.lvBuilding)
+        Me.tpProperties.Location = New System.Drawing.Point(4, 24)
+        Me.tpProperties.Name = "tpProperties"
+        Me.tpProperties.Padding = New System.Windows.Forms.Padding(3)
+        Me.tpProperties.Size = New System.Drawing.Size(795, 548)
+        Me.tpProperties.TabIndex = 3
+        Me.tpProperties.Text = "Properties"
+        Me.tpProperties.UseVisualStyleBackColor = True
+        '
+        'gbPropEdit
+        '
+        Me.gbPropEdit.Controls.Add(Me.btnPropCancel)
+        Me.gbPropEdit.Controls.Add(Me.btnPropApply)
+        Me.gbPropEdit.Controls.Add(Me.Label18)
+        Me.gbPropEdit.Controls.Add(Me.txtPropIntName)
+        Me.gbPropEdit.Controls.Add(Me.Label17)
+        Me.gbPropEdit.Controls.Add(Me.txtPropName)
+        Me.gbPropEdit.Controls.Add(Me.cmbPropStyle)
+        Me.gbPropEdit.Controls.Add(Me.Label16)
+        Me.gbPropEdit.Controls.Add(Me.cmbPropOwner)
+        Me.gbPropEdit.Controls.Add(Me.Label15)
+        Me.gbPropEdit.Enabled = False
+        Me.gbPropEdit.Location = New System.Drawing.Point(518, 6)
+        Me.gbPropEdit.Name = "gbPropEdit"
+        Me.gbPropEdit.Size = New System.Drawing.Size(271, 536)
+        Me.gbPropEdit.TabIndex = 1
+        Me.gbPropEdit.TabStop = False
+        Me.gbPropEdit.Text = "Edit"
+        '
+        'btnPropCancel
+        '
+        Me.btnPropCancel.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnPropCancel.Location = New System.Drawing.Point(185, 505)
+        Me.btnPropCancel.Name = "btnPropCancel"
+        Me.btnPropCancel.Size = New System.Drawing.Size(80, 25)
+        Me.btnPropCancel.TabIndex = 5
+        Me.btnPropCancel.Text = "Cancel"
+        Me.btnPropCancel.UseVisualStyleBackColor = True
+        '
+        'btnPropApply
+        '
+        Me.btnPropApply.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnPropApply.Location = New System.Drawing.Point(99, 505)
+        Me.btnPropApply.Name = "btnPropApply"
+        Me.btnPropApply.Size = New System.Drawing.Size(80, 25)
+        Me.btnPropApply.TabIndex = 4
+        Me.btnPropApply.Text = "Apply"
+        Me.btnPropApply.UseVisualStyleBackColor = True
+        '
+        'Label18
+        '
+        Me.Label18.AutoSize = True
+        Me.Label18.Location = New System.Drawing.Point(6, 54)
+        Me.Label18.Name = "Label18"
+        Me.Label18.Size = New System.Drawing.Size(59, 15)
+        Me.Label18.TabIndex = 18
+        Me.Label18.Text = "Int. Name"
+        '
+        'txtPropIntName
+        '
+        Me.txtPropIntName.Location = New System.Drawing.Point(71, 51)
+        Me.txtPropIntName.Name = "txtPropIntName"
+        Me.txtPropIntName.ReadOnly = True
+        Me.txtPropIntName.Size = New System.Drawing.Size(194, 23)
+        Me.txtPropIntName.TabIndex = 1
+        '
+        'Label17
+        '
+        Me.Label17.AutoSize = True
+        Me.Label17.Location = New System.Drawing.Point(6, 25)
+        Me.Label17.Name = "Label17"
+        Me.Label17.Size = New System.Drawing.Size(39, 15)
+        Me.Label17.TabIndex = 16
+        Me.Label17.Text = "Name"
+        '
+        'txtPropName
+        '
+        Me.txtPropName.Location = New System.Drawing.Point(71, 22)
+        Me.txtPropName.Name = "txtPropName"
+        Me.txtPropName.ReadOnly = True
+        Me.txtPropName.Size = New System.Drawing.Size(194, 23)
+        Me.txtPropName.TabIndex = 0
+        '
+        'cmbPropStyle
+        '
+        Me.cmbPropStyle.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbPropStyle.FormattingEnabled = True
+        Me.cmbPropStyle.Location = New System.Drawing.Point(71, 109)
+        Me.cmbPropStyle.Name = "cmbPropStyle"
+        Me.cmbPropStyle.Size = New System.Drawing.Size(194, 23)
+        Me.cmbPropStyle.TabIndex = 3
+        '
+        'Label16
+        '
+        Me.Label16.AutoSize = True
+        Me.Label16.Location = New System.Drawing.Point(6, 112)
+        Me.Label16.Name = "Label16"
+        Me.Label16.Size = New System.Drawing.Size(32, 15)
+        Me.Label16.TabIndex = 13
+        Me.Label16.Text = "Style"
+        '
+        'cmbPropOwner
+        '
+        Me.cmbPropOwner.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbPropOwner.FormattingEnabled = True
+        Me.cmbPropOwner.Location = New System.Drawing.Point(71, 80)
+        Me.cmbPropOwner.Name = "cmbPropOwner"
+        Me.cmbPropOwner.Size = New System.Drawing.Size(194, 23)
+        Me.cmbPropOwner.TabIndex = 2
+        '
+        'Label15
+        '
+        Me.Label15.AutoSize = True
+        Me.Label15.Location = New System.Drawing.Point(6, 83)
+        Me.Label15.Name = "Label15"
+        Me.Label15.Size = New System.Drawing.Size(42, 15)
+        Me.Label15.TabIndex = 11
+        Me.Label15.Text = "Owner"
+        '
+        'lvBuilding
+        '
+        Me.lvBuilding.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lvBuilding.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.chPropName, Me.chPropIntName, Me.chPropOwner, Me.chPropStyle})
+        Me.lvBuilding.FullRowSelect = True
+        Me.lvBuilding.GridLines = True
+        Me.lvBuilding.Location = New System.Drawing.Point(6, 6)
+        Me.lvBuilding.MultiSelect = False
+        Me.lvBuilding.Name = "lvBuilding"
+        Me.lvBuilding.Size = New System.Drawing.Size(506, 536)
+        Me.lvBuilding.TabIndex = 0
+        Me.lvBuilding.UseCompatibleStateImageBehavior = False
+        Me.lvBuilding.View = System.Windows.Forms.View.Details
+        '
+        'chPropName
+        '
+        Me.chPropName.Text = "Name"
+        Me.chPropName.Width = 195
+        '
+        'chPropIntName
+        '
+        Me.chPropIntName.Text = "Internal Name"
+        Me.chPropIntName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.chPropIntName.Width = 90
+        '
+        'chPropOwner
+        '
+        Me.chPropOwner.Text = "Owner"
+        Me.chPropOwner.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.chPropOwner.Width = 100
+        '
+        'chPropStyle
+        '
+        Me.chPropStyle.Text = "Style"
+        Me.chPropStyle.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.chPropStyle.Width = 90
         '
         'tpTransferVeh
         '
@@ -1206,7 +1399,17 @@ Partial Class frmSPA
         Me.GroupBox2.Size = New System.Drawing.Size(786, 249)
         Me.GroupBox2.TabIndex = 1
         Me.GroupBox2.TabStop = False
-        Me.GroupBox2.Text = "GTA Five: Apartment && Garage"
+        Me.GroupBox2.Text = "GTA Five: Apartment && Garage (SPA II)"
+        '
+        'btnBrowse2
+        '
+        Me.btnBrowse2.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnBrowse2.Location = New System.Drawing.Point(755, 22)
+        Me.btnBrowse2.Name = "btnBrowse2"
+        Me.btnBrowse2.Size = New System.Drawing.Size(25, 23)
+        Me.btnBrowse2.TabIndex = 1
+        Me.btnBrowse2.Text = "..."
+        Me.btnBrowse2.UseVisualStyleBackColor = True
         '
         'Label14
         '
@@ -1245,6 +1448,11 @@ Partial Class frmSPA
         '
         Me.chName2.Text = "Name"
         Me.chName2.Width = 200
+        '
+        'chPlate2
+        '
+        Me.chPlate2.Text = "Plate Number"
+        Me.chPlate2.Width = 100
         '
         'chFile2
         '
@@ -1294,7 +1502,17 @@ Partial Class frmSPA
         Me.GroupBox1.Size = New System.Drawing.Size(786, 249)
         Me.GroupBox1.TabIndex = 0
         Me.GroupBox1.TabStop = False
-        Me.GroupBox1.Text = "Single Player Apartment"
+        Me.GroupBox1.Text = "Single Player Apartment (SPA)"
+        '
+        'btnBrowse1
+        '
+        Me.btnBrowse1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnBrowse1.Location = New System.Drawing.Point(755, 22)
+        Me.btnBrowse1.Name = "btnBrowse1"
+        Me.btnBrowse1.Size = New System.Drawing.Size(25, 23)
+        Me.btnBrowse1.TabIndex = 1
+        Me.btnBrowse1.Text = "..."
+        Me.btnBrowse1.UseVisualStyleBackColor = True
         '
         'Label13
         '
@@ -1334,6 +1552,11 @@ Partial Class frmSPA
         Me.chName1.Text = "Name"
         Me.chName1.Width = 200
         '
+        'chPlate1
+        '
+        Me.chPlate1.Text = "Plate Number"
+        Me.chPlate1.Width = 100
+        '
         'chFIle1
         '
         Me.chFIle1.Text = "File"
@@ -1368,45 +1591,15 @@ Partial Class frmSPA
         Me.Label9.TabIndex = 5
         Me.Label9.Text = "Apartment"
         '
-        'chPlate1
+        'cbDebug
         '
-        Me.chPlate1.Text = "Plate Number"
-        Me.chPlate1.Width = 100
-        '
-        'chPlate2
-        '
-        Me.chPlate2.Text = "Plate Number"
-        Me.chPlate2.Width = 100
-        '
-        'btnBrowse1
-        '
-        Me.btnBrowse1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnBrowse1.Location = New System.Drawing.Point(755, 22)
-        Me.btnBrowse1.Name = "btnBrowse1"
-        Me.btnBrowse1.Size = New System.Drawing.Size(25, 23)
-        Me.btnBrowse1.TabIndex = 1
-        Me.btnBrowse1.Text = "..."
-        Me.btnBrowse1.UseVisualStyleBackColor = True
-        '
-        'btnBrowse2
-        '
-        Me.btnBrowse2.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnBrowse2.Location = New System.Drawing.Point(755, 22)
-        Me.btnBrowse2.Name = "btnBrowse2"
-        Me.btnBrowse2.Size = New System.Drawing.Size(25, 23)
-        Me.btnBrowse2.TabIndex = 1
-        Me.btnBrowse2.Text = "..."
-        Me.btnBrowse2.UseVisualStyleBackColor = True
-        '
-        'cbMission
-        '
-        Me.cbMission.AutoSize = True
-        Me.cbMission.Location = New System.Drawing.Point(6, 47)
-        Me.cbMission.Name = "cbMission"
-        Me.cbMission.Size = New System.Drawing.Size(140, 19)
-        Me.cbMission.TabIndex = 1
-        Me.cbMission.Text = "Hide Blips on Mission"
-        Me.cbMission.UseVisualStyleBackColor = True
+        Me.cbDebug.AutoSize = True
+        Me.cbDebug.Location = New System.Drawing.Point(6, 72)
+        Me.cbDebug.Name = "cbDebug"
+        Me.cbDebug.Size = New System.Drawing.Size(95, 19)
+        Me.cbDebug.TabIndex = 2
+        Me.cbDebug.Text = "Debug Mode"
+        Me.cbDebug.UseVisualStyleBackColor = True
         '
         'frmSPA
         '
@@ -1439,6 +1632,9 @@ Partial Class frmSPA
         Me.GroupBox4.ResumeLayout(False)
         Me.GroupBox4.PerformLayout()
         Me.tpAptToggle.ResumeLayout(False)
+        Me.tpProperties.ResumeLayout(False)
+        Me.gbPropEdit.ResumeLayout(False)
+        Me.gbPropEdit.PerformLayout()
         Me.tpTransferVeh.ResumeLayout(False)
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
@@ -1560,4 +1756,22 @@ Partial Class frmSPA
     Friend WithEvents btnBrowse2 As Button
     Friend WithEvents btnBrowse1 As Button
     Friend WithEvents cbMission As CheckBox
+    Friend WithEvents tpProperties As TabPage
+    Friend WithEvents gbPropEdit As GroupBox
+    Friend WithEvents cmbPropStyle As ComboBox
+    Friend WithEvents Label16 As Label
+    Friend WithEvents cmbPropOwner As ComboBox
+    Friend WithEvents Label15 As Label
+    Friend WithEvents lvBuilding As ListView
+    Friend WithEvents chPropName As ColumnHeader
+    Friend WithEvents chPropIntName As ColumnHeader
+    Friend WithEvents chPropOwner As ColumnHeader
+    Friend WithEvents chPropStyle As ColumnHeader
+    Friend WithEvents btnPropCancel As Button
+    Friend WithEvents btnPropApply As Button
+    Friend WithEvents Label18 As Label
+    Friend WithEvents txtPropIntName As TextBox
+    Friend WithEvents Label17 As Label
+    Friend WithEvents txtPropName As TextBox
+    Friend WithEvents cbDebug As CheckBox
 End Class

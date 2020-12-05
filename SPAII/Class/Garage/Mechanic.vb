@@ -39,8 +39,6 @@ Module Mechanic
         End With
         iFruit.Contacts.Add(Dynasty8Contact)
 
-        config = ScriptSettings.Load("scripts\SPA II\modconfig.ini")
-
         MechanicMenu = New UIMenu("", Game.GetGXTEntry("MPCT_MECHH"), New Point(0, -107))
         With MechanicMenu
             .SetBannerType(MenuBanner)
@@ -205,7 +203,7 @@ Module Mechanic
 
         With InsuranceMenu
             For Each veh As Vehicle In outVehicleList
-                If veh.Owner = GetPlayer() Then
+                If veh.Owner = GetPlayer() AndAlso veh.IsDead Then
                     Dim item As New UIMenuItem($"{veh.Make} {veh.FriendlyName}", Game.GetGXTEntry("MPCT_INSD"))
                     With item
                         .SetRightLabel("$500")

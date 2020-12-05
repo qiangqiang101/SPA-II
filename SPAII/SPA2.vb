@@ -19,6 +19,8 @@ Public Class SPA2
         Decor.Register(vehUidDecor, Decor.eDecorType.Int)
         Decor.Lock()
 
+        GenerateModConfig()
+        LoadModConfig()
         LoadBuildings()
         LoadContacts()
         LoadWardrobe()
@@ -27,7 +29,6 @@ Public Class SPA2
         TenCarGarage.LoadGarageMenu()
         LoadDebugMenu()
         EnableOnlineMap()
-
         Game.Globals(GetGlobalValue).SetInt(1)
     End Sub
 

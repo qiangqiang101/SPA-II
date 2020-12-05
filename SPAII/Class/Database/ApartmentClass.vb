@@ -39,7 +39,6 @@ Public Class ApartmentClass
     Public WithEvents StyleMenu As UIMenu
 
     Public Function Owner() As eOwner
-        config = ScriptSettings.Load("scripts\SPA II\modconfig.ini")
         Return config.GetValue(Of eOwner)("BUILDING", Name, eOwner.Nobody)
     End Function
 
@@ -265,7 +264,6 @@ Public Class ApartmentClass
 
     Private Sub StyleMenu_OnItemSelect(sender As UIMenu, selectedItem As UIMenuItem, index As Integer) Handles StyleMenu.OnItemSelect
         Try
-            config = ScriptSettings.Load("scripts\SPA II\modconfig.ini")
             Dim oldIPL As String = config.GetValue("IPL", Name, "apa_v_mp_h_01_a")
 
             Select Case selectedItem.Tag

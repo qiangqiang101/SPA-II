@@ -13,9 +13,6 @@ Imports NFunc = GTA.Native.Function
 
 Module Helper
 
-    'Config
-    Public config As ScriptSettings = ScriptSettings.Load("scripts\SPA II\modconfig.ini")
-    Public debugMode As Boolean = False
     Public HideHud As Boolean = False
 
     'Path 
@@ -73,6 +70,8 @@ Module Helper
     Public StatScaleform7 As New Scaleform("MP_CAR_STATS_08")
     Public StatScaleform8 As New Scaleform("MP_CAR_STATS_09")
     Public StatScaleform9 As New Scaleform("MP_CAR_STATS_10")
+
+
 
     <Extension>
     Public Function Make(vehicle As Vehicle) As String
@@ -933,7 +932,7 @@ Module Helper
     <Extension>
     Public Sub Play(speech As Speech)
         Using stream As New WaveStream(IO.File.OpenRead($"{soundPath}{speech.Wav}"))
-            stream.Volume = config.GetValue(Of Integer)("SOUND", "Volume", 100)
+            stream.Volume = SoundVolume
             Using player As New SoundPlayer(stream)
                 player.Play()
             End Using
@@ -998,11 +997,9 @@ Module Helper
     End Function
 
     Public Function EnableOnlineMap() As Boolean
-        config = ScriptSettings.Load("scripts\SPA II\modconfig.ini")
-
         Dim gotError As Boolean = False
 
-        If config.GetValue(Of Boolean)("SETTING", "OnlineMap", True) Then
+        If OnlineMap Then
             Try
                 NFunc.Call(ON_ENTER_MP)
             Catch ex As Exception
@@ -1070,8 +1067,6 @@ Module Helper
 
     <Extension>
     Public Function GetBlipColor(bd As BuildingClass) As BlipColor
-        config = ScriptSettings.Load("scripts\SPA II\modconfig.ini")
-
         If bd.Apartments.Count = 1 Then
             Select Case bd.Apartments.FirstOrDefault.Owner
                 Case eOwner.Michael

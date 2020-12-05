@@ -136,6 +136,125 @@
         {"weazel_plaze_apt_101", {"Weazel Plaza, Apt 101", 10, 35}},
         {"weazel_plaze_apt_26", {"Weazel Plaza, Apt 26", 10, 37}}}
 
+    Public AptStyleDic As New Dictionary(Of String, String) From {
+        {"Modern", "apa_v_mp_h_01_"}, {"Moody", "apa_v_mp_h_02_"}, {"Vibrant", "apa_v_mp_h_03_"}, {"Sharp", "apa_v_mp_h_04_"},
+        {"Monochrome", "apa_v_mp_h_05_"}, {"Seductive", "apa_v_mp_h_06_"}, {"Regal", "apa_v_mp_h_07_"}, {"Aqua", "apa_v_mp_h_08_"}}
+
+    Public BuildingDic As New Dictionary(Of String, String) From {
+        {"Eclipse Towers, Apt 31", "MP_PROP_1"},
+        {"Eclipse Towers, Apt 9", "MP_PROP_2"},
+        {"Eclipse Towers, Apt 40", "MP_PROP_3"},
+        {"Eclipse Towers, Apt 5", "MP_PROP_4"},
+        {"3 Alta St, Apt 10", "MP_PROP_5"},
+        {"3 Alta St, Apt 57", "MP_PROP_6"},
+        {"Del Perro Heights, Apt 20", "MP_PROP_7"},
+        {"1162 Power St, Apt 3", "MP_PROP_8"},
+        {"0605 Spanish Ave, Apt 1", "MP_PROP_9"},
+        {"0604 Las Lagunas Blvd, Apt 4", "MP_PROP_10"},
+        {"0184 Milton Rd, Apt 13", "MP_PROP_11"},
+        {"The Royale, Apt 19", "MP_PROP_12"},
+        {"0504 S Mo Milton Dr", "MP_PROP_13"},
+        {"0115 Bay City Ave, Apt 45", "MP_PROP_14"},
+        {"0325 South Rockford Dr", "MP_PROP_15"},
+        {"Dream Tower, Apt 15", "MP_PROP_16"},
+        {"2143 Las Lagunas Blvd, Apt 9", "MP_PROP_17"},
+        {"1561 San Vitas St, Apt 2", "MP_PROP_18"},
+        {"0112 S Rockford Dr, Apt 13", "MP_PROP_19"},
+        {"2057 Vespucci Blvd, Apt 1", "MP_PROP_20"},
+        {"0069 Cougar Ave, Apt 19", "MP_PROP_21"},
+        {"1237 Prosperity St, Apt 21", "MP_PROP_22"},
+        {"1115 Blvd Del Perro, Apt 18", "MP_PROP_23"},
+        {"0120 Murrieta Heights", "MP_PROP_24"},
+        {"Unit 14 Popular St", "MP_PROP_25"},
+        {"Unit 2 Popular St", "MP_PROP_26"},
+        {"331 Supply St", "MP_PROP_27"},
+        {"Unit 1 Olympic Fwy", "MP_PROP_28"},
+        {"0754 Roy Lowenstein Blvd", "MP_PROP_29"},
+        {"12 Little Bighorn Ave", "MP_PROP_30"},
+        {"Unit 124 Popular St", "MP_PROP_31"},
+        {"0552 Roy Lowenstein Blvd", "MP_PROP_32"},
+        {"0432 Davis Ave", "MP_PROP_33"},
+        {"Del Perro Heights, Apt 7", "MP_PROP_34"},
+        {"Weazel Plaza, Apt 101", "MP_PROP_35"},
+        {"Weazel Plaza, Apt 70", "MP_PROP_36"},
+        {"Weazel Plaza, Apt 26", "MP_PROP_37"},
+        {"4 Integrity Way, Apt 30", "MP_PROP_38"},
+        {"4 Integrity Way, Apt 35", "MP_PROP_39"},
+        {"Richards Majestic, Apt 4", "MP_PROP_40"},
+        {"Richards Majestic, Apt 51", "MP_PROP_41"},
+        {"Tinsel Towers, Apt 45", "MP_PROP_42"},
+        {"Tinsel Towers, Apt 29", "MP_PROP_43"},
+        {"142 Paleto Blvd", "MP_PROP_44"},
+        {"1 Strawberry Ave", "MP_PROP_45"},
+        {"1932 Grapeseed Ave", "MP_PROP_46"},
+        {"1984 Senora Way", "MP_PROP_47"},
+        {"1920 Senora Way", "MP_PROP_48"},
+        {"2000 Great Ocean Highway", "MP_PROP_49"},
+        {"197 Route 68", "MP_PROP_50"},
+        {"870 Route 68 Approach", "MP_PROP_51"},
+        {"1200 Route 68", "MP_PROP_52"},
+        {"3 Zancudo Avenue", "MP_PROP_53"},
+        {"1001 Panorama Drive", "MP_PROP_54"},
+        {"100 Marina Drive", "MP_PROP_55"},
+        {"Marlowe Vineyard Garage", "MP_PROP_56"},
+        {"8754 Route 68", "MP_PROP_57"},
+        {"Runway 1 Unit 5", "MP_PROP_58"},
+        {"1905 Davis Ave", "MP_PROP_59"},
+        {"1623 South Shambles St", "MP_PROP_60"},
+        {"4531 Dry Dock St", "MP_PROP_61"},
+        {"1337 Exceptionalists Way", "MP_PROP_62"},
+        {"Unit 76 Greenwich Parkway", "MP_PROP_63"},
+        {"Garage Innocence Blvd", "MP_PROP_64"},
+        {"634 Blvd Del Perro", "MP_PROP_65"},
+        {"0897 Mirror Park Blvd", "MP_PROP_66"},
+        {"Eclipse Towers, Apt 3", "MP_PROP_67"},
+        {"Del Perro Heights, Apt 4", "MP_PROP_68"},
+        {"Richards Majestic, Apt 2", "MP_PROP_69"},
+        {"Tinsel Towers, Apt 42", "MP_PROP_70"},
+        {"4 Integrity Way, Apt 28", "MP_PROP_71"},
+        {"4 Hangman Ave", "MP_PROP_72"},
+        {"12 Sustancia Rd", "MP_PROP_73"},
+        {"4584 Procopio Dr", "MP_PROP_74"},
+        {"4401 Procopio Dr", "MP_PROP_75"},
+        {"0232 Paleto Blvd", "MP_PROP_76"},
+        {"140 Zancudo Ave", "MP_PROP_77"},
+        {"1893 Grapeseed Ave", "MP_PROP_78"},
+        {"Eclipse Towers, Penthouse Suite 1", "MP_PROP_79"},
+        {"Eclipse Towers, Penthouse Suite 2", "MP_PROP_80"},
+        {"Eclipse Towers, Penthouse Suite 3", "MP_PROP_81"},
+        {"3655 Wild Oats Drive", "MP_PROP_83"},
+        {"2044 North Conker Avenue", "MP_PROP_84"},
+        {"2868 Hillcrest Avenue", "MP_PROP_85"},
+        {"2862 Hillcrest Avenue", "MP_PROP_86"},
+        {"3677 Whispymound Drive", "MP_PROP_87"},
+        {"2117 Milton Road", "MP_PROP_89"},
+        {"2866 Hillcrest Avenue", "MP_PROP_90"},
+        {"2874 Hillcrest Avenue", "MP_PROP_92"},
+        {"2113 Mad Wayne Thunder Drive", "MP_PROP_94"},
+        {"2045 North Conker Avenue", "MP_PROP_95"}}
+
+    Public Function GetAptStyle(stylekey As String, aptid As Integer) As String
+        Dim abc As String = "a"
+        Select Case aptid
+            Case 79
+                abc = "a"
+            Case 80
+                abc = "b"
+            Case 81
+                abc = "c"
+        End Select
+        Return $"{AptStyleDic.Item(stylekey)}{abc}"
+    End Function
+
+    Public Function ConvertAptStyle(style As String) As String
+        Try
+            Dim trimmed As String = style.Substring(0, style.Length - 2)
+            Return AptStyleDic.Where(Function(x) x.Value = trimmed).FirstOrDefault.Key
+        Catch ex As Exception
+            Return ""
+        End Try
+    End Function
+
     Public Function GetAvailableIndex(vdList As List(Of VehicleData), garageType As Integer) As Integer
         Dim existingIndexes As New List(Of Integer)
         For Each vd In vdList

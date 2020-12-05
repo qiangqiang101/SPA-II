@@ -9,8 +9,6 @@ Module BuildingList
         apartments.Clear()
 
         Try
-            config = ScriptSettings.Load("scripts\SPA II\modconfig.ini")
-
 #Region "High End Apartments"
             '3 Alta Street
             If config.GetValue(Of Boolean)("APARTMENT", "3AST", True) Then

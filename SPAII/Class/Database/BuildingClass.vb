@@ -56,8 +56,6 @@ Public Class BuildingClass
     End Function
 
     Public Sub Load()
-        config = ScriptSettings.Load("scripts\SPA II\modconfig.ini")
-
         If Not IsVacant() AndAlso Not BuildingType = eBuildingType.Garage Then
             GarageBlip = World.CreateBlip(GarageInPos)
             With GarageBlip
@@ -72,7 +70,7 @@ Public Class BuildingClass
         With BuildingBlip
             .IsShortRange = True
             If IsVacant() Then
-                If Not debugMode Then
+                If Not DebugMode Then
                     Select Case BuildingType
                         Case eBuildingType.Apartment
                             .Sprite = BlipSprite.SafehouseForSale

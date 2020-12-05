@@ -82,6 +82,7 @@
     <Compile Include="Class\Apartment\HighEndApartment.vb" />
     <Compile Include="Class\Apartment\LowEndApartment.vb" />
     <Compile Include="Class\Apartment\MediumEndApartment.vb" />
+    <Compile Include="Class\ConfigHelper.vb" />
     <Compile Include="Class\Database\BuildingList.vb" />
     <Compile Include="Class\CarGens.vb" />
     <Compile Include="Class\Debug\DebugCamera.vb" />
