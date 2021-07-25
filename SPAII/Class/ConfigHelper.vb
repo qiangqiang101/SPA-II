@@ -7,6 +7,7 @@ Module ConfigHelper
 
     Public DebugMode As Boolean = False
     Public OnlineMap As Boolean = True
+    Public DisableBlips As Boolean = False
     Public SoundVolume As Integer = 100
 
     Public Sub LoadModConfig()
@@ -15,6 +16,7 @@ Module ConfigHelper
         SoundVolume = config.GetValue(Of Integer)("SOUND", "Volume", 100)
         DebugMode = config.GetValue(Of Boolean)("SETTING", "DebugMode", False)
         OnlineMap = config.GetValue(Of Boolean)("SETTING", "OnlineMap", True)
+        DisableBlips = config.GetValue(Of Boolean)("SETTING", "DisableBlips", True)
     End Sub
 
     Public Sub GenerateModConfig()
@@ -26,6 +28,7 @@ Module ConfigHelper
             config.SetValue(Of Boolean)("SETTING", "OnlineMap", True)
             config.SetValue(Of Boolean)("SETTING", "HideBlipsOnMission", True)
             config.SetValue(Of Boolean)("SETTING", "DebugMode", False)
+            config.SetValue(Of Boolean)("SETTING", "DisableBlips", False)
 
             Dim cutProp() As Integer = {82, 88, 91, 93}
             For i As Integer = 1 To 95

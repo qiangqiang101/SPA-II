@@ -157,7 +157,7 @@ Public Class SPA2
                     End If
 
                     'Hide Blips on Mission
-                    If config.GetValue(Of Boolean)("SETTING", "HideBlipsOnMission", True) Then
+                    If Not DisableBlips And config.GetValue(Of Boolean)("SETTING", "HideBlipsOnMission", True) Then
                         If Game.MissionFlag Then
                             If bd.BuildingBlip.Alpha = 255 Then bd.BuildingBlip.Alpha = 0
                             If bd.GarageBlip <> Nothing Then If bd.GarageBlip.Alpha = 255 Then bd.GarageBlip.Alpha = 0
@@ -212,7 +212,7 @@ Public Class SPA2
     Private Sub SPA2_Aborted(sender As Object, e As EventArgs) Handles Me.Aborted
         For Each Building In buildings
             If Building.SaleSignProp <> Nothing Then Building.SaleSignProp.Delete()
-            Building.BuildingBlip.Remove()
+            If Not Building.BuildingBlip = Nothing Then Building.BuildingBlip.Remove()
             If Not Building.GarageBlip = Nothing Then Building.GarageBlip.Remove()
         Next
 

@@ -107,6 +107,7 @@ Partial Class frmSPA
         Me.tcTab = New System.Windows.Forms.TabControl()
         Me.tpSettings = New System.Windows.Forms.TabPage()
         Me.GroupBox4 = New System.Windows.Forms.GroupBox()
+        Me.cbDebug = New System.Windows.Forms.CheckBox()
         Me.cbMission = New System.Windows.Forms.CheckBox()
         Me.cbOnlineMap = New System.Windows.Forms.CheckBox()
         Me.tpAptToggle = New System.Windows.Forms.TabPage()
@@ -151,7 +152,7 @@ Partial Class frmSPA
         Me.txtSPA1 = New System.Windows.Forms.TextBox()
         Me.cmbSPA1 = New System.Windows.Forms.ComboBox()
         Me.Label9 = New System.Windows.Forms.Label()
-        Me.cbDebug = New System.Windows.Forms.CheckBox()
+        Me.cbDisableBlips = New System.Windows.Forms.CheckBox()
         Me.gbApt.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.gbGarage.SuspendLayout()
@@ -1159,15 +1160,26 @@ Partial Class frmSPA
         '
         'GroupBox4
         '
+        Me.GroupBox4.Controls.Add(Me.cbDisableBlips)
         Me.GroupBox4.Controls.Add(Me.cbDebug)
         Me.GroupBox4.Controls.Add(Me.cbMission)
         Me.GroupBox4.Controls.Add(Me.cbOnlineMap)
         Me.GroupBox4.Location = New System.Drawing.Point(6, 59)
         Me.GroupBox4.Name = "GroupBox4"
-        Me.GroupBox4.Size = New System.Drawing.Size(361, 94)
+        Me.GroupBox4.Size = New System.Drawing.Size(361, 121)
         Me.GroupBox4.TabIndex = 1
         Me.GroupBox4.TabStop = False
         Me.GroupBox4.Text = "Setting"
+        '
+        'cbDebug
+        '
+        Me.cbDebug.AutoSize = True
+        Me.cbDebug.Location = New System.Drawing.Point(6, 72)
+        Me.cbDebug.Name = "cbDebug"
+        Me.cbDebug.Size = New System.Drawing.Size(95, 19)
+        Me.cbDebug.TabIndex = 2
+        Me.cbDebug.Text = "Debug Mode"
+        Me.cbDebug.UseVisualStyleBackColor = True
         '
         'cbMission
         '
@@ -1331,6 +1343,7 @@ Partial Class frmSPA
         Me.lvBuilding.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.chPropName, Me.chPropIntName, Me.chPropOwner, Me.chPropStyle})
         Me.lvBuilding.FullRowSelect = True
         Me.lvBuilding.GridLines = True
+        Me.lvBuilding.HideSelection = False
         Me.lvBuilding.Location = New System.Drawing.Point(6, 6)
         Me.lvBuilding.MultiSelect = False
         Me.lvBuilding.Name = "lvBuilding"
@@ -1437,6 +1450,7 @@ Partial Class frmSPA
         Me.lvSPA2.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.chName2, Me.chPlate2, Me.chFile2})
         Me.lvSPA2.FullRowSelect = True
         Me.lvSPA2.GridLines = True
+        Me.lvSPA2.HideSelection = False
         Me.lvSPA2.Location = New System.Drawing.Point(77, 80)
         Me.lvSPA2.Name = "lvSPA2"
         Me.lvSPA2.Size = New System.Drawing.Size(703, 161)
@@ -1540,6 +1554,7 @@ Partial Class frmSPA
         Me.lvSPA1.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.chName1, Me.chPlate1, Me.chFIle1})
         Me.lvSPA1.FullRowSelect = True
         Me.lvSPA1.GridLines = True
+        Me.lvSPA1.HideSelection = False
         Me.lvSPA1.Location = New System.Drawing.Point(77, 80)
         Me.lvSPA1.Name = "lvSPA1"
         Me.lvSPA1.Size = New System.Drawing.Size(703, 163)
@@ -1591,15 +1606,15 @@ Partial Class frmSPA
         Me.Label9.TabIndex = 5
         Me.Label9.Text = "Apartment"
         '
-        'cbDebug
+        'cbDisableBlips
         '
-        Me.cbDebug.AutoSize = True
-        Me.cbDebug.Location = New System.Drawing.Point(6, 72)
-        Me.cbDebug.Name = "cbDebug"
-        Me.cbDebug.Size = New System.Drawing.Size(95, 19)
-        Me.cbDebug.TabIndex = 2
-        Me.cbDebug.Text = "Debug Mode"
-        Me.cbDebug.UseVisualStyleBackColor = True
+        Me.cbDisableBlips.AutoSize = True
+        Me.cbDisableBlips.Location = New System.Drawing.Point(6, 97)
+        Me.cbDisableBlips.Name = "cbDisableBlips"
+        Me.cbDisableBlips.Size = New System.Drawing.Size(119, 19)
+        Me.cbDisableBlips.TabIndex = 3
+        Me.cbDisableBlips.Text = "Disable Map Blips"
+        Me.cbDisableBlips.UseVisualStyleBackColor = True
         '
         'frmSPA
         '
@@ -1774,4 +1789,5 @@ Partial Class frmSPA
     Friend WithEvents Label17 As Label
     Friend WithEvents txtPropName As TextBox
     Friend WithEvents cbDebug As CheckBox
+    Friend WithEvents cbDisableBlips As CheckBox
 End Class

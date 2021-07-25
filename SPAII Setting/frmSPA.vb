@@ -52,6 +52,11 @@
         Catch ex As Exception
             cbDebug.Checked = False
         End Try
+        Try
+            cbDisableBlips.Checked = CBool(ReadIniValue(config, "SETTING", "DisableBlips"))
+        Catch ex As Exception
+            cbDisableBlips.Checked = False
+        End Try
 
         'Load Vehicle Transfers
         txtSPA1.Text = IO.Path.GetFullPath("..\SinglePlayerApartment\Garage")
@@ -107,6 +112,7 @@
             WriteIniValue(config, "SETTING", "OnlineMap", cbOnlineMap.Checked)
             WriteIniValue(config, "SETTING", "HideBlipsOnMission", cbMission.Checked)
             WriteIniValue(config, "SETTING", "DebugMode", cbDebug.Checked)
+            WriteIniValue(config, "SETTING", "DisableBlips", cbDisableBlips.Checked)
 
             For Each item As ListViewItem In lvBuilding.Items
                 Dim itemTag As Tuple(Of String, String, String, String, Integer) = item.Tag

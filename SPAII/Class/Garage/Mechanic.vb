@@ -304,7 +304,7 @@ Module Mechanic
                     Dynasty8BuyMenu.Visible = False
                     iFruit.Close()
                     With bld
-                        .BuildingBlip.Remove()
+                        If Not .BuildingBlip Is Nothing Then .BuildingBlip.Remove()
                         If Not .GarageBlip Is Nothing Then .GarageBlip.Remove()
                         .RefreshBuyMenu()
                         .RefreshAptMenu()
@@ -321,7 +321,7 @@ Module Mechanic
                 Dynasty8BuyMenu.Visible = False
                 iFruit.Close()
                 With bld
-                    .BuildingBlip.Remove()
+                    If Not .BuildingBlip Is Nothing Then .BuildingBlip.Remove()
                     If Not .GarageBlip Is Nothing Then .GarageBlip.Remove()
                     .RefreshBuyMenu()
                     .RefreshAptMenu()
@@ -341,7 +341,7 @@ Module Mechanic
         Dynasty8TradeMenu.Visible = False
         iFruit.Close()
         With bld
-            .BuildingBlip.Remove()
+            If Not .BuildingBlip Is Nothing Then .BuildingBlip.Remove()
             If Not .GarageBlip Is Nothing Then .GarageBlip.Remove()
             .RefreshBuyMenu()
             .RefreshAptMenu()
